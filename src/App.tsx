@@ -26,9 +26,10 @@ export default function App() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        // Load manifest
+        // Load manifest (wrapped format: { generatedAt, photoCount, photos: [...] })
         const manifestRes = await fetch('/assets/shoebox/manifest.json')
-        const manifestPhotos = await manifestRes.json()
+        const manifestData = await manifestRes.json()
+        const manifestPhotos = Array.isArray(manifestData) ? manifestData : (manifestData.photos || [])
         
         // Load stories
         const storiesRes = await fetch('/assets/shoebox/stories.json')
