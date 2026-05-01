@@ -15,5 +15,5 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: false,
   },
-  base: '/shoebox-v2/',
+  base: '/',
 })
