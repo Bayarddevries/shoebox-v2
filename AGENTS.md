@@ -64,5 +64,28 @@ The 302 photos in `public/assets/shoebox/photos/` have filenames with spaces (e.
 `public/assets/shoebox/manifest.json` is built by `scripts/generate_manifest.js`. All `src` paths in the manifest are **relative** (e.g., `assets/shoebox/photos/Old Photo 001.jpg`). To regenerate:
 
 ```bash
-node scripts/generate_manifest.js
+node scripts/generate_manifest.js [SOURCE_DIR] [OUTPUT_FILE]
+# Defaults: ./public/assets/shoebox/photos → ./public/assets/shoebox/manifest.json
 ```
+
+### Manifest Generator v2 Pipeline
+
+The manifest generator is the **standard pipeline** for when new images are added. It reads structured IPTC/XMP metadata written by Adobe Lightroom:
+
+**Extraction steps:**
+1. **IPTC City / Sub-location / Province-State / Country** → builds full location string ("Community, Province, Canada")
+2. **Province normalization** — 18 spelling variants (MB, Mb, Saskachewan, etc.) → canonical full names
+3. **City normalization** — fixes typos (Winniepg → Winnipeg, etc.)
+4. **GPS coordinates** — uses `exiftool -n` for signed decimals (fixes the old bug where Western Canada longitudes were positive → Siberia)
+5. **Geocode fallback** — if no GPS in EXIF, looks up coordinates from a 30+ community table (Duck Bay, St. Eustache, Selkirk, etc.)
+6. **People extraction** — separates person names from topical keywords using a curated stop-list
+7. **Year from IPTC DateCreated** (more reliable than filename parsing)
+
+**When adding new photos:**
+1. Copy photos to `public/assets/shoebox/photos/`
+2. Ensure Lightroom has written IPTC metadata (City, Province-State, Country, Keywords with people names)
+3. Run: `node scripts/generate_manifest.js`
+4. If the new community isn't in the geocode table, add it to `GEOCODE_TABLE` in the script
+5. If new topical keywords appear as false-positive people names, add them to `TOPICAL_KEYWORDS`
+6. Rebuild: `npm run build`
+7. Commit and push both `public/assets/shoebox/manifest.json` and the `shoebox/` build output
