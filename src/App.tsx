@@ -26,21 +26,23 @@ export default function App() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        // Load manifest (wrapped format: { generatedAt, photoCount, photos: [...] })
-        const manifestRes = await fetch('/assets/shoebox/manifest.json')
-        const manifestData = await manifestRes.json()
-        const manifestPhotos = Array.isArray(manifestData) ? manifestData : (manifestData.photos || [])
-        
-        // Load stories
-        const storiesRes = await fetch('/assets/shoebox/stories.json')
-        const storiesData = await storiesRes.json()
-        
-        // Convert stories to have photoIds
-        const storiesWithIds: Story[] = storiesData.map((s: any) => ({
-          id: s.id,
-          title: s.title,
-          text: s.text_file ? '' : '', // Text loaded separately if needed
-          audioSrc: s.audio_file ? `/assets/shoebox/audio/${s.audio_file}` : '',
+ const base = import.meta.env.BASE_URL
+
+ // Load manifest (wrapped format: { generatedAt, photoCount, photos: [...] })
+ const manifestRes = await fetch(`${base}assets/shoebox/manifest.json`)
+ const manifestData = await manifestRes.json()
+ const manifestPhotos = Array.isArray(manifestData) ? manifestData : (manifestData.photos || [])
+ 
+ // Load stories
+ const storiesRes = await fetch(`${base}assets/shoebox/stories.json`)
+ const storiesData = await storiesRes.json()
+ 
+ // Convert stories to have photoIds
+ const storiesWithIds: Story[] = storiesData.map((s: any) => ({
+ id: s.id,
+ title: s.title,
+ text: s.text_file ? '' : '', // Text loaded separately if needed
+ audioSrc: s.audio_file ? `${base}assets/shoebox/audio/${s.audio_file}` : '',
           photoIds: [] as number[],
           textFile: s.text_file,
           audioFile: s.audio_file,
