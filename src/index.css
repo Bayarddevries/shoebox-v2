@@ -81,20 +81,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-title {
-  font-family: var(--font-serif);
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-  animation: fadeInUp 1s ease-out;
+ font-family: var(--font-serif);
+ font-weight: 700;
+ font-size: 3rem;
+ letter-spacing: 0.02em;
+ margin-bottom: 1.5rem;
+ animation: fadeInUp 1s ease-out;
+ text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
 }
 
 .hero-subtitle {
- font-size: 1.25rem;
+ font-family: var(--font-cinzel);
+ font-size: 0.875rem;
+ letter-spacing: 0.2em;
+ text-transform: uppercase;
  margin-bottom: 0.75rem;
  opacity: 0.9;
  animation: fadeInUp 1s ease-out 0.2s backwards;
 }
 
 .hero-deck {
+ font-family: var(--font-sans);
  font-size: 1rem;
  max-width: 36rem;
  margin: 0 auto 2rem;
@@ -105,7 +112,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 768px) {
  .hero-title { font-size: 4.5rem; }
- .hero-subtitle { font-size: 1.5rem; }
+ .hero-subtitle { font-size: 1rem; }
  .hero-deck { font-size: 1.125rem; }
 }
 
