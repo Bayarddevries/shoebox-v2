@@ -55,6 +55,15 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
       aria-modal="true"
       aria-label={photo.title || photo.alt}
     >
+      {/* ═══ Close button — OUTSIDE the modal entirely so transform/overflow never clips it ═══ */}
+      <button
+        onClick={onClose}
+        className="photo-detail-close"
+        aria-label="Close"
+      >
+        ✕
+      </button>
+
       <div
         className="photo-detail-modal"
         style={{
@@ -65,14 +74,6 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {/* ═══ Close button — OUTSIDE the layout divs, always on top ═══ */}
-        <button
-          onClick={onClose}
-          className="photo-detail-close"
-          aria-label="Close"
-        >
-          ✕
-        </button>
 
         {/* ═══ Mobile layout: image full width, details below ═══ */}
         <div className="photo-detail-mobile md:hidden">

@@ -1011,11 +1011,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .photo-detail-close {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  width: 40px;
-  height: 40px;
+ position: fixed;
+ top: 0.75rem;
+ right: 0.75rem;
+ width: 44px;
+ height: 44px;
   border-radius: 50%;
   border: none;
   background: rgba(255, 255, 255, 0.9);
@@ -1024,8 +1024,8 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
-  transition: all 0.15s;
+ z-index: 100001;
+ transition: all 0.15s;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
   -webkit-tap-highlight-color: transparent;
 }
@@ -1039,17 +1039,13 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(0.9);
 }
 
-/* On mobile, pin the close button to the top-right of the viewport
-   so it's always visible above the image */
+/* On mobile, ensure the close button sits above the notch */
 @media (max-width: 767px) {
-  .photo-detail-close {
-    position: fixed;
-    top: env(safe-area-inset-top, 0.75rem);
-    right: 0.75rem;
-    z-index: 100001;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-  }
+ .photo-detail-close {
+ top: env(safe-area-inset-top, 0.75rem);
+ background: rgba(255, 255, 255, 0.95);
+ backdrop-filter: blur(8px);
+ }
 }
 
 /* Mobile layout */
