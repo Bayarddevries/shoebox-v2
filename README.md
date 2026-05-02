@@ -51,8 +51,8 @@ import reactX from 'eslint-plugin-react-x'
 import reactDom from 'eslint-plugin-react-dom'
 
 export default defineConfig([
-  globalIgnores(['dist']),
-  {
+ globalIgnores(['dist']),
+ {
     files: ['**/*.{ts,tsx}'],
     extends: [
       // Other configs...
@@ -70,4 +70,50 @@ export default defineConfig([
     },
   },
 ])
+```
+
+## Deployment
+
+The app deploys to **GitHub Pages** at [https://bayarddevries.github.io/shoebox-v2/](https://bayarddevries.github.io/shoebox-v2/).
+
+### Base path
+
+The site is served under the `/shoebox-v2/` subpath. The `base` option in **`vite.config.ts`** must match this:
+
+```ts
+export default defineConfig({
+  base: '/shoebox-v2/',
+  // ...
+})
+```
+
+### Fetch paths
+
+All `fetch()` calls must use **`import.meta.env.BASE_URL`** instead of hardcoded absolute paths. This ensures URLs resolve correctly both in local development (where `BASE_URL` is `/`) and on GitHub Pages (where it's `/shoebox-v2/`):
+
+```ts
+// ✅ Correct
+fetch(`${import.meta.env.BASE_URL}assets/shoebox/manifest.json`)
+
+// ❌ Wrong — 404s on GitHub Pages
+fetch('/assets/shoebox/manifest.json')
+```
+
+### GitHub Pages build type
+
+The GitHub Pages `build_type` is set to **`"legacy"`** — not `"workflow"`. This is required because the project uses [`peaceiris/actions-gh-pages`](https://github.com/peaceiris/actions-gh-pages) to deploy by pushing to the `gh-pages` branch. The `"workflow"` build type only responds to the official `actions/deploy-pages` action and silently ignores branch pushes, which would break deployments entirely.
+
+> **Do not change the Pages build type to `"workflow"` unless you also switch the CI pipeline to use `actions/deploy-pages`.**
+
+See [`docs/GITHUB_PAGES_FIX.md`](docs/GITHUB_PAGES_FIX.md) for the full incident report.
+
+### Rebuilding after changes
+
+After changing the `base` path or any assets, rebuild and commit the output:
+
+```bash
+npm run build
+# The build outputs to shoebox/ (not dist/) — commit this directory
+git add shoebox/
+git commit -m "Rebuild after base path change"
 ```
