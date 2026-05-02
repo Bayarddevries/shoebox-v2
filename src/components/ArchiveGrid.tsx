@@ -8,7 +8,7 @@ interface ArchiveGridProps {
 export default function ArchiveGrid({ photos, onPhotoClick }: ArchiveGridProps) {
   if (photos.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-24 text-center">
+      <div className="empty-state">
         <div className="text-6xl mb-4">📷</div>
         <h3 className="text-xl font-serif mb-2" style={{ color: 'var(--color-charcoal)' }}>No photos found</h3>
         <p className="text-sm" style={{ color: 'var(--color-charcoal-light)' }}>
@@ -24,9 +24,9 @@ export default function ArchiveGrid({ photos, onPhotoClick }: ArchiveGridProps) 
         <div
           key={photo.id}
           className="archive-tile"
-          style={{ animationDelay: `${Math.min(index * 50, 1000)}ms` }}
+          style={{ animationDelay: `${Math.min(index * 40, 800)}ms` }}
         >
-          <div 
+          <div
             className="archive-card cursor-pointer"
             onClick={() => onPhotoClick(photo)}
           >
@@ -37,32 +37,41 @@ export default function ArchiveGrid({ photos, onPhotoClick }: ArchiveGridProps) 
                 className="photo-card-image"
                 loading="lazy"
               />
-              {photo.location && (
-                <div className="absolute top-3 right-3">
+              {/* Community badge */}
+              {(photo.community || photo.location) && (
+                <div className="photo-card-badge">
                   <span className="photo-badge bg-white/90 px-2 py-1 rounded">
-                    📍 {photo.location}
+                    📍 {photo.community || photo.location?.split(',')[0]?.trim()}
+                  </span>
+                </div>
+              )}
+              {/* Year badge */}
+              {photo.year && (
+                <div className="photo-card-year-badge">
+                  <span className="photo-badge bg-white/90 px-2 py-1 rounded">
+                    {photo.year}
                   </span>
                 </div>
               )}
             </div>
-            
+
             <div className="p-4">
               <h3 className="font-serif text-lg mb-2 line-clamp-1" style={{ color: 'var(--color-charcoal)' }}>
                 {photo.title || photo.alt}
               </h3>
-              
+
               {photo.caption && (
                 <p className="text-sm line-clamp-2 mb-3" style={{ color: 'var(--color-charcoal-light)' }}>
                   {photo.caption}
                 </p>
               )}
-              
+
               {photo.people && (
                 <p className="text-xs mb-3" style={{ color: 'var(--color-charcoal-light)' }}>
-                  <span className="font-medium">People:</span> {photo.people}
+                  <span className="font-medium">People:</span> {photo.people.length > 60 ? photo.people.slice(0, 57) + '...' : photo.people}
                 </p>
               )}
-              
+
               {photo.keywords && photo.keywords.length > 0 && (
                 <div className="flex flex-wrap gap-1">
                   {photo.keywords.slice(0, 3).map((keyword, i) => (

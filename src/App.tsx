@@ -1,14 +1,23 @@
-import { useState, useEffect, useMemo } from 'react'
-import type { Photo, Story } from './types'
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
+import type { Photo, Story, Page, FilterState } from './types'
+import { EMPTY_FILTERS, filtersToSearchParams, searchParamsToFilters, hasActiveFilters } from './types'
 import Navbar from './components/Navbar'
 import ArchiveGrid from './components/ArchiveGrid'
 import PhotoDetail from './components/PhotoDetail'
-import FilterSidebar from './components/FilterSidebar'
+import FilterBar from './components/FilterBar'
 import MapView from './components/MapView'
 import StoriesView from './components/StoriesView'
 import ContributeForm from './components/ContributeForm'
 
-type Page = 'home' | 'archive' | 'stories' | 'map' | 'contribute'
+// Debounce hook
+function useDebouncedValue<T>(value: T, delay: number): T {
+  const [debounced, setDebounced] = useState(value)
+  useEffect(() => {
+    const timer = setTimeout(() => setDebounced(value), delay)
+    return () => clearTimeout(timer)
+  }, [value, delay])
+  return debounced
+}
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
@@ -16,56 +25,77 @@ export default function App() {
   const [stories, setStories] = useState<Story[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedYearSpan, setSelectedYearSpan] = useState<string | null>(null)
-  const [selectedFamily, setSelectedFamily] = useState<string | null>(null)
-  const [selectedLocation, setSelectedLocation] = useState<string | null>(null)
   const [showContribute, setShowContribute] = useState(false)
+  const [filters, setFilters] = useState<FilterState>(EMPTY_FILTERS)
+  const initialUrlRead = useRef(false)
 
-  // Load manifest on mount
+  // ── URL sync ──────────────────────────────────────────
+  // Read filters from URL on mount
+  useEffect(() => {
+    if (initialUrlRead.current) return
+    initialUrlRead.current = true
+    const params = new URLSearchParams(window.location.search)
+    const urlFilters = searchParamsToFilters(params)
+    if (hasActiveFilters(urlFilters)) {
+      setFilters(urlFilters)
+      setCurrentPage('archive')
+    }
+    // Also check for #archive, #map, #stories hash
+    const hash = window.location.hash.replace('#', '')
+    if (['archive', 'map', 'stories'].includes(hash)) {
+      setCurrentPage(hash as Page)
+    }
+  }, [])
+
+  // Write filters to URL when they change
+  useEffect(() => {
+    if (!initialUrlRead.current) return
+    const params = filtersToSearchParams(filters)
+    const qs = params.toString()
+    const newUrl = qs
+      ? `${window.location.pathname}?${qs}${window.location.hash}`
+      : `${window.location.pathname}${window.location.hash}`
+    window.history.replaceState(null, '', newUrl)
+  }, [filters])
+
+  // ── Data loading ──────────────────────────────────────
   useEffect(() => {
     const loadData = async () => {
       try {
- const base = import.meta.env.BASE_URL
+        const base = import.meta.env.BASE_URL
+        const manifestRes = await fetch(`${base}assets/shoebox/manifest.json`)
+        const manifestData = await manifestRes.json()
+        const manifestPhotos = Array.isArray(manifestData) ? manifestData : (manifestData.photos || [])
 
- // Load manifest (wrapped format: { generatedAt, photoCount, photos: [...] })
- const manifestRes = await fetch(`${base}assets/shoebox/manifest.json`)
- const manifestData = await manifestRes.json()
- const manifestPhotos = Array.isArray(manifestData) ? manifestData : (manifestData.photos || [])
- 
- // Load stories
- const storiesRes = await fetch(`${base}assets/shoebox/stories.json`)
- const storiesData = await storiesRes.json()
- 
- // Convert stories to have photoIds
- const storiesWithIds: Story[] = storiesData.map((s: any) => ({
- id: s.id,
- title: s.title,
- text: s.text_file ? '' : '', // Text loaded separately if needed
- audioSrc: s.audio_file ? `${base}assets/shoebox/audio/${s.audio_file}` : '',
+        const storiesRes = await fetch(`${base}assets/shoebox/stories.json`)
+        const storiesData = await storiesRes.json()
+
+        const storiesWithIds: Story[] = storiesData.map((s: any) => ({
+          id: s.id,
+          title: s.title,
+          text: s.text_file ? '' : '',
+          audioSrc: s.audio_file ? `${base}assets/shoebox/audio/${s.audio_file}` : '',
           photoIds: [] as number[],
           textFile: s.text_file,
           audioFile: s.audio_file,
-          _photoFiles: s.photo_files || []
+          _photoFiles: s.photo_files || [],
         }))
-        
-        // Match photos to stories
+
         const photosWithStoryLinks = manifestPhotos.map((p: any, idx: number) => {
           const storyLinks = storiesWithIds.filter(s => s._photoFiles?.includes(p.alt || p.title))
           return {
             ...p,
             id: typeof p.id === 'string' ? parseInt(p.id.replace('photo_', ''), 10) || idx : p.id,
-            storyIds: storyLinks.map(s => s.id)
+            storyIds: storyLinks.map(s => s.id),
           }
         })
-        
-        // Update story photoIds
+
         storiesWithIds.forEach(story => {
           story.photoIds = photosWithStoryLinks
             .filter((p: any) => story._photoFiles?.includes(p.alt || p.title))
             .map((p: any) => p.id)
         })
-        
+
         setPhotos(photosWithStoryLinks)
         setStories(storiesWithIds)
       } catch (err) {
@@ -74,91 +104,144 @@ export default function App() {
         setLoading(false)
       }
     }
-    
     loadData()
   }, [])
 
-  // Extract unique values for filters
-  const { families, locations, yearSpans } = useMemo(() => {
-    const families = new Set<string>()
-    const locations = new Set<string>()
-    const yearSpans = new Set<string>()
-    
+  // ── Extract filter options from data ──────────────────
+  const { communities, families, decades, keywords } = useMemo(() => {
+    const communitySet = new Set<string>()
+    const familySet = new Set<string>()
+    const decadeSet = new Set<string>()
+    const keywordCount = new Map<string, number>()
+
     photos.forEach(p => {
-      // Extract family names from people
+      // Community from structured field, fallback to location
+      if (p.community) {
+        communitySet.add(p.community)
+      } else if (p.location) {
+        // Only use location as community fallback if it looks like a place name
+        const loc = p.location.split(',')[0].trim()
+        if (loc.length > 1 && loc.length < 40) communitySet.add(loc)
+      }
+
+      // Family names from people field
       if (p.people) {
         p.people.split(',').forEach(name => {
-          const parts = name.trim().split(' ')
-          if (parts.length > 1) families.add(parts[parts.length - 1])
+          const trimmed = name.trim()
+          const parts = trimmed.split(' ')
+          if (parts.length > 1) {
+            // Take last word as surname (common convention)
+            const surname = parts[parts.length - 1]
+            // Filter out obvious non-surnames
+            if (surname.length > 1 && !/^\d+$/.test(surname)) {
+              familySet.add(surname)
+            }
+          } else if (trimmed.length > 1) {
+            // Single-word name — include as-is
+            familySet.add(trimmed)
+          }
         })
       }
-      
-      // Extract location
-      if (p.location) locations.add(p.location)
-      
-      // Extract keywords with year spans
+
+      // Decades from year field
+      if (p.year) {
+        const decade = Math.floor(p.year / 10) * 10
+        decadeSet.add(`${decade}s`)
+      }
+
+      // Keywords — count occurrences, only show top ones
       if (p.keywords) {
         p.keywords.forEach(kw => {
-          if (/\d{4}-\d{4}/.test(kw)) yearSpans.add(kw)
+          // Skip year-span patterns and people names (they have their own filters)
+          if (/^\d{4}-\d{4}$/.test(kw)) return
+          keywordCount.set(kw, (keywordCount.get(kw) || 0) + 1)
         })
       }
     })
-    
+
+    // Only include keywords used by 2+ photos, sorted by frequency
+    const topKeywords = Array.from(keywordCount.entries())
+      .filter(([, count]) => count >= 2)
+      .sort((a, b) => b[1] - a[1])
+      .map(([kw]) => kw)
+      .slice(0, 25)
+
     return {
-      families: Array.from(families).sort(),
-      locations: Array.from(locations).sort(),
-      yearSpans: Array.from(yearSpans).sort(),
+      communities: Array.from(communitySet).sort(),
+      families: Array.from(familySet).sort(),
+      decades: Array.from(decadeSet).sort(),
+      keywords: topKeywords,
     }
   }, [photos])
 
-  // Filter photos based on active filters
+  // ── Debounced search ──────────────────────────────────
+  const debouncedSearch = useDebouncedValue(filters.search, 250)
+
+  // ── Filter photos ─────────────────────────────────────
   const filteredPhotos = useMemo(() => {
     return photos.filter(photo => {
-      // Search query
-      if (searchQuery) {
-        const q = searchQuery.toLowerCase()
-        const searchText = [photo.title, photo.caption, photo.location, photo.people, ...(photo.keywords || [])].join(' ').toLowerCase()
-        if (!searchText.includes(q)) return false
+      // Search
+      if (debouncedSearch) {
+        const q = debouncedSearch.toLowerCase()
+        const searchFields = [
+          photo.title,
+          photo.caption,
+          photo.location,
+          photo.community,
+          photo.people,
+          ...(photo.keywords || []),
+        ]
+          .filter(Boolean)
+          .join(' ')
+          .toLowerCase()
+        if (!searchFields.includes(q)) return false
       }
-      
-      // Year span filter
-      if (selectedYearSpan) {
-        if (!photo.keywords?.includes(selectedYearSpan)) return false
+
+      // Community filter (match against community field or location)
+      if (filters.communities.length > 0) {
+        const photoCommunity = photo.community || (photo.location ? photo.location.split(',')[0].trim() : '')
+        if (!filters.communities.some(c => photoCommunity === c || photo.location?.includes(c))) return false
       }
-      
+
       // Family filter
-      if (selectedFamily) {
-        if (!photo.people?.toLowerCase().includes(selectedFamily.toLowerCase())) return false
+      if (filters.families.length > 0) {
+        const photoPeople = (photo.people || '').toLowerCase()
+        if (!filters.families.some(f => photoPeople.includes(f.toLowerCase()))) return false
       }
-      
-      // Location filter
-      if (selectedLocation) {
-        if (!photo.location?.toLowerCase().includes(selectedLocation.toLowerCase())) return false
+
+      // Decade filter
+      if (filters.decades.length > 0) {
+        if (!photo.year) return false
+        const photoDecade = `${Math.floor(photo.year / 10) * 10}s`
+        if (!filters.decades.includes(photoDecade)) return false
       }
-      
+
+      // Keyword filter
+      if (filters.keywords.length > 0) {
+        const photoKws = photo.keywords || []
+        if (!filters.keywords.some(k => photoKws.includes(k))) return false
+      }
+
       return true
     })
-  }, [photos, searchQuery, selectedYearSpan, selectedFamily, selectedLocation])
+  }, [photos, debouncedSearch, filters])
 
-  // Sort by oldest first
+  // ── Sort ──────────────────────────────────────────────
   const sortedPhotos = useMemo(() => {
     return [...filteredPhotos].sort((a, b) => {
-      // Use year field if available, otherwise use lastModified
-      const yearA = a.year || Math.floor((a.lastModified || 0) / 100000000000)
-      const yearB = b.year || Math.floor((b.lastModified || 0) / 100000000000)
+      const yearA = a.year || 9999
+      const yearB = b.year || 9999
       return yearA - yearB
     })
   }, [filteredPhotos])
 
-  const clearFilters = () => {
-    setSearchQuery('')
-    setSelectedYearSpan(null)
-    setSelectedFamily(null)
-    setSelectedLocation(null)
-  }
+  // ── Navigation with hash ──────────────────────────────
+  const navigate = useCallback((page: Page) => {
+    setCurrentPage(page)
+    window.location.hash = page === 'home' ? '' : page
+  }, [])
 
-  const hasActiveFilters = !!(searchQuery || selectedYearSpan || selectedFamily || selectedLocation)
-
+  // ── Loading state ─────────────────────────────────────
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--color-parchment)' }}>
@@ -174,92 +257,80 @@ export default function App() {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--color-parchment)' }}>
-      <Navbar currentPage={currentPage} onNavigate={setCurrentPage} onContribute={() => setShowContribute(true)} />
-      
+      <Navbar currentPage={currentPage} onNavigate={navigate} onContribute={() => setShowContribute(true)} />
+
       <main>
-        {/* HOME PAGE */}
+        {/* ═══ HOME PAGE ═══ */}
         {currentPage === 'home' && (
           <div className="relative">
-            {/* Hero Section */}
-            <div className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-              <div 
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ 
+            <div className="hero-section">
+              <div
+                className="hero-bg"
+                style={{
                   backgroundImage: photos[0]?.src ? `url(${photos[0].src})` : undefined,
-                  filter: 'brightness(0.4)'
                 }}
               />
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(139,0,0,0.3), rgba(0,0,0,0.7))' }} />
-              <div className="relative z-10 text-center text-white px-6">
-                <h1 className="text-5xl md:text-7xl font-serif mb-6">Red River Métis</h1>
-                <p className="text-xl md:text-2xl mb-8 opacity-90">Digital Archive & Heritage Collection</p>
-                <button 
-                  onClick={() => setCurrentPage('archive')}
+              <div className="hero-overlay" />
+              <div className="hero-content">
+                <h1 className="hero-title">Red River Métis</h1>
+                <p className="hero-subtitle">Digital Archive & Heritage Collection</p>
+                <button
+                  onClick={() => navigate('archive')}
                   className="btn-primary text-lg"
                 >
                   Explore the Archive
                 </button>
               </div>
             </div>
-            
-            {/* Stats */}
+
             <div className="max-w-6xl mx-auto py-16 px-6">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div>
-                  <div className="text-4xl font-serif mb-2" style={{ color: 'var(--color-crimson)' }}>{photos.length}</div>
-                  <div className="text-sm uppercase tracking-wider" style={{ color: 'var(--color-charcoal-light)' }}>Photographs</div>
+                  <div className="stat-number">{photos.length}</div>
+                  <div className="stat-label">Photographs</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-serif mb-2" style={{ color: 'var(--color-crimson)' }}>{stories.length}</div>
-                  <div className="text-sm uppercase tracking-wider" style={{ color: 'var(--color-charcoal-light)' }}>Stories</div>
+                  <div className="stat-number">{stories.length}</div>
+                  <div className="stat-label">Stories</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-serif mb-2" style={{ color: 'var(--color-crimson)' }}>{families.length}</div>
-                  <div className="text-sm uppercase tracking-wider" style={{ color: 'var(--color-charcoal-light)' }}>Families</div>
+                  <div className="stat-number">{families.length}</div>
+                  <div className="stat-label">Families</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-serif mb-2" style={{ color: 'var(--color-crimson)' }}>{locations.length}</div>
-                  <div className="text-sm uppercase tracking-wider" style={{ color: 'var(--color-charcoal-light)' }}>Locations</div>
+                  <div className="stat-number">{communities.length}</div>
+                  <div className="stat-label">Communities</div>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* ARCHIVE PAGE */}
+        {/* ═══ ARCHIVE PAGE ═══ */}
         {currentPage === 'archive' && (
-          <div className="flex min-h-[calc(100vh-73px)]">
-            {/* Sidebar */}
-            <FilterSidebar
-              searchQuery={searchQuery}
-              onSearchChange={setSearchQuery}
+          <div>
+            <FilterBar
+              filters={filters}
+              onFiltersChange={setFilters}
+              communities={communities}
               families={families}
-              selectedFamily={selectedFamily}
-              onFamilySelect={setSelectedFamily}
-              locations={locations}
-              selectedLocation={selectedLocation}
-              onLocationSelect={setSelectedLocation}
-              yearSpans={yearSpans}
-              selectedYearSpan={selectedYearSpan}
-              onYearSpanSelect={setSelectedYearSpan}
-              onClearFilters={clearFilters}
-              hasActiveFilters={hasActiveFilters}
+              decades={decades}
+              keywords={keywords}
               resultsCount={filteredPhotos.length}
+              totalCount={photos.length}
             />
-            
-            {/* Main Content */}
-            <div className="flex-1 overflow-auto custom-scrollbar">
+            <div className="archive-page-content">
               <ArchiveGrid photos={sortedPhotos} onPhotoClick={setSelectedPhoto} />
             </div>
           </div>
         )}
 
-        {/* MAP PAGE */}
+        {/* ═══ MAP PAGE ═══ */}
         {currentPage === 'map' && (
           <MapView photos={photos} onPhotoClick={setSelectedPhoto} />
         )}
 
-        {/* STORIES PAGE */}
+        {/* ═══ STORIES PAGE ═══ */}
         {currentPage === 'stories' && (
           <StoriesView stories={stories} photos={photos} onPhotoClick={setSelectedPhoto} />
         )}
@@ -267,8 +338,8 @@ export default function App() {
 
       {/* Photo Detail Modal */}
       {selectedPhoto && (
-        <PhotoDetail 
-          photo={selectedPhoto} 
+        <PhotoDetail
+          photo={selectedPhoto}
           stories={stories.filter(s => s.photoIds?.includes(selectedPhoto.id))}
           onClose={() => setSelectedPhoto(null)}
         />

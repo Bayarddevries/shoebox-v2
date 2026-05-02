@@ -1,3 +1,4 @@
+import { useEffect, useCallback } from 'react'
 import type { Photo, Story } from '../types'
 
 interface PhotoDetailProps {
@@ -7,81 +8,80 @@ interface PhotoDetailProps {
 }
 
 export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProps) {
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) onClose()
-  }
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') onClose()
-  }
+  }, [onClose])
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
+    }
+  }, [handleKeyDown])
 
   return (
-    <div 
-      className="modal-overlay fade-in" 
-      onClick={handleBackdropClick}
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
+    <div
+      className="modal-overlay"
+      onClick={e => { if (e.target === e.currentTarget) onClose() }}
+      role="dialog"
+      aria-modal="true"
+      aria-label={photo.title || photo.alt}
     >
-      <div className="modal-content">
-        {/* Close Button */}
+      <div className="photo-detail-modal">
+        {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center z-10"
-          style={{ background: 'var(--color-cream)' }}
+          className="photo-detail-close"
+          aria-label="Close"
         >
           ✕
         </button>
 
-        <div className="grid md:grid-cols-2">
-          {/* Image */}
-          <div className="relative bg-black flex items-center justify-center min-h-[300px]">
+        {/* ═══ Mobile layout: image full width, details below ═══ */}
+        <div className="photo-detail-mobile md:hidden">
+          {/* Image — full bleed */}
+          <div className="photo-detail-image-mobile">
             <img
               src={photo.src}
               alt={photo.alt || photo.title || 'Archive photo'}
-              className="max-w-full max-h-[70vh] object-contain"
             />
           </div>
 
-          {/* Details */}
-          <div className="p-6 md:p-8 overflow-y-auto custom-scrollbar" style={{ maxHeight: '70vh' }}>
-            <h2 className="font-serif text-2xl mb-4" style={{ color: 'var(--color-crimson)' }}>
-              {photo.title || photo.alt}
-            </h2>
+          {/* Details — scrollable below */}
+          <div className="photo-detail-info-mobile">
+            <h2 className="photo-detail-title">{photo.title || photo.alt}</h2>
 
- {/* Year badge */}
- {photo.year && (
- <div className="mb-4">
- <span className="inline-block px-3 py-1 rounded-full text-sm font-medium"
- style={{ background: 'var(--color-crimson)', color: 'var(--color-cream)' }}>
- 📅 {photo.year}
- </span>
- </div>
- )}
+            <div className="photo-detail-meta-mobile">
+              {photo.year && (
+                <span className="photo-detail-badge">📅 {photo.year}</span>
+              )}
+              {photo.community && (
+                <span className="photo-detail-badge">📍 {photo.community}{photo.province ? `, ${photo.province}` : ''}</span>
+              )}
+              {!photo.community && photo.location && (
+                <span className="photo-detail-badge">📍 {photo.location}</span>
+              )}
+            </div>
 
- {photo.location && (
- <div className="mb-4">
- <span className="text-sm font-medium" style={{ color: 'var(--color-charcoal-light)' }}>📍 Location</span>
- <p className="text-base">{photo.location}</p>
- </div>
- )}
+            {photo.people && (
+              <div className="photo-detail-section">
+                <h4 className="photo-detail-label">👥 People</h4>
+                <p>{photo.people}</p>
+              </div>
+            )}
 
- {photo.people && (
- <div className="mb-4">
- <span className="text-sm font-medium" style={{ color: 'var(--color-charcoal-light)' }}>👥 People</span>
- <p className="text-base">{photo.people}</p>
- </div>
- )}
-
- {photo.caption && (
- <div className="mb-4">
- <span className="text-sm font-medium" style={{ color: 'var(--color-charcoal-light)' }}>📝 Caption</span>
- <p className="text-base">{photo.caption}</p>
- </div>
- )}
+            {photo.caption && (
+              <div className="photo-detail-section">
+                <h4 className="photo-detail-label">📝 Caption</h4>
+                <p>{photo.caption}</p>
+              </div>
+            )}
 
             {photo.keywords && photo.keywords.length > 0 && (
-              <div className="mb-6">
-                <span className="text-sm font-medium block mb-2" style={{ color: 'var(--color-charcoal-light)' }}>🏷️ Keywords</span>
+              <div className="photo-detail-section">
+                <h4 className="photo-detail-label">🏷️ Keywords</h4>
                 <div className="flex flex-wrap gap-2">
                   {photo.keywords.map((keyword, i) => (
                     <span key={i} className="keyword-tag">{keyword}</span>
@@ -90,17 +90,15 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
               </div>
             )}
 
-            {/* Stories linked to this photo */}
             {stories.length > 0 && (
-              <div className="border-t pt-4" style={{ borderColor: 'var(--color-border)' }}>
-                <h3 className="font-serif text-lg mb-3">Related Stories</h3>
+              <div className="photo-detail-section photo-detail-stories">
+                <h4 className="photo-detail-label">📖 Related Stories</h4>
                 {stories.map(story => (
-                  <div key={story.id} className="mb-3 p-3 rounded" style={{ background: 'var(--color-cream)' }}>
-                    <h4 className="font-medium mb-1">{story.title}</h4>
+                  <div key={story.id} className="photo-detail-story-card">
+                    <h5>{story.title}</h5>
                     {story.audioSrc && (
                       <audio controls className="w-full mt-2 h-8">
                         <source src={story.audioSrc} type="audio/mpeg" />
-                        Your browser does not support audio.
                       </audio>
                     )}
                   </div>
@@ -108,10 +106,84 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
               </div>
             )}
 
-            {/* Coordinates if available */}
             {photo.lat && photo.lng && (
-              <div className="mt-4 text-xs" style={{ color: 'var(--color-charcoal-light)' }}>
-                📍 Coordinates: {photo.lat.toFixed(6)}, {photo.lng.toFixed(6)}
+              <div className="photo-detail-coords">
+                📍 {photo.lat.toFixed(4)}, {photo.lng.toFixed(4)}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* ═══ Desktop layout: side-by-side ═══ */}
+        <div className="hidden md:grid photo-detail-desktop">
+          {/* Image — takes up left column */}
+          <div className="photo-detail-image-desktop">
+            <img
+              src={photo.src}
+              alt={photo.alt || photo.title || 'Archive photo'}
+            />
+          </div>
+
+          {/* Details — right column, scrollable */}
+          <div className="photo-detail-info-desktop">
+            <h2 className="photo-detail-title">{photo.title || photo.alt}</h2>
+
+            <div className="photo-detail-meta-desktop">
+              {photo.year && (
+                <span className="photo-detail-badge">📅 {photo.year}</span>
+              )}
+              {photo.community && (
+                <span className="photo-detail-badge">📍 {photo.community}{photo.province ? `, ${photo.province}` : ''}</span>
+              )}
+              {!photo.community && photo.location && (
+                <span className="photo-detail-badge">📍 {photo.location}</span>
+              )}
+            </div>
+
+            {photo.people && (
+              <div className="photo-detail-section">
+                <h4 className="photo-detail-label">👥 People</h4>
+                <p>{photo.people}</p>
+              </div>
+            )}
+
+            {photo.caption && (
+              <div className="photo-detail-section">
+                <h4 className="photo-detail-label">📝 Caption</h4>
+                <p>{photo.caption}</p>
+              </div>
+            )}
+
+            {photo.keywords && photo.keywords.length > 0 && (
+              <div className="photo-detail-section">
+                <h4 className="photo-detail-label">🏷️ Keywords</h4>
+                <div className="flex flex-wrap gap-2">
+                  {photo.keywords.map((keyword, i) => (
+                    <span key={i} className="keyword-tag">{keyword}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {stories.length > 0 && (
+              <div className="photo-detail-section photo-detail-stories">
+                <h4 className="photo-detail-label">📖 Related Stories</h4>
+                {stories.map(story => (
+                  <div key={story.id} className="photo-detail-story-card">
+                    <h5>{story.title}</h5>
+                    {story.audioSrc && (
+                      <audio controls className="w-full mt-2 h-8">
+                        <source src={story.audioSrc} type="audio/mpeg" />
+                      </audio>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {photo.lat && photo.lng && (
+              <div className="photo-detail-coords">
+                📍 {photo.lat.toFixed(4)}, {photo.lng.toFixed(4)}
               </div>
             )}
           </div>
