@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useRef, useState } from 'react'
 import type { Photo, Story } from '../types'
 
 interface PhotoDetailProps {
@@ -8,6 +8,10 @@ interface PhotoDetailProps {
 }
 
 export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProps) {
+  const [swipeY, setSwipeY] = useState(0)
+  const touchStartY = useRef(0)
+  const touchCurrentY = useRef(0)
+
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') onClose()
   }, [onClose])
@@ -21,6 +25,28 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
     }
   }, [handleKeyDown])
 
+  // Swipe down to dismiss (mobile)
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY
+  }, [])
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    const deltaY = e.touches[0].clientY - touchStartY.current
+    touchCurrentY.current = deltaY
+    if (deltaY > 0) {
+      setSwipeY(deltaY)
+    }
+  }, [])
+
+  const handleTouchEnd = useCallback(() => {
+    if (swipeY > 100) {
+      onClose()
+    }
+    setSwipeY(0)
+    touchStartY.current = 0
+    touchCurrentY.current = 0
+  }, [swipeY, onClose])
+
   return (
     <div
       className="modal-overlay"
@@ -29,8 +55,17 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
       aria-modal="true"
       aria-label={photo.title || photo.alt}
     >
-      <div className="photo-detail-modal">
-        {/* Close button */}
+      <div
+        className="photo-detail-modal"
+        style={{
+          transform: swipeY > 0 ? `translateY(${swipeY}px)` : undefined,
+          transition: swipeY > 0 ? 'none' : undefined,
+        }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* ═══ Close button — OUTSIDE the layout divs, always on top ═══ */}
         <button
           onClick={onClose}
           className="photo-detail-close"
@@ -41,6 +76,9 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
 
         {/* ═══ Mobile layout: image full width, details below ═══ */}
         <div className="photo-detail-mobile md:hidden">
+          {/* Swipe-down handle */}
+          <div className="mobile-detail-handle" />
+
           {/* Image — full bleed */}
           <div className="photo-detail-image-mobile">
             <img
@@ -111,6 +149,9 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
                 📍 {photo.lat.toFixed(4)}, {photo.lng.toFixed(4)}
               </div>
             )}
+
+            {/* Bottom padding so content isn't cut off on notched phones */}
+            <div className="h-8" />
           </div>
         </div>
 
