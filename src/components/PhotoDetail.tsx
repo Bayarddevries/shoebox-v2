@@ -48,26 +48,36 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
               {photo.title || photo.alt}
             </h2>
 
-            {photo.location && (
-              <div className="mb-4">
-                <span className="text-sm font-medium" style={{ color: 'var(--color-charcoal-light)' }}>📍 Location</span>
-                <p className="text-base">{photo.location}</p>
-              </div>
-            )}
+ {/* Year badge */}
+ {photo.year && (
+ <div className="mb-4">
+ <span className="inline-block px-3 py-1 rounded-full text-sm font-medium"
+ style={{ background: 'var(--color-crimson)', color: 'var(--color-cream)' }}>
+ 📅 {photo.year}
+ </span>
+ </div>
+ )}
 
-            {photo.people && (
-              <div className="mb-4">
-                <span className="text-sm font-medium" style={{ color: 'var(--color-charcoal-light)' }}>👥 People</span>
-                <p className="text-base">{photo.people}</p>
-              </div>
-            )}
+ {photo.location && (
+ <div className="mb-4">
+ <span className="text-sm font-medium" style={{ color: 'var(--color-charcoal-light)' }}>📍 Location</span>
+ <p className="text-base">{photo.location}</p>
+ </div>
+ )}
 
-            {photo.caption && (
-              <div className="mb-4">
-                <span className="text-sm font-medium" style={{ color: 'var(--color-charcoal-light)' }}>📝 Caption</span>
-                <p className="text-base">{photo.caption}</p>
-              </div>
-            )}
+ {photo.people && (
+ <div className="mb-4">
+ <span className="text-sm font-medium" style={{ color: 'var(--color-charcoal-light)' }}>👥 People</span>
+ <p className="text-base">{photo.people}</p>
+ </div>
+ )}
+
+ {photo.caption && (
+ <div className="mb-4">
+ <span className="text-sm font-medium" style={{ color: 'var(--color-charcoal-light)' }}>📝 Caption</span>
+ <p className="text-base">{photo.caption}</p>
+ </div>
+ )}
 
             {photo.keywords && photo.keywords.length > 0 && (
               <div className="mb-6">
