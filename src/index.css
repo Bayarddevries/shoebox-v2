@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
  animation: fadeInUp 1s ease-out 0.2s backwards;
 }
 
-.hero-blurb {
+.hero-deck {
  font-size: 1rem;
  max-width: 36rem;
  margin: 0 auto 2rem;
@@ -106,7 +106,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 768px) {
  .hero-title { font-size: 4.5rem; }
  .hero-subtitle { font-size: 1.5rem; }
- .hero-blurb { font-size: 1.125rem; }
+ .hero-deck { font-size: 1.125rem; }
 }
 
 /* Stats */
