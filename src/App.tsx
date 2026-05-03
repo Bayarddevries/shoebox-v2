@@ -8,6 +8,7 @@ import FilterBar from './components/FilterBar'
 import MapView from './components/MapView'
 import StoriesView from './components/StoriesView'
 import ContributeForm from './components/ContributeForm'
+import HeroCarousel from './components/HeroCarousel'
 
 // Debounce hook
 function useDebouncedValue<T>(value: T, delay: number): T {
@@ -235,6 +236,11 @@ export default function App() {
     })
   }, [filteredPhotos])
 
+  // ── Pre-1950 photos for hero carousel ─────────────────
+  const carouselPhotos = useMemo(() => {
+    return photos.filter(p => p.year && p.year < 1950)
+  }, [photos])
+
   // ── Navigation with hash ──────────────────────────────
   const navigate = useCallback((page: Page) => {
     setCurrentPage(page)
@@ -263,14 +269,9 @@ export default function App() {
         {/* ═══ HOME PAGE ═══ */}
         {currentPage === 'home' && (
           <div className="relative">
-            <div className="hero-section">
-              <div
-                className="hero-bg"
-                style={{
-                  backgroundImage: photos[0]?.src ? `url(${photos[0].src})` : undefined,
-                }}
-              />
-              <div className="hero-overlay" />
+          <div className="hero-section">
+            <HeroCarousel photos={carouselPhotos} baseUrl={import.meta.env.BASE_URL} />
+            <div className="hero-overlay" />
               <div className="hero-content">
           <p className="hero-subtitle">Digital Photo Archive</p>
           <h1 className="hero-title">Red River Métis Shoebox</h1>

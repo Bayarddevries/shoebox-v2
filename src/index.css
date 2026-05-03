@@ -53,17 +53,56 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-.hero-bg {
+/* ── Hero Carousel ─────────────────────────────── */
+.hero-carousel {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.4);
-  transition: transform 8s ease-out;
+  overflow: hidden;
 }
 
-.hero-section:hover .hero-bg {
-  transform: scale(1.03);
+.hero-carousel-slide {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-carousel-fade-in {
+  animation: carouselFadeIn 1.5s ease-out forwards;
+}
+
+.hero-carousel-fade-out {
+  animation: carouselFadeOut 1.5s ease-in forwards;
+}
+
+@keyframes carouselFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes carouselFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.hero-carousel-ken-burns {
+  position: absolute;
+  inset: -5%; /* extra room for pan/zoom */
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.4) sepia(0.15);
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  will-change: transform, opacity;
+}
+
+@keyframes kenBurns {
+  from { transform: var(--kb-from); }
+  to   { transform: var(--kb-to); }
+}
+
+@keyframes kenBurnsHold {
+  from { transform: scale(1.08); }
+  to   { transform: scale(1.08); }
 }
 
 .hero-overlay {
