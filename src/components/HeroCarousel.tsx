@@ -69,7 +69,7 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
     if (shuffled.length <= 1) return
 
     const id = setInterval(() => {
-      if (pausedRef.current) return // skip this tick, but don't stop the interval
+      if (pausedRef.current) return
 
       // Start transition: move to next slide
       setTransitioning(true)
@@ -94,7 +94,24 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
 
   return (
     <div ref={sectionRef} className="hero-carousel">
-      {/* Previous slide (fading out) */}
+      {/* Current slide — always at full opacity (the base layer) */}
+      <div
+        className="hero-carousel-slide"
+        key={`curr-${currentIdx}`}
+      >
+        <div
+          className="hero-carousel-ken-burns"
+          style={{
+            backgroundImage: `url(${baseUrl}${current.src})`,
+            animationName: 'kenBurns',
+            animationDuration: `${SLIDE_DURATION + CROSSFADE_DURATION}ms`,
+            '--kb-from': getKenBurns(currentIdx).from,
+            '--kb-to': getKenBurns(currentIdx).to,
+          } as React.CSSProperties}
+        />
+      </div>
+
+      {/* Previous slide on top — fading out to reveal current underneath */}
       {prev && transitioning && (
         <div
           className="hero-carousel-slide hero-carousel-fade-out"
@@ -110,23 +127,6 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
           />
         </div>
       )}
-
-      {/* Current slide (fading in or static) */}
-      <div
-        className={`hero-carousel-slide ${prev ? 'hero-carousel-fade-in' : ''}`}
-        key={`curr-${currentIdx}`}
-      >
-        <div
-          className="hero-carousel-ken-burns"
-          style={{
-            backgroundImage: `url(${baseUrl}${current.src})`,
-            animationName: 'kenBurns',
-            animationDuration: `${SLIDE_DURATION + CROSSFADE_DURATION}ms`,
-            '--kb-from': getKenBurns(currentIdx).from,
-            '--kb-to': getKenBurns(currentIdx).to,
-          } as React.CSSProperties}
-        />
-      </div>
     </div>
   )
 }
