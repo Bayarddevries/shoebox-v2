@@ -875,8 +875,49 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--color-crimson);
-  border-bottom-color: var(--color-crimson);
+ color: var(--color-crimson);
+ border-bottom-color: var(--color-crimson);
+}
+
+/* External nav links (cross-site) */
+.nav-link-external {
+ display: inline-flex;
+ align-items: center;
+ gap: 4px;
+ opacity: 0.85;
+}
+
+.nav-link-external:hover {
+ opacity: 1;
+ border-bottom-color: var(--color-crimson);
+}
+
+.nav-link-icon {
+ margin-left: 2px;
+ opacity: 0.5;
+}
+
+/* Divider between internal and external nav */
+.nav-divider {
+ width: 1px;
+ height: 20px;
+ background: var(--color-border);
+ margin: 0 4px;
+}
+
+.mobile-nav-divider {
+ height: 1px;
+ background: var(--color-border);
+ margin: 8px 16px;
+}
+
+.mobile-nav-external {
+ text-decoration: none;
+ color: inherit;
+}
+
+.mobile-nav-external:hover {
+ background: rgba(139, 0, 0, 0.05);
 }
 
 /* Hamburger */

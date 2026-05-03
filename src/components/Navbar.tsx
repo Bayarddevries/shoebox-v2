@@ -11,12 +11,16 @@ export default function Navbar({ currentPage, onNavigate, onContribute }: Navbar
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
-  const navItems: { page: Page; label: string; icon: string }[] = [
-    { page: 'home', label: 'Home', icon: '🏠' },
-    { page: 'archive', label: 'Archive', icon: '📷' },
-    { page: 'stories', label: 'Stories', icon: '📖' },
-    { page: 'map', label: 'Map', icon: '🗺️' },
-  ]
+ const navItems: { page: Page; label: string; icon: string }[] = [
+ { page: 'home', label: 'Home', icon: '🏠' },
+ { page: 'archive', label: 'Archive', icon: '📷' },
+ { page: 'stories', label: 'Stories', icon: '📖' },
+ ]
+
+ const externalLinks = [
+ { href: 'https://bayarddevries.github.io/metis-homeland-map/', label: 'Homeland Map', icon: '🗺️' },
+ { href: 'https://bayarddevries.github.io/rrmnhc-website/', label: 'Heritage Centre', icon: '🏛️' },
+ ]
 
   // Close menu on outside click
   useEffect(() => {
@@ -53,18 +57,33 @@ export default function Navbar({ currentPage, onNavigate, onContribute }: Navbar
             </div>
           </button>
 
-          {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map(({ page, label }) => (
-              <button
-                key={page}
-                onClick={() => handleNavigate(page)}
-                className={`nav-link ${currentPage === page ? 'active' : ''}`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
+ {/* Desktop nav links */}
+ <div className="hidden md:flex items-center gap-8">
+ {navItems.map(({ page, label }) => (
+ <button
+ key={page}
+ onClick={() => handleNavigate(page)}
+ className={`nav-link ${currentPage === page ? 'active' : ''}`}
+ >
+ {label}
+ </button>
+ ))}
+ <span className="nav-divider" />
+ {externalLinks.map(({ href, label }) => (
+ <a
+ key={href}
+ href={href}
+ className="nav-link nav-link-external"
+ target="_blank"
+ rel="noopener noreferrer"
+ >
+ {label}
+ <svg className="nav-link-icon" viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="1.5">
+ <path d="M4 2h6v6M10 2L4 8" />
+ </svg>
+ </a>
+ ))}
+ </div>
 
           {/* Right side: Contribute + Hamburger */}
           <div className="flex items-center gap-3">
@@ -89,29 +108,42 @@ export default function Navbar({ currentPage, onNavigate, onContribute }: Navbar
           </div>
         </div>
 
-        {/* Mobile menu dropdown */}
-        <div
-          ref={menuRef}
-          className={`mobile-nav-menu ${menuOpen ? 'mobile-nav-menu-open' : ''}`}
-        >
-          {navItems.map(({ page, label, icon }) => (
-            <button
-              key={page}
-              onClick={() => handleNavigate(page)}
-              className={`mobile-nav-item ${currentPage === page ? 'mobile-nav-item-active' : ''}`}
-            >
-              <span className="mobile-nav-icon">{icon}</span>
-              <span>{label}</span>
-            </button>
-          ))}
-          <button
-            onClick={() => { onContribute(); setMenuOpen(false) }}
-            className="mobile-nav-item mobile-nav-contribute"
-          >
-            <span className="mobile-nav-icon">✉️</span>
-            <span>Contribute</span>
-          </button>
-        </div>
+ {/* Mobile menu dropdown */}
+ <div
+ ref={menuRef}
+ className={`mobile-nav-menu ${menuOpen ? 'mobile-nav-menu-open' : ''}`}
+ >
+ {navItems.map(({ page, label, icon }) => (
+ <button
+ key={page}
+ onClick={() => handleNavigate(page)}
+ className={`mobile-nav-item ${currentPage === page ? 'mobile-nav-item-active' : ''}`}
+ >
+ <span className="mobile-nav-icon">{icon}</span>
+ <span>{label}</span>
+ </button>
+ ))}
+ <div className="mobile-nav-divider" />
+ {externalLinks.map(({ href, label, icon }) => (
+ <a
+ key={href}
+ href={href}
+ className="mobile-nav-item mobile-nav-external"
+ target="_blank"
+ rel="noopener noreferrer"
+ >
+ <span className="mobile-nav-icon">{icon}</span>
+ <span>{label}</span>
+ </a>
+ ))}
+ <button
+ onClick={() => { onContribute(); setMenuOpen(false) }}
+ className="mobile-nav-item mobile-nav-contribute"
+ >
+ <span className="mobile-nav-icon">✉️</span>
+ <span>Contribute</span>
+ </button>
+ </div>
       </div>
     </nav>
   )
