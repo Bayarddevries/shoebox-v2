@@ -18,8 +18,11 @@ export default function Navbar({ currentPage, onNavigate, onContribute }: Navbar
  ]
 
  const externalLinks = [
- { href: 'https://bayarddevries.github.io/metis-homeland-map/', label: 'Homeland Map', icon: '🗺️' },
  { href: 'https://bayarddevries.github.io/rrmnhc-website/', label: 'Heritage Centre', icon: '🏛️' },
+ { href: 'https://bayarddevries.github.io/rrmnhc-website/artifacts-viewer.html', label: 'Artifacts', icon: '🏺' },
+ { href: 'https://bayarddevries.github.io/rrmnhc-website/news.html', label: 'News', icon: '📰' },
+ { href: 'https://bayarddevries.github.io/rrmnhc-website/contact.html', label: 'Contact', icon: '✉️' },
+ { href: 'https://bayarddevries.github.io/metis-homeland-map/', label: 'Homeland Map', icon: '🗺️' },
  ]
 
  // Close menu on outside click
