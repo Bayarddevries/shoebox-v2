@@ -60,45 +60,20 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-.hero-carousel-slide {
-  position: absolute;
-  inset: 0;
-}
-
-.hero-carousel-fade-out {
-  animation: carouselFadeOut 1.5s ease-in forwards;
-  z-index: 2; /* sits on top of the new slide */
-}
-
-@keyframes carouselFadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
+/* Each layer is a direct child — background-image + Ken Burns animation
+   are applied via JS DOM manipulation (no React re-renders during transitions). */
 .hero-carousel-ken-burns {
   position: absolute;
   inset: -5%; /* extra room for pan/zoom */
   background-size: cover;
   background-position: center;
   filter: brightness(0.4) sepia(0.15);
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: both; /* starts at from-keyframe, holds at to-keyframe */
-  animation-iteration-count: 1;
-  will-change: transform;
+  will-change: transform, opacity;
 }
 
 @keyframes kenBurns {
   from { transform: var(--kb-from); }
   to { transform: var(--kb-to); }
-}
-
-/* Freeze: instantly jumps to the final transform of the previous slide's
-   Ken Burns animation, then holds it. This prevents the "snap back" jerk
-   where the element would briefly revert to transform:none before the
-   old kenBurnsHold animation kicked in. */
-@keyframes kenBurnsFreeze {
-  from { transform: var(--freeze-transform); }
-  to { transform: var(--freeze-transform); }
 }
 
 .hero-overlay {

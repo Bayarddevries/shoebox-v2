@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo, useState, useCallback } from 'react'
+import { useEffect, useRef, useMemo, useState } from 'react'
 import type { Photo } from '../types'
 
 // Ken Burns variants for visual variety
@@ -12,48 +12,26 @@ const KEN_BURNS = [
 ]
 
 const SLIDE_DURATION = 7000
-const CROSSFADE = 1500
-const PRELOAD = 3
+const CROSSFADE_MS = 1500
+const PRELOAD_AHEAD = 3
 
-interface Props {
+interface HeroCarouselProps {
   photos: Photo[]
   baseUrl: string
 }
 
-function KenBurnsDiv({ photoIdx, shuffled, baseUrl, isOutgoing }: {
-  photoIdx: number
-  shuffled: Photo[]
-  baseUrl: string
-  isOutgoing: boolean
-}) {
-  const photo = shuffled[photoIdx]
-  const variant = KEN_BURNS[photoIdx % KEN_BURNS.length]
-
-  const setAllStyles = useCallback((el: HTMLDivElement | null) => {
-    if (!el) return
-    const bgUrl = `url(${baseUrl}${photo.src})`
-    console.log(`[KenBurnsDiv] ref callback: photoIdx=${photoIdx}, src=${photo.src}, isOutgoing=${isOutgoing}, url=${bgUrl}`)
-    el.style.backgroundImage = bgUrl
-    el.style.animationName = isOutgoing ? 'kenBurnsFreeze' : 'kenBurns'
-    el.style.animationDuration = isOutgoing ? '1ms' : `${SLIDE_DURATION + CROSSFADE}ms`
-    el.style.setProperty('--kb-from', variant.from)
-    el.style.setProperty('--kb-to', variant.to)
-    if (isOutgoing) {
-      el.style.setProperty('--freeze-transform', variant.to)
-    }
-    // Verify it was set
-    console.log(`[KenBurnsDiv] after set: bgImg="${el.style.backgroundImage}", computed="${getComputedStyle(el).backgroundImage.substring(0, 40)}"`)
-  }, [baseUrl, photo.src, variant.from, variant.to, isOutgoing])
-
-  return (
-    <div
-      ref={setAllStyles}
-      className="hero-carousel-ken-burns"
-    />
-  )
-}
-
-export default function HeroCarousel({ photos, baseUrl }: Props) {
+/**
+ * Seamless crossfade carousel — two persistent DOM layers, no React re-renders during transitions.
+ *
+ * The incoming layer fades IN on top of the outgoing layer.
+ * The outgoing layer stays at opacity 1 underneath the entire time.
+ * The viewer ALWAYS sees a fully opaque image — no gap, no dark dip.
+ *
+ * After the crossfade completes, the (now-hidden) outgoing layer
+ * snaps to opacity 0 instantly. Since it's behind the incoming layer,
+ * this snap is invisible.
+ */
+export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
   const shuffled = useMemo(() => {
     const arr = [...photos]
     for (let i = arr.length - 1; i > 0; i--) {
@@ -63,79 +41,130 @@ export default function HeroCarousel({ photos, baseUrl }: Props) {
     return arr
   }, [photos])
 
-  const [slots, setSlots] = useState<[number, number]>([0, -1])
-  const [fading, setFading] = useState(false)
+  const layerARef = useRef<HTMLDivElement>(null)
+  const layerBRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
   const pausedRef = useRef(false)
-  const idxRef = useRef(0)
+  const slideIdxRef = useRef(0)
+  const activeRef = useRef<'a' | 'b'>('a')
+  const readyRef = useRef(false)
+  const [ready, setReady] = useState(false)
 
+  // Preload first image before showing anything
   useEffect(() => {
-    const cur = idxRef.current
-    for (let i = 1; i <= PRELOAD; i++) {
-      const photo = shuffled[(cur + i) % shuffled.length]
-      if (photo) { const img = new Image(); img.src = `${baseUrl}${photo.src}` }
+    if (shuffled.length === 0) return
+    const img = new Image()
+    img.onload = () => { readyRef.current = true; setReady(true) }
+    img.onerror = () => { readyRef.current = true; setReady(true) }
+    img.src = `${baseUrl}${shuffled[0].src}`
+    // Also preload second image
+    if (shuffled.length > 1) {
+      const img2 = new Image()
+      img2.src = `${baseUrl}${shuffled[1].src}`
     }
-  }, [slots, shuffled, baseUrl])
+  }, [shuffled, baseUrl])
 
+  // Intersection Observer — pause when hero is scrolled off-screen
   useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      ([e]) => { pausedRef.current = !e.isIntersecting },
+    const section = sectionRef.current
+    if (!section) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { pausedRef.current = !entry.isIntersecting },
       { threshold: 0.1 }
     )
-    obs.observe(el)
-    return () => obs.disconnect()
+    observer.observe(section)
+    return () => observer.disconnect()
   }, [])
 
+  // Main carousel engine — all DOM manipulation is direct (no React re-renders)
   useEffect(() => {
-    if (shuffled.length <= 1) return
-    const id = setInterval(() => {
-      if (pausedRef.current) return
-      const next = (idxRef.current + 1) % shuffled.length
-      idxRef.current = next
-      console.log(`[Carousel] transition: idx=${next}, slots will be [${next}, ${slots[0]}]`)
-      setSlots(prev => [next, prev[0]])
-      setFading(true)
-      setTimeout(() => {
-        setSlots(prev => [prev[0], -1])
-        setFading(false)
-      }, CROSSFADE)
-    }, SLIDE_DURATION)
-    return () => clearInterval(id)
-  }, [shuffled.length])
+    if (shuffled.length <= 1 || !readyRef.current) return
 
-  if (shuffled.length === 0) return null
+    const layerA = layerARef.current
+    const layerB = layerBRef.current
+    if (!layerA || !layerB) return
 
-  const renderSlot = (photoIdx: number, role: 'bottom' | 'top') => {
-    const zIndex = role === 'top' ? 2 : 1
-    const isOutgoing = role === 'top' && fading
-    const isEmpty = photoIdx < 0
+    const getKenBurns = (idx: number) => KEN_BURNS[idx % KEN_BURNS.length]
 
-    if (isEmpty) {
-      return <div className="hero-carousel-slide" style={{ zIndex }} />
+    // ── Initialize: A visible with image 0, B hidden ──
+    const kb0 = getKenBurns(0)
+    layerA.style.opacity = '1'
+    layerA.style.zIndex = '2'
+    layerA.style.backgroundImage = `url(${baseUrl}${shuffled[0].src})`
+    layerA.style.setProperty('--kb-from', kb0.from)
+    layerA.style.setProperty('--kb-to', kb0.to)
+    // Restart Ken Burns animation from scratch
+    layerA.style.animation = 'none'
+    void layerA.offsetHeight // force reflow
+    layerA.style.animation = `kenBurns ${SLIDE_DURATION + CROSSFADE_MS}ms ease-in-out both`
+
+    layerB.style.opacity = '0'
+    layerB.style.zIndex = '1'
+    // Pre-load B with next image while hidden
+    if (shuffled.length > 1) {
+      layerB.style.backgroundImage = `url(${baseUrl}${shuffled[1].src})`
     }
 
-    return (
-      <div
-        className={`hero-carousel-slide${isOutgoing ? ' hero-carousel-fade-out' : ''}`}
-        style={{ zIndex }}
-      >
-        <KenBurnsDiv
-          key={`kb-${photoIdx}`}
-          photoIdx={photoIdx}
-          shuffled={shuffled}
-          baseUrl={baseUrl}
-          isOutgoing={isOutgoing}
-        />
-      </div>
-    )
-  }
+    // ── Advance function ──
+    const advance = () => {
+      if (pausedRef.current) return
+
+      const nextIdx = (slideIdxRef.current + 1) % shuffled.length
+      const nextPhoto = shuffled[nextIdx]
+      const kb = getKenBurns(nextIdx)
+
+      // Incoming = the currently-hidden layer; Outgoing = the currently-visible layer
+      const incoming = activeRef.current === 'a' ? layerB : layerA
+      const outgoing = activeRef.current === 'a' ? layerA : layerB
+
+      // 1. Set incoming layer's image + Ken Burns (still at opacity 0 — invisible)
+      incoming.style.backgroundImage = `url(${baseUrl}${nextPhoto.src})`
+      incoming.style.setProperty('--kb-from', kb.from)
+      incoming.style.setProperty('--kb-to', kb.to)
+      incoming.style.animation = 'none'
+      void incoming.offsetHeight
+      incoming.style.animation = `kenBurns ${SLIDE_DURATION + CROSSFADE_MS}ms ease-in-out both`
+
+      // 2. Bring incoming to top and fade in OVER outgoing
+      incoming.style.zIndex = '2'
+      outgoing.style.zIndex = '1'
+      incoming.style.transition = `opacity ${CROSSFADE_MS}ms ease-in-out`
+      incoming.style.opacity = '1'
+
+      // 3. After crossfade: hide outgoing layer instantly (it's behind, so invisible)
+      setTimeout(() => {
+        outgoing.style.transition = 'none'
+        outgoing.style.opacity = '0'
+        // Preload upcoming images for future slides
+        for (let i = 1; i <= PRELOAD_AHEAD; i++) {
+          const idx = (nextIdx + i) % shuffled.length
+          const p = shuffled[idx]
+          if (p) {
+            const img = new Image()
+            img.src = `${baseUrl}${p.src}`
+          }
+        }
+      }, CROSSFADE_MS + 50) // small buffer to ensure transition is complete
+
+      // 4. Swap active layer for next cycle
+      activeRef.current = activeRef.current === 'a' ? 'b' : 'a'
+      slideIdxRef.current = nextIdx
+    }
+
+    const id = setInterval(advance, SLIDE_DURATION)
+    return () => clearInterval(id)
+  }, [shuffled, baseUrl])
+
+  if (shuffled.length === 0) return null
+  if (!ready) return <div ref={sectionRef} className="hero-carousel" />
 
   return (
     <div ref={sectionRef} className="hero-carousel">
-      {renderSlot(slots[0], 'bottom')}
-      {renderSlot(slots[1], 'top')}
+      {/* Two persistent layers — never destroyed by React.
+          The background-image, opacity, z-index, and Ken Burns animation
+          are all controlled via direct DOM manipulation in the useEffect above. */}
+      <div ref={layerARef} className="hero-carousel-ken-burns" />
+      <div ref={layerBRef} className="hero-carousel-ken-burns" />
     </div>
   )
 }
