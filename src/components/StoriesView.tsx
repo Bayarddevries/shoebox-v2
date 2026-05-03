@@ -1,4 +1,10 @@
+import { useEffect, useState } from 'react'
 import type { Story, Photo } from '../types'
+
+/** Encode each path segment to handle spaces, apostrophes, ampersands etc. */
+function encodePath(path: string): string {
+  return path.split('/').map(encodeURIComponent).join('/')
+}
 
 interface StoriesViewProps {
   stories: Story[]
@@ -7,6 +13,22 @@ interface StoriesViewProps {
 }
 
 export default function StoriesView({ stories, photos, onPhotoClick }: StoriesViewProps) {
+  const [storyTexts, setStoryTexts] = useState<Record<string, string>>({})
+
+  // Fetch story text files on mount
+  useEffect(() => {
+    stories.forEach(story => {
+      if (story.textSrc && !storyTexts[story.id]) {
+        fetch(story.textSrc)
+          .then(res => res.ok ? res.text() : '')
+          .then(text => {
+            setStoryTexts(prev => ({ ...prev, [story.id]: text }))
+          })
+          .catch(() => {})
+      }
+    })
+  }, [stories])
+
   if (stories.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-24 text-center p-8">
@@ -31,7 +53,8 @@ export default function StoriesView({ stories, photos, onPhotoClick }: StoriesVi
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {stories.map((story) => {
           const storyPhotos = photos.filter(p => story.photoIds?.includes(p.id))
-          const thumbnail = storyPhotos[0]?.src || storyPhotos[0]?.src
+          const thumbnail = storyPhotos[0]
+          const displayText = storyTexts[story.id] || story.text || ''
 
           return (
             <div
@@ -42,7 +65,7 @@ export default function StoriesView({ stories, photos, onPhotoClick }: StoriesVi
               <div className="relative mb-4 h-48 bg-black rounded overflow-hidden flex items-center justify-center">
                 {thumbnail ? (
                   <img 
-                    src={thumbnail} 
+                    src={encodePath(thumbnail.src)} 
                     alt={story.title}
                     className="w-full h-full object-cover opacity-80"
                   />
@@ -63,7 +86,7 @@ export default function StoriesView({ stories, photos, onPhotoClick }: StoriesVi
               </h3>
 
               <p className="text-sm mb-4 line-clamp-3" style={{ color: 'var(--color-charcoal-light)' }}>
-                {story.text || 'Listen to the audio recording for the full story.'}
+                {displayText || 'Listen to the audio recording for the full story.'}
               </p>
 
               {/* Audio player */}
@@ -89,7 +112,7 @@ export default function StoriesView({ stories, photos, onPhotoClick }: StoriesVi
                         style={{ '--tw-ring-color': 'var(--color-crimson)' } as React.CSSProperties}
                       >
                         <img 
-                          src={photo.src} 
+                          src={encodePath(photo.src)} 
                           alt={photo.alt}
                           className="w-full h-full object-cover"
                         />

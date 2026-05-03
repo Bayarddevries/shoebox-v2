@@ -3,29 +3,11 @@ interface ContributeFormProps {
 }
 
 export default function ContributeForm({ onClose }: ContributeFormProps) {
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const form = e.currentTarget
-    
-    // Web3Forms submission
-    const formData = new FormData(form)
-    formData.append('access_key', 'YOUR_WEB3FORMS_KEY_HERE') // Replace with actual key
-    
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData,
-      })
-      
-      if (response.ok) {
-        alert('Thank you for your contribution! We will review and get back to you.')
-        onClose()
-      } else {
-        alert('There was an error submitting. Please try again.')
-      }
-    } catch {
-      alert('There was an error submitting. Please try again.')
-    }
+    // Web3Forms not configured — direct users to email instead
+    alert('Thank you for your interest! To contribute, please email us at rrmnheritage@gmail.com with your photos and stories.')
+    onClose()
   }
 
   const handleBackdropClick = (e: React.MouseEvent) => {
@@ -59,8 +41,6 @@ export default function ContributeForm({ onClose }: ContributeFormProps) {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-          <input type="hidden" name="subject" value="New Archive Contribution" />
-
           {/* Name */}
           <div>
             <label className="block text-sm font-medium mb-1">Your Name</label>

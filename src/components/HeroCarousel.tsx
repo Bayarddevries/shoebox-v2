@@ -15,6 +15,15 @@ const SLIDE_DURATION = 7000
 const CROSSFADE_MS = 1500
 const PRELOAD_AHEAD = 3
 
+/**
+ * Encode a file path for use in CSS url() or img.src.
+ * Splits on '/' to encode each path segment individually (preserving slashes).
+ * This handles spaces, apostrophes, ampersands, etc. that break CSS url().
+ */
+function encodePath(path: string): string {
+  return path.split('/').map(segment => encodeURIComponent(segment)).join('/')
+}
+
 interface HeroCarouselProps {
   photos: Photo[]
   baseUrl: string
@@ -56,11 +65,11 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
     const img = new Image()
     img.onload = () => { readyRef.current = true; setReady(true) }
     img.onerror = () => { readyRef.current = true; setReady(true) }
-    img.src = `${baseUrl}${shuffled[0].src}`
+    img.src = `${baseUrl}${encodePath(shuffled[0].src)}`
     // Also preload second image
     if (shuffled.length > 1) {
       const img2 = new Image()
-      img2.src = `${baseUrl}${shuffled[1].src}`
+      img2.src = `${baseUrl}${encodePath(shuffled[1].src)}`
     }
   }, [shuffled, baseUrl])
 
@@ -90,7 +99,7 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
     const kb0 = getKenBurns(0)
     layerA.style.opacity = '1'
     layerA.style.zIndex = '2'
-    layerA.style.backgroundImage = `url(${baseUrl}${shuffled[0].src})`
+    layerA.style.backgroundImage = `url(${baseUrl}${encodePath(shuffled[0].src)})`
     layerA.style.setProperty('--kb-from', kb0.from)
     layerA.style.setProperty('--kb-to', kb0.to)
     // Restart Ken Burns animation from scratch
@@ -102,7 +111,7 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
     layerB.style.zIndex = '1'
     // Pre-load B with next image while hidden
     if (shuffled.length > 1) {
-      layerB.style.backgroundImage = `url(${baseUrl}${shuffled[1].src})`
+      layerB.style.backgroundImage = `url(${baseUrl}${encodePath(shuffled[1].src)})`
     }
 
     // ── Advance function ──
@@ -118,19 +127,19 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
       const outgoing = activeRef.current === 'a' ? layerA : layerB
 
       // 1. Set incoming layer's image + Ken Burns (still at opacity 0 — invisible)
-      incoming.style.backgroundImage = `url(${baseUrl}${nextPhoto.src})`
+      incoming.style.backgroundImage = `url(${baseUrl}${encodePath(nextPhoto.src)})`
       incoming.style.setProperty('--kb-from', kb.from)
       incoming.style.setProperty('--kb-to', kb.to)
       incoming.style.animation = 'none'
       void incoming.offsetHeight
       incoming.style.animation = `kenBurns ${SLIDE_DURATION + CROSSFADE_MS}ms ease-in-out both`
 
-    // 2. Bring incoming to top and fade in OVER outgoing
-    incoming.style.zIndex = '2'
-    outgoing.style.zIndex = '1'
-    incoming.style.transition = `opacity ${CROSSFADE_MS}ms ease-in-out`
-    void incoming.offsetHeight // force reflow so transition registers before opacity change
-    incoming.style.opacity = '1'
+      // 2. Bring incoming to top and fade in OVER outgoing
+      incoming.style.zIndex = '2'
+      outgoing.style.zIndex = '1'
+      incoming.style.transition = `opacity ${CROSSFADE_MS}ms ease-in-out`
+      void incoming.offsetHeight // force reflow so transition registers before opacity change
+      incoming.style.opacity = '1'
 
       // 3. After crossfade: hide outgoing layer instantly (it's behind, so invisible)
       setTimeout(() => {
@@ -142,7 +151,7 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
           const p = shuffled[idx]
           if (p) {
             const img = new Image()
-            img.src = `${baseUrl}${p.src}`
+            img.src = `${baseUrl}${encodePath(p.src)}`
           }
         }
       }, CROSSFADE_MS + 50) // small buffer to ensure transition is complete
@@ -162,8 +171,8 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
   return (
     <div ref={sectionRef} className="hero-carousel">
       {/* Two persistent layers — never destroyed by React.
-          The background-image, opacity, z-index, and Ken Burns animation
-          are all controlled via direct DOM manipulation in the useEffect above. */}
+      The background-image, opacity, z-index, and Ken Burns animation
+      are all controlled via direct DOM manipulation in the useEffect above. */}
       <div ref={layerARef} className="hero-carousel-ken-burns" />
       <div ref={layerBRef} className="hero-carousel-ken-burns" />
     </div>

@@ -72,16 +72,20 @@ export default function App() {
         const storiesRes = await fetch(`${base}assets/shoebox/stories.json`)
         const storiesData = await storiesRes.json()
 
-        const storiesWithIds: Story[] = storiesData.map((s: any) => ({
-          id: s.id,
-          title: s.title,
-          text: s.text_file ? '' : '',
-          audioSrc: s.audio_file ? `${base}assets/shoebox/audio/${s.audio_file}` : '',
-          photoIds: [] as number[],
-          textFile: s.text_file,
-          audioFile: s.audio_file,
-          _photoFiles: s.photo_files || [],
-        }))
+ // Encode each path segment to handle spaces, apostrophes, ampersands etc.
+ const encodePath = (path: string) => path.split('/').map(encodeURIComponent).join('/')
+
+ const storiesWithIds: Story[] = storiesData.map((s: any) => ({
+ id: s.id,
+ title: s.title,
+ text: '',
+ audioSrc: s.audio_file ? `${base}${encodePath(`assets/shoebox/audio/${s.audio_file}`)}` : '',
+ textSrc: s.text_file ? `${base}${encodePath(`assets/shoebox/${s.text_file}`)}` : '',
+ photoIds: [] as number[],
+ textFile: s.text_file,
+ audioFile: s.audio_file,
+ _photoFiles: s.photo_files || [],
+ }))
 
         const photosWithStoryLinks = manifestPhotos.map((p: any, idx: number) => {
           const storyLinks = storiesWithIds.filter(s => s._photoFiles?.includes(p.alt || p.title))

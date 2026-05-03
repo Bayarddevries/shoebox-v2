@@ -4,6 +4,11 @@ import type { Photo } from '../types'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 
+/** Encode each path segment to handle spaces, apostrophes, ampersands etc. */
+function encodePath(path: string): string {
+  return path.split('/').map(encodeURIComponent).join('/')
+}
+
 // Fix for default marker icons in Leaflet with Vite
 const icon = L.icon({
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
@@ -79,7 +84,7 @@ export default function MapView({ photos, onPhotoClick }: MapViewProps) {
             <Popup>
               <div className="min-w-[200px]">
                 <img 
-                  src={photo.src} 
+                  src={encodePath(photo.src)} 
                   alt={photo.alt} 
                   className="w-full h-32 object-cover rounded mb-2"
                 />

@@ -1,6 +1,11 @@
 import { useEffect, useCallback, useRef, useState } from 'react'
 import type { Photo, Story } from '../types'
 
+/** Encode each path segment to handle spaces, apostrophes, ampersands etc. */
+function encodePath(path: string): string {
+  return path.split('/').map(encodeURIComponent).join('/')
+}
+
 interface PhotoDetailProps {
  photo: Photo
  stories: Story[]
@@ -99,7 +104,7 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
           {/* Image — full bleed */}
           <div className="photo-detail-image-mobile">
             <img
-              src={photo.src}
+              src={encodePath(photo.src)}
               alt={photo.alt || photo.title || 'Archive photo'}
             />
           </div>
@@ -177,7 +182,7 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
           {/* Image — takes up left column */}
           <div className="photo-detail-image-desktop">
             <img
-              src={photo.src}
+              src={encodePath(photo.src)}
               alt={photo.alt || photo.title || 'Archive photo'}
             />
           </div>

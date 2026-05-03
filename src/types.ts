@@ -28,6 +28,7 @@ export interface Story {
   title: string
   text: string
   audioSrc: string
+  textSrc?: string
   photoIds: number[]
   textFile?: string
   audioFile?: string

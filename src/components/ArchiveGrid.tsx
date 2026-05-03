@@ -1,5 +1,10 @@
 import type { Photo } from '../types'
 
+/** Encode each path segment to handle spaces, apostrophes, ampersands etc. */
+function encodePath(path: string): string {
+  return path.split('/').map(encodeURIComponent).join('/')
+}
+
 interface ArchiveGridProps {
   photos: Photo[]
   onPhotoClick: (photo: Photo) => void
@@ -32,7 +37,7 @@ export default function ArchiveGrid({ photos, onPhotoClick }: ArchiveGridProps) 
           >
             <div className="relative overflow-hidden">
               <img
-                src={photo.src}
+                src={encodePath(photo.src)}
                 alt={photo.alt || photo.title || 'Archive photo'}
                 className="photo-card-image"
                 loading="lazy"
