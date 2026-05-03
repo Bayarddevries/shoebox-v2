@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import type { Photo } from '../types'
 
 // Ken Burns variants for visual variety
@@ -32,14 +32,13 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
   }, [photos])
 
   const [currentIdx, setCurrentIdx] = useState(0)
-  const [prevIdx, setPrevIdx] = useState(-1)
   const [transitioning, setTransitioning] = useState(false)
-  const intervalRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
   const pausedRef = useRef(false)
 
-  // Preload upcoming images
+  // Preload upcoming images whenever the index changes
   useEffect(() => {
+    if (shuffled.length === 0) return
     for (let i = 1; i <= PRELOAD_AHEAD; i++) {
       const idx = (currentIdx + i) % shuffled.length
       const photo = shuffled[idx]
@@ -65,31 +64,30 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
     return () => observer.disconnect()
   }, [])
 
-  // Advance slides
-  const advance = useCallback(() => {
-    if (pausedRef.current) return
-    setPrevIdx(currentIdx)
-    setCurrentIdx((prev) => (prev + 1) % shuffled.length)
-    setTransitioning(true)
-  }, [currentIdx, shuffled.length])
-
+  // Slide advancement — always-running interval, skips when paused
   useEffect(() => {
-    intervalRef.current = setTimeout(advance, SLIDE_DURATION)
-    return () => {
-      if (intervalRef.current) clearTimeout(intervalRef.current)
-    }
-  }, [advance])
+    if (shuffled.length <= 1) return
 
-  // End transition after crossfade completes
-  useEffect(() => {
-    if (!transitioning) return
-    const timer = setTimeout(() => setTransitioning(false), CROSSFADE_DURATION)
-    return () => clearTimeout(timer)
-  }, [transitioning])
+    const id = setInterval(() => {
+      if (pausedRef.current) return // skip this tick, but don't stop the interval
+
+      // Start transition: move to next slide
+      setTransitioning(true)
+      setCurrentIdx((prev) => (prev + 1) % shuffled.length)
+
+      // End crossfade after duration
+      setTimeout(() => setTransitioning(false), CROSSFADE_DURATION)
+    }, SLIDE_DURATION)
+
+    return () => clearInterval(id)
+  }, [shuffled.length])
 
   if (shuffled.length === 0) return null
 
   const current = shuffled[currentIdx]
+  const prevIdx = transitioning
+    ? (currentIdx - 1 + shuffled.length) % shuffled.length
+    : -1
   const prev = prevIdx >= 0 ? shuffled[prevIdx] : null
 
   const getKenBurns = (idx: number) => KEN_BURNS[idx % KEN_BURNS.length]
@@ -115,7 +113,7 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
 
       {/* Current slide (fading in or static) */}
       <div
-        className={`hero-carousel-slide ${prevIdx >= 0 ? 'hero-carousel-fade-in' : ''}`}
+        className={`hero-carousel-slide ${prev ? 'hero-carousel-fade-in' : ''}`}
         key={`curr-${currentIdx}`}
       >
         <div
@@ -124,7 +122,6 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
             backgroundImage: `url(${baseUrl}${current.src})`,
             animationName: 'kenBurns',
             animationDuration: `${SLIDE_DURATION + CROSSFADE_DURATION}ms`,
-            // Use the Ken Burns variant for this slide
             '--kb-from': getKenBurns(currentIdx).from,
             '--kb-to': getKenBurns(currentIdx).to,
           } as React.CSSProperties}
