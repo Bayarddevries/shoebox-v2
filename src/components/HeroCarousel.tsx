@@ -23,9 +23,10 @@ interface Props {
 /**
  * Ken Burns inner div.
  *
- * CSS custom properties (--kb-from, --kb-to, --freeze-transform) are set
- * via ref callback because React's style prop silently drops backgroundImage
- * when custom properties are mixed into the same style object.
+ * ALL dynamic styles are set via ref callback because React 19 silently
+ * drops `backgroundImage` from the style prop when CSS custom properties
+ * are also present in the same style object. Setting everything through
+ * the DOM API avoids this bug entirely.
  */
 function KenBurnsDiv({ photoIdx, shuffled, baseUrl, isOutgoing }: {
   photoIdx: number
@@ -33,29 +34,26 @@ function KenBurnsDiv({ photoIdx, shuffled, baseUrl, isOutgoing }: {
   baseUrl: string
   isOutgoing: boolean
 }) {
-  const ref = useRef<HTMLDivElement>(null)
   const photo = shuffled[photoIdx]
   const variant = KEN_BURNS[photoIdx % KEN_BURNS.length]
 
-  // Set CSS custom properties via DOM (avoids React's style prop bug)
-  const setCustomProps = useCallback((el: HTMLDivElement | null) => {
+  // Set ALL styles via DOM (avoids React 19 style prop bug)
+  const setAllStyles = useCallback((el: HTMLDivElement | null) => {
     if (!el) return
+    el.style.backgroundImage = `url(${baseUrl}${photo.src})`
+    el.style.animationName = isOutgoing ? 'kenBurnsFreeze' : 'kenBurns'
+    el.style.animationDuration = isOutgoing ? '1ms' : `${SLIDE_DURATION + CROSSFADE}ms`
     el.style.setProperty('--kb-from', variant.from)
     el.style.setProperty('--kb-to', variant.to)
     if (isOutgoing) {
       el.style.setProperty('--freeze-transform', variant.to)
     }
-  }, [variant.from, variant.to, isOutgoing])
+  }, [baseUrl, photo.src, variant.from, variant.to, isOutgoing])
 
   return (
     <div
-      ref={(el) => { (ref as React.MutableRefObject<HTMLDivElement | null>).current = el; setCustomProps(el) }}
+      ref={setAllStyles}
       className="hero-carousel-ken-burns"
-      style={{
-        backgroundImage: `url(${baseUrl}${photo.src})`,
-        animationName: isOutgoing ? 'kenBurnsFreeze' : 'kenBurns',
-        animationDuration: isOutgoing ? '1ms' : `${SLIDE_DURATION + CROSSFADE}ms`,
-      }}
     />
   )
 }
