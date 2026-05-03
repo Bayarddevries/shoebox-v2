@@ -125,11 +125,12 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
       void incoming.offsetHeight
       incoming.style.animation = `kenBurns ${SLIDE_DURATION + CROSSFADE_MS}ms ease-in-out both`
 
-      // 2. Bring incoming to top and fade in OVER outgoing
-      incoming.style.zIndex = '2'
-      outgoing.style.zIndex = '1'
-      incoming.style.transition = `opacity ${CROSSFADE_MS}ms ease-in-out`
-      incoming.style.opacity = '1'
+    // 2. Bring incoming to top and fade in OVER outgoing
+    incoming.style.zIndex = '2'
+    outgoing.style.zIndex = '1'
+    incoming.style.transition = `opacity ${CROSSFADE_MS}ms ease-in-out`
+    void incoming.offsetHeight // force reflow so transition registers before opacity change
+    incoming.style.opacity = '1'
 
       // 3. After crossfade: hide outgoing layer instantly (it's behind, so invisible)
       setTimeout(() => {
