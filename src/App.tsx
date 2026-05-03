@@ -9,6 +9,7 @@ import MapView from './components/MapView'
 import StoriesView from './components/StoriesView'
 import ContributeForm from './components/ContributeForm'
 import HeroCarousel from './components/HeroCarousel'
+import AdminPanel from './components/AdminPanel'
 
 // Debounce hook
 function useDebouncedValue<T>(value: T, delay: number): T {
@@ -43,7 +44,7 @@ export default function App() {
     }
     // Also check for #archive, #map, #stories hash
     const hash = window.location.hash.replace('#', '')
-    if (['archive', 'map', 'stories'].includes(hash)) {
+    if (['archive', 'map', 'stories', 'admin'].includes(hash)) {
       setCurrentPage(hash as Page)
     }
   }, [])
@@ -332,10 +333,15 @@ export default function App() {
           <MapView photos={photos} onPhotoClick={setSelectedPhoto} />
         )}
 
-        {/* ═══ STORIES PAGE ═══ */}
-        {currentPage === 'stories' && (
-          <StoriesView stories={stories} photos={photos} onPhotoClick={setSelectedPhoto} />
-        )}
+ {/* ═══ STORIES PAGE ═══ */}
+ {currentPage === 'stories' && (
+ <StoriesView stories={stories} photos={photos} onPhotoClick={setSelectedPhoto} />
+ )}
+
+ {/* ═══ ADMIN PAGE ═══ */}
+ {currentPage === 'admin' && (
+ <AdminPanel onNavigate={setCurrentPage} />
+ )}
       </main>
 
       {/* Photo Detail Modal */}

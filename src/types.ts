@@ -102,4 +102,4 @@ export function toggleFilterValue(arr: string[], value: string): string[] {
   return arr.includes(value) ? arr.filter(v => v !== value) : [...arr, value]
 }
 
-export type Page = 'home' | 'archive' | 'stories' | 'map' | 'contribute'
+export type Page = 'home' | 'archive' | 'stories' | 'map' | 'contribute' | 'admin'
