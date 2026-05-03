@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo, useState } from 'react'
+import { useEffect, useRef, useMemo, useState, useCallback } from 'react'
 import type { Photo } from '../types'
 
 // Ken Burns variants for visual variety
@@ -21,23 +21,50 @@ interface Props {
 }
 
 /**
+ * Ken Burns inner div.
+ *
+ * CSS custom properties (--kb-from, --kb-to, --freeze-transform) are set
+ * via ref callback because React's style prop silently drops backgroundImage
+ * when custom properties are mixed into the same style object.
+ */
+function KenBurnsDiv({ photoIdx, shuffled, baseUrl, isOutgoing }: {
+  photoIdx: number
+  shuffled: Photo[]
+  baseUrl: string
+  isOutgoing: boolean
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const photo = shuffled[photoIdx]
+  const variant = KEN_BURNS[photoIdx % KEN_BURNS.length]
+
+  // Set CSS custom properties via DOM (avoids React's style prop bug)
+  const setCustomProps = useCallback((el: HTMLDivElement | null) => {
+    if (!el) return
+    el.style.setProperty('--kb-from', variant.from)
+    el.style.setProperty('--kb-to', variant.to)
+    if (isOutgoing) {
+      el.style.setProperty('--freeze-transform', variant.to)
+    }
+  }, [variant.from, variant.to, isOutgoing])
+
+  return (
+    <div
+      ref={(el) => { (ref as React.MutableRefObject<HTMLDivElement | null>).current = el; setCustomProps(el) }}
+      className="hero-carousel-ken-burns"
+      style={{
+        backgroundImage: `url(${baseUrl}${photo.src})`,
+        animationName: isOutgoing ? 'kenBurnsFreeze' : 'kenBurns',
+        animationDuration: isOutgoing ? '1ms' : `${SLIDE_DURATION + CROSSFADE}ms`,
+      }}
+    />
+  )
+}
+
+/**
  * Two-layer carousel with seamless crossfade.
  *
- * Layer model:
- *   ┌─────────────────┐
- *   │  TOP (z:2)      │ ← outgoing image, fades out via CSS
- *   ├─────────────────┤
- *   │  BOTTOM (z:1)   │ ← incoming image, always at opacity 1
- *   └─────────────────┘
- *
- * On each transition:
- *   1. Paint the next photo onto the BOTTOM layer
- *   2. Move the current photo to the TOP layer and start fading it out
- *   3. After fade completes, the top layer is invisible — ready to
- *      become the bottom layer on the NEXT transition
- *
- * We track which slot (A or B) is "current" and which is "next".
- * They alternate each transition.
+ * slots[0] = bottom (current/new), slots[1] = top (old/fading). -1 = empty.
+ * On transition: new image goes to bottom, current image moves to top and fades out.
  */
 export default function HeroCarousel({ photos, baseUrl }: Props) {
   const shuffled = useMemo(() => {
@@ -49,8 +76,6 @@ export default function HeroCarousel({ photos, baseUrl }: Props) {
     return arr
   }, [photos])
 
-  // Each slot holds a photo index. -1 = empty.
-  // slot[0] = currently active, slot[1] = standby (will become next)
   const [slots, setSlots] = useState<[number, number]>([0, -1])
   const [fading, setFading] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -81,31 +106,21 @@ export default function HeroCarousel({ photos, baseUrl }: Props) {
   // Advance timer
   useEffect(() => {
     if (shuffled.length <= 1) return
-
     const id = setInterval(() => {
       if (pausedRef.current) return
-
       const next = (idxRef.current + 1) % shuffled.length
       idxRef.current = next
-
-      // Transition: current photo moves to top (fades out), next photo goes to bottom
-      setSlots(prev => [next, prev[0]]) // [bottom=new, top=old]
+      setSlots(prev => [next, prev[0]])
       setFading(true)
-
-      // After fade ends, top layer is invisible. Swap: top becomes the new standby.
-      // The bottom (which was "new") is now the "current" photo.
       setTimeout(() => {
-        setSlots(prev => [prev[0], -1]) // top cleared — it's just standby now
+        setSlots(prev => [prev[0], -1])
         setFading(false)
       }, CROSSFADE)
     }, SLIDE_DURATION)
-
     return () => clearInterval(id)
   }, [shuffled.length])
 
   if (shuffled.length === 0) return null
-
-  const kb = (i: number) => KEN_BURNS[i % KEN_BURNS.length]
 
   const renderSlot = (photoIdx: number, role: 'bottom' | 'top') => {
     const zIndex = role === 'top' ? 2 : 1
@@ -116,25 +131,17 @@ export default function HeroCarousel({ photos, baseUrl }: Props) {
       return <div className="hero-carousel-slide" style={{ zIndex }} />
     }
 
-    const photo = shuffled[photoIdx]
-    const variant = kb(photoIdx)
-
     return (
       <div
         className={`hero-carousel-slide${isOutgoing ? ' hero-carousel-fade-out' : ''}`}
         style={{ zIndex }}
       >
-        <div
+        <KenBurnsDiv
           key={`kb-${photoIdx}`}
-          className="hero-carousel-ken-burns"
-          style={{
-            backgroundImage: `url(${baseUrl}${photo.src})`,
-            animationName: isOutgoing ? 'kenBurnsFreeze' : 'kenBurns',
-            animationDuration: isOutgoing ? '1ms' : `${SLIDE_DURATION + CROSSFADE}ms`,
-            '--kb-from': variant.from,
-            '--kb-to': variant.to,
-            ...(isOutgoing ? { '--freeze-transform': variant.to } as React.CSSProperties : {}),
-          } as React.CSSProperties}
+          photoIdx={photoIdx}
+          shuffled={shuffled}
+          baseUrl={baseUrl}
+          isOutgoing={isOutgoing}
         />
       </div>
     )
