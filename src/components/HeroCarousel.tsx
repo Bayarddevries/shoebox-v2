@@ -20,14 +20,6 @@ interface Props {
   baseUrl: string
 }
 
-/**
- * Ken Burns inner div.
- *
- * ALL dynamic styles are set via ref callback because React 19 silently
- * drops `backgroundImage` from the style prop when CSS custom properties
- * are also present in the same style object. Setting everything through
- * the DOM API avoids this bug entirely.
- */
 function KenBurnsDiv({ photoIdx, shuffled, baseUrl, isOutgoing }: {
   photoIdx: number
   shuffled: Photo[]
@@ -37,10 +29,11 @@ function KenBurnsDiv({ photoIdx, shuffled, baseUrl, isOutgoing }: {
   const photo = shuffled[photoIdx]
   const variant = KEN_BURNS[photoIdx % KEN_BURNS.length]
 
-  // Set ALL styles via DOM (avoids React 19 style prop bug)
   const setAllStyles = useCallback((el: HTMLDivElement | null) => {
     if (!el) return
-    el.style.backgroundImage = `url(${baseUrl}${photo.src})`
+    const bgUrl = `url(${baseUrl}${photo.src})`
+    console.log(`[KenBurnsDiv] ref callback: photoIdx=${photoIdx}, src=${photo.src}, isOutgoing=${isOutgoing}, url=${bgUrl}`)
+    el.style.backgroundImage = bgUrl
     el.style.animationName = isOutgoing ? 'kenBurnsFreeze' : 'kenBurns'
     el.style.animationDuration = isOutgoing ? '1ms' : `${SLIDE_DURATION + CROSSFADE}ms`
     el.style.setProperty('--kb-from', variant.from)
@@ -48,6 +41,8 @@ function KenBurnsDiv({ photoIdx, shuffled, baseUrl, isOutgoing }: {
     if (isOutgoing) {
       el.style.setProperty('--freeze-transform', variant.to)
     }
+    // Verify it was set
+    console.log(`[KenBurnsDiv] after set: bgImg="${el.style.backgroundImage}", computed="${getComputedStyle(el).backgroundImage.substring(0, 40)}"`)
   }, [baseUrl, photo.src, variant.from, variant.to, isOutgoing])
 
   return (
@@ -58,12 +53,6 @@ function KenBurnsDiv({ photoIdx, shuffled, baseUrl, isOutgoing }: {
   )
 }
 
-/**
- * Two-layer carousel with seamless crossfade.
- *
- * slots[0] = bottom (current/new), slots[1] = top (old/fading). -1 = empty.
- * On transition: new image goes to bottom, current image moves to top and fades out.
- */
 export default function HeroCarousel({ photos, baseUrl }: Props) {
   const shuffled = useMemo(() => {
     const arr = [...photos]
@@ -80,7 +69,6 @@ export default function HeroCarousel({ photos, baseUrl }: Props) {
   const pausedRef = useRef(false)
   const idxRef = useRef(0)
 
-  // Preload upcoming images
   useEffect(() => {
     const cur = idxRef.current
     for (let i = 1; i <= PRELOAD; i++) {
@@ -89,7 +77,6 @@ export default function HeroCarousel({ photos, baseUrl }: Props) {
     }
   }, [slots, shuffled, baseUrl])
 
-  // Intersection Observer
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
@@ -101,13 +88,13 @@ export default function HeroCarousel({ photos, baseUrl }: Props) {
     return () => obs.disconnect()
   }, [])
 
-  // Advance timer
   useEffect(() => {
     if (shuffled.length <= 1) return
     const id = setInterval(() => {
       if (pausedRef.current) return
       const next = (idxRef.current + 1) % shuffled.length
       idxRef.current = next
+      console.log(`[Carousel] transition: idx=${next}, slots will be [${next}, ${slots[0]}]`)
       setSlots(prev => [next, prev[0]])
       setFading(true)
       setTimeout(() => {
