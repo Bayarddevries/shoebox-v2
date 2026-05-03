@@ -78,7 +78,7 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
 
   // Main carousel engine — all DOM manipulation is direct (no React re-renders)
   useEffect(() => {
-    if (shuffled.length <= 1 || !readyRef.current) return
+    if (shuffled.length <= 1 || !ready) return
 
     const layerA = layerARef.current
     const layerB = layerBRef.current
@@ -153,7 +153,7 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
 
     const id = setInterval(advance, SLIDE_DURATION)
     return () => clearInterval(id)
-  }, [shuffled, baseUrl])
+  }, [shuffled, baseUrl, ready])
 
   if (shuffled.length === 0) return null
   if (!ready) return <div ref={sectionRef} className="hero-carousel" />
