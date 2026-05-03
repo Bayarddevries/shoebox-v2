@@ -33,8 +33,18 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
 
   const [currentIdx, setCurrentIdx] = useState(0)
   const [transitioning, setTransitioning] = useState(false)
+  const [firstImageLoaded, setFirstImageLoaded] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
   const pausedRef = useRef(false)
+
+  // Preload the first image immediately
+  useEffect(() => {
+    if (shuffled.length === 0) return
+    const img = new Image()
+    img.onload = () => setFirstImageLoaded(true)
+    img.onerror = () => setFirstImageLoaded(true) // show anyway on error
+    img.src = `${baseUrl}${shuffled[0].src}`
+  }, [shuffled, baseUrl])
 
   // Preload upcoming images whenever the index changes
   useEffect(() => {
@@ -92,6 +102,9 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
 
   const getKenBurns = (idx: number) => KEN_BURNS[idx % KEN_BURNS.length]
 
+  // Don't render until first image is preloaded (prevents blank flash)
+  if (!firstImageLoaded) return <div ref={sectionRef} className="hero-carousel" />
+
   return (
     <div ref={sectionRef} className="hero-carousel">
       {/* Current slide — always at full opacity (the base layer) */}
@@ -111,19 +124,22 @@ export default function HeroCarousel({ photos, baseUrl }: HeroCarouselProps) {
         />
       </div>
 
-      {/* Previous slide on top — fading out to reveal current underneath */}
+      {/* Previous slide on top — fading out to reveal current underneath.
+          Uses kenBurnsFreeze to hold the EXACT final transform from the
+          previous slide's Ken Burns animation, preventing the "snap back" jerk. */}
       {prev && transitioning && (
         <div
           className="hero-carousel-slide hero-carousel-fade-out"
           key={`prev-${prevIdx}`}
         >
           <div
-            className="hero-carousel-ken-burns"
+            className="hero-carousel-ken-burns hero-carousel-ken-burns-freeze"
             style={{
               backgroundImage: `url(${baseUrl}${prev.src})`,
-              animationName: 'kenBurnsHold',
-              animationDuration: `${SLIDE_DURATION}ms`,
-            }}
+              animationName: 'kenBurnsFreeze',
+              animationDuration: '1ms', // instantly apply, then hold via fill-mode
+              '--freeze-transform': getKenBurns(prevIdx).to,
+            } as React.CSSProperties}
           />
         </div>
       )}

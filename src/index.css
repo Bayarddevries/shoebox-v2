@@ -82,19 +82,23 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center;
   filter: brightness(0.4) sepia(0.15);
   animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
+  animation-fill-mode: both; /* starts at from-keyframe, holds at to-keyframe */
   animation-iteration-count: 1;
   will-change: transform, opacity;
 }
 
 @keyframes kenBurns {
   from { transform: var(--kb-from); }
-  to   { transform: var(--kb-to); }
+  to { transform: var(--kb-to); }
 }
 
-@keyframes kenBurnsHold {
-  from { transform: scale(1.08); }
-  to   { transform: scale(1.08); }
+/* Freeze: instantly jumps to the final transform of the previous slide's
+   Ken Burns animation, then holds it. This prevents the "snap back" jerk
+   where the element would briefly revert to transform:none before the
+   old kenBurnsHold animation kicked in. */
+@keyframes kenBurnsFreeze {
+  from { transform: var(--freeze-transform); }
+  to { transform: var(--freeze-transform); }
 }
 
 .hero-overlay {
