@@ -22,16 +22,19 @@ export default function Navbar({ currentPage, onNavigate, onContribute }: Navbar
  { href: 'https://bayarddevries.github.io/rrmnhc-website/', label: 'Heritage Centre', icon: '🏛️' },
  ]
 
-  // Close menu on outside click
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setMenuOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [])
+ // Close menu on outside click
+ useEffect(() => {
+ const handler = (e: MouseEvent) => {
+ const target = e.target as HTMLElement
+ // Don't close if clicking the hamburger button (it handles its own toggle)
+ if (target.closest('.hamburger-btn')) return
+ if (menuRef.current && !menuRef.current.contains(target)) {
+ setMenuOpen(false)
+ }
+ }
+ document.addEventListener('mousedown', handler)
+ return () => document.removeEventListener('mousedown', handler)
+ }, [])
 
   // Close menu on navigation
   const handleNavigate = (page: Page) => {
