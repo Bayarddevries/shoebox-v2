@@ -105,25 +105,41 @@ Photos in the app are typed in `src/types.ts`:
 
 ```ts
 interface Photo {
-  id: number
-  src: string
-  alt: string
-  title?: string
-  caption?: string
-  people?: string
-  location?: string
-  community?: string     // e.g. "Duck Bay"
-  province?: string      // e.g. "Manitoba"
-  sublocation?: string   // IPTC sub-location
-  keywords?: string[]
-  storyIds?: string[]
-  lat?: number
-  lng?: number
-  // ...a few more optional fields
+ id: number
+ src: string
+ alt: string
+ title?: string
+ caption?: string
+ people?: string
+ location?: string
+ community?: string // e.g. "Duck Bay"
+ province?: string // e.g. "Manitoba"
+ sublocation?: string // IPTC sub-location
+ keywords?: string[]
+ storyIds?: string[]
+ lat?: number
+ lng?: number
+ year?: number // historical photo date (derived, NOT scan date)
+ scanYear?: number // EXIF scan/digitization date
+ photoYearSource?: 'keyword-specific' | 'title' | 'keyword-era' | 'scan-date' | 'unknown'
+ // ...a few more optional fields
 }
 ```
 
-The `community`, `province`, and `sublocation` fields come from IPTC metadata. If you're working on the frontend and need location info, use these — don't try to parse it out of the `location` string.
+- **`year`** is the *historical* photo date, derived from keywords/title. This is what the frontend displays, filters, and sorts by.
+- **`scanYear`** is the raw EXIF date (when the file was scanned/digitized). For reference only.
+- The `community`, `province`, and `sublocation` fields come from IPTC metadata. If you're working on the frontend and need location info, use these — don't try to parse it out of the `location` string.
+
+### Year derivation — how `year` gets its value
+
+The manifest generator's `derivePhotoYear()` function uses this priority chain:
+
+1. **Specific year in keywords** (e.g. keyword `"1925"`) → exact year
+2. **Year in the photo title** (e.g. `"Sister Darie (1910)"`) → exact year
+3. **Era range midpoint** (e.g. keyword `"1925-1950"` → `1938`) → approximate year
+4. **EXIF scan date** (fallback) → labelled "scanned" in the UI
+
+When adding historical photos, **include a specific year keyword** (e.g. `1960`) or an **era range** (e.g. `1950-1975`) in Lightroom so the generator picks up the real photo date instead of falling back to the scan date.
 
 ---
 
@@ -131,6 +147,7 @@ The `community`, `province`, and `sublocation` fields come from IPTC metadata. I
 
 - [ ] Photos copied to `public/assets/shoebox/photos/`
 - [ ] IPTC City, Province-State, Country, and Keywords set in Lightroom
+- [ ] Keywords include a **specific year** (e.g. `1960`) or **era range** (e.g. `1950-1975`) so the manifest generator derives the historical photo date correctly
 - [ ] `exiftool` installed
 - [ ] `node scripts/generate_manifest.js` ran successfully
 - [ ] New communities added to `GEOCODE_TABLE` (if any)

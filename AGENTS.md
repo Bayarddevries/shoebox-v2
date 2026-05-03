@@ -79,7 +79,7 @@ The manifest generator is the **standard pipeline** for when new images are adde
 4. **GPS coordinates** — uses `exiftool -n` for signed decimals (fixes the old bug where Western Canada longitudes were positive → Siberia)
 5. **Geocode fallback** — if no GPS in EXIF, looks up coordinates from a 30+ community table (Duck Bay, St. Eustache, Selkirk, etc.)
 6. **People extraction** — separates person names from topical keywords using a curated stop-list
-7. **Year from IPTC DateCreated** (more reliable than filename parsing)
+7. **Year derivation** — derives the *historical* photo date from keywords and title, falling back to the EXIF scan date. See "Year Derivation System" below.
 
 **When adding new photos:**
 1. Copy photos to `public/assets/shoebox/photos/`
@@ -89,3 +89,51 @@ The manifest generator is the **standard pipeline** for when new images are adde
 5. If new topical keywords appear as false-positive people names, add them to `TOPICAL_KEYWORDS`
 6. Rebuild: `npm run build`
 7. Commit and push both `public/assets/shoebox/manifest.json` and the `shoebox/` build output
+
+## Year Derivation System
+
+**Problem:** The manifest's `year` field was originally populated from EXIF `DateCreated`/`DateTimeOriginal`, which records when the *digital file* was created (scan/digitization date). For historical photos, this gives 2024–2026 instead of the actual photo date (e.g. 1925).
+
+**Solution:** The `derivePhotoYear()` function in `scripts/generate_manifest.js` now uses a priority chain:
+
+| Priority | Source | Example | Output |
+|----------|--------|---------|--------|
+| 1 | Specific year keyword | `"1925"`, `"1948"` | `1925` (exact) |
+| 2 | Year in photo title | `"Sister Darie (1910)"` | `1910` (exact) |
+| 3 | Era range keyword → midpoint | `"1925-1950"` → `1938` | `1938` (approximate) |
+| 4 | EXIF scan date (fallback) | `DateCreated: 2024` | `2024` (labelled "scanned") |
+
+### Manifest fields
+
+- **`year`** — the derived historical photo date (what the frontend displays and filters by)
+- **`scanYear`** — the raw EXIF scan/digitization date (for reference only)
+- **`photoYearSource`** — one of: `keyword-specific`, `title`, `keyword-era`, `scan-date`, `unknown`
+
+### Frontend display conventions
+
+- Exact years (from keywords or title) display as: `📅 1925`
+- Approximate years (era midpoint) display as: `📅 ≈1938`
+- Scan-date fallbacks display as: `📅 2024 (scanned)`
+
+This logic lives in `formatYearBadge()` in `src/components/PhotoDetail.tsx`.
+
+### Current distribution (302 photos)
+
+- **89** from keyword-specific years (1890–1993)
+- **18** from title-parsed years (1910–2019)
+- **84** from era-range midpoints (1913–1988)
+- **111** fallback to scan date (2007–2026)
+
+### When adding new photos
+
+If adding historical photos, make sure their **keywords include a specific year** (e.g. `1960`) or an **era range** (e.g. `1950-1975`) so the manifest generator picks up the real photo date. The era ranges recognized are the 25-year buckets used in Lightroom: `1900-1925`, `1925-1950`, `1950-1975`, `1975-2000`, `2000-2025`.
+
+## Typography System
+
+The hero and page headers use an editorial typographic hierarchy:
+
+- **Kicker** — `Cinzel`, all-caps, small, above headline (e.g. "DIGITAL PHOTO ARCHIVE")
+- **Hed (Headline)** — `Playfair Display`, 700 weight, serif (e.g. "Red River Métis Shoebox")
+- **Deck** — `Inter`, sans-serif, summary paragraph below headline
+
+This matches professional editorial design (newspaper/magazine) where kicker → hed → deck form a visual stack.
