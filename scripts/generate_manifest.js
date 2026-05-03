@@ -273,13 +273,69 @@ function geocode(city, province, exifLat, exifLng) {
 // ─── Year Extraction ────────────────────────────────────────────────────────
 
 function extractYear(dateStr) {
-  if (!dateStr) return null
-  const match = String(dateStr).match(/(\d{4})/)
-  if (match) {
-    const year = parseInt(match[1])
-    if (year >= 1800 && year <= 2100) return year
-  }
-  return null
+ if (!dateStr) return null
+ const match = String(dateStr).match(/(\d{4})/)
+ if (match) {
+ const year = parseInt(match[1])
+ if (year >= 1800 && year <= 2100) return year
+ }
+ return null
+}
+
+// ─── Photo Year Derivation ──────────────────────────────────────────────────
+// Derives the approximate date a photo was TAKEN (not scanned).
+// Priority: specific year in keywords > title > era range midpoint > scan date
+// Returns { photoYear: number|null, photoYearSource: string }
+
+function derivePhotoYear(keywords, title, exifYear) {
+ // 1. Specific 4-digit year in keywords (e.g. "1960", "1925")
+ //    Exclude years >= 2020 — those are scan/upload dates leaking into keywords
+ const specificYears = keywords
+ .filter(kw => /^\d{4}$/.test(String(kw)))
+ .map(kw => parseInt(kw, 10))
+ .filter(y => y >= 1800 && y < 2020)
+
+ if (specificYears.length > 0) {
+ // Use the earliest specific year — if multiple exist, the earliest
+ // is most likely the actual photo date (later ones could be reprints)
+ return { photoYear: Math.min(...specificYears), photoYearSource: 'keyword-specific' }
+ }
+
+ // 2. Year embedded in the title (e.g. "4 Generations 1974")
+ if (title) {
+ const titleYearMatch = title.match(/\b(18|19|20)\d{2}\b/)
+ if (titleYearMatch) {
+ const y = parseInt(titleYearMatch[0], 10)
+ if (y >= 1800 && y < 2020) {
+ return { photoYear: y, photoYearSource: 'title' }
+ }
+ }
+ }
+
+ // 3. Era range in keywords (e.g. "1950-1975") → use midpoint
+ //    Some ranges are backwards (e.g. "1990-1925") so normalize
+ const eraRanges = keywords
+ .filter(kw => /^\d{4}-\d{4}$/.test(String(kw)))
+ .map(kw => {
+ const [a, b] = kw.split('-').map(Number)
+ const lo = Math.min(a, b)
+ const hi = Math.max(a, b)
+ return { lo, hi, mid: Math.round((lo + hi) / 2) }
+ })
+ .filter(r => r.lo >= 1800 && r.hi < 2025)
+
+ if (eraRanges.length > 0) {
+ // Use the range with the earliest midpoint (most likely the photo's era)
+ const earliest = eraRanges.reduce((a, b) => a.mid < b.mid ? a : b)
+ return { photoYear: earliest.mid, photoYearSource: 'keyword-era' }
+ }
+
+ // 4. Fallback: EXIF date (likely scan date, but better than nothing)
+ if (exifYear) {
+ return { photoYear: exifYear, photoYearSource: 'scan-date' }
+ }
+
+ return { photoYear: null, photoYearSource: 'unknown' }
 }
 
 // ─── Title from Filename (fallback) ─────────────────────────────────────────
@@ -356,9 +412,10 @@ const photos = imageFiles.map((filename, index) => {
   const people = keywords.filter(kw => !isTopicalKeyword(kw))
   const topicalKeywords = keywords.filter(kw => isTopicalKeyword(kw))
 
-  // ── Step 7: Year ──
-  const exifYear = extractYear(exif.DateCreated) || extractYear(exif.DateTimeOriginal)
-  const year = exifYear
+ // ── Step 7: Year ──
+ const exifYear = extractYear(exif.DateCreated) || extractYear(exif.DateTimeOriginal)
+ const scanYear = exifYear // EXIF timestamp = when the file was created/scanned
+ const { photoYear, photoYearSource } = derivePhotoYear(topicalKeywords, title, exifYear)
 
   // ── Step 8: Geocoding ──
   const coords = geocode(rawCity, rawProvince, exif.GPSLatitude, exif.GPSLongitude)
@@ -372,29 +429,31 @@ const photos = imageFiles.map((filename, index) => {
   if (people.length > 0) statsCount.people++
   if (title) statsCount.title++
   if (caption) statsCount.caption++
-  if (year) statsCount.year++
+ if (photoYear) statsCount.year++
 
-  return {
-    id: `photo_${index + 1}`,
-    src: `assets/shoebox/photos/${filename}`,
-    alt: filename,
-    title: title,
-    caption: caption,
-    description: caption,    // kept for backward compat
-    people: people.join('; '),
-    location: location,
-    community: rawCity || null,
-    province: rawProvince || null,
-    sublocation: rawSublocation || null,
-    keywords: topicalKeywords,
-    year: year,
-    lat: coords.lat,
-    lng: coords.lng,
-    lastModified: stats.mtimeMs,
-    rotation: 0,
-    scale: 1,
-    zIndex: 0,
-  }
+ return {
+ id: `photo_${index + 1}`,
+ src: `assets/shoebox/photos/${filename}`,
+ alt: filename,
+ title: title,
+ caption: caption,
+ description: caption, // kept for backward compat
+ people: people.join('; '),
+ location: location,
+ community: rawCity || null,
+ province: rawProvince || null,
+ sublocation: rawSublocation || null,
+ keywords: topicalKeywords,
+ year: photoYear, // historical photo date (derived from keywords/title/era)
+ scanYear: scanYear, // EXIF scan/digitization date
+ photoYearSource: photoYearSource,
+ lat: coords.lat,
+ lng: coords.lng,
+ lastModified: stats.mtimeMs,
+ rotation: 0,
+ scale: 1,
+ zIndex: 0,
+ }
 })
 
 // ── Sort chronologically ──

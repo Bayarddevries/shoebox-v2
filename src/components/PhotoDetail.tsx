@@ -2,9 +2,25 @@ import { useEffect, useCallback, useRef, useState } from 'react'
 import type { Photo, Story } from '../types'
 
 interface PhotoDetailProps {
-  photo: Photo
-  stories: Story[]
-  onClose: () => void
+ photo: Photo
+ stories: Story[]
+ onClose: () => void
+}
+
+/** Format the year badge with source context */
+function formatYearBadge(photo: Photo): string | null {
+ if (!photo.year) return null
+ const source = photo.photoYearSource
+ if (source === 'keyword-specific' || source === 'title') {
+ return `📅 ${photo.year}` // exact year from metadata
+ }
+ if (source === 'keyword-era') {
+ return `📅 ≈${photo.year}` // approximate (era midpoint)
+ }
+ if (source === 'scan-date') {
+ return `📅 ${photo.year} (scanned)` // scan date, not photo date
+ }
+ return `📅 ${photo.year}`
 }
 
 export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProps) {
@@ -93,9 +109,9 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
             <h2 className="photo-detail-title">{photo.title || photo.alt}</h2>
 
             <div className="photo-detail-meta-mobile">
-              {photo.year && (
-                <span className="photo-detail-badge">📅 {photo.year}</span>
-              )}
+ {formatYearBadge(photo) && (
+ <span className="photo-detail-badge">{formatYearBadge(photo)}</span>
+ )}
               {photo.community && (
                 <span className="photo-detail-badge">📍 {photo.community}{photo.province ? `, ${photo.province}` : ''}</span>
               )}
@@ -171,9 +187,9 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
             <h2 className="photo-detail-title">{photo.title || photo.alt}</h2>
 
             <div className="photo-detail-meta-desktop">
-              {photo.year && (
-                <span className="photo-detail-badge">📅 {photo.year}</span>
-              )}
+ {formatYearBadge(photo) && (
+ <span className="photo-detail-badge">{formatYearBadge(photo)}</span>
+ )}
               {photo.community && (
                 <span className="photo-detail-badge">📍 {photo.community}{photo.province ? `, ${photo.province}` : ''}</span>
               )}

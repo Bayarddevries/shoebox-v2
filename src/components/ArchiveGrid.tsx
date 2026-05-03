@@ -45,14 +45,14 @@ export default function ArchiveGrid({ photos, onPhotoClick }: ArchiveGridProps) 
                   </span>
                 </div>
               )}
-              {/* Year badge */}
-              {photo.year && (
-                <div className="photo-card-year-badge">
-                  <span className="photo-badge bg-white/90 px-2 py-1 rounded">
-                    {photo.year}
-                  </span>
-                </div>
-              )}
+ {/* Year badge */}
+ {photo.year && (
+ <div className="photo-card-year-badge">
+ <span className="photo-badge bg-white/90 px-2 py-1 rounded">
+ {photo.photoYearSource === 'keyword-era' ? `≈${photo.year}` : photo.year}
+ </span>
+ </div>
+ )}
             </div>
 
             <div className="p-4">
