@@ -142,27 +142,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ═══════════════════════════════════════════════
-   ARCHIVE GRID
-   ═══════════════════════════════════════════════ */
+ARCHIVE GRID — Masonry layout
+═══════════════════════════════════════════════ */
 .archive-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px;
+  columns: 2;
+  column-gap: 16px;
   padding: 16px;
 }
 
 @media (min-width: 640px) {
   .archive-grid {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
+    columns: 3;
+    column-gap: 20px;
     padding: 24px;
   }
 }
 
 @media (min-width: 1024px) {
   .archive-grid {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
+    columns: 4;
+    column-gap: 24px;
   }
 }
 
@@ -179,7 +178,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .archive-tile {
+  break-inside: avoid;
+  margin-bottom: 16px;
   animation: archive-tile-in 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94) backwards;
+}
+
+@media (min-width: 640px) {
+  .archive-tile {
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .archive-tile {
+    margin-bottom: 24px;
+  }
 }
 
 .archive-tile:hover .archive-card {
@@ -196,11 +209,11 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Photo card */
+/* Photo card — natural aspect ratio, no cropping */
 .photo-card-image {
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
   width: 100%;
+  height: auto;
+  display: block;
   transition: transform 0.4s ease;
 }
 
