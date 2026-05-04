@@ -11,11 +11,12 @@ export default function Navbar({ currentPage, onNavigate, onContribute }: Navbar
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
- const navItems: { page: Page; label: string; icon: string }[] = [
- { page: 'home', label: 'Home', icon: '🏠' },
- { page: 'archive', label: 'Archive', icon: '📷' },
- { page: 'stories', label: 'Stories', icon: '📖' },
- ]
+  const navItems: { page: Page; label: string; icon: string }[] = [
+    { page: 'home', label: 'Home', icon: '🏠' },
+    { page: 'archive', label: 'Archive', icon: '📷' },
+    { page: 'map', label: 'Map', icon: '🗺️' },
+    { page: 'stories', label: 'Stories', icon: '📖' },
+  ]
 
  const externalLinks = [
  { href: 'https://bayarddevries.github.io/rrmnhc-website/', label: 'Heritage Centre', icon: '🏛️' },

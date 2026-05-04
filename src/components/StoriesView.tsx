@@ -61,17 +61,20 @@ export default function StoriesView({ stories, photos, onPhotoClick }: StoriesVi
               key={story.id}
               className="archive-card p-6"
             >
-              {/* Thumbnail or audio icon */}
-              <div className="relative mb-4 h-48 bg-black rounded overflow-hidden flex items-center justify-center">
-                {thumbnail ? (
-                  <img 
-                    src={encodePath(thumbnail.src)} 
-                    alt={story.title}
-                    className="w-full h-full object-cover opacity-80"
-                  />
-                ) : (
-                  <div className="text-6xl opacity-50">🎙️</div>
-                )}
+      {/* Thumbnail or audio icon */}
+      <div
+        className={`relative mb-4 bg-black rounded overflow-hidden flex items-center justify-center${thumbnail ? ' cursor-pointer' : ''}`}
+        onClick={thumbnail ? () => onPhotoClick(thumbnail) : undefined}
+      >
+        {thumbnail ? (
+          <img 
+            src={encodePath(thumbnail.src)} 
+            alt={story.title}
+            className="w-full object-contain opacity-80"
+          />
+        ) : (
+          <div className="h-48 text-6xl opacity-50">🎙️</div>
+        )}
                 {/* Audio indicator */}
                 {story.audioSrc && (
                   <div className="absolute bottom-3 right-3 bg-white/90 px-3 py-1 rounded-full text-xs flex items-center gap-1">
@@ -114,7 +117,7 @@ export default function StoriesView({ stories, photos, onPhotoClick }: StoriesVi
                         <img 
                           src={encodePath(photo.src)} 
                           alt={photo.alt}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                         />
                       </button>
                     ))}
