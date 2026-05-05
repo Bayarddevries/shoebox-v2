@@ -202,19 +202,22 @@ ARCHIVE GRID — Masonry layout
 }
 
 .archive-card {
-  background: white;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  overflow: hidden;
-  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+ background: white;
+ border: 1px solid var(--color-border);
+ border-radius: 4px;
+ overflow: hidden;
+ transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+ contain: layout style; /* prevent reflow from affecting siblings */
 }
 
 /* Photo card — natural aspect ratio, no cropping */
 .photo-card-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.4s ease;
+ width: 100%;
+ height: auto;
+ display: block;
+ transition: transform 0.4s ease;
+ background: var(--color-cream);
+ min-height: 120px; /* placeholder height while lazy-loading */
 }
 
 .archive-card:hover .photo-card-image {
@@ -896,7 +899,7 @@ ARCHIVE GRID — Masonry layout
 .nav-link-external {
  display: inline-flex;
  align-items: center;
- gap: 4px;
+ position: relative;
  opacity: 0.85;
 }
 
@@ -906,7 +909,10 @@ ARCHIVE GRID — Masonry layout
 }
 
 .nav-link-icon {
- margin-left: 2px;
+ position: absolute;
+ right: -14px;
+ top: 50%;
+ transform: translateY(-50%);
  opacity: 0.5;
 }
 
@@ -1063,14 +1069,15 @@ ARCHIVE GRID — Masonry layout
 }
 
 .photo-detail-modal {
-  background: var(--color-parchment);
-  border-radius: 8px;
-  width: 100%;
-  max-height: 90vh;
-  overflow: hidden;
-  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.5);
-  position: relative;
-  animation: modalSlideIn 0.3s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+ background: var(--color-parchment);
+ border-radius: 8px;
+ width: 90vw;
+ max-width: 1100px;
+ max-height: 90vh;
+ overflow: hidden;
+ box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.5);
+ position: relative;
+ animation: modalSlideIn 0.3s cubic-bezier(0.32, 0.72, 0, 1) forwards;
 }
 
 @keyframes modalSlideIn {
@@ -1084,13 +1091,14 @@ ARCHIVE GRID — Masonry layout
   }
 }
 
-/* Mobile: max screen width */
+/* Mobile: full screen */
 @media (max-width: 767px) {
-  .photo-detail-modal {
-    border-radius: 0;
-    max-height: 100vh;
-    height: 100vh;
-  }
+ .photo-detail-modal {
+ border-radius: 0;
+ max-height: 100vh;
+ height: 100vh;
+ width: 100vw;
+ }
 }
 
 .photo-detail-close {
@@ -1149,13 +1157,13 @@ ARCHIVE GRID — Masonry layout
 }
 
 .photo-detail-image-mobile {
-  flex-shrink: 0;
-  background: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-height: 55vh;
-  overflow: hidden;
+ flex-shrink: 0;
+ background: #1a1a1a;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ max-height: 55vh;
+ overflow: hidden;
 }
 
 .photo-detail-image-mobile img {
@@ -1181,19 +1189,20 @@ ARCHIVE GRID — Masonry layout
 }
 
 .photo-detail-image-desktop {
-  background: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 400px;
-  max-height: 80vh;
-  overflow: hidden;
+ background: #1a1a1a;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ min-height: 400px;
+ max-height: 80vh;
+ overflow: hidden;
+ border-radius: 6px 0 0 6px;
 }
 
 .photo-detail-image-desktop img {
-  max-width: 100%;
-  max-height: 80vh;
-  object-fit: contain;
+ max-width: 100%;
+ max-height: 80vh;
+ object-fit: contain;
 }
 
 .photo-detail-info-desktop {

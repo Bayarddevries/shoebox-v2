@@ -23,25 +23,30 @@ export default function ArchiveGrid({ photos, onPhotoClick }: ArchiveGridProps) 
     )
   }
 
-  return (
-    <div className="archive-grid">
-      {photos.map((photo, index) => (
-        <div
-          key={photo.id}
-          className="archive-tile"
-          style={{ animationDelay: `${Math.min(index * 40, 800)}ms` }}
-        >
-          <div
-            className="archive-card cursor-pointer"
-            onClick={() => onPhotoClick(photo)}
-          >
-            <div className="relative overflow-hidden">
-              <img
-                src={encodePath(photo.src)}
-                alt={photo.alt || photo.title || 'Archive photo'}
-                className="photo-card-image"
-                loading="lazy"
-              />
+ return (
+ <div className="archive-grid">
+ {photos.map((photo, index) => (
+ <div
+ key={photo.id}
+ className="archive-tile"
+ style={{ animationDelay: `${Math.min(index * 40, 800)}ms` }}
+ >
+ <div
+ className="archive-card cursor-pointer"
+ onClick={() => onPhotoClick(photo)}
+ >
+ <div
+ className="relative overflow-hidden"
+ style={photo.width && photo.height ? { aspectRatio: `${photo.width}/${photo.height}` } : undefined}
+ >
+ <img
+ src={encodePath(photo.src)}
+ alt={photo.alt || photo.title || 'Archive photo'}
+ className="photo-card-image"
+ loading="lazy"
+ width={photo.width || undefined}
+ height={photo.height || undefined}
+ />
               {/* Community badge */}
               {(photo.community || photo.location) && (
                 <div className="photo-card-badge">

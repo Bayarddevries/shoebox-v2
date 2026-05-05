@@ -1,0 +1,21 @@
+[
+  {
+    "id": "story_unlinked_mabel's_story_0",
+    "title": "Mabel's Story",
+    "text_file": "Mabel's story.txt",
+    "audio_file": "Mabel's Story.m4a",
+    "photo_files": [
+      "Gail_Hargreaves_3.jpg"
+    ]
+  },
+  {
+    "id": "story_unlinked_uncle_johnny_1",
+    "title": "Uncle Johnny",
+    "text_file": "Uncle Johnny.txt",
+    "audio_file": "Uncle Johnny.m4a",
+    "photo_files": [
+      "Gail_Hargreaves_10.jpg",
+      "Gail_Hargreaves_16.jpg"
+    ]
+  }
+]

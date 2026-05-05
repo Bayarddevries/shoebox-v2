@@ -206,16 +206,17 @@ function isTopicalKeyword(kw) {
 
 function extractExifMetadata(filepath) {
   try {
-    // -n flag: numeric output for GPS (signed decimals instead of DMS strings)
-    const json = execSync(
-      `exiftool -j -n ` +
-      `-ImageDescription -ObjectName -Caption-Abstract -Keywords ` +
-      `-DateTimeOriginal -DateCreated ` +
-      `-GPSLatitude -GPSLongitude -GPSLatitudeRef -GPSLongitudeRef ` +
-      `-City -Sub-location -Province-State -Country-PrimaryLocationName ` +
-      `"${filepath}"`,
-      { encoding: 'utf8', timeout: 10000 }
-    )
+ // -n flag: numeric output for GPS (signed decimals instead of DMS strings)
+ const json = execSync(
+ `exiftool -j -n ` +
+ `-ImageDescription -ObjectName -Caption-Abstract -Keywords ` +
+ `-DateTimeOriginal -DateCreated ` +
+ `-GPSLatitude -GPSLongitude -GPSLatitudeRef -GPSLongitudeRef ` +
+ `-City -Sub-location -Province-State -Country-PrimaryLocationName ` +
+ `-ImageWidth -ImageHeight ` +
+ `"${filepath}"`,
+ { encoding: 'utf8', timeout: 10000 }
+ )
     const data = JSON.parse(json)
     if (data && data.length > 0) {
       return data[0]
@@ -454,6 +455,8 @@ const photos = imageFiles.map((filename, index) => {
  year: photoYear, // historical photo date (derived from keywords/title/era)
  scanYear: scanYear, // EXIF scan/digitization date
  photoYearSource: photoYearSource,
+ width: exif.ImageWidth || null,
+ height: exif.ImageHeight || null,
  lat: coords.lat,
  lng: coords.lng,
  lastModified: stats.mtimeMs,

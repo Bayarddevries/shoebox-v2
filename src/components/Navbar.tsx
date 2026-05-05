@@ -58,10 +58,9 @@ export default function Navbar({ currentPage, onNavigate, onContribute }: Navbar
             <div className="w-9 h-9 sm:w-10 sm:h-10 rounded flex items-center justify-center" style={{ background: 'var(--color-crimson)' }}>
               <span className="text-white font-serif text-lg sm:text-xl font-bold">R</span>
             </div>
-            <div className="hidden sm:block">
-              <div className="text-sm cinzel tracking-wider" style={{ color: 'var(--color-crimson)' }}>RRMNHC</div>
-              <div className="text-xs" style={{ color: 'var(--color-charcoal-light)' }}>Digital Archive</div>
-            </div>
+ <div className="hidden sm:block">
+ <span className="text-sm cinzel tracking-wider" style={{ color: 'var(--color-crimson)' }}>Shoebox</span>
+ </div>
           </button>
 
  {/* Desktop nav links */}
