@@ -919,9 +919,9 @@ ARCHIVE GRID — Masonry layout
 /* Divider between internal and external nav */
 .nav-divider {
  width: 1px;
- height: 20px;
+ height: 24px;
  background: var(--color-border);
- margin: 0 4px;
+ margin: 0 12px;
 }
 
 .mobile-nav-divider {
