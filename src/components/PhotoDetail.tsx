@@ -177,80 +177,81 @@ export default function PhotoDetail({ photo, stories, onClose }: PhotoDetailProp
           </div>
         </div>
 
-        {/* ═══ Desktop layout: side-by-side ═══ */}
-        <div className="hidden md:grid photo-detail-desktop">
-          {/* Image — takes up left column */}
-          <div className="photo-detail-image-desktop">
-            <img
-              src={encodePath(photo.src)}
-              alt={photo.alt || photo.title || 'Archive photo'}
-            />
-          </div>
+ {/* ═══ Desktop layout: image-dominant, metadata as compact overlay ═══ */}
+ <div className="hidden md:flex flex-col photo-detail-desktop">
+ {/* Image — full width, prominent */}
+ <div className="photo-detail-image-desktop">
+ <img
+ src={encodePath(photo.src)}
+ alt={photo.alt || photo.title || 'Archive photo'}
+ />
+ </div>
 
-          {/* Details — right column, scrollable */}
-          <div className="photo-detail-info-desktop">
-            <h2 className="photo-detail-title">{photo.title || photo.alt}</h2>
+ {/* Details — compact strip below the image */}
+ <div className="photo-detail-info-desktop">
+ <h2 className="photo-detail-title">{photo.title || photo.alt}</h2>
 
-            <div className="photo-detail-meta-desktop">
+ <div className="photo-detail-meta-desktop">
  {formatYearBadge(photo) && (
  <span className="photo-detail-badge">{formatYearBadge(photo)}</span>
  )}
-              {photo.community && (
-                <span className="photo-detail-badge">📍 {photo.community}{photo.province ? `, ${photo.province}` : ''}</span>
-              )}
-              {!photo.community && photo.location && (
-                <span className="photo-detail-badge">📍 {photo.location}</span>
-              )}
-            </div>
+ {photo.community && (
+ <span className="photo-detail-badge">📍 {photo.community}{photo.province ? `, ${photo.province}` : ''}</span>
+ )}
+ {!photo.community && photo.location && (
+ <span className="photo-detail-badge">📍 {photo.location}</span>
+ )}
+ </div>
 
-            {photo.people && (
-              <div className="photo-detail-section">
-                <h4 className="photo-detail-label">👥 People</h4>
-                <p>{photo.people}</p>
-              </div>
-            )}
+ {photo.people && (
+ <div className="photo-detail-section">
+ <span className="photo-detail-label">👥</span>{' '}
+ <span>{photo.people}</span>
+ </div>
+ )}
 
-            {photo.caption && (
-              <div className="photo-detail-section">
-                <h4 className="photo-detail-label">📝 Caption</h4>
-                <p>{photo.caption}</p>
-              </div>
-            )}
+ {photo.caption && (
+ <div className="photo-detail-section">
+ <span className="photo-detail-label">📝</span>{' '}
+ <span>{photo.caption}</span>
+ </div>
+ )}
 
-            {photo.keywords && photo.keywords.length > 0 && (
-              <div className="photo-detail-section">
-                <h4 className="photo-detail-label">🏷️ Keywords</h4>
-                <div className="flex flex-wrap gap-2">
-                  {photo.keywords.map((keyword, i) => (
-                    <span key={i} className="keyword-tag">{keyword}</span>
-                  ))}
-                </div>
-              </div>
-            )}
+ {photo.keywords && photo.keywords.length > 0 && (
+ <div className="photo-detail-section">
+ <span className="photo-detail-label">🏷️</span>{' '}
+ {photo.keywords.slice(0, 8).map((keyword, i) => (
+ <span key={i} className="keyword-tag">{keyword}</span>
+ ))}
+ {photo.keywords.length > 8 && (
+ <span className="keyword-tag">+{photo.keywords.length - 8}</span>
+ )}
+ </div>
+ )}
 
-            {stories.length > 0 && (
-              <div className="photo-detail-section photo-detail-stories">
-                <h4 className="photo-detail-label">📖 Related Stories</h4>
-                {stories.map(story => (
-                  <div key={story.id} className="photo-detail-story-card">
-                    <h5>{story.title}</h5>
-                    {story.audioSrc && (
-                      <audio controls className="w-full mt-2 h-8">
-                        <source src={story.audioSrc} type="audio/mpeg" />
-                      </audio>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
+ {stories.length > 0 && (
+ <div className="photo-detail-section photo-detail-stories">
+ <h4 className="photo-detail-label">📖 Related Stories</h4>
+ {stories.map(story => (
+ <div key={story.id} className="photo-detail-story-card">
+ <h5>{story.title}</h5>
+ {story.audioSrc && (
+ <audio controls className="w-full mt-2 h-8">
+ <source src={story.audioSrc} type="audio/mpeg" />
+ </audio>
+ )}
+ </div>
+ ))}
+ </div>
+ )}
 
-            {photo.lat && photo.lng && (
-              <div className="photo-detail-coords">
-                📍 {photo.lat.toFixed(4)}, {photo.lng.toFixed(4)}
-              </div>
-            )}
-          </div>
-        </div>
+ {photo.lat && photo.lng && (
+ <div className="photo-detail-coords">
+ 📍 {photo.lat.toFixed(4)}, {photo.lng.toFixed(4)}
+ </div>
+ )}
+ </div>
+ </div>
       </div>
     </div>
   )
