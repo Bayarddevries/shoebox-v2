@@ -163,13 +163,19 @@ const TOPICAL_KEYWORDS = new Set([
   'Selkirk Park', 'Prairie Bison Local', 'Local Meeting',
   'MMF', 'Manitoba Métis Federation', 'RRMNHC',
   'Minister', 'Prime Minister', 'President Chartrand',
-  'Touched up', 'Foxhorn', 'rural',
-  // Place names (these go to location, not people)
-  'Duck Bay', 'Selkirk', 'St. Boniface', 'Winnipeg', 'Winnipeg Region',
-  'Red River', 'St. Eustache', 'Fort Smith', 'Fond Du Lac', 'The Pas',
-  'Beaulieu', 'Prince Albert', 'Black Lake', 'Grand Rapids',
-  'Stony Rapids', 'Saskatoon', 'St. Andrews', 'Fort Chipewyan',
-  'Saskatchewan', 'Manitoba', 'Alberta',
+ 'Touched up', 'Foxhorn', 'rural',
+ // Roles / titles (not people names)
+ 'Grey Nun', 'Grey Nuns', 'Nun', 'Nuns', 'nun', 'nuns',
+ 'Priest', 'priest', 'Bishop', 'bishop',
+ 'Chief', 'chief', 'Guide', 'guide',
+ 'Voyageur', 'Councillor', 'Interpreter',
+ // Place names (these go to location, not people)
+ 'Duck Bay', 'Selkirk', 'St. Boniface', 'Winnipeg', 'Winnipeg Region',
+ 'Red River', 'St. Eustache', 'Fort Smith', 'Fond Du Lac', 'The Pas',
+ 'Beaulieu', 'Prince Albert', 'Black Lake', 'Grand Rapids',
+ 'Stony Rapids', 'Saskatoon', 'St. Andrews', 'Fort Chipewyan',
+ 'Fort Rae', 'Fort Resolution', 'Fort Qu\'Appelle', 'Fort Garry',
+ 'Saskatchewan', 'Manitoba', 'Alberta',
   // Street addresses (not people)
   '200 Main St.', '200 Main st.', '335 Main St.', '42 Thorncliff Bay', '787 Main St',
   '1963 Roblin Blvd. Shelmerdene Dr',
@@ -177,10 +183,11 @@ const TOPICAL_KEYWORDS = new Set([
 
 // Patterns that indicate a topical (non-person) keyword
 const TOPICAL_PATTERNS = [
-  /^\d{4}$/,                    // Pure year: 1964
-  /^\d{4}-\d{4}$/,              // Year range: 1950-1975
-  /^\d+\s/,                     // Starts with number: "200 Main st."
-  /^\d{4}s$/,                   // Decade: "1950s"
+ /^\d{4}$/, // Pure year: 1964
+ /^\d{4}-\d{4}$/, // Year range: 1950-1975
+ /^\d+\s/, // Starts with number: "200 Main st."
+ /^\d{4}s$/, // Decade: "1950s"
+ /^(Fort|St\.|Saint|Mount|Lake|Port)\s/i, // Place name prefixes
 ]
 
 function isTopicalKeyword(kw) {

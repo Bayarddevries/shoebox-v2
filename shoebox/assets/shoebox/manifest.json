@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-03T12:52:06.838Z",
+  "generatedAt": "2026-05-05T16:10:52.429Z",
   "photoCount": 302,
   "photos": [
     {
@@ -23,7 +23,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415309.1963,
+      "lastModified": 1777560360072.5205,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -49,7 +49,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415356.863,
+      "lastModified": 1777560360529.1047,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -76,7 +76,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 58.9833,
       "lng": -111.1833,
-      "lastModified": 1777735415147.863,
+      "lastModified": 1777560359420.8147,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -101,7 +101,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 58.9833,
       "lng": -111.1833,
-      "lastModified": 1777735415580.5295,
+      "lastModified": 1777560359420.8147,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -113,13 +113,14 @@
       "title": "Sister Darie (1910)",
       "caption": "Sister Darie in front of The Convent of the Holy Angels",
       "description": "Sister Darie in front of The Convent of the Holy Angels",
-      "people": "Lafferty; Sister Darie; Anne Mercredi; Grey Nun",
+      "people": "Lafferty; Sister Darie; Anne Mercredi",
       "location": "Holy Angels Convent, Fort Chipewyan, Alberta, Canada",
       "community": "Fort Chipewyan",
       "province": "Alberta",
       "sublocation": "Holy Angels Convent",
       "keywords": [
         "Fort Chipewyan",
+        "Grey Nun",
         "1900-1925"
       ],
       "year": 1910,
@@ -127,7 +128,7 @@
       "photoYearSource": "title",
       "lat": 58.9833,
       "lng": -111.1833,
-      "lastModified": 1777735415144.1963,
+      "lastModified": 1777560359413.01,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -154,7 +155,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414858.1963,
+      "lastModified": 1777560358714.475,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -181,7 +182,7 @@
       "photoYearSource": "keyword-era",
       "lat": 60.0031,
       "lng": -111.8841,
-      "lastModified": 1777735415144.1963,
+      "lastModified": 1777560359393.4978,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -207,7 +208,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415151.5295,
+      "lastModified": 1777560359440.327,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -232,7 +233,7 @@
       "photoYearSource": "keyword-era",
       "lat": 59.35,
       "lng": -107.6,
-      "lastModified": 1777735415217.5295,
+      "lastModified": 1777560359651.058,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -261,7 +262,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415221.1963,
+      "lastModified": 1777560359639.3508,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -287,7 +288,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415221.1963,
+      "lastModified": 1777560359643.2532,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -313,7 +314,7 @@
       "photoYearSource": "keyword-era",
       "lat": 61.1833,
       "lng": -113.6833,
-      "lastModified": 1777735415265.1963,
+      "lastModified": 1777560359729.1067,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -338,7 +339,7 @@
       "photoYearSource": "keyword-era",
       "lat": 60.0031,
       "lng": -111.8841,
-      "lastModified": 1777735415569.5295,
+      "lastModified": 1777560359401.3027,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -368,7 +369,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415595.1963,
+      "lastModified": 1777560359463.7415,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -393,7 +394,7 @@
       "photoYearSource": "title",
       "lat": 62.828114,
       "lng": -116.049198,
-      "lastModified": 1777735415096.5295,
+      "lastModified": 1777560359292.0347,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -420,7 +421,7 @@
       "photoYearSource": "title",
       "lat": 58.9833,
       "lng": -111.1833,
-      "lastModified": 1777735415155.1963,
+      "lastModified": 1777560359448.1318,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -432,20 +433,21 @@
       "title": "Father Lafferty and his cousin (1915)",
       "caption": "",
       "description": "",
-      "people": "Fort Rae; Father Lafferty; Lafferty",
+      "people": "Father Lafferty; Lafferty",
       "location": "Fort Rae, Northwest Territories, Canada",
       "community": "Fort Rae",
       "province": "Northwest Territories",
       "sublocation": null,
       "keywords": [
-        "1900-1925"
+        "1900-1925",
+        "Fort Rae"
       ],
       "year": 1915,
       "scanYear": 2009,
       "photoYearSource": "title",
       "lat": 62.828114,
       "lng": -116.049198,
-      "lastModified": 1777735415562.1963,
+      "lastModified": 1777560359299.8396,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -471,7 +473,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 53.6833,
       "lng": -114.4833,
-      "lastModified": 1777735415305.5295,
+      "lastModified": 1777560360056.911,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -500,7 +502,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415529.1963,
+      "lastModified": 1777560359174.9617,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -531,7 +533,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.1667,
       "lng": -105.5833,
-      "lastModified": 1777735414865.5295,
+      "lastModified": 1777560358714.475,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -558,7 +560,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415092.863,
+      "lastModified": 1777560359253.0103,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -585,7 +587,7 @@
       "photoYearSource": "title",
       "lat": 59.35,
       "lng": -107.6,
-      "lastModified": 1777735415151.5295,
+      "lastModified": 1777560359424.7173,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -616,7 +618,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 62.828114,
       "lng": -116.049198,
-      "lastModified": 1777735415558.5295,
+      "lastModified": 1777560359288.132,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -642,7 +644,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.6833,
       "lng": -114.4833,
-      "lastModified": 1777735415305.5295,
+      "lastModified": 1777560360060.8132,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -668,7 +670,7 @@
       "photoYearSource": "title",
       "lat": 59.35,
       "lng": -107.6,
-      "lastModified": 1777735415298.1963,
+      "lastModified": 1777560360068.6182,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -680,7 +682,7 @@
       "title": "Fort Smith !1935)",
       "caption": "Germaine Lafferty, Marie Rose Lafferty Mercredi and Napoloeon Lafferty in Fort Smith.",
       "description": "Germaine Lafferty, Marie Rose Lafferty Mercredi and Napoloeon Lafferty in Fort Smith.",
-      "people": "Marie Rose Lafferty Mercredi; Napoleon Lafferty; Germaine Lafferty; Lafferty; Priest",
+      "people": "Marie Rose Lafferty Mercredi; Napoleon Lafferty; Germaine Lafferty; Lafferty",
       "location": "Fort Smith, Northwest Territories, Canada",
       "community": "Fort Smith",
       "province": "Northwest Territories",
@@ -689,6 +691,7 @@
         "1930-1935",
         "House",
         "Dog",
+        "Priest",
         "Outdoors",
         "1930",
         "Fort Smith"
@@ -698,7 +701,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 60.0031,
       "lng": -111.8841,
-      "lastModified": 1777735415558.5295,
+      "lastModified": 1777560359280.3274,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -727,7 +730,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415595.1963,
+      "lastModified": 1777560359658.863,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -755,7 +758,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415598.863,
+      "lastModified": 1777560359666.668,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -784,7 +787,7 @@
       "photoYearSource": "title",
       "lat": 60.0031,
       "lng": -111.8841,
-      "lastModified": 1777735414843.5295,
+      "lastModified": 1777560358655.9387,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -812,7 +815,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415221.1963,
+      "lastModified": 1777560359635.4485,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -843,7 +846,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 58.9833,
       "lng": -111.1833,
-      "lastModified": 1777735415430.1963,
+      "lastModified": 1777560360556.4219,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -873,7 +876,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415448.5295,
+      "lastModified": 1777560360626.6655,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -903,7 +906,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415514.5295,
+      "lastModified": 1777560359135.9375,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -930,7 +933,7 @@
       "photoYearSource": "title",
       "lat": 59.3,
       "lng": -105.4,
-      "lastModified": 1777735415532.863,
+      "lastModified": 1777560359186.669,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -956,7 +959,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415628.1963,
+      "lastModified": 1777560360505.6902,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -985,7 +988,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 52.1322,
       "lng": -106.6706,
-      "lastModified": 1777735415631.863,
+      "lastModified": 1777560360513.495,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1012,7 +1015,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415070.863,
+      "lastModified": 1777560359178.8643,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1044,7 +1047,7 @@
       "photoYearSource": "keyword-era",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735414847.1963,
+      "lastModified": 1777560363530.073,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1071,7 +1074,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414847.1963,
+      "lastModified": 1777560363584.707,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1099,7 +1102,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414847.1963,
+      "lastModified": 1777560363280.3176,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1125,7 +1128,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414898.5295,
+      "lastModified": 1777560363588.6096,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1160,7 +1163,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415056.1963,
+      "lastModified": 1777560358659.841,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1194,7 +1197,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.2034,
       "lng": -105.7587,
-      "lastModified": 1777735415096.5295,
+      "lastModified": 1777560359307.6443,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1225,7 +1228,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.2034,
       "lng": -105.7587,
-      "lastModified": 1777735415100.1963,
+      "lastModified": 1777560359350.571,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1256,7 +1259,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.8333,
       "lng": -101.25,
-      "lastModified": 1777735415103.863,
+      "lastModified": 1777560359354.4734,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1285,7 +1288,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.8333,
       "lng": -101.25,
-      "lastModified": 1777735415107.5295,
+      "lastModified": 1777560359362.2783,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1316,7 +1319,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.8333,
       "lng": -101.25,
-      "lastModified": 1777735415107.5295,
+      "lastModified": 1777560359366.1807,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1346,7 +1349,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.8333,
       "lng": -101.25,
-      "lastModified": 1777735415111.1963,
+      "lastModified": 1777560359370.0833,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1375,7 +1378,7 @@
       "photoYearSource": "keyword-era",
       "lat": 54.857205,
       "lng": -99.938351,
-      "lastModified": 1777735415111.1963,
+      "lastModified": 1777560359373.9856,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1404,7 +1407,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.8333,
       "lng": -101.25,
-      "lastModified": 1777735415114.863,
+      "lastModified": 1777560359377.8882,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1433,7 +1436,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.8333,
       "lng": -101.25,
-      "lastModified": 1777735415118.5295,
+      "lastModified": 1777560359381.7905,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1461,7 +1464,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.8333,
       "lng": -101.25,
-      "lastModified": 1777735415118.5295,
+      "lastModified": 1777560359385.6929,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1498,7 +1501,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.2034,
       "lng": -105.7587,
-      "lastModified": 1777735415122.1963,
+      "lastModified": 1777560359311.5469,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1525,7 +1528,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415122.1963,
+      "lastModified": 1777560359389.5955,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1563,7 +1566,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.2034,
       "lng": -105.7587,
-      "lastModified": 1777735415129.5295,
+      "lastModified": 1777560359319.3516,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1600,7 +1603,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.2034,
       "lng": -105.7587,
-      "lastModified": 1777735415129.5295,
+      "lastModified": 1777560359323.2542,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1632,7 +1635,7 @@
       "photoYearSource": "keyword-era",
       "lat": 58.7689,
       "lng": -94.1674,
-      "lastModified": 1777735415133.1963,
+      "lastModified": 1777560359327.1565,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1660,7 +1663,7 @@
       "photoYearSource": "keyword-era",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415133.1963,
+      "lastModified": 1777560359334.9614,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1695,7 +1698,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415136.863,
+      "lastModified": 1777560359338.8638,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1727,7 +1730,7 @@
       "photoYearSource": "keyword-era",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415140.5295,
+      "lastModified": 1777560359342.766,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1762,7 +1765,7 @@
       "photoYearSource": "keyword-era",
       "lat": 53.2034,
       "lng": -105.7587,
-      "lastModified": 1777735415140.5295,
+      "lastModified": 1777560359346.6687,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1789,7 +1792,7 @@
       "photoYearSource": "keyword-era",
       "lat": 49.9733,
       "lng": -98.2914,
-      "lastModified": 1777735415206.5295,
+      "lastModified": 1777560359502.7659,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1817,7 +1820,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415243.1963,
+      "lastModified": 1777560359690.0825,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1845,7 +1848,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415254.1963,
+      "lastModified": 1777560359713.497,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1876,7 +1879,7 @@
       "photoYearSource": "keyword-era",
       "lat": 50.4,
       "lng": -100.5167,
-      "lastModified": 1777735415312.863,
+      "lastModified": 1777560360302.764,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1910,7 +1913,7 @@
       "photoYearSource": "keyword-era",
       "lat": 50.4,
       "lng": -100.5167,
-      "lastModified": 1777735415320.1963,
+      "lastModified": 1777560360240.325,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1943,7 +1946,7 @@
       "photoYearSource": "keyword-era",
       "lat": 50.4,
       "lng": -100.5167,
-      "lastModified": 1777735415323.863,
+      "lastModified": 1777560360263.7395,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -1976,7 +1979,7 @@
       "photoYearSource": "keyword-era",
       "lat": 50.633784,
       "lng": -101.423035,
-      "lastModified": 1777735415327.5295,
+      "lastModified": 1777560360080.3254,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2012,7 +2015,7 @@
       "photoYearSource": "keyword-era",
       "lat": 50.4,
       "lng": -100.5167,
-      "lastModified": 1777735415331.1963,
+      "lastModified": 1777560360088.1301,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2044,7 +2047,7 @@
       "photoYearSource": "keyword-era",
       "lat": 50.633784,
       "lng": -101.423035,
-      "lastModified": 1777735415331.1963,
+      "lastModified": 1777560360103.74,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2075,7 +2078,7 @@
       "photoYearSource": "keyword-era",
       "lat": 49.975567,
       "lng": -97.781022,
-      "lastModified": 1777735415331.1963,
+      "lastModified": 1777560360154.4714,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2108,7 +2111,7 @@
       "photoYearSource": "keyword-era",
       "lat": 50.4,
       "lng": -100.5167,
-      "lastModified": 1777735415334.863,
+      "lastModified": 1777560360173.9836,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2135,7 +2138,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 53.2034,
       "lng": -105.7587,
-      "lastModified": 1777735415356.863,
+      "lastModified": 1777560361578.8584,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2165,7 +2168,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415631.863,
+      "lastModified": 1777560360517.3975,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2194,7 +2197,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.856135,
       "lng": -97.173199,
-      "lastModified": 1777735415228.5295,
+      "lastModified": 1777560359670.5703,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2220,7 +2223,7 @@
       "photoYearSource": "title",
       "lat": 53.6667,
       "lng": -114.5167,
-      "lastModified": 1777735415342.1963,
+      "lastModified": 1777560360400.3247,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2245,7 +2248,7 @@
       "photoYearSource": "title",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415613.5295,
+      "lastModified": 1777560360404.227,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2275,7 +2278,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415444.863,
+      "lastModified": 1777560360564.2266,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2305,7 +2308,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415155.1963,
+      "lastModified": 1777560359432.522,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2333,7 +2336,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415224.863,
+      "lastModified": 1777560359662.7654,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2362,7 +2365,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415382.5295,
+      "lastModified": 1777560361918.3696,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2388,7 +2391,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415514.5295,
+      "lastModified": 1777560359147.6448,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2415,7 +2418,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415518.1963,
+      "lastModified": 1777560359163.2544,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2445,7 +2448,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415580.5295,
+      "lastModified": 1777560359444.2295,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2475,7 +2478,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415448.5295,
+      "lastModified": 1777560360638.3728,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2509,7 +2512,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 53.8333,
       "lng": -101.25,
-      "lastModified": 1777735415103.863,
+      "lastModified": 1777560359358.376,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2539,7 +2542,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415074.5295,
+      "lastModified": 1777560359213.986,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2566,7 +2569,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 52.1322,
       "lng": -106.6706,
-      "lastModified": 1777735415411.863,
+      "lastModified": 1777560361988.6135,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2595,7 +2598,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415437.5295,
+      "lastModified": 1777560362878.3674,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2620,7 +2623,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415224.863,
+      "lastModified": 1777560359654.9604,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2654,7 +2657,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 50.4,
       "lng": -100.5167,
-      "lastModified": 1777735415312.863,
+      "lastModified": 1777560360306.6663,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2687,7 +2690,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 50.4,
       "lng": -100.5167,
-      "lastModified": 1777735415338.5295,
+      "lastModified": 1777560360201.3008,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2717,7 +2720,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415360.5295,
+      "lastModified": 1777560361590.5657,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2744,7 +2747,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415404.5295,
+      "lastModified": 1777560360548.617,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2773,7 +2776,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415437.5295,
+      "lastModified": 1777560362886.172,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2804,7 +2807,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415334.863,
+      "lastModified": 1777560360181.7886,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2830,7 +2833,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415367.863,
+      "lastModified": 1777560361637.3948,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2856,7 +2859,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415375.1963,
+      "lastModified": 1777560361824.7114,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2883,7 +2886,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 50.05,
       "lng": -96.9833,
-      "lastModified": 1777735414968.1963,
+      "lastModified": 1777560358823.7432,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2915,7 +2918,7 @@
       "photoYearSource": "title",
       "lat": 53.7,
       "lng": -114.4333,
-      "lastModified": 1777735414865.5295,
+      "lastModified": 1777560358722.2798,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2944,7 +2947,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.975567,
       "lng": -97.781022,
-      "lastModified": 1777735414869.1963,
+      "lastModified": 1777560358726.1824,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2971,7 +2974,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 50.05,
       "lng": -96.9833,
-      "lastModified": 1777735414898.5295,
+      "lastModified": 1777560358780.8164,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -2997,7 +3000,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 50.0917,
       "lng": -96.95,
-      "lastModified": 1777735414931.5295,
+      "lastModified": 1777560358784.7188,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3026,7 +3029,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415261.5295,
+      "lastModified": 1777560359717.3994,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3053,7 +3056,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415364.1963,
+      "lastModified": 1777560361617.8826,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3080,7 +3083,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415371.5295,
+      "lastModified": 1777560361781.7847,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3107,7 +3110,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415375.1963,
+      "lastModified": 1777560360544.7146,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3134,7 +3137,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415378.863,
+      "lastModified": 1777560361859.8333,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3161,7 +3164,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415378.863,
+      "lastModified": 1777560361902.76,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3191,7 +3194,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415393.5295,
+      "lastModified": 1777560361949.589,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3221,7 +3224,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415397.1963,
+      "lastModified": 1777560361957.394,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3249,7 +3252,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 52.1322,
       "lng": -106.6706,
-      "lastModified": 1777735415408.1963,
+      "lastModified": 1777560361980.8086,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3276,7 +3279,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 52.1322,
       "lng": -106.6706,
-      "lastModified": 1777735415419.1963,
+      "lastModified": 1777560362012.028,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3304,7 +3307,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 52.1322,
       "lng": -106.6706,
-      "lastModified": 1777735415419.1963,
+      "lastModified": 1777560362632.5144,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3331,7 +3334,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415430.1963,
+      "lastModified": 1777560362870.5625,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3358,7 +3361,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415444.863,
+      "lastModified": 1777560362948.611,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3388,7 +3391,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.9733,
       "lng": -98.2914,
-      "lastModified": 1777735415452.1963,
+      "lastModified": 1777560361157.396,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3418,7 +3421,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.975567,
       "lng": -97.781022,
-      "lastModified": 1777735414872.863,
+      "lastModified": 1777560358726.1824,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3445,7 +3448,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 50.55,
       "lng": -96.2167,
-      "lastModified": 1777735414953.5295,
+      "lastModified": 1777560358929.1086,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3471,7 +3474,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415400.863,
+      "lastModified": 1777560361973.0037,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3501,7 +3504,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415426.5295,
+      "lastModified": 1777560362854.953,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3532,7 +3535,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414843.5295,
+      "lastModified": 1777560363397.3906,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3563,7 +3566,7 @@
       "photoYearSource": "keyword-era",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735414854.5295,
+      "lastModified": 1777560358702.7678,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3596,7 +3599,7 @@
       "photoYearSource": "keyword-era",
       "lat": 49.975567,
       "lng": -97.781022,
-      "lastModified": 1777735414876.5295,
+      "lastModified": 1777560358737.8896,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3632,7 +3635,7 @@
       "photoYearSource": "keyword-era",
       "lat": 52.1322,
       "lng": -106.6706,
-      "lastModified": 1777735414891.1963,
+      "lastModified": 1777560363666.6582,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3669,7 +3672,7 @@
       "photoYearSource": "keyword-era",
       "lat": 52.7833,
       "lng": -100.7833,
-      "lastModified": 1777735414894.863,
+      "lastModified": 1777560363690.0728,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3701,7 +3704,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415048.863,
+      "lastModified": 1777560358652.0361,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3727,7 +3730,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415056.1963,
+      "lastModified": 1777560358655.9387,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3762,7 +3765,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415059.863,
+      "lastModified": 1777560358671.5483,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3801,7 +3804,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415063.5295,
+      "lastModified": 1777560358675.4507,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3839,7 +3842,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415063.5295,
+      "lastModified": 1777560358679.3533,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3876,7 +3879,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415089.1963,
+      "lastModified": 1777560359245.2056,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3904,7 +3907,7 @@
       "photoYearSource": "keyword-era",
       "lat": 49.9733,
       "lng": -98.2914,
-      "lastModified": 1777735415195.5295,
+      "lastModified": 1777560359483.2537,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3931,7 +3934,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415202.863,
+      "lastModified": 1777560359491.0586,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3959,7 +3962,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415228.5295,
+      "lastModified": 1777560359670.5703,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -3993,7 +3996,7 @@
       "photoYearSource": "keyword-era",
       "lat": 50.4,
       "lng": -100.5167,
-      "lastModified": 1777735415316.5295,
+      "lastModified": 1777560360220.8127,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4026,7 +4029,7 @@
       "photoYearSource": "keyword-era",
       "lat": 50.4,
       "lng": -100.5167,
-      "lastModified": 1777735415323.863,
+      "lastModified": 1777560360255.9348,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4038,7 +4041,7 @@
       "title": "Picking Seneca",
       "caption": "Clara Dejarlais picking Seneca Root around St. Lazar",
       "description": "Clara Dejarlais picking Seneca Root around St. Lazar",
-      "people": "Clara Dejarlais; St. Lazar",
+      "people": "Clara Dejarlais",
       "location": "St. Lazar, Manitoba, Canada",
       "community": "St. Lazar",
       "province": "Manitoba",
@@ -4049,6 +4052,7 @@
         "scanned in house",
         "1950-1975",
         "HR",
+        "St. Lazar",
         "forest"
       ],
       "year": 1963,
@@ -4056,7 +4060,7 @@
       "photoYearSource": "keyword-era",
       "lat": 49.8333,
       "lng": -97.0833,
-      "lastModified": 1777735415323.863,
+      "lastModified": 1777560360275.4468,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4085,7 +4089,7 @@
       "photoYearSource": "keyword-era",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415338.5295,
+      "lastModified": 1777560360333.9834,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4111,7 +4115,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415386.1963,
+      "lastModified": 1777560361926.1746,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4136,7 +4140,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415386.1963,
+      "lastModified": 1777560361930.077,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4161,7 +4165,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415393.5295,
+      "lastModified": 1777560361941.7842,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4186,7 +4190,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415400.863,
+      "lastModified": 1777560361965.199,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4222,7 +4226,7 @@
       "photoYearSource": "keyword-era",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415540.1963,
+      "lastModified": 1777560359221.7908,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4260,7 +4264,7 @@
       "photoYearSource": "keyword-era",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415543.863,
+      "lastModified": 1777560359225.6934,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4289,7 +4293,7 @@
       "photoYearSource": "keyword-era",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415547.5295,
+      "lastModified": 1777560359229.5957,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4321,7 +4325,7 @@
       "photoYearSource": "keyword-era",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415551.1963,
+      "lastModified": 1777560359237.4006,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4356,7 +4360,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415551.1963,
+      "lastModified": 1777560359241.303,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4385,7 +4389,7 @@
       "photoYearSource": "keyword-era",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415587.863,
+      "lastModified": 1777560359452.0342,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4416,7 +4420,7 @@
       "photoYearSource": "keyword-era",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415602.5295,
+      "lastModified": 1777560360318.3735,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4445,7 +4449,7 @@
       "photoYearSource": "keyword-era",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415606.1963,
+      "lastModified": 1777560360376.9102,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4474,7 +4478,7 @@
       "photoYearSource": "keyword-era",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415613.5295,
+      "lastModified": 1777560360380.8125,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4505,7 +4509,7 @@
       "photoYearSource": "keyword-era",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415617.1963,
+      "lastModified": 1777560360427.6416,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4535,7 +4539,7 @@
       "photoYearSource": "keyword-era",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415620.863,
+      "lastModified": 1777560360447.1538,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4564,7 +4568,7 @@
       "photoYearSource": "title",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415532.863,
+      "lastModified": 1777560359210.0835,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4603,7 +4607,7 @@
       "photoYearSource": "title",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415536.5295,
+      "lastModified": 1777560359217.8884,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4628,7 +4632,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735414964.5295,
+      "lastModified": 1777560358804.231,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4657,7 +4661,7 @@
       "photoYearSource": "title",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415573.1963,
+      "lastModified": 1777560359409.1074,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4686,7 +4690,7 @@
       "photoYearSource": "title",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415573.1963,
+      "lastModified": 1777560359405.205,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4715,7 +4719,7 @@
       "photoYearSource": "title",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415591.5295,
+      "lastModified": 1777560359459.839,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4741,7 +4745,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415364.1963,
+      "lastModified": 1777560361625.6875,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4767,7 +4771,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415367.863,
+      "lastModified": 1777560361653.0044,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4793,7 +4797,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415371.5295,
+      "lastModified": 1777560361680.3215,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4826,7 +4830,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 52.171605,
       "lng": -100.153951,
-      "lastModified": 1777735415529.1963,
+      "lastModified": 1777560359159.352,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4853,7 +4857,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415411.863,
+      "lastModified": 1777560361992.5159,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4886,7 +4890,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415067.1963,
+      "lastModified": 1777560358683.2556,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4918,7 +4922,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 50.633784,
       "lng": -101.423035,
-      "lastModified": 1777735415327.5295,
+      "lastModified": 1777560360283.2517,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4948,7 +4952,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 59.25,
       "lng": -105.3333,
-      "lastModified": 1777735415422.863,
+      "lastModified": 1777560362741.7822,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4960,21 +4964,22 @@
       "title": "Alfred and Sharon",
       "caption": "Sharon celebrates her wedding shower with Alfred.",
       "description": "Sharon celebrates her wedding shower with Alfred.",
-      "people": "Alfred Anderson; Wedding; Wedding Shower; Sharon Hazel Anderson; St. Andrews school",
+      "people": "Alfred Anderson; Wedding; Wedding Shower; Sharon Hazel Anderson",
       "location": "St. Andrews, Manitoba",
       "community": "St. Andrews",
       "province": "Manitoba",
       "sublocation": null,
       "keywords": [
         "1971",
-        "1970-1975"
+        "1970-1975",
+        "St. Andrews school"
       ],
       "year": 1971,
       "scanYear": 2026,
       "photoYearSource": "keyword-specific",
       "lat": 50.05,
       "lng": -96.9833,
-      "lastModified": 1777735414902.1963,
+      "lastModified": 1777560358839.3528,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -4999,7 +5004,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 50.0917,
       "lng": -96.95,
-      "lastModified": 1777735414964.5295,
+      "lastModified": 1777560358815.9382,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5026,7 +5031,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415235.863,
+      "lastModified": 1777560359682.2776,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5052,7 +5057,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.975567,
       "lng": -97.781022,
-      "lastModified": 1777735414876.5295,
+      "lastModified": 1777560358741.792,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5078,7 +5083,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.975567,
       "lng": -97.781022,
-      "lastModified": 1777735414883.863,
+      "lastModified": 1777560358757.4019,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5104,7 +5109,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.975567,
       "lng": -97.781022,
-      "lastModified": 1777735414887.5295,
+      "lastModified": 1777560358761.3042,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5130,7 +5135,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.975567,
       "lng": -97.781022,
-      "lastModified": 1777735414887.5295,
+      "lastModified": 1777560358776.9138,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5156,7 +5161,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.975567,
       "lng": -97.781022,
-      "lastModified": 1777735414887.5295,
+      "lastModified": 1777560358773.0115,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5186,7 +5191,7 @@
       "photoYearSource": "title",
       "lat": 49.975567,
       "lng": -97.781022,
-      "lastModified": 1777735414880.1963,
+      "lastModified": 1777560358745.6946,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5213,7 +5218,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415441.1963,
+      "lastModified": 1777560362901.782,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5240,7 +5245,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415518.1963,
+      "lastModified": 1777560359147.6448,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5266,7 +5271,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415631.863,
+      "lastModified": 1777560362972.0256,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5292,7 +5297,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415232.1963,
+      "lastModified": 1777560359674.4727,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5323,7 +5328,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414850.863,
+      "lastModified": 1777560358698.8652,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5357,7 +5362,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414858.1963,
+      "lastModified": 1777560358710.5725,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5390,7 +5395,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414894.863,
+      "lastModified": 1777560358636.4265,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5427,7 +5432,7 @@
       "photoYearSource": "keyword-era",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415070.863,
+      "lastModified": 1777560358694.963,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5456,7 +5461,7 @@
       "photoYearSource": "keyword-era",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415199.1963,
+      "lastModified": 1777560359494.961,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5483,7 +5488,7 @@
       "photoYearSource": "keyword-era",
       "lat": 49.9733,
       "lng": -98.2914,
-      "lastModified": 1777735415202.863,
+      "lastModified": 1777560359502.7659,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5509,7 +5514,7 @@
       "photoYearSource": "keyword-era",
       "lat": 49.9733,
       "lng": -98.2914,
-      "lastModified": 1777735415206.5295,
+      "lastModified": 1777560359573.0095,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5537,7 +5542,7 @@
       "photoYearSource": "keyword-specific",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415342.1963,
+      "lastModified": 1777560360470.5684,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5569,7 +5574,7 @@
       "photoYearSource": "keyword-specific",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415195.5295,
+      "lastModified": 1777560359479.3513,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5592,7 +5597,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415554.863,
+      "lastModified": 1777560359256.9128,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5617,7 +5622,7 @@
       "photoYearSource": "scan-date",
       "lat": 58.9833,
       "lng": -111.1833,
-      "lastModified": 1777735415598.863,
+      "lastModified": 1777560359725.2043,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5646,7 +5651,7 @@
       "photoYearSource": "title",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415074.5295,
+      "lastModified": 1777560359260.8152,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5675,7 +5680,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415078.1963,
+      "lastModified": 1777560359268.62,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5704,7 +5709,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415089.1963,
+      "lastModified": 1777560359276.4248,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5742,7 +5747,7 @@
       "photoYearSource": "scan-date",
       "lat": 53.75,
       "lng": -114.55,
-      "lastModified": 1777735414847.1963,
+      "lastModified": 1777560363455.927,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5777,7 +5782,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414854.5295,
+      "lastModified": 1777560358706.6702,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5806,7 +5811,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.4167,
       "lng": -96.6667,
-      "lastModified": 1777735415199.1963,
+      "lastModified": 1777560359471.5464,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5833,7 +5838,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.0333,
       "lng": -96.8667,
-      "lastModified": 1777735415052.5295,
+      "lastModified": 1777560358648.1338,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5864,7 +5869,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415158.863,
+      "lastModified": 1777560359592.5217,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5893,7 +5898,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415162.5295,
+      "lastModified": 1777560359600.3267,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5922,7 +5927,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415166.1963,
+      "lastModified": 1777560359604.229,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5951,7 +5956,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415173.5295,
+      "lastModified": 1777560359608.1313,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -5980,7 +5985,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415177.1963,
+      "lastModified": 1777560359615.9363,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6009,7 +6014,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415184.5295,
+      "lastModified": 1777560359619.8386,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6038,7 +6043,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415188.1963,
+      "lastModified": 1777560359623.7412,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6069,7 +6074,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415191.863,
+      "lastModified": 1777560359631.546,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6100,7 +6105,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415210.1963,
+      "lastModified": 1777560359588.6194,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6123,7 +6128,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415232.1963,
+      "lastModified": 1777560359678.3752,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6148,7 +6153,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415239.5295,
+      "lastModified": 1777560359686.18,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6173,7 +6178,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415239.5295,
+      "lastModified": 1777560359686.18,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6199,7 +6204,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415246.863,
+      "lastModified": 1777560359697.8872,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6225,7 +6230,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415246.863,
+      "lastModified": 1777560359701.7898,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6251,7 +6256,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415250.5295,
+      "lastModified": 1777560358640.3289,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6276,7 +6281,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415261.5295,
+      "lastModified": 1777560359721.3018,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6306,7 +6311,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415265.1963,
+      "lastModified": 1777560359733.0093,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6338,7 +6343,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415268.863,
+      "lastModified": 1777560359736.9116,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6370,7 +6375,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415272.5295,
+      "lastModified": 1777560359744.7166,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6402,7 +6407,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415276.1963,
+      "lastModified": 1777560359779.8384,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6434,7 +6439,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415276.1963,
+      "lastModified": 1777560359783.7407,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6466,7 +6471,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415279.863,
+      "lastModified": 1777560359791.5457,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6498,7 +6503,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415283.5295,
+      "lastModified": 1777560359799.3503,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6530,7 +6535,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415287.1963,
+      "lastModified": 1777560359814.9602,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6561,7 +6566,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415290.863,
+      "lastModified": 1777560359990.5696,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6591,7 +6596,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415294.5295,
+      "lastModified": 1777560360013.9841,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6620,7 +6625,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415298.1963,
+      "lastModified": 1777560360053.0083,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6652,7 +6657,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415316.5295,
+      "lastModified": 1777560360205.2031,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6683,7 +6688,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415316.5295,
+      "lastModified": 1777560360209.1055,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6715,7 +6720,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.4,
       "lng": -100.5167,
-      "lastModified": 1777735415320.1963,
+      "lastModified": 1777560360232.5203,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6742,7 +6747,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415349.5295,
+      "lastModified": 1777560360470.5684,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6769,7 +6774,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415349.5295,
+      "lastModified": 1777560360482.2756,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6796,7 +6801,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415353.1963,
+      "lastModified": 1777560360493.983,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6821,7 +6826,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415353.1963,
+      "lastModified": 1777560360493.983,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6844,7 +6849,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415356.863,
+      "lastModified": 1777560361555.4438,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6869,7 +6874,7 @@
       "photoYearSource": "scan-date",
       "lat": 52.1322,
       "lng": -106.6706,
-      "lastModified": 1777735415408.1963,
+      "lastModified": 1777560361988.6135,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6895,7 +6900,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415426.5295,
+      "lastModified": 1777560362831.5383,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6923,7 +6928,7 @@
       "photoYearSource": "scan-date",
       "lat": 53.2034,
       "lng": -105.7587,
-      "lastModified": 1777735415452.1963,
+      "lastModified": 1777560361083.2498,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6953,7 +6958,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415455.863,
+      "lastModified": 1777560362983.733,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -6976,7 +6981,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415463.1963,
+      "lastModified": 1777560362995.4402,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7005,7 +7010,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415463.1963,
+      "lastModified": 1777560363003.245,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7035,7 +7040,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415466.863,
+      "lastModified": 1777560363011.05,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7065,7 +7070,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415466.863,
+      "lastModified": 1777560363112.5132,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7095,7 +7100,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415470.5295,
+      "lastModified": 1777560363151.5374,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7124,7 +7129,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415474.1963,
+      "lastModified": 1777560363163.2446,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7153,7 +7158,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415474.1963,
+      "lastModified": 1777560363171.0496,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7184,7 +7189,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415481.5295,
+      "lastModified": 1777560363182.7568,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7215,7 +7220,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415485.1963,
+      "lastModified": 1777560363186.6594,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7246,7 +7251,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415488.863,
+      "lastModified": 1777560363190.5618,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7277,7 +7282,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415492.5295,
+      "lastModified": 1777560363198.3667,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7308,7 +7313,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415492.5295,
+      "lastModified": 1777560363206.1714,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7339,7 +7344,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415496.1963,
+      "lastModified": 1777560363229.586,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7370,7 +7375,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415499.863,
+      "lastModified": 1777560363233.4885,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7400,7 +7405,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415503.5295,
+      "lastModified": 1777560363245.1958,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7429,7 +7434,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415503.5295,
+      "lastModified": 1777560363249.0981,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7459,7 +7464,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415507.1963,
+      "lastModified": 1777560363256.903,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7489,7 +7494,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415510.863,
+      "lastModified": 1777560363264.708,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7518,7 +7523,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735415510.863,
+      "lastModified": 1777560363268.6104,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7541,7 +7546,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735414902.1963,
+      "lastModified": 1777560358851.06,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7566,7 +7571,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.5,
       "lng": -96.9667,
-      "lastModified": 1777735414909.5295,
+      "lastModified": 1777560358858.865,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7589,7 +7594,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.05,
       "lng": -96.9833,
-      "lastModified": 1777735414913.1963,
+      "lastModified": 1777560358866.6697,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7617,7 +7622,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.0333,
       "lng": -96.8667,
-      "lastModified": 1777735414916.863,
+      "lastModified": 1777560358870.5723,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7646,7 +7651,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.0333,
       "lng": -96.8667,
-      "lastModified": 1777735414920.5295,
+      "lastModified": 1777560358878.3772,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7669,7 +7674,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735414924.1963,
+      "lastModified": 1777560358886.182,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7694,7 +7699,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735414927.863,
+      "lastModified": 1777560358890.0845,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7719,7 +7724,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735414927.863,
+      "lastModified": 1777560358897.8892,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7745,7 +7750,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.05,
       "lng": -96.9833,
-      "lastModified": 1777735414931.5295,
+      "lastModified": 1777560358901.7917,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7770,7 +7775,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.05,
       "lng": -96.9833,
-      "lastModified": 1777735414935.1963,
+      "lastModified": 1777560358905.694,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7796,7 +7801,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.05,
       "lng": -96.9833,
-      "lastModified": 1777735414938.863,
+      "lastModified": 1777560358913.499,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7821,7 +7826,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.0917,
       "lng": -96.95,
-      "lastModified": 1777735414942.5295,
+      "lastModified": 1777560358917.4014,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7849,7 +7854,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.05,
       "lng": -96.9833,
-      "lastModified": 1777735414946.1963,
+      "lastModified": 1777560358925.2063,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7876,7 +7881,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.05,
       "lng": -96.9833,
-      "lastModified": 1777735414957.1963,
+      "lastModified": 1777560358940.816,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7902,7 +7907,7 @@
       "photoYearSource": "scan-date",
       "lat": 49.8956,
       "lng": -97.1386,
-      "lastModified": 1777735414960.863,
+      "lastModified": 1777560358792.5237,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7927,7 +7932,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.05,
       "lng": -96.9833,
-      "lastModified": 1777735414968.1963,
+      "lastModified": 1777560358827.6455,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7952,7 +7957,7 @@
       "photoYearSource": "scan-date",
       "lat": 50.05,
       "lng": -96.9833,
-      "lastModified": 1777735414971.863,
+      "lastModified": 1777560358831.5479,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -7977,7 +7982,7 @@
       "photoYearSource": "scan-date",
       "lat": 53.1833,
       "lng": -99.3333,
-      "lastModified": 1777735414975.5295,
+      "lastModified": 1777560358835.4504,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8005,7 +8010,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414975.5295,
+      "lastModified": 1777560358940.816,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8033,7 +8038,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414979.1963,
+      "lastModified": 1777560358948.6208,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8061,7 +8066,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414979.1963,
+      "lastModified": 1777560358952.5232,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8089,7 +8094,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414982.863,
+      "lastModified": 1777560358964.2305,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8117,7 +8122,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414982.863,
+      "lastModified": 1777560358979.8403,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8145,7 +8150,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414986.5295,
+      "lastModified": 1777560358995.45,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8173,7 +8178,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414986.5295,
+      "lastModified": 1777560359003.255,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8201,7 +8206,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414990.1963,
+      "lastModified": 1777560359014.9622,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8229,7 +8234,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735414997.5295,
+      "lastModified": 1777560359018.8645,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8257,7 +8262,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415001.1963,
+      "lastModified": 1777560359018.8645,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8285,7 +8290,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415001.1963,
+      "lastModified": 1777560359022.767,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8313,7 +8318,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415004.863,
+      "lastModified": 1777560359030.5718,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8336,7 +8341,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415008.5295,
+      "lastModified": 1777560359034.4744,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8364,7 +8369,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415008.5295,
+      "lastModified": 1777560359038.3767,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8387,7 +8392,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415012.1963,
+      "lastModified": 1777560359050.084,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8410,7 +8415,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415015.863,
+      "lastModified": 1777560359053.9863,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8438,7 +8443,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415019.5295,
+      "lastModified": 1777560359057.889,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8466,7 +8471,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415019.5295,
+      "lastModified": 1777560359061.7913,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8489,7 +8494,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415023.1963,
+      "lastModified": 1777560359069.5962,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8517,7 +8522,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415026.863,
+      "lastModified": 1777560359069.5962,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8540,7 +8545,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415030.5295,
+      "lastModified": 1777560359081.3035,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8563,7 +8568,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415030.5295,
+      "lastModified": 1777560359104.718,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8586,7 +8591,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415034.1963,
+      "lastModified": 1777560359112.523,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8609,7 +8614,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415041.5295,
+      "lastModified": 1777560359120.3276,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8632,7 +8637,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415041.5295,
+      "lastModified": 1777560359128.1326,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8657,7 +8662,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415045.1963,
+      "lastModified": 1777560359132.035,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -8682,7 +8687,7 @@
       "photoYearSource": "scan-date",
       "lat": null,
       "lng": null,
-      "lastModified": 1777735415048.863,
+      "lastModified": 1777560359139.8398,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
