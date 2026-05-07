@@ -97,21 +97,23 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.02em;
   margin-bottom: 1.5rem;
   color: var(--color-crimson);
-  animation: fadeInUp 1s ease-out, shimmer 4s ease-in-out infinite 1s;
+  animation: fadeInUp 1s ease-out, cloudPass 12s ease-in-out infinite 1s;
   background: linear-gradient(
-    90deg,
-    var(--color-crimson) 0%,
-    #e02020 25%,
-    var(--color-crimson) 50%,
-    #e02020 75%,
-    var(--color-crimson) 100%
+    105deg,
+    #5a0000 0%,
+    #8b0000 20%,
+    #6b1010 40%,
+    #8b0000 55%,
+    #4a0000 70%,
+    #8b0000 85%,
+    #5a0000 100%
   );
-  background-size: 200% 100%;
+  background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: none;
-  filter: drop-shadow(0 2px 12px rgba(139, 0, 0, 0.6)) drop-shadow(0 0 30px rgba(139, 0, 0, 0.3));
+  filter: drop-shadow(0 2px 8px rgba(80, 0, 0, 0.5)) drop-shadow(0 0 20px rgba(80, 0, 0, 0.2));
 }
 
 .hero-subtitle {
@@ -1361,12 +1363,15 @@ ARCHIVE GRID — Masonry layout
   }
 }
 
-@keyframes shimmer {
-  0%, 100% {
-    background-position: 200% center;
+@keyframes cloudPass {
+  0% {
+    background-position: 100% center;
   }
   50% {
     background-position: 0% center;
+  }
+  100% {
+    background-position: 100% center;
   }
 }
 
