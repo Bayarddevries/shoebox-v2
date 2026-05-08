@@ -98,27 +98,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.5rem;
   color: white;
   animation: fadeInUp 1s ease-out;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
 }
-
-.hero-title-wrap {
-  display: inline-block;
-  position: relative;
-  padding: 0.8rem 2rem;
-}
-
-.hero-title-wrap::before,
-.hero-title-wrap::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25) 20%, rgba(255,255,255,0.25) 80%, transparent);
-}
-
-.hero-title-wrap::before { top: 0; }
-.hero-title-wrap::after { bottom: 0; }
 
 .hero-subtitle {
  font-family: var(--font-cinzel);
