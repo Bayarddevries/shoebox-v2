@@ -96,25 +96,29 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 3rem;
   letter-spacing: 0.02em;
   margin-bottom: 1.5rem;
-  color: var(--color-crimson);
-  animation: fadeInUp 1s ease-out, cloudPass 12s ease-in-out infinite 1s;
-  background: linear-gradient(
-    105deg,
-    #5a0000 0%,
-    #8b0000 20%,
-    #6b1010 40%,
-    #8b0000 55%,
-    #4a0000 70%,
-    #8b0000 85%,
-    #5a0000 100%
-  );
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: none;
-  filter: drop-shadow(0 0 6px rgba(180, 30, 30, 0.9)) drop-shadow(0 0 18px rgba(139, 0, 0, 0.7)) drop-shadow(0 0 40px rgba(100, 0, 0, 0.4));
+  color: white;
+  animation: fadeInUp 1s ease-out;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
 }
+
+.hero-title-wrap {
+  display: inline-block;
+  position: relative;
+  padding: 0.8rem 2rem;
+}
+
+.hero-title-wrap::before,
+.hero-title-wrap::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25) 20%, rgba(255,255,255,0.25) 80%, transparent);
+}
+
+.hero-title-wrap::before { top: 0; }
+.hero-title-wrap::after { bottom: 0; }
 
 .hero-subtitle {
  font-family: var(--font-cinzel);

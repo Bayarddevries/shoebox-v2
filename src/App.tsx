@@ -279,7 +279,9 @@ export default function App() {
             <div className="hero-overlay" />
               <div className="hero-content">
           <p className="hero-subtitle">Digital Photo Archive</p>
-          <h1 className="hero-title">Red River Métis Shoebox</h1>
+          <div className="hero-title-wrap">
+            <h1 className="hero-title">Red River Métis Shoebox</h1>
+          </div>
           <p className="hero-deck">Our history lives in the albums and shoeboxes of our families. This project transforms those personal keepsakes into a community archive, safeguarding Red River Métis stories and ensuring they remain a vital part of our cultural narrative for years to come.</p>
           <button
                   onClick={() => navigate('archive')}
