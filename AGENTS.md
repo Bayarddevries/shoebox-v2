@@ -8,6 +8,8 @@ Quick-reference for AI agents (and humans) working on this project.
 
 > https://bayarddevries.github.io/shoebox-v2/
 
+**Local dev server:** http://100.108.183.33:8080/shoebox-v2/index.html (via RRMNHC website server, port 8080)
+
 ## Key Paths
 
 | Path | Purpose |
@@ -15,9 +17,13 @@ Quick-reference for AI agents (and humans) working on this project.
 | `vite.config.ts` | Vite configuration — **`base` must be `/shoebox-v2/`** |
 | `src/App.tsx` | Main app component — all `fetch()` calls live here |
 | `src/components/ArchiveGrid.tsx` | Photo grid component |
+| `src/components/HeroCarousel.tsx` | Ken Burns carousel (pre-1950 photos) |
+| `src/components/Navbar.tsx` | Top nav with MMF logo |
+| `src/index.css` | All styles including hero split layout |
 | `public/assets/shoebox/manifest.json` | Photo manifest (generated, do not edit by hand) |
 | `public/assets/shoebox/stories.json` | Story metadata |
 | `public/assets/shoebox/photos/` | 302 archival photos — filenames have spaces (URL-encoded at runtime, works fine) |
+| `public/assets/mmf_logo_rrm.png` | MMF RRM logo for navbar and hero |
 | `scripts/generate_manifest.js` | Node script that generates `manifest.json` with relative `src` paths |
 | `.github/workflows/deploy.yml` | CI — uses `peaceiris/actions-gh-pages@v4` |
 
@@ -31,6 +37,22 @@ npm run build
 - **Build artifacts in `shoebox/` ARE committed to the repo.** Only `dist/` is gitignored.
 - After changing the `base` path or any asset, rebuild and commit the `shoebox/` directory.
 
+## Local Dev Server (RRMNHC Website)
+
+Shoebox is served alongside the RRMNHC website via a symlink:
+
+```bash
+# Symlink: RRMNHC website root → Shoebox build output
+ln -s /home/bayarddevries/shoebox-v2/shoebox /home/bayarddevries/rrmnhc-website/shoebox-v2
+```
+
+The RRMNHC website server runs on port 8080:
+```bash
+cd /home/bayarddevries/rrmnhc-website && python3 -m http.server 8080
+```
+
+**⚠️ IMPORTANT:** The symlink must point to `shoebox-v2/shoebox/` (the build output), NOT `shoebox-v2/` (the source directory). Pointing to the source directory will serve broken/incomplete files.
+
 ## Deploy
 
 - **CI workflow** (`.github/workflows/deploy.yml`) uses `peaceiris/actions-gh-pages@v4` to push the `shoebox/` directory to the `gh-pages` branch.
@@ -41,7 +63,7 @@ npm run build
 
 ### GitHub Pages `build_type` is `"legacy"` — do NOT change to `"workflow"`
 
-The repo uses `peaceiris/actions-gh-pages`, which pushes directly to the `gh-pages` branch. The `"workflow"` build type only responds to `actions/deploy-pages` API calls and **silently ignores** branch pushes. If someone switches to `"workflow"`, deployments will stop working entirely. See [`docs/GITHUB_PAGES_FIX.md`](docs/GITHUB_PAGES_FIX.md) for the full incident report.
+The repo uses `peaceiris/actions-gh-pages`, which pushes directly to the `gh-pages` branch. The `"workflow"` build type only responds to `actions/deploy-pages` API calls and **silently ignores** branch pushes. If someone switches to `"workflow"`, deployments will stop working entirely. See [`docs/GITHUB_PAGES_FIX.md`](docs/GITHUB_Pages_FIX.md) for the full incident report.
 
 ### All `fetch()` paths must use `import.meta.env.BASE_URL`
 
@@ -137,3 +159,37 @@ The hero and page headers use an editorial typographic hierarchy:
 - **Deck** — `Inter`, sans-serif, summary paragraph below headline
 
 This matches professional editorial design (newspaper/magazine) where kicker → hed → deck form a visual stack.
+
+## Hero Section & MMF Branding (2026-05-19)
+
+### Split Hero Layout
+The hero section uses a two-column split layout on desktop:
+- **Left column (35%):** MMF RRM logo (`assets/mmf_logo_rrm.png`), right-aligned, `max-height: 320px`
+- **Right column (65%):** Kicker → Hed → Deck → CTA button, left-aligned
+- **Gap:** 4rem between columns
+- **Max-width:** 1200px, centered
+
+### Mobile Behavior
+- Hero section is `100vh` (full screen) on mobile (`< 768px`)
+- Logo scales dynamically at `max-height: 25vh`
+- Content stacks vertically: logo on top, text below
+- Text is center-aligned on mobile
+
+### CSS Classes
+- `.hero-section` — `width: 100%`, `height: 60vh` (desktop) / `100vh` (mobile), `overflow: hidden`
+- `.hero-content-split` — flex container for the two-column layout
+- `.hero-logo-side` — `flex: 0 0 35%`, `justify-content: flex-end`
+- `.hero-text-side` — `flex: 1 1 65%`, flex column
+- `.hero-mmf-logo` — `max-height: 320px` (desktop) / `25vh` (mobile)
+
+### Color Palette
+- Primary: `--color-crimson: #8b0000` (original dark crimson, NOT MMF bright red `#cf152d`)
+- MMF logo is layered in as an image asset; the color palette remains the original crimson
+- Background: `--color-parchment: #fdfcf9`
+
+### Key Implementation Notes
+- The hero section uses a React fragment (`<>...</>`) to wrap both the `hero-section` div and the stats section as siblings
+- The `HeroCarousel` component renders absolutely positioned Ken Burns layers with `inset: -5%`
+- The `hero-overlay` is a self-closing div (sibling of carousel and content, NOT a parent)
+- The stats section lives OUTSIDE `hero-section` (was previously nested inside, causing layout bugs)
+- A stray `<div className="relative">` wrapper was removed from App.tsx — it was constraining the carousel width

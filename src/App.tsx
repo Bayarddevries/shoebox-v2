@@ -285,12 +285,13 @@ export default function App() {
                 <p className="hero-subtitle">Digital Photo Archive</p>
                 <h1 className="hero-title">Red River Métis Shoebox</h1>
                 <p className="hero-deck">Our history lives in the albums and shoeboxes of our families. This project transforms those personal keepsakes into a community archive, safeguarding Red River Métis stories and ensuring they remain a vital part of our cultural narrative for years to come.</p>
-                <button
-                  onClick={() => navigate('archive')}
-                  className="btn-primary text-lg"
-                >
-                  Explore the Archive
-                </button>
+<button
+  onClick={() => navigate('archive')}
+  className="btn-primary text-lg"
+  style={{ position: 'relative', zIndex: 20 }}
+>
+  Explore the Archive
+</button>
               </div>
             </div>
           </div>
@@ -332,7 +333,11 @@ export default function App() {
               totalCount={photos.length}
             />
             <div className="archive-page-content">
-              <ArchiveGrid photos={sortedPhotos} onPhotoClick={setSelectedPhoto} />
+              <ArchiveGrid 
+  photos={sortedPhotos} 
+  onPhotoClick={setSelectedPhoto} 
+  baseUrl={import.meta.env.BASE_URL} 
+/>
             </div>
           </div>
         )}

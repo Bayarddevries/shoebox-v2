@@ -8,9 +8,10 @@ function encodePath(path: string): string {
 interface ArchiveGridProps {
   photos: Photo[]
   onPhotoClick: (photo: Photo) => void
+  baseUrl: string
 }
 
-export default function ArchiveGrid({ photos, onPhotoClick }: ArchiveGridProps) {
+export default function ArchiveGrid({ photos, onPhotoClick, baseUrl }: ArchiveGridProps) {
   if (photos.length === 0) {
     return (
       <div className="empty-state">
@@ -39,14 +40,14 @@ export default function ArchiveGrid({ photos, onPhotoClick }: ArchiveGridProps) 
  className="relative overflow-hidden"
  style={photo.width && photo.height ? { aspectRatio: `${photo.width}/${photo.height}` } : undefined}
  >
- <img
- src={encodePath(photo.src)}
- alt={photo.alt || photo.title || 'Archive photo'}
- className="photo-card-image"
- loading="lazy"
- width={photo.width || undefined}
- height={photo.height || undefined}
- />
+<img
+    src={`${baseUrl}${encodePath(photo.src)}`}
+    alt={photo.alt || photo.title || 'Archive photo'}
+    className="photo-card-image"
+    loading="lazy"
+    width={photo.width || undefined}
+    height={photo.height || undefined}
+  />
               {/* Community badge */}
               {(photo.community || photo.location) && (
                 <div className="photo-card-badge">
