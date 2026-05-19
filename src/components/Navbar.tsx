@@ -51,13 +51,11 @@ export default function Navbar({ currentPage, onNavigate, onContribute }: Navbar
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <button
+<button
             onClick={() => handleNavigate('home')}
-            className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity flex-shrink-0"
           >
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded flex items-center justify-center" style={{ background: 'var(--color-crimson)' }}>
-              <span className="text-white font-serif text-lg sm:text-xl font-bold">R</span>
-            </div>
+            <img src={`${import.meta.env.BASE_URL}assets/mmf_logo_rrm.png`} alt="MMF Logo" className="h-8 w-auto sm:h-10" />
  <div className="hidden sm:block">
  <span className="text-sm cinzel tracking-wider" style={{ color: 'var(--color-crimson)' }}>Shoebox</span>
  </div>

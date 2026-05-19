@@ -273,15 +273,19 @@ export default function App() {
       <main>
         {/* ═══ HOME PAGE ═══ */}
         {currentPage === 'home' && (
-          <div className="relative">
+          <>
           <div className="hero-section">
             <HeroCarousel photos={carouselPhotos} baseUrl={import.meta.env.BASE_URL} />
             <div className="hero-overlay" />
-              <div className="hero-content">
-          <p className="hero-subtitle">Digital Photo Archive</p>
-          <h1 className="hero-title">Red River Métis Shoebox</h1>
-          <p className="hero-deck">Our history lives in the albums and shoeboxes of our families. This project transforms those personal keepsakes into a community archive, safeguarding Red River Métis stories and ensuring they remain a vital part of our cultural narrative for years to come.</p>
-          <button
+            <div className="hero-content hero-content-split">
+              <div className="hero-logo-side">
+                <img src={`${import.meta.env.BASE_URL}assets/mmf_logo_rrm.png`} alt="MMF Logo" className="hero-mmf-logo" />
+              </div>
+              <div className="hero-text-side">
+                <p className="hero-subtitle">Digital Photo Archive</p>
+                <h1 className="hero-title">Red River Métis Shoebox</h1>
+                <p className="hero-deck">Our history lives in the albums and shoeboxes of our families. This project transforms those personal keepsakes into a community archive, safeguarding Red River Métis stories and ensuring they remain a vital part of our cultural narrative for years to come.</p>
+                <button
                   onClick={() => navigate('archive')}
                   className="btn-primary text-lg"
                 >
@@ -289,8 +293,9 @@ export default function App() {
                 </button>
               </div>
             </div>
+          </div>
 
-            <div className="max-w-6xl mx-auto py-16 px-6">
+          <div className="max-w-6xl mx-auto py-16 px-6">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div>
                   <div className="stat-number">{photos.length}</div>
@@ -310,7 +315,7 @@ export default function App() {
                 </div>
               </div>
             </div>
-          </div>
+          </>
         )}
 
         {/* ═══ ARCHIVE PAGE ═══ */}
