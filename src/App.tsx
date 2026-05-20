@@ -254,13 +254,17 @@ export default function App() {
       chunks.push(sorted.slice(i, i + chunkSize))
     }
 
-    // Interleave: take COLUMNS items from each chunk in sequence.
+    // Interleave: take ALL items from each chunk in groups of COLUMNS.
     // CSS columns fill: position 0→col1, 1→col2, 2→col3, 3→col4, 4→col1...
-    // Result: col1 gets chunk0[0], chunk1[0], chunk2[0], chunk3[0] (full eras)
+    // Result: col1 gets chunk0[0], chunk0[4], chunk1[0], chunk1[4]...
+    // All columns start with oldest-era photos, full timeline distributed.
     const result: Photo[] = []
     for (let ci = 0; ci < chunks.length; ci++) {
-      for (let i = 0; i < COLUMNS; i++) {
-        if (chunks[ci][i]) result.push(chunks[ci][i])
+      const chunk = chunks[ci]
+      for (let offset = 0; offset < chunk.length; offset += COLUMNS) {
+        for (let i = 0; i < COLUMNS; i++) {
+          if (chunk[offset + i]) result.push(chunk[offset + i])
+        }
       }
     }
     return result
