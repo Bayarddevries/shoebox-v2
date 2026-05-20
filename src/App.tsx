@@ -232,42 +232,13 @@ export default function App() {
     })
   }, [photos, debouncedSearch, filters])
 
-  // ── Sort + balanced column reorder ────────────────────
-  // Chronological sort, then rearrange so each CSS column gets a balanced
-  // mix of eras. Without this, CSS column-major fill puts newest photos in
-  // columns 3-4 visible at the top. With reorder, every column shows old
-  // photos at the top and progresses through time together.
+  // ── Sort (chronological, oldest first) ────────────────
   const sortedPhotos = useMemo(() => {
-    const sorted = [...filteredPhotos].sort((a, b) => {
+    return [...filteredPhotos].sort((a, b) => {
       const yearA = a.year || 9999
       const yearB = b.year || 9999
       return yearA - yearB
     })
-
-    // Balanced column reorder for column-major CSS masonry
-    const COLUMNS = 4
-    if (sorted.length <= COLUMNS) return sorted
-
-    const chunkSize = Math.ceil(sorted.length / COLUMNS)
-    const chunks: Photo[][] = []
-    for (let i = 0; i < sorted.length; i += chunkSize) {
-      chunks.push(sorted.slice(i, i + chunkSize))
-    }
-
-    // Interleave: take ALL items from each chunk in groups of COLUMNS.
-    // CSS columns fill: position 0→col1, 1→col2, 2→col3, 3→col4, 4→col1...
-    // Result: col1 gets chunk0[0], chunk0[4], chunk1[0], chunk1[4]...
-    // All columns start with oldest-era photos, full timeline distributed.
-    const result: Photo[] = []
-    for (let ci = 0; ci < chunks.length; ci++) {
-      const chunk = chunks[ci]
-      for (let offset = 0; offset < chunk.length; offset += COLUMNS) {
-        for (let i = 0; i < COLUMNS; i++) {
-          if (chunk[offset + i]) result.push(chunk[offset + i])
-        }
-      }
-    }
-    return result
   }, [filteredPhotos])
 
   // ── Pre-1950 photos for hero carousel ─────────────────
