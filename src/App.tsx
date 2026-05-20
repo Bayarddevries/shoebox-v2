@@ -234,11 +234,30 @@ export default function App() {
 
   // ── Sort ──────────────────────────────────────────────
   const sortedPhotos = useMemo(() => {
-    return [...filteredPhotos].sort((a, b) => {
+    const sorted = [...filteredPhotos].sort((a, b) => {
       const yearA = a.year || 9999
       const yearB = b.year || 9999
       return yearA - yearB
     })
+
+    // Interleave: take from both ends so CSS columns get a visual mix.
+    // Column-based masonry fills top-to-bottom, so a pure chrono sort
+    // puts all modern color photos in the last column. Interleaving
+    // gives each column old + new photos = visually balanced rows.
+    const interleaved: Photo[] = []
+    let lo = 0
+    let hi = sorted.length - 1
+    while (lo <= hi) {
+      if (lo === hi) {
+        interleaved.push(sorted[lo])
+      } else {
+        interleaved.push(sorted[lo])
+        interleaved.push(sorted[hi])
+      }
+      lo++
+      hi--
+    }
+    return interleaved
   }, [filteredPhotos])
 
   // ── Pre-1950 photos for hero carousel ─────────────────
