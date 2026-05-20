@@ -1,0 +1,39 @@
+[
+ {
+  "id": "story_unlinked_mabel's_story_0",
+  "title": "Mabel's Story",
+  "text_file": "Mabel's story.txt",
+  "audio_file": "Mabel's Story.m4a",
+  "photo_files": [
+   "Gail_Hargreaves_3.jpg"
+  ]
+ },
+ {
+  "id": "story_unlinked_uncle_johnny_1",
+  "title": "Uncle Johnny",
+  "text_file": "Uncle Johnny.txt",
+  "audio_file": "Uncle Johnny.m4a",
+  "photo_files": [
+   "Gail_Hargreaves_10.jpg",
+   "Gail_Hargreaves_16.jpg"
+  ]
+ },
+ {
+  "id": "story_unlinked_jessie_anderson_2",
+  "title": "Jessie Anderson Protects Her Family",
+  "text_file": "Jessie Anderson Protects her family.txt",
+  "audio_file": "Story 1 Jessie Anderson.m4a",
+  "photo_files": [
+   "20260413 AlfredAnderson 6.jpg"
+  ]
+ },
+ {
+  "id": "story_unlinked_alfred_anderson_3",
+  "title": "Good, Better, Best… Alfred Anderson the First",
+  "text_file": "Good, Better, Best… Alfred Anderson the frist.txt",
+  "audio_file": "Story 2 Alfred Anderson (i).m4a",
+  "photo_files": [
+   "20260413 AlfredAnderson 25.jpg"
+  ]
+ }
+]
