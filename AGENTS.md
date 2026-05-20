@@ -155,12 +155,12 @@ If adding historical photos, make sure their **keywords include a specific year*
 The hero and page headers use an editorial typographic hierarchy:
 
 - **Kicker** — `Cinzel`, all-caps, small, above headline (e.g. "DIGITAL PHOTO ARCHIVE")
-- **Hed (Headline)** — `Playfair Display`, 700 weight, serif (e.g. "Red River Métis Shoebox")
+- **Hed (Headline)** — `EB Garamond`, 700 weight, serif (e.g. "Red River Métis Shoebox")
 - **Deck** — `Inter`, sans-serif, summary paragraph below headline
 
 This matches professional editorial design (newspaper/magazine) where kicker → hed → deck form a visual stack.
 
-## Hero Section & MMF Branding (2026-05-19)
+## Hero Section & MMF Branding (2026-05-19/20)
 
 ### Split Hero Layout
 The hero section uses a two-column split layout on desktop:
@@ -174,16 +174,28 @@ The hero section uses a two-column split layout on desktop:
 - Logo scales dynamically at `max-height: 25vh`
 - Content stacks vertically: logo on top, text below
 - Text is center-aligned on mobile
+- Text-side uses symmetric horizontal padding (`padding: 0 1.5rem`)
 
 ### CSS Classes
 - `.hero-section` — `width: 100%`, `height: 60vh` (desktop) / `100vh` (mobile), `overflow: hidden`
 - `.hero-content-split` — flex container for the two-column layout
-- `.hero-logo-side` — `flex: 0 0 35%`, `justify-content: flex-end`
-- `.hero-text-side` — `flex: 1 1 65%`, flex column
-- `.hero-mmf-logo` — `max-height: 320px` (desktop) / `25vh` (mobile)
+- `.hero-logo-side` — `flex: 0 0 35%`, `justify-content: flex-end`, no background (transparent)
+- `.hero-text-side` — `flex: 1 1 65%`, flex column, `padding: 0 2.5rem 0 1.5rem` (desktop), no gradient background
+- `.hero-mmf-logo` — `max-height: 320px` (desktop) / `25vh` (mobile), `filter: drop-shadow(...)` for readability against carousel
+
+### Text Readability
+- Title text uses text-shadows exclusively (no dark gradient bar behind text):
+  ```
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.9),
+    0 4px 16px rgba(0, 0, 0, 0.6),
+    0 12px 40px rgba(0, 0, 0, 0.4);
+  ```
+- Global dark overlay on carousel image provides baseline contrast
+- MMF logo uses `drop-shadow` filter for pop against carousel photos
 
 ### Color Palette
-- Primary: `--color-crimson: #8b0000` (original dark crimson, NOT MMF bright red `#cf152d`)
+- Primary: `--color-crimson: #8b0000` (dark crimson, NOT MMF bright red `#cf152d`)
 - MMF logo is layered in as an image asset; the color palette remains the original crimson
 - Background: `--color-parchment: #fdfcf9`
 
@@ -193,3 +205,4 @@ The hero section uses a two-column split layout on desktop:
 - The `hero-overlay` is a self-closing div (sibling of carousel and content, NOT a parent)
 - The stats section lives OUTSIDE `hero-section` (was previously nested inside, causing layout bugs)
 - A stray `<div className="relative">` wrapper was removed from App.tsx — it was constraining the carousel width
+- **No dark gradient bar behind text:** The `.hero-text-side` previously had a `background: linear-gradient(to right, ...)` that created a semi-transparent black panel behind the title. Removed 2026-05-20 — text-shadows + global overlay provide sufficient contrast.

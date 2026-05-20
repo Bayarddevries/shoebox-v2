@@ -41,7 +41,7 @@ export default function ArchiveGrid({ photos, onPhotoClick, baseUrl }: ArchiveGr
  style={photo.width && photo.height ? { aspectRatio: `${photo.width}/${photo.height}` } : undefined}
  >
 <img
-    src={`${baseUrl}${encodePath(photo.src)}`}
+    src={baseUrl ? `${baseUrl}${encodePath(photo.src)}` : encodePath(photo.src)}
     alt={photo.alt || photo.title || 'Archive photo'}
     className="photo-card-image"
     loading="lazy"

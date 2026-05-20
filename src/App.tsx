@@ -279,7 +279,7 @@ export default function App() {
             <div className="hero-overlay" />
             <div className="hero-content hero-content-split">
               <div className="hero-logo-side">
-                <img src={`${import.meta.env.BASE_URL}assets/mmf_logo_rrm.png`} alt="MMF Logo" className="hero-mmf-logo" />
+                <img src={`${import.meta.env.BASE_URL}assets/MMF_NationalGovernment.png`} alt="MMF Logo" className="hero-mmf-logo" />
               </div>
               <div className="hero-text-side">
                 <p className="hero-subtitle">Digital Photo Archive</p>
@@ -333,11 +333,7 @@ export default function App() {
               totalCount={photos.length}
             />
             <div className="archive-page-content">
-              <ArchiveGrid 
-  photos={sortedPhotos} 
-  onPhotoClick={setSelectedPhoto} 
-  baseUrl={import.meta.env.BASE_URL} 
-/>
+              <ArchiveGrid photos={sortedPhotos} onPhotoClick={setSelectedPhoto} baseUrl={import.meta.env.BASE_URL} />
             </div>
           </div>
         )}

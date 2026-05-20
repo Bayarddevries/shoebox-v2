@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Cinzel:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Cinzel:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -13,7 +13,7 @@
   --color-subtle-blue: #9ac6e0;
 
   /* Typography */
-  --font-serif: 'Playfair Display', serif;
+  --font-serif: 'EB Garamond', serif;
   --font-sans: 'Inter', sans-serif;
   --font-cinzel: 'Cinzel', serif;
 }
@@ -125,7 +125,7 @@ h1, h2, h3, h4, h5, h6 {
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 0 48px rgba(255, 248, 230, 0.35)) drop-shadow(0 4px 24px rgba(0, 0, 0, 0.6));
 }
 
 @media (max-width: 768px) {
@@ -140,6 +140,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 0 2.5rem 0 1.5rem;
 }
 
 @media (max-width: 768px) {
@@ -156,6 +157,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   .hero-text-side {
     flex: 1 1 auto;
+    padding: 0 1.5rem;
   }
 }
 
@@ -179,7 +181,9 @@ h1, h2, h3, h4, h5, h6 {
  letter-spacing: 0.2em;
  text-transform: uppercase;
  margin-bottom: 0.75rem;
- opacity: 0.9;
+ text-shadow: 0 1px 8px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.7); opacity: 0.9;
+  -webkit-text-stroke: 0.5px rgba(0,0,0,0.85);
+  paint-order: stroke fill;
  animation: fadeInUp 1s ease-out 0.2s backwards;
 }
 
@@ -187,9 +191,11 @@ h1, h2, h3, h4, h5, h6 {
  font-family: var(--font-sans);
  font-size: 1rem;
  max-width: 36rem;
- margin: 0 auto 2rem;
+ margin-bottom: 2rem;
  line-height: 1.7;
- opacity: 0.85;
+ text-shadow: 0 1px 6px rgba(0,0,0,0.95), 0 2px 12px rgba(0,0,0,0.5);
+  -webkit-text-stroke: 0.5px rgba(0,0,0,0.8);
+  paint-order: stroke fill;
  animation: fadeInUp 1s ease-out 0.4s backwards;
 }
 
