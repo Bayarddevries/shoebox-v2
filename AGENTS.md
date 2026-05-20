@@ -206,3 +206,38 @@ The hero section uses a two-column split layout on desktop:
 - The stats section lives OUTSIDE `hero-section` (was previously nested inside, causing layout bugs)
 - A stray `<div className="relative">` wrapper was removed from App.tsx — it was constraining the carousel width
 - **No dark gradient bar behind text:** The `.hero-text-side` previously had a `background: linear-gradient(to right, ...)` that created a semi-transparent black panel behind the title. Removed 2026-05-20 — text-shadows + global overlay provide sufficient contrast.
+
+## Archive Grid — JS Masonry Layout (2026-05-20)
+
+**Replaced CSS `columns` with JS shortest-column masonry** to fix the "column 4 shows newer photos" problem.
+
+### The Problem
+
+CSS `columns` uses column-major fill (top-to-bottom, left-to-right). With chronological sort, this puts the newest 25% of photos at the top of column 4. No amount of array reordering can fix this — it's hardcoded in the CSS spec.
+
+### The Solution
+
+**ArchiveGrid.tsx** now uses a custom JS masonry algorithm:
+
+1. **Measure container width** via `ResizeObserver` → derive column count (2/3/4 based on breakpoints matching old CSS)
+2. **Shortest-column placement** — for each chronologically sorted photo, find the column with the least total height and place it there. This naturally distributes oldest photos across all columns
+3. **Height estimation from metadata** — photos have `width`/`height` in the manifest, so card height is estimated as `colWidth / aspectRatio + contentEstimate` before render
+4. **Absolute positioning** — each tile is `position: absolute` with computed `top`/`left`/`width`/`height`
+
+### Why this fixes it
+
+With 302 photos and 4 columns, the first 4 photos (oldest) go to columns 1-4 since they all start at height 0. Every column starts with an old photo. As items fill in, the algorithm keeps columns balanced — all columns progress through time at roughly the same rate.
+
+### Key files
+
+| File | Purpose |
+|------|---------|
+| `src/components/ArchiveGrid.tsx` | JS masonry component — `computeMasonry()`, `estimateCardHeight()`, shortest-column algorithm |
+| `src/index.css` | `.archive-grid-container`, `.archive-grid-inner` (no more `columns` or `break-inside`) |
+
+### What didn't work (history)
+
+- ❌ **CSS columns + chronological sort** — column-major fill puts newest photos in col 4
+- ❌ **CSS columns + chunk reorder** — clever array reordering still can't overcome column-major fill with masonry heights
+- ❌ **CSS Grid** — gives row-major but no masonry (wasted space)
+- ✅ **JS masonry with shortest-column** — correct era distribution + masonry packing
