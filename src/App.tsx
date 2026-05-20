@@ -29,7 +29,21 @@ export default function App() {
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null)
   const [showContribute, setShowContribute] = useState(false)
   const [filters, setFilters] = useState<FilterState>(EMPTY_FILTERS)
+  const [columnCount, setColumnCount] = useState(4) // CSS column count for row-major reorder
   const initialUrlRead = useRef(false)
+
+  // ── Detect column count for row-major reorder ──────────
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth
+      if (w < 640) setColumnCount(2)
+      else if (w < 1024) setColumnCount(3)
+      else setColumnCount(4)
+    }
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
 
   // ── URL sync ──────────────────────────────────────────
   // Read filters from URL on mount
@@ -234,12 +248,26 @@ export default function App() {
 
   // ── Sort ──────────────────────────────────────────────
   const sortedPhotos = useMemo(() => {
-    return [...filteredPhotos].sort((a, b) => {
+    const sorted = [...filteredPhotos].sort((a, b) => {
       const yearA = a.year || 9999
       const yearB = b.year || 9999
       return yearA - yearB
     })
-  }, [filteredPhotos])
+
+    // Reorder for row-major visual with CSS columns masonry.
+    // CSS columns fill top→bottom then next column, so a plain
+    // chrono sort puts all modern photos in the last column.
+    // Instead, spread every Nth photo across columns so each
+    // column progresses through the full era range and visual
+    // rows show chronologically adjacent photos.
+    const reordered: Photo[] = []
+    for (let col = 0; col < columnCount; col++) {
+      for (let i = col; i < sorted.length; i += columnCount) {
+        reordered.push(sorted[i])
+      }
+    }
+    return reordered
+  }, [filteredPhotos, columnCount])
 
   // ── Pre-1950 photos for hero carousel ─────────────────
   const carouselPhotos = useMemo(() => {
