@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-21T17:37:32.000Z",
+  "generatedAt": "2026-07-28T17:48:03.546Z",
   "photoCount": 315,
   "photos": [
     {
@@ -158,7 +158,7 @@
       "keywords": [
         "1900-1925",
         "AGA 2024",
-        "M\u00e9tis Shoebox"
+        "Métis Shoebox"
       ],
       "year": 1913,
       "scanYear": 2024,
@@ -550,9 +550,9 @@
       "src": "assets/shoebox/photos/1930s close to Willowbunch SK Blanche Carriere Adelard Beaudin.jpg",
       "alt": "1930s close to Willowbunch SK Blanche Carriere Adelard Beaudin.jpg",
       "title": "Sep 24 1925 On the way to Willow Bunch",
-      "caption": "snapshot 516 stamped on back:  Sep 24 1925 Regina Photo Supply\rOn the way to Willow Bunch; L-R:  unknown, unknown, Lily Carri\u00e8re, Archie Emond, Blanche Carri\u00e8re",
-      "description": "snapshot 516 stamped on back:  Sep 24 1925 Regina Photo Supply\rOn the way to Willow Bunch; L-R:  unknown, unknown, Lily Carri\u00e8re, Archie Emond, Blanche Carri\u00e8re",
-      "people": "Lily Carri\u00e8re; Archie Emond; Blanche Carri\u00e8re; Sask",
+      "caption": "snapshot 516 stamped on back:  Sep 24 1925 Regina Photo Supply\rOn the way to Willow Bunch; L-R:  unknown, unknown, Lily Carrière, Archie Emond, Blanche Carrière",
+      "description": "snapshot 516 stamped on back:  Sep 24 1925 Regina Photo Supply\rOn the way to Willow Bunch; L-R:  unknown, unknown, Lily Carrière, Archie Emond, Blanche Carrière",
+      "people": "Lily Carrière; Archie Emond; Blanche Carrière; Sask",
       "location": "Willow Bunch, Saskatchewan, Canada",
       "community": "Willow Bunch",
       "province": "Saskatchewan",
@@ -1109,7 +1109,7 @@
       "keywords": [
         "1925-1950",
         "early 20th century",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "studio portrait",
         "Winnipeg",
         "AGA 2024",
@@ -1143,7 +1143,7 @@
       "keywords": [
         "AGA 2024",
         "1925-1950",
-        "M\u00e9tis Shoebox"
+        "Métis Shoebox"
       ],
       "year": 1938,
       "scanYear": 2024,
@@ -1192,8 +1192,8 @@
       "src": "assets/shoebox/photos/2.jpg",
       "alt": "2.jpg",
       "title": "Ruth Hooker and Iris Vitt",
-      "caption": "Two young Metis girls out on the bog in the 1940\u2019s. Still friends today living in the same apartment block.",
-      "description": "Two young Metis girls out on the bog in the 1940\u2019s. Still friends today living in the same apartment block.",
+      "caption": "Two young Metis girls out on the bog in the 1940’s. Still friends today living in the same apartment block.",
+      "description": "Two young Metis girls out on the bog in the 1940’s. Still friends today living in the same apartment block.",
       "people": "Ruth hooker; Iris Vitt; Bog",
       "location": "",
       "community": null,
@@ -1232,12 +1232,12 @@
         "family portrait",
         "historical",
         "hats",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "portrait",
         "generations",
         "family",
         "AGA 2024",
-        "M\u00e9tis",
+        "Métis",
         "men"
       ],
       "year": 1938,
@@ -1257,8 +1257,8 @@
       "src": "assets/shoebox/photos/Gail_Hargreaves_1.jpg",
       "alt": "Gail_Hargreaves_1.jpg",
       "title": "3 Generations of matriarchs",
-      "caption": "Maggie Starmer, Edna Starmer, Mabel Starmer and grandmother Charlotte Beads pose in front of their home. Maggie Starmer (1870-1961)Edna Starmer(1906-1932), Charlotte Beads (Flett A\u2019dhemar)(1840-1910)\rMabel Starmer(1903-1941) 2nd row",
-      "description": "Maggie Starmer, Edna Starmer, Mabel Starmer and grandmother Charlotte Beads pose in front of their home. Maggie Starmer (1870-1961)Edna Starmer(1906-1932), Charlotte Beads (Flett A\u2019dhemar)(1840-1910)\rMabel Starmer(1903-1941) 2nd row",
+      "caption": "Maggie Starmer, Edna Starmer, Mabel Starmer and grandmother Charlotte Beads pose in front of their home. Maggie Starmer (1870-1961)Edna Starmer(1906-1932), Charlotte Beads (Flett A’dhemar)(1840-1910)\rMabel Starmer(1903-1941) 2nd row",
+      "description": "Maggie Starmer, Edna Starmer, Mabel Starmer and grandmother Charlotte Beads pose in front of their home. Maggie Starmer (1870-1961)Edna Starmer(1906-1932), Charlotte Beads (Flett A’dhemar)(1840-1910)\rMabel Starmer(1903-1941) 2nd row",
       "people": "Mabel Starmer; Maggie Starmer; Edna Starmer; Starmer family; Generations; Charlotte Beads",
       "location": "Prince Albert, Saskatchewan, Canada",
       "community": "Prince Albert",
@@ -2262,6 +2262,31 @@
     },
     {
       "id": "photo_73",
+      "src": "assets/shoebox/photos/20260515 JoanHadfield 1.jpg",
+      "alt": "20260515 JoanHadfield 1.jpg",
+      "title": "Meadowdale Schoolhouse (ca. 1940)",
+      "caption": "Meadowdale Schoolhouse in St. Andrews MB",
+      "description": "Meadowdale Schoolhouse in St. Andrews MB",
+      "people": "",
+      "location": "Number 8 HWY Meadowdale rod., St. Andrews, Manitoba",
+      "community": "St. Andrews",
+      "province": "Manitoba",
+      "sublocation": "Number 8 HWY Meadowdale rod.",
+      "keywords": [],
+      "year": 1940,
+      "scanYear": 2026,
+      "photoYearSource": "title",
+      "width": 2048,
+      "height": 1194,
+      "lat": 50.05,
+      "lng": -96.9833,
+      "lastModified": 1779722978001.356,
+      "rotation": 0,
+      "scale": 1,
+      "zIndex": 0
+    },
+    {
+      "id": "photo_74",
       "src": "assets/shoebox/photos/Wendy Sikora_11.jpg",
       "alt": "Wendy Sikora_11.jpg",
       "title": "Germaine and Margaret",
@@ -2290,7 +2315,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_74",
+      "id": "photo_75",
       "src": "assets/shoebox/photos/w-anne, margaret, gerry.jpg",
       "alt": "w-anne, margaret, gerry.jpg",
       "title": "Lafferty Sisters (",
@@ -2322,7 +2347,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_75",
+      "id": "photo_76",
       "src": "assets/shoebox/photos/Lesley_Kellemen_2.jpg",
       "alt": "Lesley_Kellemen_2.jpg",
       "title": "Lesley Kellemen 2",
@@ -2353,7 +2378,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_76",
+      "id": "photo_77",
       "src": "assets/shoebox/photos/Stony Lake Church after Mass.jpg",
       "alt": "Stony Lake Church after Mass.jpg",
       "title": "Stony Lake Church (1942)",
@@ -2381,7 +2406,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_77",
+      "id": "photo_78",
       "src": "assets/shoebox/photos/stony.jpg",
       "alt": "stony.jpg",
       "title": "Stony Rapids School Class Photo (1942)",
@@ -2408,7 +2433,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_78",
+      "id": "photo_79",
       "src": "assets/shoebox/photos/Wendy Sikora_5.jpg",
       "alt": "Wendy Sikora_5.jpg",
       "title": "In the garden",
@@ -2440,7 +2465,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_79",
+      "id": "photo_80",
       "src": "assets/shoebox/photos/Henri garden.jpg",
       "alt": "Henri garden.jpg",
       "title": "Henri harvesting potatos (1944)",
@@ -2472,7 +2497,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_80",
+      "id": "photo_81",
       "src": "assets/shoebox/photos/Lafferty grandpa ernestine mercredi, emil tralnberg.jpg",
       "alt": "Lafferty grandpa ernestine mercredi, emil tralnberg.jpg",
       "title": "Family Picture Stony Rapids (1944)",
@@ -2502,7 +2527,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_81",
+      "id": "photo_82",
       "src": "assets/shoebox/photos/Wendy Sikora_22.jpg",
       "alt": "Wendy Sikora_22.jpg",
       "title": "Smiling by the water",
@@ -2533,7 +2558,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_82",
+      "id": "photo_83",
       "src": "assets/shoebox/photos/a-F1000052-alphonse magloire and gerry.jpg",
       "alt": "a-F1000052-alphonse magloire and gerry.jpg",
       "title": "A-f1000052-alphonse Magloire And Gerry",
@@ -2561,7 +2586,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_83",
+      "id": "photo_84",
       "src": "assets/shoebox/photos/a-plane.jpg",
       "alt": "a-plane.jpg",
       "title": "Anne, Agatha, Henri and his dog team (1945)",
@@ -2590,7 +2615,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_84",
+      "id": "photo_85",
       "src": "assets/shoebox/photos/henri guttingfish.jpg",
       "alt": "henri guttingfish.jpg",
       "title": "Henri filleting fish (1945)",
@@ -2622,7 +2647,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_85",
+      "id": "photo_86",
       "src": "assets/shoebox/photos/Wendy Sikora_7.jpg",
       "alt": "Wendy Sikora_7.jpg",
       "title": "Wendy Sikora 7",
@@ -2654,7 +2679,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_86",
+      "id": "photo_87",
       "src": "assets/shoebox/photos/Gail_Hargreaves_12.jpg",
       "alt": "Gail_Hargreaves_12.jpg",
       "title": "Winter Break at Lakeside Cabin",
@@ -2690,7 +2715,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_87",
+      "id": "photo_88",
       "src": "assets/shoebox/photos/Celine w jean lous team.jpg",
       "alt": "Celine w jean lous team.jpg",
       "title": "Celine with her Father's dog team (1948)",
@@ -2722,7 +2747,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_88",
+      "id": "photo_89",
       "src": "assets/shoebox/photos/Wendy Sikora_32.jpg",
       "alt": "Wendy Sikora_32.jpg",
       "title": "Outside Hudson's Bay",
@@ -2751,7 +2776,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_89",
+      "id": "photo_90",
       "src": "assets/shoebox/photos/Wendy Sikora_40.jpg",
       "alt": "Wendy Sikora_40.jpg",
       "title": "Germaine smiles",
@@ -2782,7 +2807,57 @@
       "zIndex": 0
     },
     {
-      "id": "photo_90",
+      "id": "photo_91",
+      "src": "assets/shoebox/photos/20260515 JoanHadfield 3.jpg",
+      "alt": "20260515 JoanHadfield 3.jpg",
+      "title": "The girls htich a ride on a tank (ca. 1950)",
+      "caption": "Gordon Bowser drives the girls (Irene Poschner, Mary Poschner, Ruth Hooker and Velma Riley) on a Brengun carrier.",
+      "description": "Gordon Bowser drives the girls (Irene Poschner, Mary Poschner, Ruth Hooker and Velma Riley) on a Brengun carrier.",
+      "people": "Velma Riley; Irene Poschner; Gordon Bowser; Ruth hooker; Mary Poschner",
+      "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
+      "community": "Selkirk",
+      "province": "Manitoba",
+      "sublocation": "Greenwood Ave.",
+      "keywords": [],
+      "year": 1950,
+      "scanYear": 2026,
+      "photoYearSource": "title",
+      "width": 2048,
+      "height": 1528,
+      "lat": 50.0333,
+      "lng": -96.8667,
+      "lastModified": 1779722978177.3574,
+      "rotation": 0,
+      "scale": 1,
+      "zIndex": 0
+    },
+    {
+      "id": "photo_92",
+      "src": "assets/shoebox/photos/20260515 JoanHadfield 4.jpg",
+      "alt": "20260515 JoanHadfield 4.jpg",
+      "title": "Mitchell Family Photo (ca. 1950)",
+      "caption": "Family photo, taken on morris ave in selkirk.  1950s",
+      "description": "Family photo, taken on morris ave in selkirk.  1950s",
+      "people": "Ron Mitchell",
+      "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
+      "community": "Selkirk",
+      "province": "Manitoba",
+      "sublocation": "Greenwood Ave.",
+      "keywords": [],
+      "year": 1950,
+      "scanYear": 2026,
+      "photoYearSource": "title",
+      "width": 2048,
+      "height": 1465,
+      "lat": 50.0333,
+      "lng": -96.8667,
+      "lastModified": 1779722978193.3577,
+      "rotation": 0,
+      "scale": 1,
+      "zIndex": 0
+    },
+    {
+      "id": "photo_93",
       "src": "assets/shoebox/photos/Lafferty family uncle leon willie and blanche mercredi.jpg",
       "alt": "Lafferty family uncle leon willie and blanche mercredi.jpg",
       "title": "Lafferty Family",
@@ -2809,7 +2884,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_91",
+      "id": "photo_94",
       "src": "assets/shoebox/photos/PD2.jpg",
       "alt": "PD2.jpg",
       "title": "Leonard and Smoker",
@@ -2845,7 +2920,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_92",
+      "id": "photo_95",
       "src": "assets/shoebox/photos/PD_9.jpg",
       "alt": "PD_9.jpg",
       "title": "Albert Dejarlais",
@@ -2880,7 +2955,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_93",
+      "id": "photo_96",
       "src": "assets/shoebox/photos/Wendy Sikora_12.jpg",
       "alt": "Wendy Sikora_12.jpg",
       "title": "The Lafferty girls",
@@ -2912,7 +2987,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_94",
+      "id": "photo_97",
       "src": "assets/shoebox/photos/Wendy Sikora_3.jpg",
       "alt": "Wendy Sikora_3.jpg",
       "title": "Germaine strikes a pose",
@@ -2941,7 +3016,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_95",
+      "id": "photo_98",
       "src": "assets/shoebox/photos/Wendy Sikora_41.jpg",
       "alt": "Wendy Sikora_41.jpg",
       "title": "Germaine and Keith's new car",
@@ -2972,7 +3047,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_96",
+      "id": "photo_99",
       "src": "assets/shoebox/photos/PD_8.jpg",
       "alt": "PD_8.jpg",
       "title": "On Deployment in Korea",
@@ -3005,7 +3080,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_97",
+      "id": "photo_100",
       "src": "assets/shoebox/photos/Wendy Sikora_15.jpg",
       "alt": "Wendy Sikora_15.jpg",
       "title": "The Lafferty women",
@@ -3033,7 +3108,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_98",
+      "id": "photo_101",
       "src": "assets/shoebox/photos/Wendy Sikora_19.jpg",
       "alt": "Wendy Sikora_19.jpg",
       "title": "The Lafferty Women",
@@ -3061,7 +3136,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_99",
+      "id": "photo_102",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 6.jpg",
       "alt": "20260413 AlfredAnderson 6.jpg",
       "title": "Jessie and Alfred walking",
@@ -3090,12 +3165,12 @@
       "zIndex": 0
     },
     {
-      "id": "photo_100",
+      "id": "photo_103",
       "src": "assets/shoebox/photos/1955 Mom married Hercule, Fatima, Granger home place.jpg",
       "alt": "1955 Mom married Hercule, Fatima, Granger home place.jpg",
       "title": "Hercule & Cecile's home in Fatima ca.1955",
-      "caption": "snapshot 454\rHercule & C\u00e9cile's home in Fatima ca.1955",
-      "description": "snapshot 454\rHercule & C\u00e9cile's home in Fatima ca.1955",
+      "caption": "snapshot 454\rHercule & Cécile's home in Fatima ca.1955",
+      "description": "snapshot 454\rHercule & Cécile's home in Fatima ca.1955",
       "people": "",
       "location": "Fatima, Quebec, canada",
       "community": "Fatima",
@@ -3124,12 +3199,12 @@
       "zIndex": 0
     },
     {
-      "id": "photo_101",
-      "src": "assets/shoebox/photos/1955 mom married Hercule, Fatima, Omer & C\u00e9cile Gregoire.jpg",
-      "alt": "1955 mom married Hercule, Fatima, Omer & C\u00e9cile Gregoire.jpg",
-      "title": "Omer & C\u00e9cile Gregoire 1955",
-      "caption": "Omer & C\u00e9cile Gregoire pose for a photo.",
-      "description": "Omer & C\u00e9cile Gregoire pose for a photo.",
+      "id": "photo_104",
+      "src": "assets/shoebox/photos/1955 mom married Hercule, Fatima, Omer & Cécile Gregoire.jpg",
+      "alt": "1955 mom married Hercule, Fatima, Omer & Cécile Gregoire.jpg",
+      "title": "Omer & Cécile Gregoire 1955",
+      "caption": "Omer & Cécile Gregoire pose for a photo.",
+      "description": "Omer & Cécile Gregoire pose for a photo.",
       "people": "",
       "location": "St. Eustache, Manitoba, Canada",
       "community": "St. Eustache",
@@ -3155,7 +3230,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_102",
+      "id": "photo_105",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 1.jpg",
       "alt": "20260413 AlfredAnderson 1.jpg",
       "title": "Alfred Anderson Age 3",
@@ -3184,7 +3259,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_103",
+      "id": "photo_106",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 2.jpg",
       "alt": "20260413 AlfredAnderson 2.jpg",
       "title": "Sharon Anderson age 4",
@@ -3212,7 +3287,217 @@
       "zIndex": 0
     },
     {
-      "id": "photo_104",
+      "id": "photo_107",
+      "src": "assets/shoebox/photos/20260515 JoanHadfield 10.jpg",
+      "alt": "20260515 JoanHadfield 10.jpg",
+      "title": "Barb and Joen (1955)",
+      "caption": "Barb and Joen holding hands on Greenwood Ave. Selkirk MB. 1955",
+      "description": "Barb and Joen holding hands on Greenwood Ave. Selkirk MB. 1955",
+      "people": "Greenwood Ave.; Joan Hadfield; Barb Mitchell; Home",
+      "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
+      "community": "Selkirk",
+      "province": "Manitoba",
+      "sublocation": "Greenwood Ave.",
+      "keywords": [
+        "1950-1955",
+        "outdoor",
+        "Selkirk",
+        "1955"
+      ],
+      "year": 1955,
+      "scanYear": 2026,
+      "photoYearSource": "keyword-specific",
+      "width": 1373,
+      "height": 2048,
+      "lat": 50.0333,
+      "lng": -96.8667,
+      "lastModified": 1779722978025.3562,
+      "rotation": 0,
+      "scale": 1,
+      "zIndex": 0
+    },
+    {
+      "id": "photo_108",
+      "src": "assets/shoebox/photos/20260515 JoanHadfield 5.jpg",
+      "alt": "20260515 JoanHadfield 5.jpg",
+      "title": "Joen Ron and Leon (1955)",
+      "caption": "Jeon Hadfield, Ron Mitchell and Leon Hooker playing in the sand on Greendwood Ave.",
+      "description": "Jeon Hadfield, Ron Mitchell and Leon Hooker playing in the sand on Greendwood Ave.",
+      "people": "Greenwood Ave.; Leon Hooker; Home; Joan Hadfield",
+      "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
+      "community": "Selkirk",
+      "province": "Manitoba",
+      "sublocation": "Greenwood Ave.",
+      "keywords": [
+        "1950-1955",
+        "1955",
+        "Selkirk",
+        "outdoor"
+      ],
+      "year": 1955,
+      "scanYear": 2026,
+      "photoYearSource": "keyword-specific",
+      "width": 2048,
+      "height": 1394,
+      "lat": 50.0333,
+      "lng": -96.8667,
+      "lastModified": 1779722978241.358,
+      "rotation": 0,
+      "scale": 1,
+      "zIndex": 0
+    },
+    {
+      "id": "photo_109",
+      "src": "assets/shoebox/photos/20260515 JoanHadfield 6.jpg",
+      "alt": "20260515 JoanHadfield 6.jpg",
+      "title": "Joen in the swing (1955)",
+      "caption": "Joan Hadfield swinging at grandma's house",
+      "description": "Joan Hadfield swinging at grandma's house",
+      "people": "Greenwood Ave.; Home; Joan Hadfield",
+      "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
+      "community": "Selkirk",
+      "province": "Manitoba",
+      "sublocation": "Greenwood Ave.",
+      "keywords": [
+        "1955",
+        "outdoor",
+        "1950-1955",
+        "Selkirk"
+      ],
+      "year": 1955,
+      "scanYear": 2026,
+      "photoYearSource": "keyword-specific",
+      "width": 2048,
+      "height": 1401,
+      "lat": 50.0333,
+      "lng": -96.8667,
+      "lastModified": 1779722978261.3582,
+      "rotation": 0,
+      "scale": 1,
+      "zIndex": 0
+    },
+    {
+      "id": "photo_110",
+      "src": "assets/shoebox/photos/20260515 JoanHadfield 7.jpg",
+      "alt": "20260515 JoanHadfield 7.jpg",
+      "title": "Joen, Barb, Ron and Leon (1955)",
+      "caption": "Joen Hadfield, Barb Mitchell, Ron Mitchell and Leon Hooker pose for a photo on Greenwood Ave.",
+      "description": "Joen Hadfield, Barb Mitchell, Ron Mitchell and Leon Hooker pose for a photo on Greenwood Ave.",
+      "people": "Greenwood Ave.; Joan Hadfield; Leon Hooker; Barb Mitchell; Ron Mitchell; Home",
+      "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
+      "community": "Selkirk",
+      "province": "Manitoba",
+      "sublocation": "Greenwood Ave.",
+      "keywords": [
+        "1950-1955",
+        "Selkirk",
+        "1955",
+        "outdoor"
+      ],
+      "year": 1955,
+      "scanYear": 2026,
+      "photoYearSource": "keyword-specific",
+      "width": 2048,
+      "height": 1339,
+      "lat": 50.0333,
+      "lng": -96.8667,
+      "lastModified": 1779722978301.3586,
+      "rotation": 0,
+      "scale": 1,
+      "zIndex": 0
+    },
+    {
+      "id": "photo_111",
+      "src": "assets/shoebox/photos/20260515 JoanHadfield 8.jpg",
+      "alt": "20260515 JoanHadfield 8.jpg",
+      "title": "Joen and Barb (1955)",
+      "caption": "Joen and Barb in front of her Grandmother's house on greenwood ave.",
+      "description": "Joen and Barb in front of her Grandmother's house on greenwood ave.",
+      "people": "Greenwood Ave.; Joan Hadfield; Barb Mitchell; Home",
+      "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
+      "community": "Selkirk",
+      "province": "Manitoba",
+      "sublocation": "Greenwood Ave.",
+      "keywords": [
+        "1950-1955",
+        "outdoor",
+        "Selkirk",
+        "1955"
+      ],
+      "year": 1955,
+      "scanYear": 2026,
+      "photoYearSource": "keyword-specific",
+      "width": 2048,
+      "height": 1339,
+      "lat": 50.0333,
+      "lng": -96.8667,
+      "lastModified": 1779722978353.359,
+      "rotation": 0,
+      "scale": 1,
+      "zIndex": 0
+    },
+    {
+      "id": "photo_112",
+      "src": "assets/shoebox/photos/20260515 JoanHadfield 9.jpg",
+      "alt": "20260515 JoanHadfield 9.jpg",
+      "title": "Ron and Leon (1955)",
+      "caption": "Ron Mitchell and Leon Hooker playing in the grass on Greenwood Ave.",
+      "description": "Ron Mitchell and Leon Hooker playing in the grass on Greenwood Ave.",
+      "people": "Greenwood Ave.; Home; Ron Mitchell; Leon Hooker",
+      "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
+      "community": "Selkirk",
+      "province": "Manitoba",
+      "sublocation": "Greenwood Ave.",
+      "keywords": [
+        "1950-1955",
+        "1955",
+        "outdoor",
+        "Selkirk"
+      ],
+      "year": 1955,
+      "scanYear": 2026,
+      "photoYearSource": "keyword-specific",
+      "width": 2048,
+      "height": 1339,
+      "lat": 50.0333,
+      "lng": -96.8667,
+      "lastModified": 1779722978393.3594,
+      "rotation": 0,
+      "scale": 1,
+      "zIndex": 0
+    },
+    {
+      "id": "photo_113",
+      "src": "assets/shoebox/photos/Image 2 (2).jpg",
+      "alt": "Image 2 (2).jpg",
+      "title": "Mary Smith corrals the kids (1955)",
+      "caption": "Mary Smith runshed to Joen Hadfield, Ron Mitchell and Leon Hooker.",
+      "description": "Mary Smith runshed to Joen Hadfield, Ron Mitchell and Leon Hooker.",
+      "people": "Greenwood Ave.; Joan Hadfield; Home; Mary Smith; Leon Hooker",
+      "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
+      "community": "Selkirk",
+      "province": "Manitoba",
+      "sublocation": "Greenwood Ave.",
+      "keywords": [
+        "1950-1955",
+        "outdoor",
+        "Selkirk",
+        "1955"
+      ],
+      "year": 1955,
+      "scanYear": 2026,
+      "photoYearSource": "keyword-specific",
+      "width": 2048,
+      "height": 1365,
+      "lat": 50.0333,
+      "lng": -96.8667,
+      "lastModified": 1779722978417.3596,
+      "rotation": 0,
+      "scale": 1,
+      "zIndex": 0
+    },
+    {
+      "id": "photo_114",
       "src": "assets/shoebox/photos/Lynda Monkman_6.jpg",
       "alt": "Lynda Monkman_6.jpg",
       "title": "Lynda Monkman 6",
@@ -3243,7 +3528,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_105",
+      "id": "photo_115",
       "src": "assets/shoebox/photos/Wendy Sikora_13.jpg",
       "alt": "Wendy Sikora_13.jpg",
       "title": "Annetoinette's Wedding",
@@ -3272,7 +3557,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_106",
+      "id": "photo_116",
       "src": "assets/shoebox/photos/Wendy Sikora_18.jpg",
       "alt": "Wendy Sikora_18.jpg",
       "title": "Annetoinette's Wedding day.",
@@ -3301,7 +3586,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_107",
+      "id": "photo_117",
       "src": "assets/shoebox/photos/Wendy Sikora_2.jpg",
       "alt": "Wendy Sikora_2.jpg",
       "title": "Annetoinette's Wedding",
@@ -3330,7 +3615,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_108",
+      "id": "photo_118",
       "src": "assets/shoebox/photos/Wendy Sikora_20.jpg",
       "alt": "Wendy Sikora_20.jpg",
       "title": "Annetoinette's Wedding",
@@ -3359,7 +3644,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_109",
+      "id": "photo_119",
       "src": "assets/shoebox/photos/Wendy Sikora_21.jpg",
       "alt": "Wendy Sikora_21.jpg",
       "title": "Annetoinette's Wedding",
@@ -3388,7 +3673,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_110",
+      "id": "photo_120",
       "src": "assets/shoebox/photos/Wendy Sikora_26.jpg",
       "alt": "Wendy Sikora_26.jpg",
       "title": "Germaine by the water",
@@ -3420,7 +3705,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_111",
+      "id": "photo_121",
       "src": "assets/shoebox/photos/Wendy Sikora_27.jpg",
       "alt": "Wendy Sikora_27.jpg",
       "title": "Germaine strikes a pose",
@@ -3452,7 +3737,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_112",
+      "id": "photo_122",
       "src": "assets/shoebox/photos/Wendy Sikora_30.jpg",
       "alt": "Wendy Sikora_30.jpg",
       "title": "Family photo",
@@ -3482,7 +3767,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_113",
+      "id": "photo_123",
       "src": "assets/shoebox/photos/Wendy Sikora_34.jpg",
       "alt": "Wendy Sikora_34.jpg",
       "title": "Uncle Keith's Car",
@@ -3511,7 +3796,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_114",
+      "id": "photo_124",
       "src": "assets/shoebox/photos/Wendy Sikora_35.jpg",
       "alt": "Wendy Sikora_35.jpg",
       "title": "Keith and Margaret",
@@ -3541,7 +3826,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_115",
+      "id": "photo_125",
       "src": "assets/shoebox/photos/Wendy Sikora_39.jpg",
       "alt": "Wendy Sikora_39.jpg",
       "title": "Annetoinette's Wedding",
@@ -3570,7 +3855,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_116",
+      "id": "photo_126",
       "src": "assets/shoebox/photos/Wendy Sikora_43.jpg",
       "alt": "Wendy Sikora_43.jpg",
       "title": "Annetoinette's Wedding",
@@ -3599,7 +3884,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_117",
+      "id": "photo_127",
       "src": "assets/shoebox/photos/Wendy Sikora_9.jpg",
       "alt": "Wendy Sikora_9.jpg",
       "title": "Lafferty Muncey family photo",
@@ -3631,7 +3916,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_118",
+      "id": "photo_128",
       "src": "assets/shoebox/photos/1960 St. Eustache Amanda Alarie, Cecile and Emile Granger .jpg",
       "alt": "1960 St. Eustache Amanda Alarie, Cecile and Emile Granger .jpg",
       "title": "1960 St. Eustache Amanda Alarie, Cecile and Emile Granger",
@@ -3663,7 +3948,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_119",
+      "id": "photo_129",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 24.jpg",
       "alt": "20260413 AlfredAnderson 24.jpg",
       "title": "The Anderson family goes berry picking",
@@ -3692,7 +3977,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_120",
+      "id": "photo_130",
       "src": "assets/shoebox/photos/Wendy Sikora_29.jpg",
       "alt": "Wendy Sikora_29.jpg",
       "title": "Wendy Sikora 29",
@@ -3720,7 +4005,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_121",
+      "id": "photo_131",
       "src": "assets/shoebox/photos/Wendy Sikora_38.jpg",
       "alt": "Wendy Sikora_38.jpg",
       "title": "Lunch with the Gatelys",
@@ -3752,7 +4037,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_122",
+      "id": "photo_132",
       "src": "assets/shoebox/photos/1-2.jpg",
       "alt": "1-2.jpg",
       "title": "Rainy Chartrand in Fringed Coat",
@@ -3770,7 +4055,7 @@
         "Chartrand family",
         "AGA 2024",
         "Manitoba",
-        "M\u00e9tis"
+        "Métis"
       ],
       "year": 1963,
       "scanYear": 2024,
@@ -3785,7 +4070,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_123",
+      "id": "photo_133",
       "src": "assets/shoebox/photos/11(1).jpg",
       "alt": "11(1).jpg",
       "title": "Winter Charm: Irene Chartrand",
@@ -3818,7 +4103,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_124",
+      "id": "photo_134",
       "src": "assets/shoebox/photos/1963 very recent birth of calf Fatima Marie-Claire Granger.jpg",
       "alt": "1963 very recent birth of calf Fatima Marie-Claire Granger.jpg",
       "title": "Marie-Claire Granger and the new calf",
@@ -3853,7 +4138,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_125",
+      "id": "photo_135",
       "src": "assets/shoebox/photos/2-2.jpg",
       "alt": "2-2.jpg",
       "title": "Elise Bonthoux in the Saskatchewan Woods",
@@ -3865,7 +4150,7 @@
       "province": "Saskatchewan",
       "sublocation": null,
       "keywords": [
-        "Red River M\u00e9tis",
+        "Red River Métis",
         "Portrait",
         "portrait",
         "1950-1975",
@@ -3875,7 +4160,7 @@
         "outdoors",
         "woodland",
         "AGA 2024",
-        "M\u00e9tis",
+        "Métis",
         "nature"
       ],
       "year": 1963,
@@ -3891,26 +4176,26 @@
       "zIndex": 0
     },
     {
-      "id": "photo_126",
+      "id": "photo_136",
       "src": "assets/shoebox/photos/2-3.jpg",
       "alt": "2-3.jpg",
       "title": "Winter Portrait of Roderick and Margrette Flett",
       "caption": "Roderick and Margrette Flett stand outside their brick home in winter.",
       "description": "Roderick and Margrette Flett stand outside their brick home in winter.",
-      "people": "M\u00e9tis family; Margaret Flett; Margrette Flett; Roderick Flett; Couple",
+      "people": "Métis family; Margaret Flett; Margrette Flett; Roderick Flett; Couple",
       "location": "Bacon Ridge, Manitoba, Canada",
       "community": "Bacon Ridge",
       "province": "Manitoba",
       "sublocation": null,
       "keywords": [
-        "Red River M\u00e9tis",
+        "Red River Métis",
         "winter",
         "Winter portrait",
         "home",
         "Manitoba",
         "family portrait",
         "Historic photo",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "couple",
         "1950-1975",
         "Outdoors",
@@ -3930,7 +4215,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_127",
+      "id": "photo_137",
       "src": "assets/shoebox/photos/3-2.jpg",
       "alt": "3-2.jpg",
       "title": "Winter Elegance: Irene Chartrand",
@@ -3942,14 +4227,14 @@
       "province": null,
       "sublocation": null,
       "keywords": [
-        "Red River M\u00e9tis",
+        "Red River Métis",
         "portrait",
         "Historic photo",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "1950-1975",
-        "M\u00e9tis",
+        "Métis",
         "AGA 2024",
-        "Manitoba M\u00e9tis Federation"
+        "Manitoba Métis Federation"
       ],
       "year": 1963,
       "scanYear": 2024,
@@ -3964,7 +4249,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_128",
+      "id": "photo_138",
       "src": "assets/shoebox/photos/4.jpg",
       "alt": "4.jpg",
       "title": "Ruth Hooker",
@@ -3992,13 +4277,13 @@
       "zIndex": 0
     },
     {
-      "id": "photo_129",
+      "id": "photo_139",
       "src": "assets/shoebox/photos/5.jpg",
       "alt": "5.jpg",
       "title": "Gaspard Chartrand and Cecile Ducarme",
-      "caption": "Formal portrait of Gaspard Chartrand and C\u00e9cile Ducharme outdoors.",
-      "description": "Formal portrait of Gaspard Chartrand and C\u00e9cile Ducharme outdoors.",
-      "people": "Cecile Ducharme; C\u00e9cile Ducharme; Gaspard Chartrand",
+      "caption": "Formal portrait of Gaspard Chartrand and Cécile Ducharme outdoors.",
+      "description": "Formal portrait of Gaspard Chartrand and Cécile Ducharme outdoors.",
+      "people": "Cecile Ducharme; Cécile Ducharme; Gaspard Chartrand",
       "location": "",
       "community": null,
       "province": null,
@@ -4008,13 +4293,13 @@
         "family portrait",
         "1950-1975",
         "Manitoba",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "couple",
         "Vintage",
         "Red River",
         "Family",
         "AGA 2024",
-        "M\u00e9tis"
+        "Métis"
       ],
       "year": 1963,
       "scanYear": 2024,
@@ -4029,7 +4314,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_130",
+      "id": "photo_140",
       "src": "assets/shoebox/photos/6.jpg",
       "alt": "6.jpg",
       "title": "Chartrand Sisters",
@@ -4048,14 +4333,14 @@
         "Chartrand family",
         "1950-1975",
         "livingroom",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "sisters",
         "women",
-        "Red River M\u00e9tis",
+        "Red River Métis",
         "irene",
         "family",
         "smiles",
-        "Manitoba M\u00e9tis Federation"
+        "Manitoba Métis Federation"
       ],
       "year": 1963,
       "scanYear": 2024,
@@ -4070,7 +4355,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_131",
+      "id": "photo_141",
       "src": "assets/shoebox/photos/7.jpg",
       "alt": "7.jpg",
       "title": "The Chartrand Men",
@@ -4082,16 +4367,16 @@
       "province": null,
       "sublocation": null,
       "keywords": [
-        "Red River M\u00e9tis",
+        "Red River Métis",
         "uniforms",
         "portrait",
         "historical",
         "suits",
         "soldiers",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "1950-1975",
         "military",
-        "M\u00e9tis",
+        "Métis",
         "family",
         "Manitoba",
         "military service",
@@ -4110,7 +4395,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_132",
+      "id": "photo_142",
       "src": "assets/shoebox/photos/Dad havesting christmas trees-4x5.jpg",
       "alt": "Dad havesting christmas trees-4x5.jpg",
       "title": "Winter Bush Work",
@@ -4149,7 +4434,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_133",
+      "id": "photo_143",
       "src": "assets/shoebox/photos/Image 1-3.jpg",
       "alt": "Image 1-3.jpg",
       "title": "Mary Elsie Vivier comforts a sick Sheila Kim Chipman (Vivier)",
@@ -4164,7 +4449,7 @@
         "1950-1975",
         "AGA 2024",
         "LR",
-        "M\u00e9tis Shoebox"
+        "Métis Shoebox"
       ],
       "year": 1963,
       "scanYear": 2024,
@@ -4179,7 +4464,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_134",
+      "id": "photo_144",
       "src": "assets/shoebox/photos/Image 2.jpg",
       "alt": "Image 2.jpg",
       "title": "Joseph Albert Vivier",
@@ -4208,7 +4493,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_135",
+      "id": "photo_145",
       "src": "assets/shoebox/photos/Lesley_Kellemen_1.jpg",
       "alt": "Lesley_Kellemen_1.jpg",
       "title": "1963 Roblin Blvd. Shelmerdene Dr.",
@@ -4238,7 +4523,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_136",
+      "id": "photo_146",
       "src": "assets/shoebox/photos/PD_12.jpg",
       "alt": "PD_12.jpg",
       "title": "Pete on the winter trail",
@@ -4274,7 +4559,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_137",
+      "id": "photo_147",
       "src": "assets/shoebox/photos/PD_15.jpg",
       "alt": "PD_15.jpg",
       "title": "Marie and Pete",
@@ -4309,7 +4594,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_138",
+      "id": "photo_148",
       "src": "assets/shoebox/photos/PD_17.jpg",
       "alt": "PD_17.jpg",
       "title": "Picking Seneca",
@@ -4342,7 +4627,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_139",
+      "id": "photo_149",
       "src": "assets/shoebox/photos/Santa-Claus-Mr-Wartman.jpg",
       "alt": "Santa-Claus-Mr-Wartman.jpg",
       "title": "Santa's visit",
@@ -4373,7 +4658,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_140",
+      "id": "photo_150",
       "src": "assets/shoebox/photos/Wendy Sikora_23.jpg",
       "alt": "Wendy Sikora_23.jpg",
       "title": "Lafferty Family Picnic",
@@ -4401,7 +4686,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_141",
+      "id": "photo_151",
       "src": "assets/shoebox/photos/Wendy Sikora_24.jpg",
       "alt": "Wendy Sikora_24.jpg",
       "title": "Germaine and Henri",
@@ -4428,7 +4713,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_142",
+      "id": "photo_152",
       "src": "assets/shoebox/photos/Wendy Sikora_25.jpg",
       "alt": "Wendy Sikora_25.jpg",
       "title": "Lafferty Family Picnic",
@@ -4455,7 +4740,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_143",
+      "id": "photo_153",
       "src": "assets/shoebox/photos/Wendy Sikora_28.jpg",
       "alt": "Wendy Sikora_28.jpg",
       "title": "Lafferty Family Picnic",
@@ -4482,7 +4767,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_144",
+      "id": "photo_154",
       "src": "assets/shoebox/photos/class.jpg",
       "alt": "class.jpg",
       "title": "Joyful Group of Children",
@@ -4520,7 +4805,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_145",
+      "id": "photo_155",
       "src": "assets/shoebox/photos/classroom.jpg",
       "alt": "classroom.jpg",
       "title": "Young Students in a Classroom",
@@ -4560,7 +4845,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_146",
+      "id": "photo_156",
       "src": "assets/shoebox/photos/classroom2.jpg",
       "alt": "classroom2.jpg",
       "title": "Children's Class in Duck Bay",
@@ -4591,7 +4876,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_147",
+      "id": "photo_157",
       "src": "assets/shoebox/photos/classroom3.jpg",
       "alt": "classroom3.jpg",
       "title": "Grade 5 Classroom in Duck Bay",
@@ -4625,7 +4910,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_148",
+      "id": "photo_158",
       "src": "assets/shoebox/photos/dad cutting christmass tress dec 1957.jpg",
       "alt": "dad cutting christmass tress dec 1957.jpg",
       "title": "Cutting Christmas trees",
@@ -4662,7 +4947,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_149",
+      "id": "photo_159",
       "src": "assets/shoebox/photos/hockey-team.jpg",
       "alt": "hockey-team.jpg",
       "title": "10 and under Duck Bay Hockey team",
@@ -4693,7 +4978,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_150",
+      "id": "photo_160",
       "src": "assets/shoebox/photos/playground.jpg",
       "alt": "playground.jpg",
       "title": "Recess",
@@ -4726,7 +5011,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_151",
+      "id": "photo_161",
       "src": "assets/shoebox/photos/sewing-class.jpg",
       "alt": "sewing-class.jpg",
       "title": "Home Ec Class",
@@ -4757,7 +5042,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_152",
+      "id": "photo_162",
       "src": "assets/shoebox/photos/shops-class.jpg",
       "alt": "shops-class.jpg",
       "title": "Shop Class",
@@ -4788,7 +5073,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_153",
+      "id": "photo_163",
       "src": "assets/shoebox/photos/teachers-house.jpg",
       "alt": "teachers-house.jpg",
       "title": "Snow removal",
@@ -4821,7 +5106,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_154",
+      "id": "photo_164",
       "src": "assets/shoebox/photos/the-class.jpg",
       "alt": "the-class.jpg",
       "title": "Grade 5 class photo",
@@ -4853,7 +5138,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_155",
+      "id": "photo_165",
       "src": "assets/shoebox/photos/boys.jpg",
       "alt": "boys.jpg",
       "title": "Duck Bay School Boys, 1964",
@@ -4884,7 +5169,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_156",
+      "id": "photo_166",
       "src": "assets/shoebox/photos/church-and-school.jpg",
       "alt": "church-and-school.jpg",
       "title": "Church with Playground, September 1964",
@@ -4925,7 +5210,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_157",
+      "id": "photo_167",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 4.jpg",
       "alt": "20260413 AlfredAnderson 4.jpg",
       "title": "Jessie, Janis and Elizabeth",
@@ -4952,7 +5237,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_158",
+      "id": "photo_168",
       "src": "assets/shoebox/photos/girls-choir.jpg",
       "alt": "girls-choir.jpg",
       "title": "Duck Bay Christmas Concert 1965",
@@ -4983,7 +5268,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_159",
+      "id": "photo_169",
       "src": "assets/shoebox/photos/girls.jpg",
       "alt": "girls.jpg",
       "title": "Duck Bay Christmas Concert 1965",
@@ -5014,7 +5299,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_160",
+      "id": "photo_170",
       "src": "assets/shoebox/photos/hockey-team2.jpg",
       "alt": "hockey-team2.jpg",
       "title": "14 and under Duck Bay Hockey team 1965",
@@ -5045,7 +5330,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_161",
+      "id": "photo_171",
       "src": "assets/shoebox/photos/Wendy Sikora_14.jpg",
       "alt": "Wendy Sikora_14.jpg",
       "title": "Family Picnic",
@@ -5073,7 +5358,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_162",
+      "id": "photo_172",
       "src": "assets/shoebox/photos/Wendy Sikora_16.jpg",
       "alt": "Wendy Sikora_16.jpg",
       "title": "Family Picnic",
@@ -5101,7 +5386,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_163",
+      "id": "photo_173",
       "src": "assets/shoebox/photos/Wendy Sikora_17.jpg",
       "alt": "Wendy Sikora_17.jpg",
       "title": "Family Picnic",
@@ -5129,7 +5414,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_164",
+      "id": "photo_174",
       "src": "assets/shoebox/photos/altar-boys.jpg",
       "alt": "altar-boys.jpg",
       "title": "Duck Bay Alter Boys",
@@ -5164,7 +5449,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_165",
+      "id": "photo_175",
       "src": "assets/shoebox/photos/Wendy Sikora_33.jpg",
       "alt": "Wendy Sikora_33.jpg",
       "title": "Photobooth pictures of Marie",
@@ -5193,21 +5478,21 @@
       "zIndex": 0
     },
     {
-      "id": "photo_166",
+      "id": "photo_176",
       "src": "assets/shoebox/photos/8.jpg",
       "alt": "8.jpg",
       "title": "Chick Chartrand, 1969",
       "caption": "Chick Chartrand smiles outside a barbershop in 1969.",
       "description": "Chick Chartrand smiles outside a barbershop in 1969.",
-      "people": "winter fashion; Irene Chartrand; Chick Chartrand; fur coat; 1960s fashion; M\u00e9tis woman",
+      "people": "winter fashion; Irene Chartrand; Chick Chartrand; fur coat; 1960s fashion; Métis woman",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "keywords": [
-        "Red River M\u00e9tis",
+        "Red River Métis",
         "barbershop",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "1950-1975",
         "portrait",
         "outdoors",
@@ -5228,7 +5513,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_167",
+      "id": "photo_177",
       "src": "assets/shoebox/photos/PD_19.jpg",
       "alt": "PD_19.jpg",
       "title": "Rose and Marie",
@@ -5262,7 +5547,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_168",
+      "id": "photo_178",
       "src": "assets/shoebox/photos/Wendy Sikora_36.jpg",
       "alt": "Wendy Sikora_36.jpg",
       "title": "Henri on the rocks",
@@ -5294,7 +5579,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_169",
+      "id": "photo_179",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 10.jpg",
       "alt": "20260413 AlfredAnderson 10.jpg",
       "title": "Alfred and Sharon",
@@ -5323,7 +5608,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_170",
+      "id": "photo_180",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 5.jpg",
       "alt": "20260413 AlfredAnderson 5.jpg",
       "title": "Andfred and Sharon's Wedding day",
@@ -5350,7 +5635,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_171",
+      "id": "photo_181",
       "src": "assets/shoebox/photos/Lesley_Kellemen_5.jpg",
       "alt": "Lesley_Kellemen_5.jpg",
       "title": "Lesley Kellemen 5",
@@ -5379,7 +5664,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_172",
+      "id": "photo_182",
       "src": "assets/shoebox/photos/1975 4 generations St. Eustache Amanda Alarie Aime Menard Cecile Lucienne Granger.jpg",
       "alt": "1975 4 generations St. Eustache Amanda Alarie Aime Menard Cecile Lucienne Granger.jpg",
       "title": "4 Generations 1974",
@@ -5407,7 +5692,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_173",
+      "id": "photo_183",
       "src": "assets/shoebox/photos/1975 St. Eustache Amanda Alarie Omer Gregoire Cecile Granger and daughter Cecile 1975.jpg",
       "alt": "1975 St. Eustache Amanda Alarie Omer Gregoire Cecile Granger and daughter Cecile 1975.jpg",
       "title": "1975 St. Eustache",
@@ -5435,12 +5720,12 @@
       "zIndex": 0
     },
     {
-      "id": "photo_174",
-      "src": "assets/shoebox/photos/1975 St. Eustache C\u00e9cile (Gr\u00e9goire) Granger & mother Amanda (M\u00e9nard) Allarie.jpg",
-      "alt": "1975 St. Eustache C\u00e9cile (Gr\u00e9goire) Granger & mother Amanda (M\u00e9nard) Allarie.jpg",
+      "id": "photo_184",
+      "src": "assets/shoebox/photos/1975 St. Eustache Cécile (Grégoire) Granger & mother Amanda (Ménard) Allarie.jpg",
+      "alt": "1975 St. Eustache Cécile (Grégoire) Granger & mother Amanda (Ménard) Allarie.jpg",
       "title": "Cecile and Amanda",
-      "caption": "1975 St. Eustache C\u00e9cile (Gr\u00e9goire) Granger & mother Amanda (M\u00e9nard) Allarie",
-      "description": "1975 St. Eustache C\u00e9cile (Gr\u00e9goire) Granger & mother Amanda (M\u00e9nard) Allarie",
+      "caption": "1975 St. Eustache Cécile (Grégoire) Granger & mother Amanda (Ménard) Allarie",
+      "description": "1975 St. Eustache Cécile (Grégoire) Granger & mother Amanda (Ménard) Allarie",
       "people": "",
       "location": "St. Eustache, Manitoba, Canada",
       "community": "St. Eustache",
@@ -5463,7 +5748,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_175",
+      "id": "photo_185",
       "src": "assets/shoebox/photos/1979 St. Eustache Cecile Granger Amanda Alarie son Omer Gregoire.jpg",
       "alt": "1979 St. Eustache Cecile Granger Amanda Alarie son Omer Gregoire.jpg",
       "title": "Cecile,Amanda and Omer",
@@ -5491,7 +5776,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_176",
+      "id": "photo_186",
       "src": "assets/shoebox/photos/1979 moving to B.C., St. Eustache Amanda Alarie.jpg",
       "alt": "1979 moving to B.C., St. Eustache Amanda Alarie.jpg",
       "title": "Moving to B.C",
@@ -5519,7 +5804,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_177",
+      "id": "photo_187",
       "src": "assets/shoebox/photos/1975 Amanda and Jean Alarie house St. Eustache.jpg",
       "alt": "1975 Amanda and Jean Alarie house St. Eustache.jpg",
       "title": "Amanda Allarie's house in St.Eustache MB 1975",
@@ -5551,7 +5836,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_178",
+      "id": "photo_188",
       "src": "assets/shoebox/photos/Wendy Sikora_42.jpg",
       "alt": "Wendy Sikora_42.jpg",
       "title": "Margaret, Marie & Shirley",
@@ -5580,7 +5865,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_179",
+      "id": "photo_189",
       "src": "assets/shoebox/photos/a-grandma 80.jpg",
       "alt": "a-grandma 80.jpg",
       "title": "Marie Mercredi Lafferty (1975)",
@@ -5609,7 +5894,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_180",
+      "id": "photo_190",
       "src": "assets/shoebox/photos/w-grandma90th.jpg",
       "alt": "w-grandma90th.jpg",
       "title": "Marie Madeleine Mercredi (1977)",
@@ -5637,7 +5922,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_181",
+      "id": "photo_191",
       "src": "assets/shoebox/photos/Lesley_Kellemen_3.jpg",
       "alt": "Lesley_Kellemen_3.jpg",
       "title": "Lesley Kellemen 3",
@@ -5665,7 +5950,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_182",
+      "id": "photo_192",
       "src": "assets/shoebox/photos/10.jpg",
       "alt": "10.jpg",
       "title": "Irene Chartrand",
@@ -5679,7 +5964,7 @@
       "keywords": [
         "1975-2000",
         "artisan",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "display",
         "necklaces",
         "AGA 2024",
@@ -5698,7 +5983,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_183",
+      "id": "photo_193",
       "src": "assets/shoebox/photos/13.jpg",
       "alt": "13.jpg",
       "title": "Vintage Summer Spirit",
@@ -5713,7 +5998,7 @@
         "summer",
         "1975-2000",
         "headband",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "moccasins",
         "vintage",
         "smiling",
@@ -5734,7 +6019,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_184",
+      "id": "photo_194",
       "src": "assets/shoebox/photos/2-4.jpg",
       "alt": "2-4.jpg",
       "title": "Ted Chartrand Portrait",
@@ -5748,13 +6033,13 @@
       "keywords": [
         "portrait",
         "1975-2000",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "Portrait",
         "jacket",
         "AGA 2024",
         "Manitoba",
-        "M\u00e9tis",
-        "Manitoba M\u00e9tis Federation"
+        "Métis",
+        "Manitoba Métis Federation"
       ],
       "year": 1988,
       "scanYear": 2024,
@@ -5769,7 +6054,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_185",
+      "id": "photo_195",
       "src": "assets/shoebox/photos/9.jpg",
       "alt": "9.jpg",
       "title": "Irene's Winter Portrait in the Snow",
@@ -5787,7 +6072,7 @@
         "1975-2000",
         "winter",
         "serene",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "parka",
         "Winter",
         "fur hood",
@@ -5808,7 +6093,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_186",
+      "id": "photo_196",
       "src": "assets/shoebox/photos/Image 2-2.jpg",
       "alt": "Image 2-2.jpg",
       "title": "Rita and Richard visit the old Salter bridge one last time.",
@@ -5824,7 +6109,7 @@
         "outdoors",
         "AGA 2024",
         "1975-2000",
-        "M\u00e9tis Shoebox"
+        "Métis Shoebox"
       ],
       "year": 1988,
       "scanYear": 2024,
@@ -5839,7 +6124,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_187",
+      "id": "photo_197",
       "src": "assets/shoebox/photos/Image 3.jpg",
       "alt": "Image 3.jpg",
       "title": "Mary, Sheila and Susanne",
@@ -5853,7 +6138,7 @@
       "keywords": [
         "1975-2000",
         "AGA 2024",
-        "M\u00e9tis Shoebox"
+        "Métis Shoebox"
       ],
       "year": 1988,
       "scanYear": 2024,
@@ -5868,7 +6153,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_188",
+      "id": "photo_198",
       "src": "assets/shoebox/photos/Image 5.jpg",
       "alt": "Image 5.jpg",
       "title": "Sheila Kim Chipman",
@@ -5896,7 +6181,65 @@
       "zIndex": 0
     },
     {
-      "id": "photo_189",
+      "id": "photo_199",
+      "src": "assets/shoebox/photos/20260515 JoanHadfield 27.jpg",
+      "alt": "20260515 JoanHadfield 27.jpg",
+      "title": "Hadfield Family",
+      "caption": "",
+      "description": "",
+      "people": "Hadfield",
+      "location": "",
+      "community": null,
+      "province": null,
+      "sublocation": null,
+      "keywords": [
+        "1990",
+        "1990-1995",
+        "Selkirk"
+      ],
+      "year": 1990,
+      "scanYear": 2026,
+      "photoYearSource": "keyword-specific",
+      "width": 2048,
+      "height": 1391,
+      "lat": null,
+      "lng": null,
+      "lastModified": 1779722978137.3572,
+      "rotation": 0,
+      "scale": 1,
+      "zIndex": 0
+    },
+    {
+      "id": "photo_200",
+      "src": "assets/shoebox/photos/20260515 JoanHadfield 28.jpg",
+      "alt": "20260515 JoanHadfield 28.jpg",
+      "title": "Joanhadfield 28",
+      "caption": "",
+      "description": "",
+      "people": "Hadfield",
+      "location": "Selkirk, Manitoba, Canada",
+      "community": "Selkirk",
+      "province": "Manitoba",
+      "sublocation": null,
+      "keywords": [
+        "1990",
+        "1990-1995",
+        "Selkirk"
+      ],
+      "year": 1990,
+      "scanYear": 2026,
+      "photoYearSource": "keyword-specific",
+      "width": 2048,
+      "height": 1377,
+      "lat": 50.0333,
+      "lng": -96.8667,
+      "lastModified": 1779722978169.3574,
+      "rotation": 0,
+      "scale": 1,
+      "zIndex": 0
+    },
+    {
+      "id": "photo_201",
       "src": "assets/shoebox/photos/Untitled_1.jpg",
       "alt": "Untitled_1.jpg",
       "title": "Nault Family",
@@ -5926,12 +6269,12 @@
       "zIndex": 0
     },
     {
-      "id": "photo_190",
+      "id": "photo_202",
       "src": "assets/shoebox/photos/Image 1-2.jpg",
       "alt": "Image 1-2.jpg",
       "title": "Playing in the backyard",
-      "caption": "Gordon Lau (Top), Bayard deVries (Middle) and Ashley Brown (n\u00e9e deVries) play in the backyard. 1989.",
-      "description": "Gordon Lau (Top), Bayard deVries (Middle) and Ashley Brown (n\u00e9e deVries) play in the backyard. 1989.",
+      "caption": "Gordon Lau (Top), Bayard deVries (Middle) and Ashley Brown (née deVries) play in the backyard. 1989.",
+      "description": "Gordon Lau (Top), Bayard deVries (Middle) and Ashley Brown (née deVries) play in the backyard. 1989.",
       "people": "Ashley deVries; Gordon Lau; Bayard deVries",
       "location": "Winnipeg, Manitoba, Canada",
       "community": "Winnipeg",
@@ -5939,7 +6282,7 @@
       "sublocation": "42 Thorncliff Bay",
       "keywords": [
         "1975-2000",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "Outdoors",
         "outdoors",
         "Winnipeg",
@@ -5960,7 +6303,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_191",
+      "id": "photo_203",
       "src": "assets/shoebox/photos/daniel cousins (2).jpg",
       "alt": "daniel cousins (2).jpg",
       "title": "Daniel Cousins (2)",
@@ -5985,7 +6328,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_192",
+      "id": "photo_204",
       "src": "assets/shoebox/photos/marierose and kid.jpg",
       "alt": "marierose and kid.jpg",
       "title": "Isadore and Marie Rose",
@@ -6012,7 +6355,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_193",
+      "id": "photo_205",
       "src": "assets/shoebox/photos/DSC_0015.jpg",
       "alt": "DSC_0015.jpg",
       "title": "Roger and Rita's 55 wedding anniversary 2019",
@@ -6043,7 +6386,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_194",
+      "id": "photo_206",
       "src": "assets/shoebox/photos/DSC_0020.jpg",
       "alt": "DSC_0020.jpg",
       "title": "Roger and Rita's 55 wedding anniversary",
@@ -6074,7 +6417,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_195",
+      "id": "photo_207",
       "src": "assets/shoebox/photos/DSC_0021.jpg",
       "alt": "DSC_0021.jpg",
       "title": "Roger and Rita's 55 wedding anniversary",
@@ -6105,7 +6448,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_196",
+      "id": "photo_208",
       "src": "assets/shoebox/photos/1-3.jpg",
       "alt": "1-3.jpg",
       "title": "The Flett Brothers in Snowy Manitoba",
@@ -6124,13 +6467,13 @@
         "Children",
         "Snow",
         "family portrait",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "children",
         "outdoors",
         "farm",
         "winter",
         "Manitoba",
-        "Red River M\u00e9tis"
+        "Red River Métis"
       ],
       "year": 2024,
       "scanYear": 2024,
@@ -6145,7 +6488,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_197",
+      "id": "photo_209",
       "src": "assets/shoebox/photos/12.jpg",
       "alt": "12.jpg",
       "title": "Ted Chartrand",
@@ -6161,7 +6504,7 @@
         "portrait",
         "regalia",
         "elder",
-        "M\u00e9tis Shoebox",
+        "Métis Shoebox",
         "suede",
         "husky",
         "2000-2025",
@@ -6182,7 +6525,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_198",
+      "id": "photo_210",
       "src": "assets/shoebox/photos/Image 1.jpg",
       "alt": "Image 1.jpg",
       "title": "Aurore and Jean Blueberry Picking in Marchand",
@@ -6213,7 +6556,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_199",
+      "id": "photo_211",
       "src": "assets/shoebox/photos/3.jpg",
       "alt": "3.jpg",
       "title": "An evening of history",
@@ -6242,7 +6585,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_200",
+      "id": "photo_212",
       "src": "assets/shoebox/photos/IMG_1179.jpg",
       "alt": "IMG_1179.jpg",
       "title": "Citizens of the Prairie Bison Local 2025",
@@ -6275,12 +6618,12 @@
       "zIndex": 0
     },
     {
-      "id": "photo_201",
+      "id": "photo_213",
       "src": "assets/shoebox/photos/IMG_1294.jpg",
       "alt": "IMG_1294.jpg",
       "title": "Wendy shares her family's story",
-      "caption": "Gail Hargreaves shares her family's story for the Red River M\u00e9tis  Shoebox",
-      "description": "Gail Hargreaves shares her family's story for the Red River M\u00e9tis  Shoebox",
+      "caption": "Gail Hargreaves shares her family's story for the Red River Métis  Shoebox",
+      "description": "Gail Hargreaves shares her family's story for the Red River Métis  Shoebox",
       "people": "Lafferty; Wendy Sikora; Sikora",
       "location": "Winnipeg, Manitoba, Canada",
       "community": "Winnipeg",
@@ -6306,12 +6649,12 @@
       "zIndex": 0
     },
     {
-      "id": "photo_202",
+      "id": "photo_214",
       "src": "assets/shoebox/photos/IMG_1295.jpg",
       "alt": "IMG_1295.jpg",
       "title": "Wendy shares her family's story",
-      "caption": "Gail Hargreaves shares her family's story for the Red River M\u00e9tis  Shoebox",
-      "description": "Gail Hargreaves shares her family's story for the Red River M\u00e9tis  Shoebox",
+      "caption": "Gail Hargreaves shares her family's story for the Red River Métis  Shoebox",
+      "description": "Gail Hargreaves shares her family's story for the Red River Métis  Shoebox",
       "people": "Lafferty; Wendy Sikora; Sikora",
       "location": "Winnipeg, Manitoba, Canada",
       "community": "Winnipeg",
@@ -6337,7 +6680,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_203",
+      "id": "photo_215",
       "src": "assets/shoebox/photos/IMG_1346.jpg",
       "alt": "IMG_1346.jpg",
       "title": "Oliver Boulette entertains",
@@ -6368,7 +6711,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_204",
+      "id": "photo_216",
       "src": "assets/shoebox/photos/IMG_1370.jpg",
       "alt": "IMG_1370.jpg",
       "title": "President Chartrand appreciates the Grandmothers",
@@ -6399,7 +6742,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_205",
+      "id": "photo_217",
       "src": "assets/shoebox/photos/IMG_1385.jpg",
       "alt": "IMG_1385.jpg",
       "title": "President and Curator",
@@ -6430,7 +6773,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_206",
+      "id": "photo_218",
       "src": "assets/shoebox/photos/IMG_1386.jpg",
       "alt": "IMG_1386.jpg",
       "title": "President and Curator",
@@ -6461,7 +6804,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_207",
+      "id": "photo_219",
       "src": "assets/shoebox/photos/IWS 2.jpg",
       "alt": "IWS 2.jpg",
       "title": "Louis Riel Day 2025",
@@ -6494,7 +6837,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_208",
+      "id": "photo_220",
       "src": "assets/shoebox/photos/Image.jpg",
       "alt": "Image.jpg",
       "title": "President and Prime Minister pa homage to Louis Riel",
@@ -6527,7 +6870,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_209",
+      "id": "photo_221",
       "src": "assets/shoebox/photos/Lesley_Kellemen_4.jpg",
       "alt": "Lesley_Kellemen_4.jpg",
       "title": "Lesley Kellemen 4",
@@ -6552,7 +6895,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_210",
+      "id": "photo_222",
       "src": "assets/shoebox/photos/Lesley_Kellemen_6.jpg",
       "alt": "Lesley_Kellemen_6.jpg",
       "title": "Lesley Kellemen 6",
@@ -6579,7 +6922,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_211",
+      "id": "photo_223",
       "src": "assets/shoebox/photos/Lesley_Kellemen_7.jpg",
       "alt": "Lesley_Kellemen_7.jpg",
       "title": "Lesley Kellemen",
@@ -6606,7 +6949,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_212",
+      "id": "photo_224",
       "src": "assets/shoebox/photos/Lynda Monkman_2.jpg",
       "alt": "Lynda Monkman_2.jpg",
       "title": "Monkman Family",
@@ -6634,7 +6977,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_213",
+      "id": "photo_225",
       "src": "assets/shoebox/photos/Lynda Monkman_3.jpg",
       "alt": "Lynda Monkman_3.jpg",
       "title": "Joseph and Aurise Monkman",
@@ -6662,7 +7005,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_214",
+      "id": "photo_226",
       "src": "assets/shoebox/photos/Lynda Monkman_4.jpg",
       "alt": "Lynda Monkman_4.jpg",
       "title": "Suzanne, George and Aurise",
@@ -6690,7 +7033,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_215",
+      "id": "photo_227",
       "src": "assets/shoebox/photos/Lynda Monkman_7.jpg",
       "alt": "Lynda Monkman_7.jpg",
       "title": "Lynda Monkman 7",
@@ -6717,7 +7060,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_216",
+      "id": "photo_228",
       "src": "assets/shoebox/photos/Minister Anderson, Minister Park 2.jpg",
       "alt": "Minister Anderson, Minister Park 2.jpg",
       "title": "Louis Riel Day 2025",
@@ -6749,7 +7092,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_217",
+      "id": "photo_229",
       "src": "assets/shoebox/photos/Minister Anderson, Minister Park.jpg",
       "alt": "Minister Anderson, Minister Park.jpg",
       "title": "Louis Riel Day 2025",
@@ -6783,7 +7126,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_218",
+      "id": "photo_230",
       "src": "assets/shoebox/photos/Minister Beaudin, Minister Remillard, Minister Carrier 2.jpg",
       "alt": "Minister Beaudin, Minister Remillard, Minister Carrier 2.jpg",
       "title": "Louis Riel Day 2025",
@@ -6817,7 +7160,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_219",
+      "id": "photo_231",
       "src": "assets/shoebox/photos/Minister Beaudin, Minister Remillard, Minister Carrier.jpg",
       "alt": "Minister Beaudin, Minister Remillard, Minister Carrier.jpg",
       "title": "Louis Riel Day 2025",
@@ -6851,7 +7194,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_220",
+      "id": "photo_232",
       "src": "assets/shoebox/photos/Minister Fleming (2).jpg",
       "alt": "Minister Fleming (2).jpg",
       "title": "Louis Riel Day 2025",
@@ -6885,7 +7228,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_221",
+      "id": "photo_233",
       "src": "assets/shoebox/photos/Minister Fleming.jpg",
       "alt": "Minister Fleming.jpg",
       "title": "Louis Riel Day 2025",
@@ -6919,7 +7262,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_222",
+      "id": "photo_234",
       "src": "assets/shoebox/photos/Minister Goodon 2.jpg",
       "alt": "Minister Goodon 2.jpg",
       "title": "Louis Riel Day 2025",
@@ -6953,7 +7296,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_223",
+      "id": "photo_235",
       "src": "assets/shoebox/photos/Minister Lagimodiere (2).jpg",
       "alt": "Minister Lagimodiere (2).jpg",
       "title": "Louis Riel Day 2025",
@@ -6987,7 +7330,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_224",
+      "id": "photo_236",
       "src": "assets/shoebox/photos/Minister Lagimodiere 2.jpg",
       "alt": "Minister Lagimodiere 2.jpg",
       "title": "Louis Riel Day 2025",
@@ -7020,7 +7363,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_225",
+      "id": "photo_237",
       "src": "assets/shoebox/photos/Minister Thomas, Minister Nault, Minister Gauthier 2.jpg",
       "alt": "Minister Thomas, Minister Nault, Minister Gauthier 2.jpg",
       "title": "Ministers pay respect to Louis Riel",
@@ -7052,7 +7395,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_226",
+      "id": "photo_238",
       "src": "assets/shoebox/photos/Minister Thomas, Minister Nault, Minister Gauthier.jpg",
       "alt": "Minister Thomas, Minister Nault, Minister Gauthier.jpg",
       "title": "Louis Riel Day 2025",
@@ -7083,7 +7426,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_227",
+      "id": "photo_239",
       "src": "assets/shoebox/photos/PD_10.jpg",
       "alt": "PD_10.jpg",
       "title": "Military Men",
@@ -7117,7 +7460,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_228",
+      "id": "photo_240",
       "src": "assets/shoebox/photos/PD_11.jpg",
       "alt": "PD_11.jpg",
       "title": "Albert Dejarlais Military portrait.",
@@ -7150,7 +7493,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_229",
+      "id": "photo_241",
       "src": "assets/shoebox/photos/PD_13.jpg",
       "alt": "PD_13.jpg",
       "title": "Pet Fox",
@@ -7184,7 +7527,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_230",
+      "id": "photo_242",
       "src": "assets/shoebox/photos/Untitled_2.jpg",
       "alt": "Untitled_2.jpg",
       "title": "Jean Victor Nault",
@@ -7213,7 +7556,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_231",
+      "id": "photo_243",
       "src": "assets/shoebox/photos/Untitled_3.jpg",
       "alt": "Untitled_3.jpg",
       "title": "Untitled 3",
@@ -7242,7 +7585,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_232",
+      "id": "photo_244",
       "src": "assets/shoebox/photos/Untitled_4.jpg",
       "alt": "Untitled_4.jpg",
       "title": "Untitled 4",
@@ -7271,7 +7614,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_233",
+      "id": "photo_245",
       "src": "assets/shoebox/photos/Untitled_5.jpg",
       "alt": "Untitled_5.jpg",
       "title": "Military portrait of Joseph Bernard Nault",
@@ -7298,7 +7641,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_234",
+      "id": "photo_246",
       "src": "assets/shoebox/photos/Wendy Sikora_10.jpg",
       "alt": "Wendy Sikora_10.jpg",
       "title": "The Lafferty Women",
@@ -7323,7 +7666,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_235",
+      "id": "photo_247",
       "src": "assets/shoebox/photos/Wendy Sikora_31.jpg",
       "alt": "Wendy Sikora_31.jpg",
       "title": "Preparing bannock",
@@ -7350,7 +7693,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_236",
+      "id": "photo_248",
       "src": "assets/shoebox/photos/Wendy Sikora_37.jpg",
       "alt": "Wendy Sikora_37.jpg",
       "title": "Wendy Sikora 37",
@@ -7378,7 +7721,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_237",
+      "id": "photo_249",
       "src": "assets/shoebox/photos/Wendy Sikora_8.jpg",
       "alt": "Wendy Sikora_8.jpg",
       "title": "Marie and Agatha go fishing",
@@ -7408,12 +7751,12 @@
       "zIndex": 0
     },
     {
-      "id": "photo_238",
+      "id": "photo_250",
       "src": "assets/shoebox/photos/_MG_0850.jpg",
       "alt": "_MG_0850.jpg",
       "title": "Gail shares her family's story",
-      "caption": "Gail Hargreaves shares her family's story for the Red River M\u00e9tis  Shoebox",
-      "description": "Gail Hargreaves shares her family's story for the Red River M\u00e9tis  Shoebox",
+      "caption": "Gail Hargreaves shares her family's story for the Red River Métis  Shoebox",
+      "description": "Gail Hargreaves shares her family's story for the Red River Métis  Shoebox",
       "people": "Gail Hargreaves",
       "location": "Winnipeg, Manitoba, Canada",
       "community": "Winnipeg",
@@ -7440,7 +7783,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_239",
+      "id": "photo_251",
       "src": "assets/shoebox/photos/_MG_0882.jpg",
       "alt": "_MG_0882.jpg",
       "title": "Tracy Fehr and the Community Collaborative Art project",
@@ -7465,7 +7808,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_240",
+      "id": "photo_252",
       "src": "assets/shoebox/photos/_MG_0887.jpg",
       "alt": "_MG_0887.jpg",
       "title": "Tracy Fehr and the Community Collaborative Art project",
@@ -7496,7 +7839,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_241",
+      "id": "photo_253",
       "src": "assets/shoebox/photos/_MG_1099.jpg",
       "alt": "_MG_1099.jpg",
       "title": "Dream team",
@@ -7528,7 +7871,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_242",
+      "id": "photo_254",
       "src": "assets/shoebox/photos/_MG_1103.jpg",
       "alt": "_MG_1103.jpg",
       "title": "AGA 2025 Kickoff",
@@ -7560,7 +7903,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_243",
+      "id": "photo_255",
       "src": "assets/shoebox/photos/_MG_1106.jpg",
       "alt": "_MG_1106.jpg",
       "title": "Ministers Beaudin and Anderson AGA 2025",
@@ -7592,7 +7935,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_244",
+      "id": "photo_256",
       "src": "assets/shoebox/photos/_MG_1117.jpg",
       "alt": "_MG_1117.jpg",
       "title": "Stephen Obelnicki and Al Benoit at AGA 2025",
@@ -7623,7 +7966,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_245",
+      "id": "photo_257",
       "src": "assets/shoebox/photos/_MG_1118.jpg",
       "alt": "_MG_1118.jpg",
       "title": "Stephen Obelnicki and Al Benoit at AGA 2025",
@@ -7654,7 +7997,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_246",
+      "id": "photo_258",
       "src": "assets/shoebox/photos/_MG_1165.jpg",
       "alt": "_MG_1165.jpg",
       "title": "Prairie Bison Local October 27, 2025",
@@ -7687,7 +8030,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_247",
+      "id": "photo_259",
       "src": "assets/shoebox/photos/_MG_1167.jpg",
       "alt": "_MG_1167.jpg",
       "title": "Mg 1167",
@@ -7720,7 +8063,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_248",
+      "id": "photo_260",
       "src": "assets/shoebox/photos/_MG_1171.jpg",
       "alt": "_MG_1171.jpg",
       "title": "Jeffrey Rohne, Prairie Bison Local 2025",
@@ -7753,7 +8096,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_249",
+      "id": "photo_261",
       "src": "assets/shoebox/photos/_MG_1172.jpg",
       "alt": "_MG_1172.jpg",
       "title": "Jeffrey Rohne, Prairie Bison Local 2025",
@@ -7786,7 +8129,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_250",
+      "id": "photo_262",
       "src": "assets/shoebox/photos/_MG_1176.jpg",
       "alt": "_MG_1176.jpg",
       "title": "Citizens of the Prairie Bison Local 2025",
@@ -7819,7 +8162,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_251",
+      "id": "photo_263",
       "src": "assets/shoebox/photos/_MG_1177.jpg",
       "alt": "_MG_1177.jpg",
       "title": "Citizens of the Prairie Bison Local 2025",
@@ -7852,7 +8195,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_252",
+      "id": "photo_264",
       "src": "assets/shoebox/photos/_MG_1178.jpg",
       "alt": "_MG_1178.jpg",
       "title": "Citizens of the Prairie Bison Local 2025",
@@ -7885,7 +8228,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_253",
+      "id": "photo_265",
       "src": "assets/shoebox/photos/_MG_1361.jpg",
       "alt": "_MG_1361.jpg",
       "title": "Oliver Boulette entertains",
@@ -7917,7 +8260,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_254",
+      "id": "photo_266",
       "src": "assets/shoebox/photos/_MG_9240.jpg",
       "alt": "_MG_9240.jpg",
       "title": "Gregory Scofield addresses the audience",
@@ -7948,7 +8291,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_255",
+      "id": "photo_267",
       "src": "assets/shoebox/photos/_MG_9260.jpg",
       "alt": "_MG_9260.jpg",
       "title": "Minister Carrier speaks with the media",
@@ -7980,7 +8323,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_256",
+      "id": "photo_268",
       "src": "assets/shoebox/photos/_MG_9270.jpg",
       "alt": "_MG_9270.jpg",
       "title": "The President and the Mayor",
@@ -8012,7 +8355,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_257",
+      "id": "photo_269",
       "src": "assets/shoebox/photos/_MG_9287.jpg",
       "alt": "_MG_9287.jpg",
       "title": "The President and the Mayor",
@@ -8043,7 +8386,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_258",
+      "id": "photo_270",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 11.jpg",
       "alt": "20260413 AlfredAnderson 11.jpg",
       "title": "Bernie, Jessie and Louise",
@@ -8068,7 +8411,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_259",
+      "id": "photo_271",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 12.jpg",
       "alt": "20260413 AlfredAnderson 12.jpg",
       "title": "Jessie Anderson on Winnipeg Beach",
@@ -8095,7 +8438,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_260",
+      "id": "photo_272",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 13.jpg",
       "alt": "20260413 AlfredAnderson 13.jpg",
       "title": "Anderson family photo",
@@ -8120,7 +8463,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_261",
+      "id": "photo_273",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 14.jpg",
       "alt": "20260413 AlfredAnderson 14.jpg",
       "title": "Bella and Reggie wrangling sheep",
@@ -8150,7 +8493,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_262",
+      "id": "photo_274",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 15.jpg",
       "alt": "20260413 AlfredAnderson 15.jpg",
       "title": "Alfredanderson 15",
@@ -8181,7 +8524,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_263",
+      "id": "photo_275",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 16.jpg",
       "alt": "20260413 AlfredAnderson 16.jpg",
       "title": "Audrey and Frank",
@@ -8206,7 +8549,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_264",
+      "id": "photo_276",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 17.jpg",
       "alt": "20260413 AlfredAnderson 17.jpg",
       "title": "Audrey and Frank",
@@ -8233,7 +8576,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_265",
+      "id": "photo_277",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 18.jpg",
       "alt": "20260413 AlfredAnderson 18.jpg",
       "title": "Frank and Elizabeth",
@@ -8260,7 +8603,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_266",
+      "id": "photo_278",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 19.jpg",
       "alt": "20260413 AlfredAnderson 19.jpg",
       "title": "Bernie and Kevin in front of the family home",
@@ -8288,7 +8631,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_267",
+      "id": "photo_279",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 20.jpg",
       "alt": "20260413 AlfredAnderson 20.jpg",
       "title": "Frank and Audrey in the yard",
@@ -8315,7 +8658,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_268",
+      "id": "photo_280",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 21.jpg",
       "alt": "20260413 AlfredAnderson 21.jpg",
       "title": "Audrey and Jessie",
@@ -8343,7 +8686,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_269",
+      "id": "photo_281",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 22.jpg",
       "alt": "20260413 AlfredAnderson 22.jpg",
       "title": "Wnedell and Roger in the Sandbox",
@@ -8370,7 +8713,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_270",
+      "id": "photo_282",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 23.jpg",
       "alt": "20260413 AlfredAnderson 23.jpg",
       "title": "Gail riding the family horse in St. Andrews.",
@@ -8400,7 +8743,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_271",
+      "id": "photo_283",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 25.jpg",
       "alt": "20260413 AlfredAnderson 25.jpg",
       "title": "Elizabeth and Alfred on the farm",
@@ -8429,7 +8772,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_272",
+      "id": "photo_284",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 3.jpg",
       "alt": "20260413 AlfredAnderson 3.jpg",
       "title": "Portrait of Elizabeth Cook",
@@ -8457,7 +8800,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_273",
+      "id": "photo_285",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 7.jpg",
       "alt": "20260413 AlfredAnderson 7.jpg",
       "title": "Alfred after his haircut",
@@ -8484,7 +8827,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_274",
+      "id": "photo_286",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 8.jpg",
       "alt": "20260413 AlfredAnderson 8.jpg",
       "title": "Alfred Before Haircut",
@@ -8511,7 +8854,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_275",
+      "id": "photo_287",
       "src": "assets/shoebox/photos/20260413 AlfredAnderson 9.jpg",
       "alt": "20260413 AlfredAnderson 9.jpg",
       "title": "Alfred Anderson",
@@ -8538,7 +8881,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_276",
+      "id": "photo_288",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 26.jpg",
       "alt": "20260417 AlfredAnderson 26.jpg",
       "title": "Alfredanderson 26",
@@ -8568,7 +8911,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_277",
+      "id": "photo_289",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 27.jpg",
       "alt": "20260417 AlfredAnderson 27.jpg",
       "title": "Alfredanderson 27",
@@ -8598,7 +8941,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_278",
+      "id": "photo_290",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 28.jpg",
       "alt": "20260417 AlfredAnderson 28.jpg",
       "title": "Alfredanderson 28",
@@ -8628,7 +8971,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_279",
+      "id": "photo_291",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 29.jpg",
       "alt": "20260417 AlfredAnderson 29.jpg",
       "title": "Alfredanderson 29",
@@ -8658,7 +9001,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_280",
+      "id": "photo_292",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 30.jpg",
       "alt": "20260417 AlfredAnderson 30.jpg",
       "title": "Alfredanderson 30",
@@ -8688,7 +9031,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_281",
+      "id": "photo_293",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 31.jpg",
       "alt": "20260417 AlfredAnderson 31.jpg",
       "title": "Alfredanderson 31",
@@ -8718,7 +9061,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_282",
+      "id": "photo_294",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 32.jpg",
       "alt": "20260417 AlfredAnderson 32.jpg",
       "title": "Alfredanderson 32",
@@ -8748,7 +9091,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_283",
+      "id": "photo_295",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 33.jpg",
       "alt": "20260417 AlfredAnderson 33.jpg",
       "title": "Alfredanderson 33",
@@ -8778,7 +9121,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_284",
+      "id": "photo_296",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 34.jpg",
       "alt": "20260417 AlfredAnderson 34.jpg",
       "title": "Alfredanderson 34",
@@ -8808,7 +9151,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_285",
+      "id": "photo_297",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 35.jpg",
       "alt": "20260417 AlfredAnderson 35.jpg",
       "title": "Alfredanderson 35",
@@ -8838,7 +9181,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_286",
+      "id": "photo_298",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 36.jpg",
       "alt": "20260417 AlfredAnderson 36.jpg",
       "title": "Alfredanderson 36",
@@ -8868,7 +9211,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_287",
+      "id": "photo_299",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 37.jpg",
       "alt": "20260417 AlfredAnderson 37.jpg",
       "title": "Alfredanderson 37",
@@ -8898,7 +9241,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_288",
+      "id": "photo_300",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 38.jpg",
       "alt": "20260417 AlfredAnderson 38.jpg",
       "title": "Alfredanderson 38",
@@ -8923,7 +9266,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_289",
+      "id": "photo_301",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 39.jpg",
       "alt": "20260417 AlfredAnderson 39.jpg",
       "title": "Alfredanderson 39",
@@ -8953,7 +9296,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_290",
+      "id": "photo_302",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 40.jpg",
       "alt": "20260417 AlfredAnderson 40.jpg",
       "title": "Alfredanderson 40",
@@ -8978,7 +9321,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_291",
+      "id": "photo_303",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 41.jpg",
       "alt": "20260417 AlfredAnderson 41.jpg",
       "title": "Alfredanderson 41",
@@ -9003,7 +9346,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_292",
+      "id": "photo_304",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 42.jpg",
       "alt": "20260417 AlfredAnderson 42.jpg",
       "title": "Alfredanderson 42",
@@ -9033,7 +9376,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_293",
+      "id": "photo_305",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 43.jpg",
       "alt": "20260417 AlfredAnderson 43.jpg",
       "title": "Alfredanderson 43",
@@ -9063,7 +9406,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_294",
+      "id": "photo_306",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 44.jpg",
       "alt": "20260417 AlfredAnderson 44.jpg",
       "title": "Alfredanderson 44",
@@ -9088,7 +9431,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_295",
+      "id": "photo_307",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 45.jpg",
       "alt": "20260417 AlfredAnderson 45.jpg",
       "title": "Alfredanderson 45",
@@ -9118,7 +9461,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_296",
+      "id": "photo_308",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 46.jpg",
       "alt": "20260417 AlfredAnderson 46.jpg",
       "title": "Alfredanderson 46",
@@ -9143,7 +9486,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_297",
+      "id": "photo_309",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 47.jpg",
       "alt": "20260417 AlfredAnderson 47.jpg",
       "title": "Alfredanderson 47",
@@ -9168,7 +9511,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_298",
+      "id": "photo_310",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 48.jpg",
       "alt": "20260417 AlfredAnderson 48.jpg",
       "title": "Alfredanderson 48",
@@ -9193,7 +9536,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_299",
+      "id": "photo_311",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 49.jpg",
       "alt": "20260417 AlfredAnderson 49.jpg",
       "title": "Alfredanderson 49",
@@ -9218,7 +9561,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_300",
+      "id": "photo_312",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 50.jpg",
       "alt": "20260417 AlfredAnderson 50.jpg",
       "title": "Alfredanderson 50",
@@ -9243,7 +9586,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_301",
+      "id": "photo_313",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 53.jpg",
       "alt": "20260417 AlfredAnderson 53.jpg",
       "title": "Alfredanderson 53",
@@ -9270,7 +9613,7 @@
       "zIndex": 0
     },
     {
-      "id": "photo_302",
+      "id": "photo_314",
       "src": "assets/shoebox/photos/20260417 AlfredAnderson 56.jpg",
       "alt": "20260417 AlfredAnderson 56.jpg",
       "title": "Alfredanderson 56",
@@ -9297,69 +9640,10 @@
       "zIndex": 0
     },
     {
-      "id": "photo_303",
-      "src": "assets/shoebox/photos/20260515 JoanHadfield 10.jpg",
-      "alt": "20260515 JoanHadfield 10.jpg",
-      "title": "Barb and Joen (1955)",
-      "caption": "Barb and Joen holding hands on Greenwood Ave. Selkirk MB. 1955",
-      "description": "Barb and Joen holding hands on Greenwood Ave. Selkirk MB. 1955",
-      "people": "",
-      "location": "Selkirk, Manitoba",
-      "community": "Selkirk",
-      "province": "Manitoba",
-      "sublocation": "Greenwood Ave.",
-      "keywords": [
-        "1950-1955",
-        "Greenwood Ave.",
-        "Joan Hadfield",
-        "outdoor",
-        "Selkirk",
-        "Barb Mitchell",
-        "Home",
-        "1955"
-      ],
-      "year": 1955,
-      "scanYear": 2026,
-      "photoYearSource": "title",
-      "width": 1373,
-      "height": 2048,
-      "lat": null,
-      "lng": null,
-      "lastModified": 1779385052344.6035,
-      "rotation": 0,
-      "scale": 1,
-      "zIndex": 0
-    },
-    {
-      "id": "photo_304",
-      "src": "assets/shoebox/photos/20260515 JoanHadfield 1.jpg",
-      "alt": "20260515 JoanHadfield 1.jpg",
-      "title": "Meadowdale Schoolhouse (ca. 1940)",
-      "caption": "Meadowdale Schoolhouse in St. Andrews MB",
-      "description": "Meadowdale Schoolhouse in St. Andrews MB",
-      "people": "",
-      "location": "St. Andrews, Manitoba",
-      "community": "St. Andrews",
-      "province": "Manitoba",
-      "sublocation": "Number 8 HWY Meadowdale rod.",
-      "keywords": [],
-      "year": 1940,
-      "scanYear": 2026,
-      "photoYearSource": "title",
-      "width": 2048,
-      "height": 1194,
-      "lat": null,
-      "lng": null,
-      "lastModified": 1779385052344.6035,
-      "rotation": 0,
-      "scale": 1,
-      "zIndex": 0
-    },
-    {
-      "id": "photo_305",
+      "id": "photo_315",
       "src": "assets/shoebox/photos/20260515 JoanHadfield 23.jpg",
       "alt": "20260515 JoanHadfield 23.jpg",
-      "title": "20260515 JoanHadfield 23",
+      "title": "Joanhadfield 23",
       "caption": "",
       "description": "",
       "people": "",
@@ -9368,349 +9652,14 @@
       "province": null,
       "sublocation": null,
       "keywords": [],
-      "year": null,
+      "year": 2026,
       "scanYear": 2026,
       "photoYearSource": "scan-date",
       "width": 1453,
       "height": 2048,
       "lat": null,
       "lng": null,
-      "lastModified": 1779385052344.6035,
-      "rotation": 0,
-      "scale": 1,
-      "zIndex": 0
-    },
-    {
-      "id": "photo_306",
-      "src": "assets/shoebox/photos/20260515 JoanHadfield 27.jpg",
-      "alt": "20260515 JoanHadfield 27.jpg",
-      "title": "Hadfield Family",
-      "caption": "",
-      "description": "",
-      "people": "",
-      "location": "",
-      "community": null,
-      "province": null,
-      "sublocation": null,
-      "keywords": [
-        "1990",
-        "1990-1995",
-        "Hadfield",
-        "Selkirk"
-      ],
-      "year": null,
-      "scanYear": 2026,
-      "photoYearSource": "scan-date",
-      "width": 2048,
-      "height": 1391,
-      "lat": null,
-      "lng": null,
-      "lastModified": 1779385052344.6035,
-      "rotation": 0,
-      "scale": 1,
-      "zIndex": 0
-    },
-    {
-      "id": "photo_307",
-      "src": "assets/shoebox/photos/20260515 JoanHadfield 28.jpg",
-      "alt": "20260515 JoanHadfield 28.jpg",
-      "title": "20260515 JoanHadfield 28",
-      "caption": "",
-      "description": "",
-      "people": "",
-      "location": "Selkirk, Manitoba",
-      "community": "Selkirk",
-      "province": "Manitoba",
-      "sublocation": null,
-      "keywords": [
-        "1990",
-        "1990-1995",
-        "Hadfield",
-        "Selkirk"
-      ],
-      "year": null,
-      "scanYear": 2026,
-      "photoYearSource": "scan-date",
-      "width": 2048,
-      "height": 1377,
-      "lat": null,
-      "lng": null,
-      "lastModified": 1779385052344.6035,
-      "rotation": 0,
-      "scale": 1,
-      "zIndex": 0
-    },
-    {
-      "id": "photo_308",
-      "src": "assets/shoebox/photos/20260515 JoanHadfield 3.jpg",
-      "alt": "20260515 JoanHadfield 3.jpg",
-      "title": "The girls htich a ride on a tank (ca. 1950)",
-      "caption": "Gordon Bowser drives the girls (Irene Poschner, Mary Poschner, Ruth Hooker and Velma Riley) on a Brengun carrier.",
-      "description": "Gordon Bowser drives the girls (Irene Poschner, Mary Poschner, Ruth Hooker and Velma Riley) on a Brengun carrier.",
-      "people": "",
-      "location": "Selkirk, Manitoba",
-      "community": "Selkirk",
-      "province": "Manitoba",
-      "sublocation": "Greenwood Ave.",
-      "keywords": [
-        "Velma Riley",
-        "Irene Poschner",
-        "Gordon Bowser",
-        "Ruth hooker",
-        "Mary Poschner"
-      ],
-      "year": 1950,
-      "scanYear": 2026,
-      "photoYearSource": "title",
-      "width": 2048,
-      "height": 1528,
-      "lat": null,
-      "lng": null,
-      "lastModified": 1779385052344.6035,
-      "rotation": 0,
-      "scale": 1,
-      "zIndex": 0
-    },
-    {
-      "id": "photo_309",
-      "src": "assets/shoebox/photos/20260515 JoanHadfield 4.jpg",
-      "alt": "20260515 JoanHadfield 4.jpg",
-      "title": "Mitchell Family Photo (ca. 1950)",
-      "caption": "Family photo, taken on morris ave in selkirk.  1950s",
-      "description": "Family photo, taken on morris ave in selkirk.  1950s",
-      "people": "",
-      "location": "Selkirk, Manitoba",
-      "community": "Selkirk",
-      "province": "Manitoba",
-      "sublocation": "Greenwood Ave.",
-      "keywords": [
-        "82",
-        "111",
-        "110",
-        "32",
-        "77",
-        "105",
-        "116",
-        "99",
-        "104",
-        "101",
-        "108",
-        "108"
-      ],
-      "year": 1950,
-      "scanYear": 2026,
-      "photoYearSource": "title",
-      "width": 2048,
-      "height": 1465,
-      "lat": null,
-      "lng": null,
-      "lastModified": 1779385052344.6035,
-      "rotation": 0,
-      "scale": 1,
-      "zIndex": 0
-    },
-    {
-      "id": "photo_310",
-      "src": "assets/shoebox/photos/20260515 JoanHadfield 5.jpg",
-      "alt": "20260515 JoanHadfield 5.jpg",
-      "title": "Joen Ron and Leon (1955)",
-      "caption": "Jeon Hadfield, Ron Mitchell and Leon Hooker playing in the sand on Greendwood Ave.",
-      "description": "Jeon Hadfield, Ron Mitchell and Leon Hooker playing in the sand on Greendwood Ave.",
-      "people": "",
-      "location": "Selkirk, Manitoba",
-      "community": "Selkirk",
-      "province": "Manitoba",
-      "sublocation": "Greenwood Ave.",
-      "keywords": [
-        "1950-1955",
-        "Greenwood Ave.",
-        "1955",
-        "Leon Hooker",
-        "Selkirk",
-        "Home",
-        "outdoor",
-        "Joan Hadfield"
-      ],
-      "year": 1955,
-      "scanYear": 2026,
-      "photoYearSource": "title",
-      "width": 2048,
-      "height": 1394,
-      "lat": null,
-      "lng": null,
-      "lastModified": 1779385052344.6035,
-      "rotation": 0,
-      "scale": 1,
-      "zIndex": 0
-    },
-    {
-      "id": "photo_311",
-      "src": "assets/shoebox/photos/20260515 JoanHadfield 6.jpg",
-      "alt": "20260515 JoanHadfield 6.jpg",
-      "title": "Joen in the swing (1955)",
-      "caption": "Joan Hadfield swinging at grandma's house",
-      "description": "Joan Hadfield swinging at grandma's house",
-      "people": "",
-      "location": "Selkirk, Manitoba",
-      "community": "Selkirk",
-      "province": "Manitoba",
-      "sublocation": "Greenwood Ave.",
-      "keywords": [
-        "Greenwood Ave.",
-        "1955",
-        "outdoor",
-        "1950-1955",
-        "Selkirk",
-        "Home",
-        "Joan Hadfield"
-      ],
-      "year": 1955,
-      "scanYear": 2026,
-      "photoYearSource": "title",
-      "width": 2048,
-      "height": 1401,
-      "lat": null,
-      "lng": null,
-      "lastModified": 1779385052344.6035,
-      "rotation": 0,
-      "scale": 1,
-      "zIndex": 0
-    },
-    {
-      "id": "photo_312",
-      "src": "assets/shoebox/photos/20260515 JoanHadfield 7.jpg",
-      "alt": "20260515 JoanHadfield 7.jpg",
-      "title": "Joen, Barb, Ron and Leon (1955)",
-      "caption": "Joen Hadfield, Barb Mitchell, Ron Mitchell and Leon Hooker pose for a photo on Greenwood Ave.",
-      "description": "Joen Hadfield, Barb Mitchell, Ron Mitchell and Leon Hooker pose for a photo on Greenwood Ave.",
-      "people": "",
-      "location": "Selkirk, Manitoba",
-      "community": "Selkirk",
-      "province": "Manitoba",
-      "sublocation": "Greenwood Ave.",
-      "keywords": [
-        "Greenwood Ave.",
-        "1950-1955",
-        "Selkirk",
-        "1955",
-        "Joan Hadfield",
-        "Leon Hooker",
-        "outdoor",
-        "Barb Mitchell",
-        "Ron Mitchell",
-        "Home"
-      ],
-      "year": 1955,
-      "scanYear": 2026,
-      "photoYearSource": "title",
-      "width": 2048,
-      "height": 1339,
-      "lat": null,
-      "lng": null,
-      "lastModified": 1779385052344.6035,
-      "rotation": 0,
-      "scale": 1,
-      "zIndex": 0
-    },
-    {
-      "id": "photo_313",
-      "src": "assets/shoebox/photos/20260515 JoanHadfield 8.jpg",
-      "alt": "20260515 JoanHadfield 8.jpg",
-      "title": "Joen and Barb (1955)",
-      "caption": "Joen and Barb in front of her Grandmother's house on greenwood ave.",
-      "description": "Joen and Barb in front of her Grandmother's house on greenwood ave.",
-      "people": "",
-      "location": "Selkirk, Manitoba",
-      "community": "Selkirk",
-      "province": "Manitoba",
-      "sublocation": "Greenwood Ave.",
-      "keywords": [
-        "1950-1955",
-        "Greenwood Ave.",
-        "Joan Hadfield",
-        "outdoor",
-        "Selkirk",
-        "Barb Mitchell",
-        "Home",
-        "1955"
-      ],
-      "year": 1955,
-      "scanYear": 2026,
-      "photoYearSource": "title",
-      "width": 2048,
-      "height": 1339,
-      "lat": null,
-      "lng": null,
-      "lastModified": 1779385052344.6035,
-      "rotation": 0,
-      "scale": 1,
-      "zIndex": 0
-    },
-    {
-      "id": "photo_314",
-      "src": "assets/shoebox/photos/20260515 JoanHadfield 9.jpg",
-      "alt": "20260515 JoanHadfield 9.jpg",
-      "title": "Ron and Leon (1955)",
-      "caption": "Ron Mitchell and Leon Hooker playing in the grass on Greenwood Ave.",
-      "description": "Ron Mitchell and Leon Hooker playing in the grass on Greenwood Ave.",
-      "people": "",
-      "location": "Selkirk, Manitoba",
-      "community": "Selkirk",
-      "province": "Manitoba",
-      "sublocation": "Greenwood Ave.",
-      "keywords": [
-        "1950-1955",
-        "Greenwood Ave.",
-        "1955",
-        "outdoor",
-        "Selkirk",
-        "Home",
-        "Ron Mitchell",
-        "Leon Hooker"
-      ],
-      "year": 1955,
-      "scanYear": 2026,
-      "photoYearSource": "title",
-      "width": 2048,
-      "height": 1339,
-      "lat": null,
-      "lng": null,
-      "lastModified": 1779385052344.6035,
-      "rotation": 0,
-      "scale": 1,
-      "zIndex": 0
-    },
-    {
-      "id": "photo_315",
-      "src": "assets/shoebox/photos/Image 2 (2).jpg",
-      "alt": "Image 2 (2).jpg",
-      "title": "Mary Smith corrals the kids (1955)",
-      "caption": "Mary Smith rushes to Joen Hadfield, Ron Mitchell and Leon Hooker.",
-      "description": "Mary Smith rushes to Joen Hadfield, Ron Mitchell and Leon Hooker.",
-      "people": "",
-      "location": "Selkirk, Manitoba",
-      "community": "Selkirk",
-      "province": "Manitoba",
-      "sublocation": "Greenwood Ave.",
-      "keywords": [
-        "Greenwood Ave.",
-        "1950-1955",
-        "Joan Hadfield",
-        "Home",
-        "outdoor",
-        "Selkirk",
-        "1955",
-        "Mary Smith",
-        "Leon Hooker"
-      ],
-      "year": 1955,
-      "scanYear": 2026,
-      "photoYearSource": "title",
-      "width": 2048,
-      "height": 1365,
-      "lat": null,
-      "lng": null,
-      "lastModified": 1779385052344.6035,
+      "lastModified": 1779722978073.3564,
       "rotation": 0,
       "scale": 1,
       "zIndex": 0
@@ -9722,15 +9671,15 @@
       "max": 2026
     },
     "totalPhotos": 315,
-    "photosWithTitle": 302,
-    "photosWithCaption": 226,
-    "photosWithYear": 302,
-    "photosWithCity": 195,
-    "photosWithProvince": 174,
-    "photosWithCountry": 153,
-    "photosWithLocation": 196,
+    "photosWithTitle": 315,
+    "photosWithCaption": 236,
+    "photosWithYear": 315,
+    "photosWithCity": 206,
+    "photosWithProvince": 185,
+    "photosWithCountry": 163,
+    "photosWithLocation": 207,
     "photosWithGps": 37,
-    "photosGeocoded": 195,
-    "photosWithPeople": 227
+    "photosGeocoded": 206,
+    "photosWithPeople": 238
   }
 }
