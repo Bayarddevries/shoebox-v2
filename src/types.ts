@@ -1,28 +1,30 @@
 export interface Photo {
- id: number
- src: string
- alt: string
- title?: string
- caption?: string
- people?: string
- location?: string
- community?: string
- province?: string
- sublocation?: string
- keywords?: string[]
- storyIds?: string[]
- lat?: number
- lng?: number
- position?: { x: number; y: number }
- rotation?: number
- scale?: number
- zIndex?: number
- lastModified?: number
+  id: number
+  src: string
+  alt: string
+  title?: string
+  caption?: string
+  people?: string
+  location?: string
+  community?: string
+  province?: string
+  sublocation?: string
+  keywords?: string[]
+  storyIds?: string[]
+  lat?: number
+  lng?: number
+  position?: { x: number; y: number }
+  rotation?: number
+  scale?: number
+  zIndex?: number
+  lastModified?: number
   year?: number // historical photo date (derived from keywords/title/era)
   scanYear?: number // EXIF scan/digitization date
   photoYearSource?: 'keyword-specific' | 'title' | 'keyword-era' | 'scan-date' | 'unknown'
   width?: number | null
   height?: number | null
+  faceX?: number | null // normalized 0-1, face horizontal center (for idle slideshow)
+  faceY?: number | null // normalized 0-1, face vertical center (for idle slideshow)
 }
 
 export interface Story {

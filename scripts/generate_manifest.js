@@ -14,6 +14,7 @@
  *   3. Geocode: GPS from EXIF if present, otherwise lookup table for known Métis communities
  *   4. Separate people names from topical keywords
  *   5. Clean up year ranges and date metadata
+ *   6. Face detection: run detect_faces.py to get faceX/faceY for each photo (for idle slideshow centering)
  *
  * Usage:
  *   node scripts/generate_manifest.js [SOURCE_DIR] [OUTPUT_FILE]
@@ -463,6 +464,8 @@ const photos = imageFiles.map((filename, index) => {
  rotation: 0,
  scale: 1,
  zIndex: 0,
+ faceX: null, // populated by detect_faces.py (normalized 0-1, or null if no face detected)
+ faceY: null, // populated by detect_faces.py
  }
 })
 
@@ -505,6 +508,46 @@ const manifest = {
 }
 
 // ── Write output ──
+
+// ── Auto-run face detection (optional, if OpenCV available) ──
+try {
+  const cv2 = require('child_process')
+  const pythonExe = process.platform === 'win32' ? 'python' : 'python3'
+  const detectScript = path.join(PROJECT_ROOT, 'scripts', 'detect_faces.py')
+
+  if (fs.existsSync(detectScript)) {
+    console.log('\n  📸 Running face detection...')
+    execSync(`${pythonExe} "${detectScript}" "${SOURCE_DIR}" "${path.join(path.dirname(OUTPUT_FILE), 'face_coords.json')}"`, {
+      encoding: 'utf8',
+      timeout: 120000, // 2 min timeout
+      stdio: 'ignore', // suppress output unless there's an error
+    })
+    console.log('  ✓ Face detection complete')
+  }
+} catch (e) {
+  // OpenCV not available — skip silently, face fields will remain null
+  console.log('  ⚠ Face detection skipped (OpenCV not available)')
+}
+
+// Merge face coordinates into photos if face_coords.json exists
+const FACE_COORDS_FILE = path.join(
+  path.dirname(OUTPUT_FILE),
+  'face_coords.json'
+)
+if (fs.existsSync(FACE_COORDS_FILE)) {
+  const faceCoords = JSON.parse(fs.readFileSync(FACE_COORDS_FILE, 'utf8'))
+  let merged = 0
+  photos.forEach(photo => {
+    const filename = photo.alt
+    if (faceCoords[filename]) {
+      photo.faceX = faceCoords[filename].faceX
+      photo.faceY = faceCoords[filename].faceY
+      merged++
+    }
+  })
+  console.log(`  Merged face coords: ${merged}/${manifest.photoCount}`)
+}
+
 fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true })
 fs.writeFileSync(OUTPUT_FILE, JSON.stringify(manifest, null, 2))
 

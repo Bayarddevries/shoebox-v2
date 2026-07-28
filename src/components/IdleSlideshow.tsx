@@ -7,6 +7,7 @@ const CROSSFADE_MS = 1500
 const PRELOAD_AHEAD = 3
 
 // Ken Burns variants matching HeroCarousel
+// Each variant defines the scale/translate range for the pan & zoom effect
 const KEN_BURNS = [
   { from: 'scale(1) translate(0, 0)', to: 'scale(1.15) translate(-2%, -1%)' },
   { from: 'scale(1.1) translate(-2%, 0)', to: 'scale(1) translate(1%, -1%)' },
@@ -15,6 +16,16 @@ const KEN_BURNS = [
   { from: 'scale(1.05) translate(-1%, 1%)', to: 'scale(1.15) translate(1%, -1%)' },
   { from: 'scale(1.1) translate(1%, -1%)', to: 'scale(1) translate(-1%, 1%)' },
 ]
+
+// Fallback center when face coordinates are missing
+const FALLBACK_CENTER = { x: 0.5, y: 0.5 }
+
+function getFacePosition(photo: Photo) {
+  if (photo.faceX != null && photo.faceY != null) {
+    return { x: photo.faceX, y: photo.faceY }
+  }
+  return FALLBACK_CENTER
+}
 
 function encodePath(path: string): string {
   return path.split('/').map(segment => encodeURIComponent(segment)).join('/')
@@ -66,9 +77,11 @@ export default function IdleSlideshow({ photos, baseUrl }: IdleSlideshowProps) {
 
       // Init: A visible with image 0, B hidden
       const kb0 = getKenBurns(0)
+      const pos0 = getFacePosition(shuffled[0])
       layerA.style.opacity = '1'
       layerA.style.zIndex = '2'
       layerA.style.backgroundImage = `url(${baseUrl}${encodePath(shuffled[0].src)})`
+      layerA.style.backgroundPosition = `${pos0.x * 100}% ${pos0.y * 100}%`
       layerA.style.setProperty('--kb-from', kb0.from)
       layerA.style.setProperty('--kb-to', kb0.to)
       layerA.style.animation = 'none'
@@ -78,18 +91,22 @@ export default function IdleSlideshow({ photos, baseUrl }: IdleSlideshowProps) {
       layerB.style.opacity = '0'
       layerB.style.zIndex = '1'
       if (shuffled.length > 1) {
+        const pos1 = getFacePosition(shuffled[1])
         layerB.style.backgroundImage = `url(${baseUrl}${encodePath(shuffled[1].src)})`
+        layerB.style.backgroundPosition = `${pos1.x * 100}% ${pos1.y * 100}%`
       }
 
       const advance = () => {
         const nextIdx = (slideIdxRef.current + 1) % shuffled.length
         const nextPhoto = shuffled[nextIdx]
         const kb = getKenBurns(nextIdx)
+        const pos = getFacePosition(nextPhoto)
 
         const incoming = activeRef.current === 'a' ? layerB : layerA
         const outgoing = activeRef.current === 'a' ? layerA : layerB
 
         incoming.style.backgroundImage = `url(${baseUrl}${encodePath(nextPhoto.src)})`
+        incoming.style.backgroundPosition = `${pos.x * 100}% ${pos.y * 100}%`
         incoming.style.setProperty('--kb-from', kb.from)
         incoming.style.setProperty('--kb-to', kb.to)
         incoming.style.animation = 'none'
