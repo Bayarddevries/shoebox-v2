@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Red River Métis Shoebox — Lite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ══════════════════════════════════════════
+   THEME — matches main app
+   ══════════════════════════════════════════ */
+:root {
+  --crimson: #8b0000;
+  --crimson-light: #b30000;
+  --parchment: #fdfcf9;
+  --cream: #f4f1ea;
+  --charcoal: #2c2c2c;
+  --charcoal-light: #555555;
+  --border: #e5e7eb;
+  --font-serif: 'EB Garamond', serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-cinzel: 'Cinzel', serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  font-family: var(--font-sans);
+  background: var(--parchment);
+  color: var(--charcoal);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; }
+.cinzel { font-family: var(--font-cinzel); }
+
+/* ══════════════════════════════════════════
+   HEADER
+   ══════════════════════════════════════════ */
+.lite-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 48px;
+}
+.lite-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.lite-header-logo {
+  height: 28px;
+  width: auto;
+}
+.lite-header-title {
+  font-family: var(--font-cinzel);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--crimson);
+  text-transform: uppercase;
+}
+.lite-header-count {
+  font-size: 0.7rem;
+  color: var(--charcoal-light);
+  font-family: var(--font-sans);
+}
+
+/* ══════════════════════════════════════════
+   FILTER BAR
+   ══════════════════════════════════════════ */
+.lite-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 40;
+}
+.lite-filter-bar::-webkit-scrollbar { display: none; }
+.lite-search {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.75rem;
+}
+.lite-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  width: 100%;
+  color: var(--charcoal);
+}
+.lite-search input::placeholder { color: var(--charcoal-light); opacity: 0.7; }
+.lite-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: white;
+  font-size: 0.7rem;
+  font-family: var(--font-sans);
+  color: var(--charcoal);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.lite-filter-chip:active { border-color: var(--crimson); color: var(--crimson); }
+.lite-filter-chip-active {
+  background: var(--crimson);
+  border-color: var(--crimson);
+  color: white;
+}
+.lite-filter-chip .count {
+  background: rgba(255,255,255,0.3);
+  border-radius: 8px;
+  padding: 0 0.3rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  min-width: 1rem;
+  text-align: center;
+}
+.lite-filter-chip-active .count { background: rgba(255,255,255,0.25); color: white; }
+
+/* Dropdown panel */
+.lite-dropdown-panel {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: rgba(0,0,0,0.4);
+}
+.lite-dropdown-panel.open { display: block; }
+.lite-dropdown-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 55vh;
+  background: white;
+  border-radius: 12px 12px 0 0;
+  padding: 1rem;
+  overflow-y: auto;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.15);
+  animation: slideUp 0.2s ease-out;
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.lite-dropdown-title {
+  font-family: var(--font-cinzel);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--charcoal-light);
+  margin-bottom: 0.75rem;
+}
+.lite-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.lite-dropdown-item:last-child { border-bottom: none; }
+.lite-dropdown-item:active { background: var(--cream); }
+.lite-dropdown-item .check { color: var(--crimson); font-weight: 600; }
+.lite-dropdown-item .item-count {
+  font-size: 0.7rem;
+  color: var(--charcoal-light);
+  background: var(--cream);
+  padding: 0.1rem 0.4rem;
+  border-radius: 8px;
+}
+.lite-dropdown-close {
+  text-align: center;
+  padding: 0.6rem;
+  color: var(--crimson);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-top: 1px solid var(--border);
+  margin-top: 0.5rem;
+}
+
+/* ══════════════════════════════════════════
+   PHOTO VIEWER
+   ══════════════════════════════════════════ */
+.lite-viewport {
+  position: relative;
+  height: calc(100vh - 48px - 40px);
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: none;
+}
+.lite-viewport img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.lite-viewport .loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255,255,255,0.15);
+  border-top-color: var(--crimson);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Nav arrows */
+.lite-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.lite-nav:active { background: rgba(255,255,255,0.3); }
+.lite-nav-prev { left: 8px; }
+.lite-nav-next { right: 8px; }
+.lite-nav-hidden { display: none; }
+
+/* ══════════════════════════════════════════
+   PHOTO INFO BAR
+   ══════════════════════════════════════════ */
+.lite-info-bar {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.75rem;
+  background: white;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+  gap: 0.5rem;
+}
+.lite-info-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  flex: 1;
+}
+.lite-info-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lite-info-year {
+  color: var(--charcoal-light);
+  white-space: nowrap;
+  font-size: 0.7rem;
+}
+.lite-info-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  color: var(--charcoal-light);
+  font-size: 0.7rem;
+}
+
+/* Position indicator dots */
+.lite-dots {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+.lite-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.lite-dot-active { background: var(--crimson); }
+
+/* ══════════════════════════════════════════
+   EMPTY STATE
+   ══════════════════════════════════════════ */
+.lite-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--charcoal-light);
+  text-align: center;
+  padding: 2rem;
+}
+.lite-empty h3 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--charcoal);
+}
+.lite-empty p { font-size: 0.85rem; }
+.lite-empty .clear-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--crimson);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* Transitions */
+.fade-enter { opacity: 0; transform: scale(0.95); }
+.fade-enter-active { opacity: 1; transform: scale(1); }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="lite-header">
+  <div class="lite-header-left">
+    <span class="lite-header-title">Shoebox</span>
+    <span class="lite-header-count" id="photoCount">Loading...</span>
+  </div>
+  <button onclick="toggleFilterPanel('reset')" style="background:none;border:none;font-size:0.75rem;color:var(--crimson);cursor:pointer;padding:0.25rem 0.5rem;font-family:var(--font-sans);display:none" id="resetBtn">Reset filters</button>
+  <span style="font-size:0.7rem;color:var(--charcoal-light)">Lite</span>
+</header>
+
+<!-- ═══ FILTER BAR ═══ -->
+<div class="lite-filter-bar" id="filterBar">
+  <div class="lite-search">
+    <span style="opacity:0.4;font-size:0.75rem">&#128269;</span>
+    <input type="text" id="searchInput" placeholder="Search photos..." oninput="onSearch()" />
+  </div>
+  <div class="lite-filter-chip" id="decadeChip" onclick="openDropdown('decade')">
+    <span>Decade</span>
+    <span class="count" id="decadeCount">0</span>
+  </div>
+  <div class="lite-filter-chip" id="communityChip" onclick="openDropdown('community')">
+    <span>Community</span>
+    <span class="count" id="communityCount">0</span>
+  </div>
+  <div class="lite-filter-chip" id="familyChip" onclick="openDropdown('family')">
+    <span>Family</span>
+    <span class="count" id="familyCount">0</span>
+  </div>
+</div>
+
+<!-- ═══ DROPDOWN PANEL ═══ -->
+<div class="lite-dropdown-panel" id="dropdownPanel" onclick="closeDropdown(event)">
+  <div class="lite-dropdown-content" id="dropdownContent">
+    <div class="lite-dropdown-title" id="dropdownTitle">Filter</div>
+    <div id="dropdownItems"></div>
+    <div class="lite-dropdown-close" onclick="closeDropdown(null)">Close</div>
+  </div>
+</div>
+
+<!-- ═══ PHOTO VIEWER ═══ -->
+<div class="lite-viewport" id="viewport"
+     ontouchstart="onTouchStart(event)"
+     ontouchend="onTouchEnd(event)"
+     onclick="onViewportTap(event)">
+  <div id="photoContainer" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%">
+    <div class="loading-spinner"></div>
+  </div>
+  <button class="lite-nav lite-nav-prev" id="prevBtn" onclick="navigate(-1)">&#8249;</button>
+  <button class="lite-nav lite-nav-next" id="nextBtn" onclick="navigate(1)">&#8250;</button>
+</div>
+
+<!-- ═══ INFO BAR ═══ -->
+<div class="lite-info-bar">
+  <div class="lite-info-left">
+    <span class="lite-info-title" id="photoTitle">Photo</span>
+    <span class="lite-info-year" id="photoYear"></span>
+  </div>
+  <div class="lite-info-right">
+    <span id="photoPeople" style="overflow:hidden;text-overflow:ellipsis;max-width:120px;white-space:nowrap"></span>
+    <div class="lite-dots" id="dotContainer"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+let photos = []
+let filteredIndices = []
+let currentIdx = 0
+let isTransitioning = false
+let touchStartX = 0
+let touchStartY = 0
+
+const filters = {
+  search: '',
+  decades: new Set(),
+  communities: new Set(),
+  families: new Set(),
+}
+
+// Active chip tracking
+let activeDropdown = null
+
+// Base URL detection — works locally and on GitHub Pages
+function detectBaseUrl() {
+  const path = window.location.pathname
+  // If served from a subpath like /shoebox-v2/, use that as base
+  if (path.includes('/shoebox-v2/')) {
+    return path.substring(0, path.indexOf('/shoebox-v2/') + '/shoebox-v2/'.length)
+  }
+  // Local dev: server is running from shoebox/ directory
+  return path.substring(0, path.lastIndexOf('/') + 1) || '/'
+}
+const baseUrl = detectBaseUrl()
+
+// ══════════════════════════════════════════════
+// DATA LOADING
+// ══════════════════════════════════════════════
+async function loadData() {
+  try {
+    const manifestRes = await fetch(baseUrl + 'assets/shoebox/manifest.json')
+    const manifest = await manifestRes.json()
+    const raw = Array.isArray(manifest) ? manifest : (manifest.photos || [])
+    photos = raw.map((p, i) => ({
+      ...p,
+      index: i,
+      id: p.id || 'photo_' + (i + 1),
+    }))
+    applyFilters()
+  } catch (e) {
+    document.getElementById('photoContainer').innerHTML =
+      '<div class="lite-empty"><h3>Failed to load archive</h3><p>' + e.message + '</p></div>'
+  }
+}
+
+// ══════════════════════════════════════════════
+// FILTERING
+// ══════════════════════════════════════════════
+function getFilterOptions() {
+  const decades = new Set()
+  const communities = new Set()
+  const families = new Set()
+
+  photos.forEach(p => {
+    if (p.year) {
+      const d = Math.floor(p.year / 10) * 10 + 's'
+      decades.add(d)
+    }
+    if (p.community) communities.add(p.community)
+    else if (p.location) {
+      const c = p.location.split(',')[0].trim()
+      if (c) communities.add(c)
+    }
+    if (p.people) {
+      p.people.split(';').forEach(n => {
+        const t = n.trim()
+        if (t) families.add(t)
+      })
+    }
+  })
+
+  return {
+    decades: [...decades].sort(),
+    communities: [...communities].sort(),
+    families: [...families].sort(),
+  }
+}
+
+function matchesPhoto(p) {
+  // Search
+  if (filters.search) {
+    const q = filters.search.toLowerCase()
+    const fields = [p.title || '', p.caption || '', p.people || '', p.location || '', (p.keywords || []).join(' ')]
+    if (!fields.some(f => f.toLowerCase().includes(q))) return false
+  }
+  // Decade
+  if (filters.decades.size > 0) {
+    if (!p.year) return false
+    const d = Math.floor(p.year / 10) * 10 + 's'
+    if (!filters.decades.has(d)) return false
+  }
+  // Community
+  if (filters.communities.size > 0) {
+    const c = p.community || (p.location ? p.location.split(',')[0].trim() : '')
+    if (!filters.communities.has(c)) return false
+  }
+  // Family
+  if (filters.families.size > 0) {
+    const people = (p.people || '').toLowerCase()
+    let found = false
+    filters.families.forEach(f => { if (people.includes(f.toLowerCase())) found = true })
+    if (!found) return false
+  }
+  return true
+}
+
+function applyFilters() {
+  filteredIndices = photos.map((p, i) => i).filter(i => matchesPhoto(photos[i]))
+  document.getElementById('photoCount').textContent = filteredIndices.length + ' / ' + photos.length + ' photos'
+  updateFilterChips()
+  updateResetBtn()
+  if (filteredIndices.length === 0) {
+    document.getElementById('photoContainer').innerHTML =
+      '<div class="lite-empty"><h3>No photos match</h3><p>Try adjusting your filters</p><button class="clear-btn" onclick="clearFilters()">Clear all filters</button></div>'
+    document.getElementById('photoTitle').textContent = 'No results'
+    document.getElementById('photoYear').textContent = ''
+    document.getElementById('photoPeople').textContent = ''
+    document.getElementById('dotContainer').innerHTML = ''
+    document.getElementById('prevBtn').classList.add('lite-nav-hidden')
+    document.getElementById('nextBtn').classList.add('lite-nav-hidden')
+  } else {
+    currentIdx = 0
+    showPhoto(0)
+    document.getElementById('prevBtn').classList.remove('lite-nav-hidden')
+    document.getElementById('nextBtn').classList.remove('lite-nav-hidden')
+  }
+}
+
+function updateResetBtn() {
+  const hasFilters = filters.search || filters.decades.size || filters.communities.size || filters.families.size
+  document.getElementById('resetBtn').style.display = hasFilters ? 'block' : 'none'
+}
+
+function onSearch() {
+  filters.search = document.getElementById('searchInput').value
+  applyFilters()
+}
+
+function clearFilters() {
+  filters.search = ''
+  filters.decades.clear()
+  filters.communities.clear()
+  filters.families.clear()
+  document.getElementById('searchInput').value = ''
+  applyFilters()
+}
+
+// ══════════════════════════════════════════════
+// DROPDOWN
+// ══════════════════════════════════════════════
+function openDropdown(type) {
+  activeDropdown = type
+  const options = getFilterOptions()
+  const items = options[type + 's'] || []
+  const selected = filters[type + 's']
+
+  document.getElementById('dropdownTitle').textContent =
+    type === 'decade' ? 'Filter by Decade' :
+    type === 'community' ? 'Filter by Community' : 'Filter by Family'
+
+  let html = ''
+  items.forEach(item => {
+    const checked = selected.has(item) ? '&#10003; ' : ''
+    const count = countByFilter(type, item)
+    html += '<div class="lite-dropdown-item" onclick="toggleFilter(\'' + type + '\',\'' + item.replace(/'/g, "\\'") + '\')">' +
+      '<span><span class="check">' + checked + '</span>' + escapeHtml(item) + '</span>' +
+      '<span class="item-count">' + count + '</span></div>'
+  })
+  document.getElementById('dropdownItems').innerHTML = html
+  document.getElementById('dropdownPanel').classList.add('open')
+}
+
+function closeDropdown(e) {
+  if (e && e.target !== e.currentTarget) return // only close when clicking backdrop
+  document.getElementById('dropdownPanel').classList.remove('open')
+  activeDropdown = null
+}
+
+function toggleFilter(type, value) {
+  const set = filters[type + 's']
+  if (set.has(value)) set.delete(value)
+  else set.add(value)
+  applyFilters()
+  // Re-render dropdown without closing
+  openDropdown(activeDropdown)
+}
+
+function countByFilter(type, value) {
+  return photos.filter(p => {
+    if (type === 'decade') {
+      return p.year && Math.floor(p.year / 10) * 10 + 's' === value
+    }
+    if (type === 'community') {
+      const c = p.community || (p.location ? p.location.split(',')[0].trim() : '')
+      return c === value
+    }
+    if (type === 'family') {
+      return (p.people || '').toLowerCase().includes(value.toLowerCase())
+    }
+    return false
+  }).length
+}
+
+function updateFilterChips() {
+  const activeCounts = {
+    decades: filters.decades.size,
+    communities: filters.communities.size,
+    families: filters.families.size,
+  }
+  ;['decade', 'community', 'family'].forEach(type => {
+    const chip = document.getElementById(type + 'Chip')
+    const count = activeCounts[type + 's']
+    chip.classList.toggle('lite-filter-chip-active', count > 0)
+    chip.querySelector('.count').textContent = count || '0'
+  })
+}
+
+function toggleFilterPanel() {
+  // handled by individual chip clicks
+}
+
+// ══════════════════════════════════════════════
+// PHOTO NAVIGATION
+// ══════════════════════════════════════════════
+function navigate(delta) {
+  if (isTransitioning || filteredIndices.length === 0) return
+  const newIdx = currentIdx + delta
+  if (newIdx < 0 || newIdx >= filteredIndices.length) return
+  isTransitioning = true
+  currentIdx = newIdx
+  showPhoto(newIdx)
+}
+
+function showPhoto(idx) {
+  if (filteredIndices.length === 0) return
+  const pi = filteredIndices[idx]
+  const photo = photos[pi]
+  if (!photo) return
+
+  const container = document.getElementById('photoContainer')
+  const imgUrl = baseUrl + encodePath(photo.src)
+
+  // Spinner while loading
+  container.innerHTML = '<div class="loading-spinner"></div>'
+
+  const img = new Image()
+  img.onload = function() {
+    container.innerHTML = ''
+    container.appendChild(img)
+    isTransitioning = false
+    updateInfo(idx)
+    updateDots(idx)
+    preloadNeighbors(idx)
+  }
+  img.onerror = function() {
+    container.innerHTML = '<div style="color:#999;font-size:0.85rem;text-align:center"><p>Failed to load</p><p style="font-size:0.7rem;margin-top:0.25rem">' + escapeHtml(photo.title || photo.alt || '') + '</p></div>'
+    isTransitioning = false
+  }
+  img.src = imgUrl
+  img.alt = photo.alt || photo.title || 'Photo'
+  img.draggable = false
+
+  // Update nav button visibility
+  document.getElementById('prevBtn').classList.toggle('lite-nav-hidden', idx <= 0)
+  document.getElementById('nextBtn').classList.toggle('lite-nav-hidden', idx >= filteredIndices.length - 1)
+}
+
+function preloadNeighbors(idx) {
+  // Preload next and prev images
+  if (idx < filteredIndices.length - 1) {
+    const nextPhoto = photos[filteredIndices[idx + 1]]
+    if (nextPhoto) { const img = new Image(); img.src = baseUrl + encodePath(nextPhoto.src) }
+  }
+  if (idx > 0) {
+    const prevPhoto = photos[filteredIndices[idx - 1]]
+    if (prevPhoto) { const img = new Image(); img.src = baseUrl + encodePath(prevPhoto.src) }
+  }
+}
+
+function updateInfo(idx) {
+  if (filteredIndices.length === 0) return
+  const pi = filteredIndices[idx]
+  const photo = photos[pi]
+  if (!photo) return
+
+  document.getElementById('photoTitle').textContent = photo.title || photo.alt || 'Untitled'
+  const yearStr = formatYear(photo)
+  document.getElementById('photoYear').textContent = yearStr
+  document.getElementById('photoPeople').textContent = photo.people || ''
+}
+
+function formatYear(photo) {
+  if (!photo.year) return ''
+  if (photo.photoYearSource === 'scan-date') return '\uD83D\uDCC5 ' + photo.year + ' (scanned)'
+  if (photo.photoYearSource === 'keyword-era') return '\uD83D\uDCC5 \u2248' + photo.year
+  return '\uD83D\uDCC5 ' + photo.year
+}
+
+function updateDots(idx) {
+  const container = document.getElementById('dotContainer')
+  const total = filteredIndices.length
+  if (total > 100) {
+    // Show a small subset around current position
+    container.innerHTML = '<span style="font-size:0.65rem;color:var(--charcoal-light)">' + (idx + 1) + '/' + total + '</span>'
+    return
+  }
+  let html = ''
+  for (let i = 0; i < total && i < 40; i++) {
+    html += '<span class="lite-dot' + (i === idx ? ' lite-dot-active' : '') + '"></span>'
+  }
+  if (total > 40) html += '<span style="font-size:0.6rem;color:var(--charcoal-light)">+' + (total - 40) + '</span>'
+  container.innerHTML = html
+}
+
+// ══════════════════════════════════════════════
+// TOUCH / GESTURE
+// ══════════════════════════════════════════════
+function onTouchStart(e) {
+  touchStartX = e.touches[0].clientX
+  touchStartY = e.touches[0].clientY
+}
+
+function onTouchEnd(e) {
+  const dx = e.changedTouches[0].clientX - touchStartX
+  const dy = e.changedTouches[0].clientY - touchStartY
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+    if (dx < 0) navigate(1)
+    else navigate(-1)
+  }
+}
+
+function onViewportTap(e) {
+  const w = window.innerWidth
+  if (e.clientX < w * 0.3) navigate(-1)
+  else if (e.clientX > w * 0.7) navigate(1)
+}
+
+// ══════════════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════════════
+function encodePath(path) {
+  return path.split('/').map(s => encodeURIComponent(s)).join('/')
+}
+
+function escapeHtml(str) {
+  if (!str) return ''
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+}
+
+// ══════════════════════════════════════════════
+// KEYBOARD
+// ══════════════════════════════════════════════
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowLeft') navigate(-1)
+  else if (e.key === 'ArrowRight') navigate(1)
+})
+
+// ── START ──
+loadData()
+</script>
+</body>
+</html>

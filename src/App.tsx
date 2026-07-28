@@ -10,6 +10,7 @@ import StoriesView from './components/StoriesView'
 import ContributeForm from './components/ContributeForm'
 import HeroCarousel from './components/HeroCarousel'
 import AdminPanel from './components/AdminPanel'
+import IdleSlideshow from './components/IdleSlideshow'
 
 // Debounce hook
 function useDebouncedValue<T>(value: T, delay: number): T {
@@ -367,6 +368,9 @@ export default function App() {
       {showContribute && (
         <ContributeForm onClose={() => setShowContribute(false)} />
       )}
+
+      {/* Idle timeout slideshow */}
+      <IdleSlideshow photos={photos} baseUrl={import.meta.env.BASE_URL} />
     </div>
   )
 }
