@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-28T18:06:32.711Z",
+  "generatedAt": "2026-07-29T00:10:33.322Z",
   "photoCount": 376,
   "photos": [
     {
@@ -29,7 +29,9 @@
       "lastModified": 1785258104000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.509,
+      "faceY": 0.304
     },
     {
       "id": "photo_2",
@@ -56,7 +58,9 @@
       "lastModified": 1785258120000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.75,
+      "faceY": 0.644
     },
     {
       "id": "photo_3",
@@ -83,7 +87,9 @@
       "lastModified": 1785258118000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.663,
+      "faceY": 0.17
     },
     {
       "id": "photo_4",
@@ -110,7 +116,9 @@
       "lastModified": 1785258120000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.122,
+      "faceY": 0.688
     },
     {
       "id": "photo_5",
@@ -138,7 +146,9 @@
       "lastModified": 1785258066000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.573,
+      "faceY": 0.502
     },
     {
       "id": "photo_6",
@@ -169,7 +179,9 @@
       "lastModified": 1785258110000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.51,
+      "faceY": 0.335
     },
     {
       "id": "photo_7",
@@ -199,7 +211,9 @@
       "lastModified": 1785258120000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.5,
+      "faceY": 0.393
     },
     {
       "id": "photo_8",
@@ -226,7 +240,9 @@
       "lastModified": 1785258120000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.248,
+      "faceY": 0.804
     },
     {
       "id": "photo_9",
@@ -256,7 +272,9 @@
       "lastModified": 1785258106000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.55,
+      "faceY": 0.269
     },
     {
       "id": "photo_10",
@@ -284,7 +302,9 @@
       "lastModified": 1785258108000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.394,
+      "faceY": 0.273
     },
     {
       "id": "photo_11",
@@ -314,7 +334,9 @@
       "lastModified": 1785258116000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.212,
+      "faceY": 0.4
     },
     {
       "id": "photo_12",
@@ -343,7 +365,9 @@
       "lastModified": 1785258098000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.539,
+      "faceY": 0.22
     },
     {
       "id": "photo_13",
@@ -372,7 +396,9 @@
       "lastModified": 1785257930000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.248,
+      "faceY": 0.862
     },
     {
       "id": "photo_14",
@@ -401,7 +427,9 @@
       "lastModified": 1785258112000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.371,
+      "faceY": 0.422
     },
     {
       "id": "photo_15",
@@ -431,7 +459,9 @@
       "lastModified": 1785258098000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.329,
+      "faceY": 0.668
     },
     {
       "id": "photo_16",
@@ -460,7 +490,9 @@
       "lastModified": 1785258098000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.787,
+      "faceY": 0.24
     },
     {
       "id": "photo_17",
@@ -488,7 +520,9 @@
       "lastModified": 1785258098000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.544,
+      "faceY": 0.638
     },
     {
       "id": "photo_18",
@@ -519,7 +553,9 @@
       "lastModified": 1785258094000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.205,
+      "faceY": 0.375
     },
     {
       "id": "photo_19",
@@ -548,7 +584,9 @@
       "lastModified": 1785258098000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.437,
+      "faceY": 0.399
     },
     {
       "id": "photo_20",
@@ -577,7 +615,9 @@
       "lastModified": 1785258096000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.521,
+      "faceY": 0.413
     },
     {
       "id": "photo_21",
@@ -605,7 +645,9 @@
       "lastModified": 1785258100000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.669,
+      "faceY": 0.259
     },
     {
       "id": "photo_22",
@@ -637,7 +679,9 @@
       "lastModified": 1785258058000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.216,
+      "faceY": 0.406
     },
     {
       "id": "photo_23",
@@ -667,7 +711,9 @@
       "lastModified": 1785258116000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.617,
+      "faceY": 0.8
     },
     {
       "id": "photo_24",
@@ -695,7 +741,9 @@
       "lastModified": 1785258096000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.494,
+      "faceY": 0.686
     },
     {
       "id": "photo_25",
@@ -725,7 +773,9 @@
       "lastModified": 1785258100000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.148,
+      "faceY": 0.119
     },
     {
       "id": "photo_26",
@@ -754,7 +804,9 @@
       "lastModified": 1785258094000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.609,
+      "faceY": 0.284
     },
     {
       "id": "photo_27",
@@ -785,7 +837,9 @@
       "lastModified": 1785258118000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.397,
+      "faceY": 0.582
     },
     {
       "id": "photo_28",
@@ -817,7 +871,9 @@
       "lastModified": 1785258110000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.41,
+      "faceY": 0.238
     },
     {
       "id": "photo_29",
@@ -846,7 +902,9 @@
       "lastModified": 1785258096000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.089,
+      "faceY": 0.59
     },
     {
       "id": "photo_30",
@@ -878,7 +936,9 @@
       "lastModified": 1785258104000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.333,
+      "faceY": 0.279
     },
     {
       "id": "photo_31",
@@ -905,7 +965,9 @@
       "lastModified": 1785258120000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.823,
+      "faceY": 0.241
     },
     {
       "id": "photo_32",
@@ -935,7 +997,9 @@
       "lastModified": 1785258114000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.835,
+      "faceY": 0.537
     },
     {
       "id": "photo_33",
@@ -968,7 +1032,9 @@
       "lastModified": 1785257992000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.458,
+      "faceY": 0.9
     },
     {
       "id": "photo_34",
@@ -998,7 +1064,9 @@
       "lastModified": 1785258108000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.536,
+      "faceY": 0.203
     },
     {
       "id": "photo_35",
@@ -1028,7 +1096,9 @@
       "lastModified": 1785258096000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.34,
+      "faceY": 0.639
     },
     {
       "id": "photo_36",
@@ -1062,7 +1132,9 @@
       "lastModified": 1785258108000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.514,
+      "faceY": 0.245
     },
     {
       "id": "photo_37",
@@ -1089,7 +1161,9 @@
       "lastModified": 1785258114000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.357,
+      "faceY": 0.871
     },
     {
       "id": "photo_38",
@@ -1117,7 +1191,9 @@
       "lastModified": 1785258102000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": null,
+      "faceY": null
     },
     {
       "id": "photo_39",
@@ -1147,7 +1223,9 @@
       "lastModified": 1785258116000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.611,
+      "faceY": 0.558
     },
     {
       "id": "photo_40",
@@ -1178,7 +1256,9 @@
       "lastModified": 1785258108000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.374,
+      "faceY": 0.564
     },
     {
       "id": "photo_41",
@@ -1206,7 +1286,9 @@
       "lastModified": 1785258104000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": null,
+      "faceY": null
     },
     {
       "id": "photo_42",
@@ -1238,7 +1320,9 @@
       "lastModified": 1785258112000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.13,
+      "faceY": 0.389
     },
     {
       "id": "photo_43",
@@ -1272,7 +1356,9 @@
       "lastModified": 1785258098000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.352,
+      "faceY": 0.277
     },
     {
       "id": "photo_44",
@@ -1304,7 +1390,9 @@
       "lastModified": 1785258108000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.764,
+      "faceY": 0.487
     },
     {
       "id": "photo_45",
@@ -1335,7 +1423,9 @@
       "lastModified": 1785258106000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.351,
+      "faceY": 0.891
     },
     {
       "id": "photo_46",
@@ -1365,7 +1455,9 @@
       "lastModified": 1785258112000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.249,
+      "faceY": 0.194
     },
     {
       "id": "photo_47",
@@ -1396,7 +1488,9 @@
       "lastModified": 1785258102000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.094,
+      "faceY": 0.842
     },
     {
       "id": "photo_48",
@@ -1427,7 +1521,9 @@
       "lastModified": 1785258102000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.472,
+      "faceY": 0.117
     },
     {
       "id": "photo_49",
@@ -1461,7 +1557,9 @@
       "lastModified": 1785258070000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": null,
+      "faceY": null
     },
     {
       "id": "photo_50",
@@ -1494,7 +1592,9 @@
       "lastModified": 1785258070000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.649,
+      "faceY": 0.578
     },
     {
       "id": "photo_51",
@@ -1527,7 +1627,9 @@
       "lastModified": 1785258100000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.05,
+      "faceY": 0.527
     },
     {
       "id": "photo_52",
@@ -1556,7 +1658,9 @@
       "lastModified": 1785258102000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.437,
+      "faceY": 0.78
     },
     {
       "id": "photo_53",
@@ -1585,7 +1689,9 @@
       "lastModified": 1785258100000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.88,
+      "faceY": 0.826
     },
     {
       "id": "photo_54",
@@ -1617,7 +1723,9 @@
       "lastModified": 1785258100000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.537,
+      "faceY": 0.334
     },
     {
       "id": "photo_55",
@@ -1647,7 +1755,9 @@
       "lastModified": 1785258098000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.826,
+      "faceY": 0.322
     },
     {
       "id": "photo_56",
@@ -1682,7 +1792,9 @@
       "lastModified": 1785257932000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.536,
+      "faceY": 0.316
     },
     {
       "id": "photo_57",
@@ -1712,7 +1824,9 @@
       "lastModified": 1785258004000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.464,
+      "faceY": 0.433
     },
     {
       "id": "photo_58",
@@ -1742,7 +1856,9 @@
       "lastModified": 1785257930000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.674,
+      "faceY": 0.345
     },
     {
       "id": "photo_59",
@@ -1770,7 +1886,9 @@
       "lastModified": 1785258006000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.702,
+      "faceY": 0.677
     },
     {
       "id": "photo_60",
@@ -1807,7 +1925,9 @@
       "lastModified": 1785257932000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.851,
+      "faceY": 0.171
     },
     {
       "id": "photo_61",
@@ -1844,7 +1964,9 @@
       "lastModified": 1785257976000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.61,
+      "faceY": 0.248
     },
     {
       "id": "photo_62",
@@ -1877,7 +1999,9 @@
       "lastModified": 1785257980000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.77,
+      "faceY": 0.764
     },
     {
       "id": "photo_63",
@@ -1910,7 +2034,9 @@
       "lastModified": 1785257982000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.332,
+      "faceY": 0.666
     },
     {
       "id": "photo_64",
@@ -1941,7 +2067,9 @@
       "lastModified": 1785257984000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.346,
+      "faceY": 0.551
     },
     {
       "id": "photo_65",
@@ -1974,7 +2102,9 @@
       "lastModified": 1785257986000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.68,
+      "faceY": 0.717
     },
     {
       "id": "photo_66",
@@ -2006,7 +2136,9 @@
       "lastModified": 1785257986000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.441,
+      "faceY": 0.737
     },
     {
       "id": "photo_67",
@@ -2037,7 +2169,9 @@
       "lastModified": 1785257976000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.477,
+      "faceY": 0.516
     },
     {
       "id": "photo_68",
@@ -2068,7 +2202,9 @@
       "lastModified": 1785257978000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.564,
+      "faceY": 0.333
     },
     {
       "id": "photo_69",
@@ -2099,7 +2235,9 @@
       "lastModified": 1785257978000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.635,
+      "faceY": 0.349
     },
     {
       "id": "photo_70",
@@ -2129,7 +2267,9 @@
       "lastModified": 1785257976000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.562,
+      "faceY": 0.305
     },
     {
       "id": "photo_71",
@@ -2168,7 +2308,9 @@
       "lastModified": 1785257982000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.154,
+      "faceY": 0.76
     },
     {
       "id": "photo_72",
@@ -2197,7 +2339,9 @@
       "lastModified": 1785257980000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.485,
+      "faceY": 0.383
     },
     {
       "id": "photo_73",
@@ -2237,7 +2381,9 @@
       "lastModified": 1785257986000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.422,
+      "faceY": 0.192
     },
     {
       "id": "photo_74",
@@ -2276,7 +2422,9 @@
       "lastModified": 1785257982000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.309,
+      "faceY": 0.723
     },
     {
       "id": "photo_75",
@@ -2310,7 +2458,9 @@
       "lastModified": 1785257976000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.619,
+      "faceY": 0.094
     },
     {
       "id": "photo_76",
@@ -2340,7 +2490,9 @@
       "lastModified": 1785257984000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.501,
+      "faceY": 0.436
     },
     {
       "id": "photo_77",
@@ -2377,7 +2529,9 @@
       "lastModified": 1785257980000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.642,
+      "faceY": 0.312
     },
     {
       "id": "photo_78",
@@ -2411,7 +2565,9 @@
       "lastModified": 1785257986000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.466,
+      "faceY": 0.163
     },
     {
       "id": "photo_79",
@@ -2448,7 +2604,9 @@
       "lastModified": 1785257984000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.656,
+      "faceY": 0.279
     },
     {
       "id": "photo_80",
@@ -2478,7 +2636,9 @@
       "lastModified": 1785257928000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.523,
+      "faceY": 0.208
     },
     {
       "id": "photo_81",
@@ -2508,7 +2668,9 @@
       "lastModified": 1785257962000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.482,
+      "faceY": 0.389
     },
     {
       "id": "photo_82",
@@ -2542,7 +2704,9 @@
       "lastModified": 1785257946000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.674,
+      "faceY": 0.712
     },
     {
       "id": "photo_83",
@@ -2578,7 +2742,9 @@
       "lastModified": 1785257946000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.352,
+      "faceY": 0.055
     },
     {
       "id": "photo_84",
@@ -2613,7 +2779,9 @@
       "lastModified": 1785257948000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.501,
+      "faceY": 0.286
     },
     {
       "id": "photo_85",
@@ -2650,7 +2818,9 @@
       "lastModified": 1785257950000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.281,
+      "faceY": 0.554
     },
     {
       "id": "photo_86",
@@ -2688,7 +2858,9 @@
       "lastModified": 1785257950000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.361,
+      "faceY": 0.541
     },
     {
       "id": "photo_87",
@@ -2723,7 +2895,9 @@
       "lastModified": 1785257946000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.717,
+      "faceY": 0.352
     },
     {
       "id": "photo_88",
@@ -2757,7 +2931,9 @@
       "lastModified": 1785257952000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.425,
+      "faceY": 0.153
     },
     {
       "id": "photo_89",
@@ -2793,7 +2969,9 @@
       "lastModified": 1785257954000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.446,
+      "faceY": 0.565
     },
     {
       "id": "photo_90",
@@ -2822,7 +3000,9 @@
       "lastModified": 1785258702000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.804,
+      "faceY": 0.287
     },
     {
       "id": "photo_91",
@@ -2852,7 +3032,9 @@
       "lastModified": 1785258072000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.434,
+      "faceY": 0.374
     },
     {
       "id": "photo_92",
@@ -2883,7 +3065,9 @@
       "lastModified": 1785258116000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.712,
+      "faceY": 0.192
     },
     {
       "id": "photo_93",
@@ -2918,7 +3102,9 @@
       "lastModified": 1785258100000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.249,
+      "faceY": 0.307
     },
     {
       "id": "photo_94",
@@ -2950,7 +3136,9 @@
       "lastModified": 1785257972000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.492,
+      "faceY": 0.356
     },
     {
       "id": "photo_95",
@@ -2978,7 +3166,9 @@
       "lastModified": 1785258104000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.142,
+      "faceY": 0.597
     },
     {
       "id": "photo_96",
@@ -3003,7 +3193,9 @@
       "lastModified": 1785258118000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.355,
+      "faceY": 0.74
     },
     {
       "id": "photo_97",
@@ -3034,7 +3226,9 @@
       "lastModified": 1785258102000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.319,
+      "faceY": 0.464
     },
     {
       "id": "photo_98",
@@ -3066,7 +3260,9 @@
       "lastModified": 1785258114000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.219,
+      "faceY": 0.501
     },
     {
       "id": "photo_99",
@@ -3099,7 +3295,9 @@
       "lastModified": 1785258070000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.484,
+      "faceY": 0.531
     },
     {
       "id": "photo_100",
@@ -3132,7 +3330,9 @@
       "lastModified": 1785258100000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.617,
+      "faceY": 0.226
     },
     {
       "id": "photo_101",
@@ -3163,7 +3363,9 @@
       "lastModified": 1785258098000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.501,
+      "faceY": 0.449
     },
     {
       "id": "photo_102",
@@ -3196,7 +3398,9 @@
       "lastModified": 1785258080000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.607,
+      "faceY": 0.635
     },
     {
       "id": "photo_103",
@@ -3225,7 +3429,9 @@
       "lastModified": 1785258098000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.483,
+      "faceY": 0.809
     },
     {
       "id": "photo_104",
@@ -3255,7 +3461,9 @@
       "lastModified": 1785258096000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.613,
+      "faceY": 0.819
     },
     {
       "id": "photo_105",
@@ -3287,7 +3495,9 @@
       "lastModified": 1785258112000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.104,
+      "faceY": 0.483
     },
     {
       "id": "photo_106",
@@ -3320,7 +3530,9 @@
       "lastModified": 1785258096000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.335,
+      "faceY": 0.361
     },
     {
       "id": "photo_107",
@@ -3349,7 +3561,9 @@
       "lastModified": 1785258118000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.463,
+      "faceY": 0.576
     },
     {
       "id": "photo_108",
@@ -3382,7 +3596,9 @@
       "lastModified": 1785258066000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.923,
+      "faceY": 0.128
     },
     {
       "id": "photo_109",
@@ -3418,7 +3634,9 @@
       "lastModified": 1785257978000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.511,
+      "faceY": 0.605
     },
     {
       "id": "photo_110",
@@ -3451,7 +3669,9 @@
       "lastModified": 1785258096000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.499,
+      "faceY": 0.789
     },
     {
       "id": "photo_111",
@@ -3482,7 +3702,9 @@
       "lastModified": 1785257958000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.466,
+      "faceY": 0.081
     },
     {
       "id": "photo_112",
@@ -3512,7 +3734,9 @@
       "lastModified": 1785258094000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.525,
+      "faceY": 0.389
     },
     {
       "id": "photo_113",
@@ -3543,7 +3767,9 @@
       "lastModified": 1785258090000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.573,
+      "faceY": 0.432
     },
     {
       "id": "photo_114",
@@ -3570,7 +3796,9 @@
       "lastModified": 1785258686000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.521,
+      "faceY": 0.524
     },
     {
       "id": "photo_115",
@@ -3597,7 +3825,9 @@
       "lastModified": 1785258672000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.398,
+      "faceY": 0.566
     },
     {
       "id": "photo_116",
@@ -3625,7 +3855,9 @@
       "lastModified": 1785258098000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.641,
+      "faceY": 0.621
     },
     {
       "id": "photo_117",
@@ -3662,7 +3894,9 @@
       "lastModified": 1785257946000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.469,
+      "faceY": 0.253
     },
     {
       "id": "photo_118",
@@ -3698,7 +3932,9 @@
       "lastModified": 1785257950000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.558,
+      "faceY": 0.427
     },
     {
       "id": "photo_119",
@@ -3731,7 +3967,9 @@
       "lastModified": 1785258068000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.079,
+      "faceY": 0.35
     },
     {
       "id": "photo_120",
@@ -3761,7 +3999,9 @@
       "lastModified": 1785258064000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.407,
+      "faceY": 0.357
     },
     {
       "id": "photo_121",
@@ -3792,7 +4032,9 @@
       "lastModified": 1785258092000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.411,
+      "faceY": 0.35
     },
     {
       "id": "photo_122",
@@ -3826,7 +4068,9 @@
       "lastModified": 1785257952000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.075,
+      "faceY": 0.79
     },
     {
       "id": "photo_123",
@@ -3855,7 +4099,9 @@
       "lastModified": 1785258082000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.39,
+      "faceY": 0.299
     },
     {
       "id": "photo_124",
@@ -3884,7 +4130,9 @@
       "lastModified": 1785258086000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.426,
+      "faceY": 0.45
     },
     {
       "id": "photo_125",
@@ -3914,7 +4162,9 @@
       "lastModified": 1785258428000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.677,
+      "faceY": 0.536
     },
     {
       "id": "photo_126",
@@ -3949,7 +4199,9 @@
       "lastModified": 1785257986000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": null,
+      "faceY": null
     },
     {
       "id": "photo_127",
@@ -3981,7 +4233,9 @@
       "lastModified": 1785257990000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.453,
+      "faceY": 0.519
     },
     {
       "id": "photo_128",
@@ -4011,7 +4265,9 @@
       "lastModified": 1785258546000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.499,
+      "faceY": 0.356
     },
     {
       "id": "photo_129",
@@ -4040,7 +4296,9 @@
       "lastModified": 1785258454000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.49,
+      "faceY": 0.464
     },
     {
       "id": "photo_130",
@@ -4071,7 +4329,9 @@
       "lastModified": 1785258800000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.476,
+      "faceY": 0.457
     },
     {
       "id": "photo_131",
@@ -4102,7 +4362,9 @@
       "lastModified": 1785258746000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.392,
+      "faceY": 0.618
     },
     {
       "id": "photo_132",
@@ -4133,7 +4395,9 @@
       "lastModified": 1785258742000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.804,
+      "faceY": 0.357
     },
     {
       "id": "photo_133",
@@ -4164,7 +4428,9 @@
       "lastModified": 1785258760000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.448,
+      "faceY": 0.484
     },
     {
       "id": "photo_134",
@@ -4195,7 +4461,9 @@
       "lastModified": 1785258778000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.356,
+      "faceY": 0.518
     },
     {
       "id": "photo_135",
@@ -4226,7 +4494,9 @@
       "lastModified": 1785258798000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.4,
+      "faceY": 0.136
     },
     {
       "id": "photo_136",
@@ -4257,7 +4527,9 @@
       "lastModified": 1785258728000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.402,
+      "faceY": 0.617
     },
     {
       "id": "photo_137",
@@ -4289,7 +4561,9 @@
       "lastModified": 1785257958000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.358,
+      "faceY": 0.229
     },
     {
       "id": "photo_138",
@@ -4319,7 +4593,9 @@
       "lastModified": 1785258072000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.124,
+      "faceY": 0.771
     },
     {
       "id": "photo_139",
@@ -4349,7 +4625,9 @@
       "lastModified": 1785258078000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.22,
+      "faceY": 0.25
     },
     {
       "id": "photo_140",
@@ -4379,7 +4657,9 @@
       "lastModified": 1785258070000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.196,
+      "faceY": 0.769
     },
     {
       "id": "photo_141",
@@ -4410,7 +4690,9 @@
       "lastModified": 1785258072000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.463,
+      "faceY": 0.3
     },
     {
       "id": "photo_142",
@@ -4440,7 +4722,9 @@
       "lastModified": 1785258076000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.599,
+      "faceY": 0.286
     },
     {
       "id": "photo_143",
@@ -4472,7 +4756,9 @@
       "lastModified": 1785258088000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.248,
+      "faceY": 0.958
     },
     {
       "id": "photo_144",
@@ -4505,7 +4791,9 @@
       "lastModified": 1785258088000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.647,
+      "faceY": 0.205
     },
     {
       "id": "photo_145",
@@ -4536,7 +4824,9 @@
       "lastModified": 1785258090000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.257,
+      "faceY": 0.498
     },
     {
       "id": "photo_146",
@@ -4565,7 +4855,9 @@
       "lastModified": 1785258092000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.207,
+      "faceY": 0.193
     },
     {
       "id": "photo_147",
@@ -4596,7 +4888,9 @@
       "lastModified": 1785258094000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.452,
+      "faceY": 0.292
     },
     {
       "id": "photo_148",
@@ -4625,7 +4919,9 @@
       "lastModified": 1785258090000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.743,
+      "faceY": 0.198
     },
     {
       "id": "photo_149",
@@ -4654,7 +4950,9 @@
       "lastModified": 1785258096000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.813,
+      "faceY": 0.581
     },
     {
       "id": "photo_150",
@@ -4687,7 +4985,9 @@
       "lastModified": 1785258068000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.385,
+      "faceY": 0.555
     },
     {
       "id": "photo_151",
@@ -4717,7 +5017,9 @@
       "lastModified": 1785257960000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.766,
+      "faceY": 0.315
     },
     {
       "id": "photo_152",
@@ -4750,7 +5052,9 @@
       "lastModified": 1785257988000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.645,
+      "faceY": 0.389
     },
     {
       "id": "photo_153",
@@ -4780,7 +5084,9 @@
       "lastModified": 1785258224000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.447,
+      "faceY": 0.418
     },
     {
       "id": "photo_154",
@@ -4808,7 +5114,9 @@
       "lastModified": 1785258090000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.665,
+      "faceY": 0.735
     },
     {
       "id": "photo_155",
@@ -4840,7 +5148,9 @@
       "lastModified": 1785258094000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.235,
+      "faceY": 0.784
     },
     {
       "id": "photo_156",
@@ -4868,7 +5178,9 @@
       "lastModified": 1785258108000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.744,
+      "faceY": 0.236
     },
     {
       "id": "photo_157",
@@ -4902,7 +5214,9 @@
       "lastModified": 1785257938000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.39,
+      "faceY": 0.169
     },
     {
       "id": "photo_158",
@@ -4936,7 +5250,9 @@
       "lastModified": 1785257938000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.555,
+      "faceY": 0.528
     },
     {
       "id": "photo_159",
@@ -4972,7 +5288,9 @@
       "lastModified": 1785257990000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.491,
+      "faceY": 0.602
     },
     {
       "id": "photo_160",
@@ -5012,7 +5330,9 @@
       "lastModified": 1785257934000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.569,
+      "faceY": 0.188
     },
     {
       "id": "photo_161",
@@ -5051,7 +5371,9 @@
       "lastModified": 1785257938000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.452,
+      "faceY": 0.196
     },
     {
       "id": "photo_162",
@@ -5085,7 +5407,9 @@
       "lastModified": 1785257932000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.47,
+      "faceY": 0.54
     },
     {
       "id": "photo_163",
@@ -5113,7 +5437,9 @@
       "lastModified": 1785258006000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.399,
+      "faceY": 0.286
     },
     {
       "id": "photo_164",
@@ -5150,7 +5476,9 @@
       "lastModified": 1785257930000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.674,
+      "faceY": 0.519
     },
     {
       "id": "photo_165",
@@ -5192,7 +5520,9 @@
       "lastModified": 1785257930000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.161,
+      "faceY": 0.372
     },
     {
       "id": "photo_166",
@@ -5232,7 +5562,9 @@
       "lastModified": 1785257930000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.624,
+      "faceY": 0.585
     },
     {
       "id": "photo_167",
@@ -5271,7 +5603,9 @@
       "lastModified": 1785258042000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.083,
+      "faceY": 0.347
     },
     {
       "id": "photo_168",
@@ -5302,7 +5636,9 @@
       "lastModified": 1785257930000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.531,
+      "faceY": 0.172
     },
     {
       "id": "photo_169",
@@ -5331,7 +5667,9 @@
       "lastModified": 1785257936000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.278,
+      "faceY": 0.162
     },
     {
       "id": "photo_170",
@@ -5361,7 +5699,9 @@
       "lastModified": 1785257970000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.442,
+      "faceY": 0.345
     },
     {
       "id": "photo_171",
@@ -5398,7 +5738,9 @@
       "lastModified": 1785257948000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.462,
+      "faceY": 0.714
     },
     {
       "id": "photo_172",
@@ -5433,7 +5775,9 @@
       "lastModified": 1785257952000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.388,
+      "faceY": 0.143
     },
     {
       "id": "photo_173",
@@ -5466,7 +5810,9 @@
       "lastModified": 1785257944000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.361,
+      "faceY": 0.667
     },
     {
       "id": "photo_174",
@@ -5497,7 +5843,9 @@
       "lastModified": 1785257942000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.88,
+      "faceY": 0.586
     },
     {
       "id": "photo_175",
@@ -5526,7 +5874,9 @@
       "lastModified": 1785258086000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.766,
+      "faceY": 0.401
     },
     {
       "id": "photo_176",
@@ -5553,7 +5903,9 @@
       "lastModified": 1785258088000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.432,
+      "faceY": 0.422
     },
     {
       "id": "photo_177",
@@ -5582,7 +5934,9 @@
       "lastModified": 1785258086000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.571,
+      "faceY": 0.671
     },
     {
       "id": "photo_178",
@@ -5610,7 +5964,9 @@
       "lastModified": 1785258074000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.766,
+      "faceY": 0.434
     },
     {
       "id": "photo_179",
@@ -5648,7 +6004,9 @@
       "lastModified": 1785257940000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.461,
+      "faceY": 0.709
     },
     {
       "id": "photo_180",
@@ -5688,7 +6046,9 @@
       "lastModified": 1785257940000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.215,
+      "faceY": 0.527
     },
     {
       "id": "photo_181",
@@ -5719,7 +6079,9 @@
       "lastModified": 1785257942000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.498,
+      "faceY": 0.654
     },
     {
       "id": "photo_182",
@@ -5753,7 +6115,9 @@
       "lastModified": 1785257942000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.262,
+      "faceY": 0.558
     },
     {
       "id": "photo_183",
@@ -5790,7 +6154,9 @@
       "lastModified": 1785258042000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.293,
+      "faceY": 0.304
     },
     {
       "id": "photo_184",
@@ -5821,7 +6187,9 @@
       "lastModified": 1785257938000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.674,
+      "faceY": 0.781
     },
     {
       "id": "photo_185",
@@ -5854,7 +6222,9 @@
       "lastModified": 1785257938000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.483,
+      "faceY": 0.622
     },
     {
       "id": "photo_186",
@@ -5885,7 +6255,9 @@
       "lastModified": 1785257940000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.851,
+      "faceY": 0.271
     },
     {
       "id": "photo_187",
@@ -5917,7 +6289,9 @@
       "lastModified": 1785257944000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.096,
+      "faceY": 0.132
     },
     {
       "id": "photo_188",
@@ -5951,7 +6325,9 @@
       "lastModified": 1785257944000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.227,
+      "faceY": 0.686
     },
     {
       "id": "photo_189",
@@ -5984,7 +6360,9 @@
       "lastModified": 1785257940000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.513,
+      "faceY": 0.893
     },
     {
       "id": "photo_190",
@@ -6016,7 +6394,9 @@
       "lastModified": 1785257940000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.777,
+      "faceY": 0.499
     },
     {
       "id": "photo_191",
@@ -6057,7 +6437,9 @@
       "lastModified": 1785257942000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.728,
+      "faceY": 0.85
     },
     {
       "id": "photo_192",
@@ -6086,7 +6468,9 @@
       "lastModified": 1785258458000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.475,
+      "faceY": 0.322
     },
     {
       "id": "photo_193",
@@ -6117,7 +6501,9 @@
       "lastModified": 1785257944000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.242,
+      "faceY": 0.407
     },
     {
       "id": "photo_194",
@@ -6148,7 +6534,9 @@
       "lastModified": 1785257942000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.547,
+      "faceY": 0.439
     },
     {
       "id": "photo_195",
@@ -6178,7 +6566,9 @@
       "lastModified": 1785258110000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.528,
+      "faceY": 0.372
     },
     {
       "id": "photo_196",
@@ -6209,7 +6599,9 @@
       "lastModified": 1785257940000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.787,
+      "faceY": 0.249
     },
     {
       "id": "photo_197",
@@ -6238,7 +6630,9 @@
       "lastModified": 1785258110000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.334,
+      "faceY": 0.543
     },
     {
       "id": "photo_198",
@@ -6266,7 +6660,9 @@
       "lastModified": 1785258076000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.882,
+      "faceY": 0.557
     },
     {
       "id": "photo_199",
@@ -6294,7 +6690,9 @@
       "lastModified": 1785258080000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.568,
+      "faceY": 0.158
     },
     {
       "id": "photo_200",
@@ -6322,7 +6720,9 @@
       "lastModified": 1785258084000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.552,
+      "faceY": 0.327
     },
     {
       "id": "photo_201",
@@ -6357,7 +6757,9 @@
       "lastModified": 1785257940000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.632,
+      "faceY": 0.479
     },
     {
       "id": "photo_202",
@@ -6386,7 +6788,9 @@
       "lastModified": 1785258092000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.386,
+      "faceY": 0.734
     },
     {
       "id": "photo_203",
@@ -6415,7 +6819,9 @@
       "lastModified": 1785258112000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.578,
+      "faceY": 0.436
     },
     {
       "id": "photo_204",
@@ -6451,7 +6857,9 @@
       "lastModified": 1785257930000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.154,
+      "faceY": 0.239
     },
     {
       "id": "photo_205",
@@ -6485,7 +6893,9 @@
       "lastModified": 1785257946000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.47,
+      "faceY": 0.385
     },
     {
       "id": "photo_206",
@@ -6517,7 +6927,9 @@
       "lastModified": 1785258092000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.19,
+      "faceY": 0.503
     },
     {
       "id": "photo_207",
@@ -6547,7 +6959,9 @@
       "lastModified": 1785258388000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.535,
+      "faceY": 0.747
     },
     {
       "id": "photo_208",
@@ -6575,7 +6989,9 @@
       "lastModified": 1785258488000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.588,
+      "faceY": 0.24
     },
     {
       "id": "photo_209",
@@ -6605,7 +7021,9 @@
       "lastModified": 1785257972000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.719,
+      "faceY": 0.809
     },
     {
       "id": "photo_210",
@@ -6633,7 +7051,9 @@
       "lastModified": 1785257992000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.336,
+      "faceY": 0.198
     },
     {
       "id": "photo_211",
@@ -6661,7 +7081,9 @@
       "lastModified": 1785257992000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.336,
+      "faceY": 0.638
     },
     {
       "id": "photo_212",
@@ -6689,7 +7111,9 @@
       "lastModified": 1785257992000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.491,
+      "faceY": 0.468
     },
     {
       "id": "photo_213",
@@ -6717,7 +7141,9 @@
       "lastModified": 1785257992000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.622,
+      "faceY": 0.233
     },
     {
       "id": "photo_214",
@@ -6745,7 +7171,9 @@
       "lastModified": 1785257990000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.509,
+      "faceY": 0.273
     },
     {
       "id": "photo_215",
@@ -6777,7 +7205,9 @@
       "lastModified": 1785257988000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.468,
+      "faceY": 0.592
     },
     {
       "id": "photo_216",
@@ -6806,7 +7236,9 @@
       "lastModified": 1785258092000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.237,
+      "faceY": 0.368
     },
     {
       "id": "photo_217",
@@ -6835,7 +7267,9 @@
       "lastModified": 1785258100000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.211,
+      "faceY": 0.909
     },
     {
       "id": "photo_218",
@@ -6863,7 +7297,9 @@
       "lastModified": 1785258102000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.116,
+      "faceY": 0.504
     },
     {
       "id": "photo_219",
@@ -6891,7 +7327,9 @@
       "lastModified": 1785257974000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.332,
+      "faceY": 0.402
     },
     {
       "id": "photo_220",
@@ -6925,7 +7363,9 @@
       "lastModified": 1785257930000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.445,
+      "faceY": 0.775
     },
     {
       "id": "photo_221",
@@ -6960,7 +7400,9 @@
       "lastModified": 1785257930000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.495,
+      "faceY": 0.099
     },
     {
       "id": "photo_222",
@@ -6995,7 +7437,9 @@
       "lastModified": 1785257930000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.119,
+      "faceY": 0.789
     },
     {
       "id": "photo_223",
@@ -7035,7 +7479,9 @@
       "lastModified": 1785257930000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.149,
+      "faceY": 0.842
     },
     {
       "id": "photo_224",
@@ -7067,7 +7513,9 @@
       "lastModified": 1785257936000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.58,
+      "faceY": 0.3
     },
     {
       "id": "photo_225",
@@ -7097,7 +7545,9 @@
       "lastModified": 1785257930000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.436,
+      "faceY": 0.448
     },
     {
       "id": "photo_226",
@@ -7125,7 +7575,9 @@
       "lastModified": 1785257928000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.428,
+      "faceY": 0.39
     },
     {
       "id": "photo_227",
@@ -7154,7 +7606,9 @@
       "lastModified": 1785258804000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.43,
+      "faceY": 0.244
     },
     {
       "id": "photo_228",
@@ -7183,7 +7637,9 @@
       "lastModified": 1785258796000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.582,
+      "faceY": 0.561
     },
     {
       "id": "photo_229",
@@ -7213,7 +7669,9 @@
       "lastModified": 1785257972000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.113,
+      "faceY": 0.414
     },
     {
       "id": "photo_230",
@@ -7247,7 +7705,9 @@
       "lastModified": 1785257936000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.19,
+      "faceY": 0.675
     },
     {
       "id": "photo_231",
@@ -7283,7 +7743,9 @@
       "lastModified": 1785258640000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": null,
+      "faceY": null
     },
     {
       "id": "photo_232",
@@ -7312,7 +7774,9 @@
       "lastModified": 1785258628000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.42,
+      "faceY": 0.255
     },
     {
       "id": "photo_233",
@@ -7341,7 +7805,9 @@
       "lastModified": 1785258604000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.622,
+      "faceY": 0.2
     },
     {
       "id": "photo_234",
@@ -7370,7 +7836,9 @@
       "lastModified": 1785258596000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.434,
+      "faceY": 0.156
     },
     {
       "id": "photo_235",
@@ -7404,7 +7872,9 @@
       "lastModified": 1785258594000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.741,
+      "faceY": 0.457
     },
     {
       "id": "photo_236",
@@ -7438,7 +7908,9 @@
       "lastModified": 1785258552000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.439,
+      "faceY": 0.515
     },
     {
       "id": "photo_237",
@@ -7472,7 +7944,9 @@
       "lastModified": 1785258582000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.59,
+      "faceY": 0.309
     },
     {
       "id": "photo_238",
@@ -7501,7 +7975,9 @@
       "lastModified": 1785258578000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.281,
+      "faceY": 0.434
     },
     {
       "id": "photo_239",
@@ -7528,7 +8004,9 @@
       "lastModified": 1785258104000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.63,
+      "faceY": 0.548
     },
     {
       "id": "photo_240",
@@ -7556,7 +8034,9 @@
       "lastModified": 1785258104000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.678,
+      "faceY": 0.087
     },
     {
       "id": "photo_241",
@@ -7590,7 +8070,9 @@
       "lastModified": 1785258686000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.082,
+      "faceY": 0.919
     },
     {
       "id": "photo_242",
@@ -7624,7 +8106,9 @@
       "lastModified": 1785258672000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.152,
+      "faceY": 0.51
     },
     {
       "id": "photo_243",
@@ -7658,7 +8142,9 @@
       "lastModified": 1785258658000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.583,
+      "faceY": 0.206
     },
     {
       "id": "photo_244",
@@ -7692,7 +8178,9 @@
       "lastModified": 1785258658000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.137,
+      "faceY": 0.487
     },
     {
       "id": "photo_245",
@@ -7726,7 +8214,9 @@
       "lastModified": 1785258658000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.825,
+      "faceY": 0.492
     },
     {
       "id": "photo_246",
@@ -7760,7 +8250,9 @@
       "lastModified": 1785258650000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.454,
+      "faceY": 0.817
     },
     {
       "id": "photo_247",
@@ -7794,7 +8286,9 @@
       "lastModified": 1785258630000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.397,
+      "faceY": 0.529
     },
     {
       "id": "photo_248",
@@ -7828,7 +8322,9 @@
       "lastModified": 1785258618000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.602,
+      "faceY": 0.229
     },
     {
       "id": "photo_249",
@@ -7862,7 +8358,9 @@
       "lastModified": 1785258632000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.746,
+      "faceY": 0.57
     },
     {
       "id": "photo_250",
@@ -7896,7 +8394,9 @@
       "lastModified": 1785258606000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.597,
+      "faceY": 0.212
     },
     {
       "id": "photo_251",
@@ -7923,7 +8423,9 @@
       "lastModified": 1785258118000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.586,
+      "faceY": 0.288
     },
     {
       "id": "photo_252",
@@ -7953,7 +8455,9 @@
       "lastModified": 1785258114000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.478,
+      "faceY": 0.186
     },
     {
       "id": "photo_253",
@@ -7980,7 +8484,9 @@
       "lastModified": 1785258116000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.145,
+      "faceY": 0.579
     },
     {
       "id": "photo_254",
@@ -8007,7 +8513,9 @@
       "lastModified": 1785258114000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.254,
+      "faceY": 0.409
     },
     {
       "id": "photo_255",
@@ -8034,7 +8542,9 @@
       "lastModified": 1785258112000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.776,
+      "faceY": 0.185
     },
     {
       "id": "photo_256",
@@ -8065,7 +8575,9 @@
       "lastModified": 1785258094000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.595,
+      "faceY": 0.292
     },
     {
       "id": "photo_257",
@@ -8097,7 +8609,9 @@
       "lastModified": 1785258114000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.571,
+      "faceY": 0.315
     },
     {
       "id": "photo_258",
@@ -8124,7 +8638,9 @@
       "lastModified": 1785258108000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.334,
+      "faceY": 0.278
     },
     {
       "id": "photo_259",
@@ -8151,7 +8667,9 @@
       "lastModified": 1785258108000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.705,
+      "faceY": 0.498
     },
     {
       "id": "photo_260",
@@ -8184,7 +8702,9 @@
       "lastModified": 1785258112000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.645,
+      "faceY": 0.305
     },
     {
       "id": "photo_261",
@@ -8215,7 +8735,9 @@
       "lastModified": 1785258120000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.464,
+      "faceY": 0.385
     },
     {
       "id": "photo_262",
@@ -8242,7 +8764,9 @@
       "lastModified": 1785258112000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.529,
+      "faceY": 0.356
     },
     {
       "id": "photo_263",
@@ -8272,7 +8796,9 @@
       "lastModified": 1785258520000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.789,
+      "faceY": 0.663
     },
     {
       "id": "photo_264",
@@ -8301,7 +8827,9 @@
       "lastModified": 1785258550000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.168,
+      "faceY": 0.355
     },
     {
       "id": "photo_265",
@@ -8330,7 +8858,9 @@
       "lastModified": 1785258574000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.819,
+      "faceY": 0.418
     },
     {
       "id": "photo_266",
@@ -8359,7 +8889,9 @@
       "lastModified": 1785258548000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.501,
+      "faceY": 0.82
     },
     {
       "id": "photo_267",
@@ -8388,7 +8920,9 @@
       "lastModified": 1785258570000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.27,
+      "faceY": 0.446
     },
     {
       "id": "photo_268",
@@ -8415,7 +8949,9 @@
       "lastModified": 1785258110000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.509,
+      "faceY": 0.291
     },
     {
       "id": "photo_269",
@@ -8446,7 +8982,9 @@
       "lastModified": 1785257996000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.607,
+      "faceY": 0.304
     },
     {
       "id": "photo_270",
@@ -8477,7 +9015,9 @@
       "lastModified": 1785257996000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.15,
+      "faceY": 0.85
     },
     {
       "id": "photo_271",
@@ -8508,7 +9048,9 @@
       "lastModified": 1785257998000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.396,
+      "faceY": 0.055
     },
     {
       "id": "photo_272",
@@ -8549,7 +9091,9 @@
       "lastModified": 1785257936000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.775,
+      "faceY": 0.304
     },
     {
       "id": "photo_273",
@@ -8587,7 +9131,9 @@
       "lastModified": 1785257930000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.553,
+      "faceY": 0.2
     },
     {
       "id": "photo_274",
@@ -8618,7 +9164,9 @@
       "lastModified": 1785257938000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.44,
+      "faceY": 0.349
     },
     {
       "id": "photo_275",
@@ -8647,7 +9195,9 @@
       "lastModified": 1785258000000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.738,
+      "faceY": 0.409
     },
     {
       "id": "photo_276",
@@ -8672,7 +9222,9 @@
       "lastModified": 1785258114000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.537,
+      "faceY": 0.346
     },
     {
       "id": "photo_277",
@@ -8703,7 +9255,9 @@
       "lastModified": 1785258114000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.648,
+      "faceY": 0.605
     },
     {
       "id": "photo_278",
@@ -8734,7 +9288,9 @@
       "lastModified": 1785258118000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.737,
+      "faceY": 0.721
     },
     {
       "id": "photo_279",
@@ -8767,7 +9323,9 @@
       "lastModified": 1785258054000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.496,
+      "faceY": 0.282
     },
     {
       "id": "photo_280",
@@ -8798,7 +9356,9 @@
       "lastModified": 1785258124000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.391,
+      "faceY": 0.296
     },
     {
       "id": "photo_281",
@@ -8829,7 +9389,9 @@
       "lastModified": 1785258126000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.44,
+      "faceY": 0.298
     },
     {
       "id": "photo_282",
@@ -8860,7 +9422,9 @@
       "lastModified": 1785258206000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": null,
+      "faceY": null
     },
     {
       "id": "photo_283",
@@ -8891,7 +9455,9 @@
       "lastModified": 1785258182000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.062,
+      "faceY": 0.192
     },
     {
       "id": "photo_284",
@@ -8922,7 +9488,9 @@
       "lastModified": 1785258186000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.837,
+      "faceY": 0.175
     },
     {
       "id": "photo_285",
@@ -8954,7 +9522,9 @@
       "lastModified": 1785258194000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.846,
+      "faceY": 0.154
     },
     {
       "id": "photo_286",
@@ -8987,7 +9557,9 @@
       "lastModified": 1785258058000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.691,
+      "faceY": 0.405
     },
     {
       "id": "photo_287",
@@ -9020,7 +9592,9 @@
       "lastModified": 1785258064000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.51,
+      "faceY": 0.521
     },
     {
       "id": "photo_288",
@@ -9048,7 +9622,9 @@
       "lastModified": 1785257974000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.37,
+      "faceY": 0.516
     },
     {
       "id": "photo_289",
@@ -9075,7 +9651,9 @@
       "lastModified": 1785257974000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.461,
+      "faceY": 0.414
     },
     {
       "id": "photo_290",
@@ -9102,7 +9680,9 @@
       "lastModified": 1785257974000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.68,
+      "faceY": 0.427
     },
     {
       "id": "photo_291",
@@ -9130,7 +9710,9 @@
       "lastModified": 1785257962000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.484,
+      "faceY": 0.815
     },
     {
       "id": "photo_292",
@@ -9158,7 +9740,9 @@
       "lastModified": 1785257964000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.282,
+      "faceY": 0.108
     },
     {
       "id": "photo_293",
@@ -9185,7 +9769,9 @@
       "lastModified": 1785257964000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.583,
+      "faceY": 0.393
     },
     {
       "id": "photo_294",
@@ -9210,7 +9796,9 @@
       "lastModified": 1785258118000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.637,
+      "faceY": 0.229
     },
     {
       "id": "photo_295",
@@ -9242,7 +9830,9 @@
       "lastModified": 1785258042000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.556,
+      "faceY": 0.411
     },
     {
       "id": "photo_296",
@@ -9276,7 +9866,9 @@
       "lastModified": 1785258044000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.853,
+      "faceY": 0.763
     },
     {
       "id": "photo_297",
@@ -9310,7 +9902,9 @@
       "lastModified": 1785258044000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.278,
+      "faceY": 0.347
     },
     {
       "id": "photo_298",
@@ -9344,7 +9938,9 @@
       "lastModified": 1785258056000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.396,
+      "faceY": 0.417
     },
     {
       "id": "photo_299",
@@ -9378,7 +9974,9 @@
       "lastModified": 1785258060000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.787,
+      "faceY": 0.348
     },
     {
       "id": "photo_300",
@@ -9412,7 +10010,9 @@
       "lastModified": 1785258060000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.72,
+      "faceY": 0.417
     },
     {
       "id": "photo_301",
@@ -9446,7 +10046,9 @@
       "lastModified": 1785258060000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.284,
+      "faceY": 0.725
     },
     {
       "id": "photo_302",
@@ -9480,7 +10082,9 @@
       "lastModified": 1785258062000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.26,
+      "faceY": 0.22
     },
     {
       "id": "photo_303",
@@ -9513,7 +10117,9 @@
       "lastModified": 1785258062000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.318,
+      "faceY": 0.355
     },
     {
       "id": "photo_304",
@@ -9545,7 +10151,9 @@
       "lastModified": 1785258064000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.158,
+      "faceY": 0.312
     },
     {
       "id": "photo_305",
@@ -9576,7 +10184,9 @@
       "lastModified": 1785258064000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.533,
+      "faceY": 0.268
     },
     {
       "id": "photo_306",
@@ -9611,7 +10221,9 @@
       "lastModified": 1785257950000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.481,
+      "faceY": 0.335
     },
     {
       "id": "photo_307",
@@ -9645,7 +10257,9 @@
       "lastModified": 1785257948000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.434,
+      "faceY": 0.373
     },
     {
       "id": "photo_308",
@@ -9679,7 +10293,9 @@
       "lastModified": 1785257948000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.831,
+      "faceY": 0.835
     },
     {
       "id": "photo_309",
@@ -9709,7 +10325,9 @@
       "lastModified": 1785257972000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.48,
+      "faceY": 0.342
     },
     {
       "id": "photo_310",
@@ -9738,7 +10356,9 @@
       "lastModified": 1785257970000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.434,
+      "faceY": 0.421
     },
     {
       "id": "photo_311",
@@ -9767,7 +10387,9 @@
       "lastModified": 1785257966000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.478,
+      "faceY": 0.856
     },
     {
       "id": "photo_312",
@@ -9795,7 +10417,9 @@
       "lastModified": 1785257972000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.289,
+      "faceY": 0.549
     },
     {
       "id": "photo_313",
@@ -9820,7 +10444,9 @@
       "lastModified": 1785258072000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.467,
+      "faceY": 0.557
     },
     {
       "id": "photo_314",
@@ -9850,7 +10476,9 @@
       "lastModified": 1785258090000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.055,
+      "faceY": 0.38
     },
     {
       "id": "photo_315",
@@ -9878,7 +10506,9 @@
       "lastModified": 1785258094000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.709,
+      "faceY": 0.736
     },
     {
       "id": "photo_316",
@@ -9909,7 +10539,9 @@
       "lastModified": 1785258066000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.551,
+      "faceY": 0.797
     },
     {
       "id": "photo_317",
@@ -9941,7 +10573,9 @@
       "lastModified": 1785257994000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.5,
+      "faceY": 0.279
     },
     {
       "id": "photo_318",
@@ -9966,7 +10600,9 @@
       "lastModified": 1785257990000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.641,
+      "faceY": 0.342
     },
     {
       "id": "photo_319",
@@ -9997,7 +10633,9 @@
       "lastModified": 1785257996000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.667,
+      "faceY": 0.316
     },
     {
       "id": "photo_320",
@@ -10029,7 +10667,9 @@
       "lastModified": 1785258004000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.105,
+      "faceY": 0.923
     },
     {
       "id": "photo_321",
@@ -10061,7 +10701,9 @@
       "lastModified": 1785257998000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.508,
+      "faceY": 0.258
     },
     {
       "id": "photo_322",
@@ -10093,7 +10735,9 @@
       "lastModified": 1785258000000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.65,
+      "faceY": 0.276
     },
     {
       "id": "photo_323",
@@ -10124,7 +10768,9 @@
       "lastModified": 1785258024000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.637,
+      "faceY": 0.367
     },
     {
       "id": "photo_324",
@@ -10155,7 +10801,9 @@
       "lastModified": 1785258004000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.651,
+      "faceY": 0.342
     },
     {
       "id": "photo_325",
@@ -10188,7 +10836,9 @@
       "lastModified": 1785258038000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.275,
+      "faceY": 0.851
     },
     {
       "id": "photo_326",
@@ -10221,7 +10871,9 @@
       "lastModified": 1785258026000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.246,
+      "faceY": 0.324
     },
     {
       "id": "photo_327",
@@ -10254,7 +10906,9 @@
       "lastModified": 1785258030000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.724,
+      "faceY": 0.915
     },
     {
       "id": "photo_328",
@@ -10287,7 +10941,9 @@
       "lastModified": 1785258026000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.358,
+      "faceY": 0.228
     },
     {
       "id": "photo_329",
@@ -10320,7 +10976,9 @@
       "lastModified": 1785258032000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.209,
+      "faceY": 0.326
     },
     {
       "id": "photo_330",
@@ -10353,7 +11011,9 @@
       "lastModified": 1785258040000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.449,
+      "faceY": 0.482
     },
     {
       "id": "photo_331",
@@ -10386,7 +11046,9 @@
       "lastModified": 1785258042000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.575,
+      "faceY": 0.146
     },
     {
       "id": "photo_332",
@@ -10418,7 +11080,9 @@
       "lastModified": 1785258212000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.622,
+      "faceY": 0.257
     },
     {
       "id": "photo_333",
@@ -10449,7 +11113,9 @@
       "lastModified": 1785257970000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.128,
+      "faceY": 0.144
     },
     {
       "id": "photo_334",
@@ -10481,7 +11147,9 @@
       "lastModified": 1785257958000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.341,
+      "faceY": 0.358
     },
     {
       "id": "photo_335",
@@ -10513,7 +11181,9 @@
       "lastModified": 1785257956000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.682,
+      "faceY": 0.197
     },
     {
       "id": "photo_336",
@@ -10544,7 +11214,9 @@
       "lastModified": 1785257956000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.306,
+      "faceY": 0.352
     },
     {
       "id": "photo_337",
@@ -10571,7 +11243,9 @@
       "lastModified": 1785258114000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.875,
+      "faceY": 0.668
     },
     {
       "id": "photo_338",
@@ -10600,7 +11274,9 @@
       "lastModified": 1785258108000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.447,
+      "faceY": 0.069
     },
     {
       "id": "photo_339",
@@ -10627,7 +11303,9 @@
       "lastModified": 1785258110000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.358,
+      "faceY": 0.332
     },
     {
       "id": "photo_340",
@@ -10655,7 +11333,9 @@
       "lastModified": 1785258116000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.464,
+      "faceY": 0.181
     },
     {
       "id": "photo_341",
@@ -10680,7 +11360,9 @@
       "lastModified": 1785258118000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.672,
+      "faceY": 0.322
     },
     {
       "id": "photo_342",
@@ -10707,7 +11389,9 @@
       "lastModified": 1785258118000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.882,
+      "faceY": 0.632
     },
     {
       "id": "photo_343",
@@ -10735,7 +11419,9 @@
       "lastModified": 1785258118000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.801,
+      "faceY": 0.844
     },
     {
       "id": "photo_344",
@@ -10763,7 +11449,9 @@
       "lastModified": 1785258112000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.418,
+      "faceY": 0.617
     },
     {
       "id": "photo_345",
@@ -10788,7 +11476,9 @@
       "lastModified": 1785258116000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.14,
+      "faceY": 0.421
     },
     {
       "id": "photo_346",
@@ -10817,7 +11507,9 @@
       "lastModified": 1785258116000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.372,
+      "faceY": 0.65
     },
     {
       "id": "photo_347",
@@ -10842,7 +11534,9 @@
       "lastModified": 1785258110000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.686,
+      "faceY": 0.202
     },
     {
       "id": "photo_348",
@@ -10867,7 +11561,9 @@
       "lastModified": 1785258114000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.239,
+      "faceY": 0.48
     },
     {
       "id": "photo_349",
@@ -10892,7 +11588,9 @@
       "lastModified": 1785258118000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.719,
+      "faceY": 0.139
     },
     {
       "id": "photo_350",
@@ -10920,7 +11618,9 @@
       "lastModified": 1785258118000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.577,
+      "faceY": 0.185
     },
     {
       "id": "photo_351",
@@ -10947,7 +11647,9 @@
       "lastModified": 1785258402000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.185,
+      "faceY": 0.338
     },
     {
       "id": "photo_352",
@@ -10975,7 +11677,9 @@
       "lastModified": 1785258432000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.366,
+      "faceY": 0.231
     },
     {
       "id": "photo_353",
@@ -11002,7 +11706,9 @@
       "lastModified": 1785258372000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.606,
+      "faceY": 0.526
     },
     {
       "id": "photo_354",
@@ -11033,7 +11739,9 @@
       "lastModified": 1785258346000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.612,
+      "faceY": 0.335
     },
     {
       "id": "photo_355",
@@ -11065,7 +11773,9 @@
       "lastModified": 1785258366000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.31,
+      "faceY": 0.355
     },
     {
       "id": "photo_356",
@@ -11092,7 +11802,9 @@
       "lastModified": 1785258358000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.215,
+      "faceY": 0.319
     },
     {
       "id": "photo_357",
@@ -11120,7 +11832,9 @@
       "lastModified": 1785258284000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.477,
+      "faceY": 0.447
     },
     {
       "id": "photo_358",
@@ -11148,7 +11862,9 @@
       "lastModified": 1785258290000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.611,
+      "faceY": 0.359
     },
     {
       "id": "photo_359",
@@ -11177,7 +11893,9 @@
       "lastModified": 1785258284000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.297,
+      "faceY": 0.701
     },
     {
       "id": "photo_360",
@@ -11205,7 +11923,9 @@
       "lastModified": 1785258278000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.607,
+      "faceY": 0.191
     },
     {
       "id": "photo_361",
@@ -11234,7 +11954,9 @@
       "lastModified": 1785258224000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.668,
+      "faceY": 0.32
     },
     {
       "id": "photo_362",
@@ -11262,7 +11984,9 @@
       "lastModified": 1785258212000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.633,
+      "faceY": 0.408
     },
     {
       "id": "photo_363",
@@ -11293,7 +12017,9 @@
       "lastModified": 1785258214000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.576,
+      "faceY": 0.734
     },
     {
       "id": "photo_364",
@@ -11323,7 +12049,9 @@
       "lastModified": 1785258546000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.512,
+      "faceY": 0.336
     },
     {
       "id": "photo_365",
@@ -11353,7 +12081,9 @@
       "lastModified": 1785258522000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.517,
+      "faceY": 0.238
     },
     {
       "id": "photo_366",
@@ -11382,7 +12112,9 @@
       "lastModified": 1785258476000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.579,
+      "faceY": 0.33
     },
     {
       "id": "photo_367",
@@ -11411,7 +12143,9 @@
       "lastModified": 1785258402000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.509,
+      "faceY": 0.4
     },
     {
       "id": "photo_368",
@@ -11439,7 +12173,9 @@
       "lastModified": 1785258376000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.522,
+      "faceY": 0.561
     },
     {
       "id": "photo_369",
@@ -11471,7 +12207,9 @@
       "lastModified": 1785258674000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.526,
+      "faceY": 0.079
     },
     {
       "id": "photo_370",
@@ -11502,7 +12240,9 @@
       "lastModified": 1785258606000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.334,
+      "faceY": 0.198
     },
     {
       "id": "photo_371",
@@ -11534,7 +12274,9 @@
       "lastModified": 1785258664000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.628,
+      "faceY": 0.327
     },
     {
       "id": "photo_372",
@@ -11561,7 +12303,9 @@
       "lastModified": 1785258772000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.37,
+      "faceY": 0.571
     },
     {
       "id": "photo_373",
@@ -11591,7 +12335,9 @@
       "lastModified": 1785258820000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.304,
+      "faceY": 0.249
     },
     {
       "id": "photo_374",
@@ -11621,7 +12367,9 @@
       "lastModified": 1785258816000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.686,
+      "faceY": 0.151
     },
     {
       "id": "photo_375",
@@ -11651,7 +12399,9 @@
       "lastModified": 1785258814000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.671,
+      "faceY": 0.143
     },
     {
       "id": "photo_376",
@@ -11681,7 +12431,9 @@
       "lastModified": 1785258812000,
       "rotation": 0,
       "scale": 1,
-      "zIndex": 0
+      "zIndex": 0,
+      "faceX": 0.406,
+      "faceY": 0.347
     }
   ],
   "metadata": {
