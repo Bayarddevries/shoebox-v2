@@ -1,45 +1,81 @@
 # Shoebox v2 — Red River Métis Digital Archive
 
-A Vite + React + TypeScript web app displaying historical archival photos with metadata, stories, and audio narration.
+A Vite + React + TypeScript web app + standalone projector slideshow displaying 376 historical archival photos with metadata, face detection, and audio narration.
 
-**Live site:** [https://bayarddevries.github.io/shoebox-v2/](https://bayarddevries.github.io/shoebox-v2/)
+**Live sites:**
+- Main archive: https://bayarddevries.github.io/shoebox-v2/
+- Projector slideshow: https://bayarddevries.github.io/shoebox-v2/projector.html
+- Lite viewer: https://bayarddevries.github.io/shoebox-v2/shoebox-lite.html
 
-## Current Metadata Coverage
+## Metadata Coverage
 
 | Stat | Count |
 |------|-------|
-| Total photos | 302 |
-| Geocoded (GPS or community lookup) | 195 |
-| With people identified | 227 |
-| With location string | 196 |
+| Total photos | 376 |
+| With year derived | 376 |
+| With city/location | 281 |
+| With people identified | 306 |
+| Geocoded (GPS or community lookup) | 280 |
+| Face coordinates (faceX/faceY) | 370 |
+
+## Projector Slideshow
+
+A standalone HTML page (`public/projector.html`) for kiosk/event use — loads the same manifest.json and provides full-screen playback with controls.
+
+**Features:**
+
+- **Playback** — Play/Pause, Previous/Next, auto-advance timer
+- **Speed** — 3s / 5s / 7s / 10s / 15s per slide
+- **Transitions** — Ken Burns (face-aware zoom), Fade, Slide, Cut, Wipe
+- **Captions** — Off / Title / Full (title + year + community + people)
+- **Shuffle** — randomize slide order
+- **Fullscreen** — native browser fullscreen
+- **Face Tracking** — toggle to center photos on detected faces
+- **Filters** — sidebar panel with Communities, Families/People, Decades, Keywords (AND between categories, OR within)
+- **Presets** — save/load filter combinations + settings to localStorage
+- **Immersive mode** — controls + progress bar auto-hide after 3s idle; re-show on touch/mouse move
+- **Smart background sizing** — portrait fills height, landscape fills width (no head cropping)
+- **Face-aware Ken Burns** — zoom direction pulls toward detected faces
+- **Keyboard shortcuts** — Space, Arrows, C/F/G/S/T, 1-5, F2, Esc
+- **Touch support** — tap left/right edges to navigate, center to toggle play
 
 ## Manifest Generator v2 Pipeline
 
-`scripts/generate_manifest.js` is the **standard pipeline** for building `public/assets/shoebox/manifest.json`. It extracts structured IPTC/XMP metadata written by Adobe Lightroom:
+`scripts/generate_manifest.js` builds `public/assets/shoebox/manifest.json` from Lightroom IPTC/XMP metadata + face detection:
 
-1. **IPTC City / Sub-location / Province-State / Country** → full location string ("Community, Province, Canada")
-2. **Province normalization** — 18 spelling variants → canonical full names
-3. **City normalization** — fixes common typos (Winniepg → Winnipeg, etc.)
-4. **GPS coordinates** — `exiftool -n` for signed decimals (fixes the Western Canada longitude sign bug)
-5. **Geocode fallback** — if no GPS in EXIF, looks up coordinates from a 30+ community table
-6. **People extraction** — separates person names from topical keywords using a curated stop-list
-7. **Year from IPTC DateCreated** (more reliable than filename parsing)
+1. **IPTC City / Sub-location / Province-State / Country** → full location string
+2. **Province normalization** — 18+ spelling variants → canonical names
+3. **City normalization** — fixes common typos
+4. **GPS coordinates** — `exiftool -n` for signed decimals
+5. **Geocode fallback** — 30+ community lookup table
+6. **People extraction** — separates names from topical keywords via stop-list
+7. **Year derivation** — priority: keyword year > title year > era midpoint > EXIF scan date
+8. **Face detection** — auto-runs `detect_faces.py` (OpenCV Haar Cascade), merges faceX/faceY into manifest
 
-> **`exiftool` must be installed** on the system running the manifest generator. It is used for all metadata extraction.
+> **`exiftool` must be installed** on the system running the manifest generator.
+
+### Face Detection
+
+`scripts/detect_faces.py` uses OpenCV's Haar Cascade classifier on each photo:
+- Outputs normalized faceX/faceY coordinates (0-1 range)
+- Processes the first detected face per photo (largest face wins)
+- Falls back to center (0.5) if no face detected
+- The projector page uses these coordinates for face-aware centering and Ken Burns zoom direction
 
 ## Adding New Photos
 
-1. Copy photos to `public/assets/shoebox/photos/`
-2. Ensure Lightroom has written IPTC metadata (City, Province-State, Country, Keywords with people names)
-3. Run: `node scripts/generate_manifest.js`
-4. If a new community isn't in the geocode table, add it to `GEOCODE_TABLE` in the script
-5. If new topical keywords appear as false-positive people names, add them to `TOPICAL_KEYWORDS`
-6. Rebuild: `npm run build`
-7. Commit and push both `public/assets/shoebox/manifest.json` and the `shoebox/` build output
+1. Export from Lightroom with IPTC metadata (City, Province-State, Country, Keywords)
+2. Copy JPGs to `public/assets/shoebox/photos/`
+3. Run: `node scripts/generate_manifest.js` (auto-runs face detection)
+4. If a new community isn't in the geocode table, add it to `GEOCODE_TABLE`
+5. If new topical keywords appear as false-positive people names, add to `TOPICAL_KEYWORDS`
+6. Run: `npm run build` (rebuilds React app)
+7. Manually copy projector.html to build output: `cp public/projector.html shoebox/projector.html`
+8. Commit and push both `manifest.json`, `projector.html`, and the `shoebox/` build output
 
 ## Deployment
 
-The app deploys to **GitHub Pages** via [`peaceiris/actions-gh-pages`](https://github.com/peaceiris/actions-gh-pages), which pushes the `shoebox/` directory to the `gh-pages` branch.
+The app deploys to **GitHub Pages** via `peaceiris/actions-gh-pages`, pushing `shoebox/` to the `gh-pages` branch.
 
 ### Base path
 
@@ -48,13 +84,12 @@ The site is served under `/shoebox-v2/`. The `base` option in `vite.config.ts` m
 ```ts
 export default defineConfig({
   base: '/shoebox-v2/',
-  // ...
 })
 ```
 
 ### Fetch paths
 
-All `fetch()` calls must use `import.meta.env.BASE_URL` instead of hardcoded absolute paths:
+All `fetch()` calls must use `import.meta.env.BASE_URL`:
 
 ```ts
 // ✅ Correct
@@ -66,18 +101,24 @@ fetch('/assets/shoebox/manifest.json')
 
 ### GitHub Pages build type
 
-The GitHub Pages `build_type` is **`"legacy"`** — do NOT change to `"workflow"`. The project uses `peaceiris/actions-gh-pages`, which pushes directly to the `gh-pages` branch. The `"workflow"` build type only responds to `actions/deploy-pages` and silently ignores branch pushes, breaking deployments entirely.
+**`"legacy"`** — do NOT change to `"workflow"`. The project uses `peaceiris/actions-gh-pages`, which pushes directly to the `gh-pages` branch. `"workflow"` silently ignores branch pushes.
 
-> **Do not change the Pages build type to `"workflow"` unless you also switch the CI pipeline to use `actions/deploy-pages`.**
+### Projector page deployment
 
-See [`docs/GITHUB_PAGES_FIX.md`](docs/GITHUB_PAGES_FIX.md) for the full incident report.
+The projector page is a standalone HTML file (not part of the Vite build). After editing:
+```bash
+cp public/projector.html shoebox/projector.html
+git add shoebox/projector.html
+git commit -m "update projector"
+git push
+```
 
 ### Rebuilding after changes
 
 ```bash
 npm run build
-# Output goes to shoebox/ (not dist/) — commit this directory
+cp public/projector.html shoebox/projector.html
 git add shoebox/
-git commit -m "Rebuild after changes"
+git commit -m "Rebuild"
 git push
 ```
