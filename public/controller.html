@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Métis Kin — Exhibit Controller</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --near-black: #111;
+      --charcoal: #1a1814;
+      --crimson: #8b0000;
+      --crimson-glow: #6b0000;
+      --warm-gray: #6b655e;
+      --light-warm: #cfc8be;
+      --cream: #e8e2d6;
+      --accent-warm: #bfa885;
+      --gold: #c4933a;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-kicker: 'Cinzel', Georgia, serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      width: 100%; height: 100%; overflow: hidden;
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Ambient crimson glow ─── */
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 120% 50% at 50% 100%, rgba(139,0,0,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ─── Particle motes ─── */
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-100vh) translateX(40px) scale(0.5); opacity: 0; }
+    }
+    .mote {
+      position: fixed; bottom: -10px; z-index: 0;
+      width: 3px; height: 3px; border-radius: 50%;
+      background: var(--accent-warm);
+      animation: float linear infinite;
+      pointer-events: none;
+      opacity: 0;
+    }
+    .mote:nth-child(1) { left: 15%; animation-duration: 22s; animation-delay: 0s; width: 2px; height: 2px; }
+    .mote:nth-child(2) { left: 35%; animation-duration: 28s; animation-delay: 4s; width: 3px; height: 3px; }
+    .mote:nth-child(3) { left: 55%; animation-duration: 25s; animation-delay: 8s; width: 2px; height: 2px; background: var(--crimson); }
+    .mote:nth-child(4) { left: 75%; animation-duration: 30s; animation-delay: 2s; width: 4px; height: 4px; }
+    .mote:nth-child(5) { left: 90%; animation-duration: 20s; animation-delay: 6s; width: 2px; height: 2px; background: var(--crimson); }
+
+    /* ─── Layout ─── */
+    #app {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column;
+      height: 100%; width: 100%;
+      padding: 1.25rem 1.25rem 0.75rem;
+      gap: 0.5rem;
+    }
+
+    /* ─── Top bar: search + status ─── */
+    .top-bar {
+      display: flex; align-items: center; gap: 0.75rem;
+      flex-shrink: 0;
+    }
+    .search-wrap {
+      flex: 1; position: relative;
+    }
+    .search-wrap input {
+      width: 100%;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px; padding: 0.6rem 0.8rem 0.6rem 2.2rem;
+      font-family: var(--font-kicker); font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--cream); outline: none;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .search-wrap input::placeholder { color: var(--warm-gray); }
+    .search-wrap input:focus {
+      border-color: var(--crimson);
+      background: rgba(139,0,0,0.06);
+    }
+    .search-wrap .search-icon {
+      position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%);
+      color: var(--warm-gray); font-size: 0.75rem;
+    }
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+      background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.4);
+      transition: background 0.3s;
+    }
+    .status-dot.disconnected { background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,0.4); }
+
+    /* ─── Beadwork divider ─── */
+    .beadwork {
+      height: 4px; flex-shrink: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--crimson) 0px, var(--crimson) 3px,
+        transparent 3px, transparent 6px,
+        var(--gold) 6px, var(--gold) 9px,
+        transparent 9px, transparent 12px
+      );
+      opacity: 0.3;
+    }
+
+    /* ─── Now Showing panel ─── */
+    .now-showing {
+      flex: 1; min-height: 0;
+      display: flex; flex-direction: column;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 12px; overflow: hidden;
+      position: relative;
+    }
+    .now-showing .photo-area {
+      flex: 1; min-height: 0;
+      background-size: cover; background-position: center;
+      background-color: var(--near-black);
+      position: relative;
+      transition: background-image 0.8s ease;
+    }
+    .now-showing .photo-area .attract-text {
+      position: absolute; bottom: 50%; left: 50%; transform: translate(-50%, 50%);
+      text-align: center; pointer-events: none;
+      font-family: var(--font-serif); font-size: 1.4rem; font-style: italic;
+      color: var(--cream); text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+      opacity: 0.6;
+    }
+    .now-showing .photo-area .tap-hint {
+      position: absolute; bottom: 0.5rem; right: 0.5rem;
+      font-family: var(--font-kicker); font-size: 0.45rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--warm-gray); background: rgba(0,0,0,0.5);
+      padding: 0.2rem 0.5rem; border-radius: 4px;
+      pointer-events: none;
+    }
+    .now-showing .details {
+      flex-shrink: 0;
+      padding: 0.6rem 0.8rem;
+      background: linear-gradient(transparent, rgba(10,10,10,0.92));
+    }
+    .now-showing .details .title {
+      font-family: var(--font-serif); font-size: 1rem; font-weight: 700;
+      color: var(--cream); line-height: 1.2;
+    }
+    .now-showing .details .meta {
+      font-family: var(--font-sans); font-size: 0.65rem;
+      color: var(--light-warm); margin-top: 0.15rem;
+    }
+    .now-showing .details .desc {
+      font-family: var(--font-sans); font-size: 0.65rem;
+      color: var(--warm-gray); margin-top: 0.15rem;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .now-showing .details .listen-btn {
+      display: inline-block; margin-top: 0.3rem;
+      background: rgba(139,0,0,0.3); border: 1px solid var(--crimson);
+      color: var(--cream); font-family: var(--font-kicker);
+      font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.2rem 0.6rem; border-radius: 4px; cursor: pointer;
+    }
+
+    /* ─── Story Piles row ─── */
+    .piles-row {
+      flex-shrink: 0;
+      display: flex; gap: 0.5rem;
+    }
+    .pile {
+      flex: 1;
+      height: 80px; border-radius: 10px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      cursor: pointer; position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .pile:active { transform: scale(0.96); }
+    .pile .pile-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      filter: brightness(0.35) saturate(0.8);
+      transition: filter 0.3s;
+    }
+    .pile:active .pile-bg { filter: brightness(0.5) saturate(1); }
+    .pile .pile-label {
+      position: relative; z-index: 1;
+      font-family: var(--font-serif); font-size: 0.8rem; font-style: italic; font-weight: 700;
+      color: var(--cream); text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+      text-align: center; line-height: 1.1;
+    }
+    .pile .pile-sub {
+      position: relative; z-index: 1;
+      font-family: var(--font-sans); font-size: 0.5rem;
+      color: var(--light-warm); margin-top: 0.15rem;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    }
+    .pile-0 { box-shadow: inset 0 0 30px rgba(196,147,58,0.15); }
+    .pile-1 { box-shadow: inset 0 0 30px rgba(139,0,0,0.15); }
+    .pile-2 { box-shadow: inset 0 0 30px rgba(191,168,133,0.1); }
+
+    /* ─── Controls bar ─── */
+    .controls-bar {
+      flex-shrink: 0;
+      display: flex; align-items: center; gap: 0.4rem;
+      flex-wrap: wrap;
+      padding: 0.4rem 0.6rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+    .ctrl-btn {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06);
+      color: var(--cream); padding: 0.35rem 0.5rem; border-radius: 6px;
+      font-size: 0.6rem; cursor: pointer; white-space: nowrap;
+      font-family: var(--font-sans); letter-spacing: 0.04em;
+      transition: background 0.15s, border-color 0.15s;
+      line-height: 1;
+    }
+    .ctrl-btn.active { background: var(--crimson); border-color: var(--crimson); color: var(--cream); }
+    .ctrl-btn:active { background: rgba(139,0,0,0.4); }
+    .ctrl-group-label {
+      font-family: var(--font-kicker); font-size: 0.45rem;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--warm-gray); margin-right: 0.15rem;
+    }
+    .ctrl-spacer { flex: 1; }
+    .count-label {
+      font-family: var(--font-sans); font-size: 0.55rem;
+      color: var(--warm-gray); white-space: nowrap;
+    }
+
+    /* ─── Search results overlay ─── */
+    #searchResults {
+      position: absolute; z-index: 20;
+      top: 100%; left: 0; right: 0; margin-top: 0.25rem;
+      background: rgba(10,10,10,0.96); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px; max-height: 200px; overflow-y: auto;
+      display: none; backdrop-filter: blur(12px);
+    }
+    #searchResults.open { display: block; }
+    #searchResults .sr-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.4rem 0.6rem; cursor: pointer;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      transition: background 0.15s;
+    }
+    #searchResults .sr-item:active { background: rgba(139,0,0,0.15); }
+    #searchResults .sr-item:last-child { border-bottom: none; }
+    #searchResults .sr-thumb {
+      width: 32px; height: 32px; border-radius: 4px;
+      background-size: cover; background-position: center;
+      flex-shrink: 0;
+    }
+    #searchResults .sr-name {
+      font-family: var(--font-serif); font-size: 0.75rem; font-style: italic;
+      color: var(--cream);
+    }
+    #searchResults .sr-meta {
+      font-size: 0.55rem; color: var(--warm-gray);
+    }
+
+    /* ─── Detail overlay ─── */
+    #detailOverlay {
+      position: fixed; inset: 0; z-index: 50;
+      background: rgba(10,10,10,0.96); backdrop-filter: blur(20px);
+      display: none; flex-direction: column;
+      padding: 1.25rem;
+    }
+    #detailOverlay.open { display: flex; }
+    #detailOverlay .detail-close {
+      align-self: flex-end;
+      background: none; border: 1px solid rgba(255,255,255,0.1);
+      color: var(--cream); padding: 0.3rem 0.8rem; border-radius: 6px;
+      font-family: var(--font-kicker); font-size: 0.6rem;
+      cursor: pointer; margin-bottom: 0.5rem;
+    }
+    #detailOverlay .detail-photo {
+      flex: 1; min-height: 0;
+      background-size: contain; background-repeat: no-repeat;
+      background-position: center; background-color: var(--black);
+      border-radius: 8px;
+    }
+    #detailOverlay .detail-info {
+      flex-shrink: 0; padding: 0.75rem 0;
+    }
+    #detailOverlay .detail-title {
+      font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700;
+    }
+    #detailOverlay .detail-meta {
+      font-family: var(--font-sans); font-size: 0.7rem;
+      color: var(--light-warm); margin-top: 0.2rem;
+    }
+    #detailOverlay .detail-desc {
+      font-family: var(--font-sans); font-size: 0.75rem;
+      color: var(--warm-gray); margin-top: 0.4rem; line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="mote"></div>
+  <div class="mote"></div>
+  <div class="mote"></div>
+  <div class="mote"></div>
+  <div class="mote"></div>
+
+  <div id="app">
+    <!-- Top bar -->
+    <div class="top-bar">
+      <div class="search-wrap">
+        <span class="search-icon">&#x1F50D;</span>
+        <input type="search" id="searchInput" placeholder="FIND A NAME · Lafferty · Chartrand · Mercredi · Anderson···" autocomplete="off" />
+        <div id="searchResults"></div>
+      </div>
+      <div class="status-dot" id="statusDot"></div>
+    </div>
+
+    <div class="beadwork"></div>
+
+    <!-- Now Showing -->
+    <div class="now-showing" id="nowShowing">
+      <div class="photo-area" id="photoArea">
+        <div class="attract-text" id="attractText">Touch the archive</div>
+        <div class="tap-hint">tap for details</div>
+      </div>
+      <div class="details" id="details" style="display:none;">
+        <div class="title" id="detailTitle"></div>
+        <div class="meta" id="detailMeta"></div>
+        <div class="desc" id="detailDesc"></div>
+        <button class="listen-btn" id="listenBtn" style="display:none;">&#x1F50A; Listen</button>
+      </div>
+    </div>
+
+    <!-- Story Piles -->
+    <div class="piles-row" id="pilesRow"></div>
+
+    <div class="beadwork"></div>
+
+    <!-- Controls -->
+    <div class="controls-bar">
+      <span class="ctrl-group-label">Play</span>
+      <button class="ctrl-btn" id="btnPlay" onclick="togglePlay()">⏸</button>
+      <span class="ctrl-group-label">Speed</span>
+      <button class="ctrl-btn" data-speed="3000" onclick="setSpeed(3000)">3s</button>
+      <button class="ctrl-btn active" data-speed="5000" onclick="setSpeed(5000)">5s</button>
+      <button class="ctrl-btn" data-speed="7000" onclick="setSpeed(7000)">7s</button>
+      <button class="ctrl-btn" data-speed="10000" onclick="setSpeed(10000)">10s</button>
+      <button class="ctrl-btn" data-speed="15000" onclick="setSpeed(15000)">15s</button>
+      <span class="ctrl-group-label">Tr</span>
+      <button class="ctrl-btn" data-trans="kenburns" onclick="setTransition('kenburns')">Ken</button>
+      <button class="ctrl-btn" data-trans="fade" onclick="setTransition('fade')">Fade</button>
+      <button class="ctrl-btn" data-trans="slide" onclick="setTransition('slide')">Slide</button>
+      <span class="ctrl-group-label">Opt</span>
+      <button class="ctrl-btn" id="btnCaption" onclick="cycleCaptions()">Captions</button>
+      <button class="ctrl-btn" id="btnShuffle" onclick="toggleShuffle()">Shuffle</button>
+      <button class="ctrl-btn" id="btnFace" onclick="toggleFace()">Face</button>
+      <div class="ctrl-spacer"></div>
+      <span class="count-label" id="countLabel">376 photos</span>
+    </div>
+  </div>
+
+  <!-- Detail overlay -->
+  <div id="detailOverlay">
+    <button class="detail-close" onclick="closeDetail()">CLOSE</button>
+    <div class="detail-photo" id="detailPhoto"></div>
+    <div class="detail-info">
+      <div class="detail-title" id="detailOverlayTitle"></div>
+      <div class="detail-meta" id="detailOverlayMeta"></div>
+      <div class="detail-desc" id="detailOverlayDesc"></div>
+      <button class="listen-btn" id="detailListenBtn" style="display:none; margin-top:0.5rem;">&#x1F50A; Listen to story</button>
+    </div>
+  </div>
+
+  <script>
+  // ─── State ───
+  let serverUrl = 'http://localhost:8081';
+  let photos = [];
+  let filteredCount = 376;
+  let speedMs = 5000;
+  let transition = 'kenburns';
+  let captionMode = 0;
+  let shuffle = false;
+  let faceTrack = false;
+  let playing = true;
+  let themes = [];
+  let currentPhoto = null;
+  let idleTimer = null;
+  let searchTimer = null;
+  let nameCycleTimer = null;
+  const nameCycleList = ['Lafferty', 'Chartrand', 'Mercredi', 'Anderson', 'Cousineau', 'Dejarlais', 'Starmer', 'Nault', 'Monkman', 'Parisian', 'Flett', 'Boucher', 'Cook', 'Carney', 'Mercredi'];
+  let nameCycleIdx = 0;
+  let isAttract = true;
+  let isDetailOpen = false;
+
+  // ─── Server communication ───
+  function getServerUrl() {
+    const param = new URLSearchParams(window.location.search).get('server');
+    if (param) return `http://${param}`;
+    const host = window.location.hostname;
+    if (host && host !== 'localhost' && host !== '127.0.0.1' && host !== '') {
+      return `http://${host}:8081`;
+    }
+    return 'http://localhost:8081';
+  }
+
+  async function postState(updates) {
+    try {
+      await fetch(`${serverUrl}/state`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updates)
+      });
+    } catch (e) {}
+  }
+
+  async function fetchState() {
+    try {
+      const res = await fetch(`${serverUrl}/state`);
+      if (!res.ok) throw new Error();
+      const data = await res.json();
+      filteredCount = data.photoIds.length;
+      currentPhoto = data.currentPhoto;
+      document.getElementById('statusDot').classList.remove('disconnected');
+      updateNowShowing();
+      updateCount();
+    } catch (e) {
+      document.getElementById('statusDot').classList.add('disconnected');
+    }
+  }
+
+  async function init() {
+    serverUrl = getServerUrl();
+
+    // Load manifest
+    try {
+      const r = await fetch(`${serverUrl}/manifest`);
+      const d = await r.json();
+      photos = d.photos || d;
+    } catch (e) {}
+
+    // Load themes
+    try {
+      const r = await fetch(`${serverUrl}/presets`);
+      const d = await r.json();
+      themes = d.themes || [];
+    } catch (e) {}
+
+    renderPiles();
+    fetchState();
+    startNameCycle();
+    startPolling();
+    startIdleTimer();
+
+    // Wake on any touch
+    document.addEventListener('touchstart', wakeFromAttract);
+    document.addEventListener('click', wakeFromAttract);
+  }
+
+  function startPolling() {
+    setInterval(fetchState, 2000);
+  }
+
+  // ─── Idle / Attract mode ───
+  function startIdleTimer() {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(enterAttract, 60000);
+  }
+
+  function resetIdle() {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(enterAttract, 60000);
+  }
+
+  function enterAttract() {
+    if (isDetailOpen) return;
+    isAttract = true;
+    document.getElementById('attractText').style.display = 'block';
+    document.querySelector('.tap-hint').style.display = 'block';
+    document.getElementById('details').style.display = 'none';
+    // Crossfade random photos
+    attractCycle();
+  }
+
+  let attractInterval = null;
+  function attractCycle() {
+    if (attractInterval) clearInterval(attractInterval);
+    if (!isAttract) return;
+    const pool = photos.length > 0 ? photos : [];
+    if (pool.length === 0) return;
+    const show = () => {
+      if (!isAttract) return;
+      const p = pool[Math.floor(Math.random() * pool.length)];
+      const base = window.location.pathname.includes('/shoebox-v2/') ? '/shoebox-v2/' : '/';
+      if (p.src) document.getElementById('photoArea').style.backgroundImage = `url(${base}${encodeURI(p.src)})`;
+    };
+    show();
+    attractInterval = setInterval(show, 5000);
+  }
+
+  function wakeFromAttract() {
+    resetIdle();
+    if (!isAttract) return;
+    isAttract = false;
+    if (attractInterval) { clearInterval(attractInterval); attractInterval = null; }
+    document.getElementById('attractText').style.display = 'none';
+    document.querySelector('.tap-hint').style.display = 'none';
+    document.getElementById('details').style.display = 'block';
+    if (currentPhoto) updateNowShowing();
+  }
+
+  // ─── Name cycling in search ───
+  function startNameCycle() {
+    const input = document.getElementById('searchInput');
+    if (nameCycleTimer) clearInterval(nameCycleTimer);
+    nameCycleTimer = setInterval(() => {
+      if (document.activeElement === input) return; // don't cycle while typing
+      if (input.value) return;
+      const name = nameCycleList[nameCycleIdx % nameCycleList.length];
+      nameCycleIdx++;
+      input.placeholder = `FIND A NAME · ${name}···`;
+    }, 3000);
+  }
+
+  // ─── Search ───
+  let searchTimeout = null;
+  document.getElementById('searchInput').addEventListener('input', function() {
+    clearTimeout(searchTimeout);
+    const q = this.value.trim();
+    if (!q) {
+      document.getElementById('searchResults').classList.remove('open');
+      return;
+    }
+    searchTimeout = setTimeout(() => doSearch(q), 200);
+  });
+
+  document.addEventListener('click', function(e) {
+    const results = document.getElementById('searchResults');
+    if (!e.target.closest('.search-wrap')) results.classList.remove('open');
+  });
+
+  async function doSearch(q) {
+    try {
+      const res = await fetch(`${serverUrl}/search?q=${encodeURIComponent(q)}`);
+      const data = await res.json();
+      renderSearchResults(data.results || []);
+    } catch (e) {}
+  }
+
+  function renderSearchResults(results) {
+    const container = document.getElementById('searchResults');
+    if (!results.length) { container.classList.remove('open'); return; }
+    container.innerHTML = results.slice(0, 20).map(p => {
+      const name = p.people || p.title || 'Unknown';
+      const year = p.year ? `c.${p.year}` : '';
+      const community = p.community || '';
+      const thumb = p.src ? `url(${encodeURI(p.src)})` : '';
+      return `<div class="sr-item" onclick="selectSearchResult('${p.id}')">
+        <div class="sr-thumb" style="background-image:${thumb}"></div>
+        <div>
+          <div class="sr-name">${name}</div>
+          <div class="sr-meta">${[year, community].filter(Boolean).join(' · ')}</div>
+        </div>
+      </div>`;
+    }).join('');
+    container.classList.add('open');
+  }
+
+  function selectSearchResult(photoId) {
+    postState({ filters: { id: [photoId] } });
+    document.getElementById('searchResults').classList.remove('open');
+    document.getElementById('searchInput').value = '';
+    wakeFromAttract();
+  }
+
+  // ─── Now Showing ───
+  function updateNowShowing() {
+    if (isAttract) return;
+    const p = currentPhoto;
+    if (!p) return;
+    const base = window.location.pathname.includes('/shoebox-v2/') ? '/shoebox-v2/' : '/';
+    const url = p.src ? `${base}${encodeURI(p.src)}` : '';
+    if (url) document.getElementById('photoArea').style.backgroundImage = `url(${url})`;
+    document.getElementById('detailTitle').textContent = p.title || p.alt || '';
+    const meta = [p.year ? `c.${p.year}` : '', p.community || '', p.people || ''].filter(Boolean).join(' · ');
+    document.getElementById('detailMeta').textContent = meta;
+    document.getElementById('detailDesc').textContent = p.caption || p.description || '';
+    document.getElementById('listenBtn').style.display = 'none';
+  }
+
+  function updateCount() {
+    document.getElementById('countLabel').textContent = `${filteredCount} photos`;
+  }
+
+  // ─── Tap Now Showing → detail overlay ───
+  document.getElementById('nowShowing').addEventListener('click', function() {
+    if (isAttract) { wakeFromAttract(); return; }
+    if (isDetailOpen) return;
+    if (!currentPhoto) return;
+    isDetailOpen = true;
+    const p = currentPhoto;
+    const base = window.location.pathname.includes('/shoebox-v2/') ? '/shoebox-v2/' : '/';
+    const url = p.src ? `${base}${encodeURI(p.src)}` : '';
+    document.getElementById('detailPhoto').style.backgroundImage = `url(${url})`;
+    document.getElementById('detailOverlayTitle').textContent = p.title || p.alt || '';
+    const meta = [p.year ? `c.${p.year}` : '', p.community || '', p.province || '', p.people || ''].filter(Boolean).join(' · ');
+    document.getElementById('detailOverlayMeta').textContent = meta;
+    document.getElementById('detailOverlayDesc').textContent = p.caption || p.description || '';
+    document.getElementById('detailOverlay').classList.add('open');
+  });
+
+  function closeDetail() {
+    isDetailOpen = false;
+    document.getElementById('detailOverlay').classList.remove('open');
+    resetIdle();
+  }
+
+  // ─── Story Piles ───
+  function renderPiles() {
+    const row = document.getElementById('pilesRow');
+    if (themes.length === 0) {
+      row.innerHTML = `
+        <div class="pile pile-0"><div class="pile-bg"></div>
+          <div class="pile-label">Métis Families</div>
+          <div class="pile-sub">Generations of family</div>
+        </div>
+        <div class="pile pile-1"><div class="pile-bg"></div>
+          <div class="pile-label">Land &amp; Daily Life</div>
+          <div class="pile-sub">Work, school, outdoors</div>
+        </div>
+        <div class="pile pile-2"><div class="pile-bg"></div>
+          <div class="pile-label">Celebrations</div>
+          <div class="pile-sub">Gatherings &amp; ceremonies</div>
+        </div>`;
+      return;
+    }
+    row.innerHTML = themes.map((t, i) => {
+      // Find a representative photo for the pile background
+      const repPhoto = photos.find(p => t.filters && Object.keys(t.filters).length > 0) || photos[i % photos.length];
+      const bgUrl = repPhoto && repPhoto.src ? `url(${encodeURI(repPhoto.src)})` : '';
+      return `<div class="pile pile-${i % 3}" onclick="selectTheme(${i})">
+        <div class="pile-bg" style="background-image:${bgUrl}"></div>
+        <div class="pile-label">${t.title}</div>
+        <div class="pile-sub">${t.subtitle || ''}</div>
+      </div>`;
+    }).join('');
+  }
+
+  function selectTheme(idx) {
+    const theme = themes[idx];
+    if (!theme) return;
+    const updates = {};
+    if (theme.filters) updates.filters = theme.filters;
+    if (theme.speed) updates.speed = theme.speed;
+    if (theme.transition) updates.transition = theme.transition;
+    if (theme.captionMode != null) updates.captionMode = theme.captionMode;
+    postState(updates);
+    wakeFromAttract();
+  }
+
+  // ─── Controls ───
+  function togglePlay() {
+    playing = !playing;
+    document.getElementById('btnPlay').textContent = playing ? '⏸' : '▶';
+    postState({ playing });
+  }
+
+  function setSpeed(ms) {
+    speedMs = ms;
+    document.querySelectorAll('[data-speed]').forEach(b => b.classList.remove('active'));
+    document.querySelector(`[data-speed="${ms}"]`).classList.add('active');
+    postState({ speed: ms });
+  }
+
+  function setTransition(tr) {
+    transition = tr;
+    document.querySelectorAll('[data-trans]').forEach(b => b.classList.remove('active'));
+    document.querySelector(`[data-trans="${tr}"]`).classList.add('active');
+    postState({ transition: tr });
+  }
+
+  function cycleCaptions() {
+    captionMode = (captionMode + 1) % 3;
+    document.getElementById('btnCaption').classList.toggle('active', captionMode > 0);
+    postState({ captionMode });
+  }
+
+  function toggleShuffle() {
+    shuffle = !shuffle;
+    document.getElementById('btnShuffle').classList.toggle('active', shuffle);
+    postState({ shuffle });
+  }
+
+  function toggleFace() {
+    faceTrack = !faceTrack;
+    document.getElementById('btnFace').classList.toggle('active', faceTrack);
+    postState({ faceTrack });
+  }
+
+  // ─── Helpers ───
+  function encodeURI(path) {
+    if (!path) return '';
+    return path.split('/').map(s => encodeURIComponent(s)).join('/');
+  }
+
+  // ─── Init ───
+  init();
+  </script>
+</body>
+</html>

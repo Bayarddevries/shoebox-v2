@@ -1,0 +1,31 @@
+{
+  "themes": [
+    {
+      "id": "families",
+      "title": "Métis Families",
+      "subtitle": "Generations of family, name by name",
+      "filters": {},
+      "speed": 7000,
+      "transition": "kenburns",
+      "captionMode": 2
+    },
+    {
+      "id": "land-life",
+      "title": "Land & Daily Life",
+      "subtitle": "Work, school, outdoors, and everyday moments",
+      "filters": {},
+      "speed": 5000,
+      "transition": "fade",
+      "captionMode": 1
+    },
+    {
+      "id": "celebrations",
+      "title": "Celebrations & Ceremonies",
+      "subtitle": "NIPD, Louis Riel Day, AGA, weddings, and gatherings",
+      "filters": {},
+      "speed": 6000,
+      "transition": "kenburns",
+      "captionMode": 2
+    }
+  ]
+}
