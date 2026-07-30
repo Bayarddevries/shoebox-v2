@@ -382,27 +382,35 @@
   }
 
   function applySettingsFromRemote(remote) {
+    let changed = false;
     if (remote.speed && remote.speed !== speedMs) {
-      speedMs = remote.speed;
+      speedMs = remote.speed; changed = true;
     }
     if (remote.transition && remote.transition !== transition) {
-      transition = remote.transition;
+      transition = remote.transition; changed = true;
     }
     if (remote.captionMode != null && remote.captionMode !== captionMode) {
-      captionMode = remote.captionMode;
+      captionMode = remote.captionMode; changed = true;
     }
     if (remote.shuffle != null && remote.shuffle !== shuffle) {
-      shuffle = remote.shuffle;
+      shuffle = remote.shuffle; changed = true;
     }
     if (remote.faceTrack != null && remote.faceTrack !== faceTrack) {
-      faceTrack = remote.faceTrack;
+      faceTrack = remote.faceTrack; changed = true;
     }
-    if (remote.playing != null) {
-      playing = remote.playing;
+    if (remote.playing != null && remote.playing !== playing) {
+      playing = remote.playing; changed = true;
     }
-    // Restart timer with current settings
-    if (timerId) clearTimeout(timerId);
-    if (playing && filtered.length > 1) {
+    // Only restart timer when settings or filtered set actually changed,
+    // not on every poll (which would keep resetting the countdown)
+    if (changed) {
+      if (timerId) clearTimeout(timerId);
+      if (playing && filtered.length > 1) {
+        timerId = setTimeout(nextSlide, speedMs);
+      }
+    }
+    // Ensure timer exists if playing and nothing changed (first start)
+    if (!changed && !timerId && playing && filtered.length > 1) {
       timerId = setTimeout(nextSlide, speedMs);
     }
   }
