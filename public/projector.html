@@ -456,7 +456,7 @@
   }
 
   function applyImageToLayer(url, faceX, faceY, photo, idx) {
-    const kb = getKenBurns(idx);
+    const kb = getKenBurns(idx, faceX, faceY);
     const incoming = activeLayer === 'a' ? document.getElementById('layer-b') : document.getElementById('layer-a');
     const outgoing = activeLayer === 'a' ? document.getElementById('layer-a') : document.getElementById('layer-b');
 
@@ -507,14 +507,27 @@
     activeLayer = activeLayer === 'a' ? 'b' : 'a';
   }
 
-  function getKenBurns(idx) {
+  function getKenBurns(idx, faceX, faceY) {
+    const scaleTo = 1.12;
+    // Face-aware Ken Burns: zoom toward the detected face position
+    if (faceX != null && faceY != null && (faceX !== 0.5 || faceY !== 0.5)) {
+      // Translate so the zoom pulls toward the face
+      // faceX < 0.5 = face is left → translate right to bring face toward center
+      const tx = (0.5 - faceX) * 3;
+      const ty = (0.5 - faceY) * 3;
+      // Alternate: half the time zoom in, half zoom out for variety
+      if (idx % 2 === 0) {
+        return { from: `scale(1) translate(0%, 0%)`, to: `scale(${scaleTo}) translate(${tx}%, ${ty}%)` };
+      } else {
+        return { from: `scale(${scaleTo}) translate(${tx}%, ${ty}%)`, to: `scale(1) translate(0%, 0%)` };
+      }
+    }
+    // Fallback: gentle random zooms for photos without face data
     const kbVariants = [
-      { from: 'scale(1) translate(0, 0)', to: 'scale(1.15) translate(-2%, -1%)' },
-      { from: 'scale(1.1) translate(-2%, 0)', to: 'scale(1) translate(1%, -1%)' },
-      { from: 'scale(1) translate(1%, 0)', to: 'scale(1.12) translate(-1%, 1%)' },
-      { from: 'scale(1.08) translate(0, -1%)', to: 'scale(1) translate(1%, 1%)' },
-      { from: 'scale(1.05) translate(-1%, 1%)', to: 'scale(1.15) translate(1%, -1%)' },
-      { from: 'scale(1.1) translate(1%, -1%)', to: 'scale(1) translate(-1%, 1%)' },
+      { from: 'scale(1) translate(0, 0)', to: 'scale(1.12) translate(-1.5%, -1%)' },
+      { from: 'scale(1) translate(0, 0)', to: 'scale(1.12) translate(1.5%, 1%)' },
+      { from: 'scale(1) translate(0, 0)', to: 'scale(1.12) translate(-1%, 1.5%)' },
+      { from: 'scale(1) translate(0, 0)', to: 'scale(1.12) translate(1%, -1.5%)' },
     ];
     return kbVariants[idx % kbVariants.length];
   }
