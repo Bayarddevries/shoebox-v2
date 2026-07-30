@@ -469,7 +469,7 @@
   function togglePlay() {
     playing = !playing;
     document.getElementById('btnPlay').textContent = playing ? '⏸' : '▶';
-    if (playing) { timerId = setTimeout(() => nextSlide(); updateTimerIdx(); }, speedMs); }
+    if (playing) { timerId = setTimeout(() => { nextSlide(); updateTimerIdx(); }, speedMs); }
     else { if (timerId) clearTimeout(timerId); }
   }
   function updateTimerIdx() { activePhotoIdx = (activePhotoIdx) % Math.max(filtered.length, 1); }
