@@ -174,6 +174,17 @@
       font-size: 0.75rem; opacity: 0; transition: opacity 0.3s; white-space: nowrap;
     }
     #infoTip.show { opacity: 1; }
+
+    /* Exhibit mode — connection status dot */
+    #exhibitDot {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 60;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,0.5);
+      transition: background 0.3s, box-shadow 0.3s;
+      pointer-events: none;
+    }
+    #exhibitDot.disconnected { background: #ef4444; box-shadow: 0 0 8px rgba(239,68,68,0.5); }
+    #exhibitDot.hidden { display: none; }
   </style>
 </head>
 <body>
@@ -279,19 +290,131 @@
   </div>
 
   <div id="infoTip"></div>
+  <div id="exhibitDot" class="hidden"></div>
 
   <script>
   // ─── State ───
   let photos = [], filtered = [], activePhotoIdx = 0, playing = true, speedMs = 5000;
   let transition = 'kenburns';
   let captionMode = 0; // 0=off, 1=title, 2=full
-  let shuffle = false;
+  let shuffle = true;
   let faceTrack = false;
   let timerId = null;
   let activeLayer = 'a';
 
   // Filters: key = category (community, people, decade, keyword), value = string[] of selected
   let activeFilters = { community: [], people: [], decade: [], keyword: [] };
+
+  // ─── Exhibit mode ───
+  const isExhibit = new URLSearchParams(window.location.search).has('exhibit');
+  let exhibitServer = null; // set during init
+  let lastRemoteState = null;
+  let pollTimerId = null;
+
+  function getServerUrl() {
+    const param = new URLSearchParams(window.location.search).get('server');
+    if (param) return `http://${param}`;
+    const host = window.location.hostname;
+    if (host && host !== 'localhost' && host !== '127.0.0.1' && host !== '') {
+      return `http://${host}:8081`;
+    }
+    return 'http://localhost:8081';
+  }
+
+  async function pollExhibitState() {
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 3000);
+      const res = await fetch(`${exhibitServer}/state`, { signal: controller.signal });
+      clearTimeout(timeout);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const remote = await res.json();
+      document.getElementById('exhibitDot').classList.remove('disconnected');
+      applyRemoteState(remote);
+    } catch (e) {
+      document.getElementById('exhibitDot').classList.add('disconnected');
+    }
+    pollTimerId = setTimeout(pollExhibitState, 2000);
+  }
+
+  function applyRemoteState(remote) {
+    const prev = lastRemoteState;
+    lastRemoteState = remote;
+
+    // First call — bootstrap from remote state using loaded photos
+    if (!prev) {
+      if (!photos.length) return; // not ready yet
+      applyFiltersFromRemote(remote);
+      return;
+    }
+
+    // Photo set changed
+    const photoIdSet = new Set(remote.photoIds);
+    const newFiltered = photos.filter(p => photoIdSet.has(p.id));
+    if (newFiltered.length !== filtered.length ||
+        (newFiltered.length > 0 && newFiltered[0].id !== filtered[0]?.id)) {
+      filtered = newFiltered;
+      activePhotoIdx = Math.min(remote.currentIndex || 0, filtered.length - 1);
+      if (filtered.length > 0) loadPhoto(activePhotoIdx);
+      else document.getElementById('counter').textContent = '0 / 0';
+    }
+
+    // Index changed
+    if (prev.currentIndex !== remote.currentIndex && remote.currentIndex != null) {
+      const idx = Math.min(remote.currentIndex, filtered.length - 1);
+      if (idx >= 0 && idx !== activePhotoIdx) {
+        activePhotoIdx = idx;
+        if (filtered.length > 0) loadPhoto(activePhotoIdx);
+      }
+    }
+
+    // Settings
+    applySettingsFromRemote(remote);
+  }
+
+  function applyFiltersFromRemote(remote) {
+    const photoIdSet = new Set(remote.photoIds);
+    filtered = photos.filter(p => photoIdSet.has(p.id));
+    activePhotoIdx = Math.min(remote.currentIndex || 0, filtered.length - 1);
+    if (filtered.length > 0) loadPhoto(activePhotoIdx);
+    else document.getElementById('counter').textContent = '0 / 0';
+    applySettingsFromRemote(remote);
+  }
+
+  function applySettingsFromRemote(remote) {
+    if (remote.speed && remote.speed !== speedMs) {
+      speedMs = remote.speed;
+    }
+    if (remote.transition && remote.transition !== transition) {
+      transition = remote.transition;
+    }
+    if (remote.captionMode != null && remote.captionMode !== captionMode) {
+      captionMode = remote.captionMode;
+    }
+    if (remote.shuffle != null && remote.shuffle !== shuffle) {
+      shuffle = remote.shuffle;
+    }
+    if (remote.faceTrack != null && remote.faceTrack !== faceTrack) {
+      faceTrack = remote.faceTrack;
+    }
+    if (remote.playing != null) {
+      playing = remote.playing;
+    }
+    // Restart timer with current settings
+    if (timerId) clearTimeout(timerId);
+    if (playing && filtered.length > 1) {
+      timerId = setTimeout(nextSlide, speedMs);
+    }
+  }
+
+  function reportIndex(idx) {
+    if (!isExhibit || !exhibitServer) return;
+    fetch(`${exhibitServer}/state`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ currentIndex: idx })
+    }).catch(() => {});
+  }
 
   // ─── Manifest loader ───
   async function loadManifest() {
@@ -535,11 +658,13 @@
   function nextSlide() {
     const idx = (activePhotoIdx + 1) % Math.max(filtered.length, 1);
     loadPhoto(idx);
+    reportIndex(idx);
     if (playing) { if (timerId) clearTimeout(timerId); timerId = setTimeout(() => { activePhotoIdx = (activePhotoIdx + 1) % Math.max(filtered.length, 1); nextSlide(); }, speedMs); }
   }
   function prevSlide() {
     const idx = (activePhotoIdx - 1 + Math.max(filtered.length, 1)) % Math.max(filtered.length, 1);
     loadPhoto(idx);
+    reportIndex(idx);
     if (playing) { if (timerId) clearTimeout(timerId); timerId = setTimeout(() => { activePhotoIdx = (activePhotoIdx + 1) % Math.max(filtered.length, 1); nextSlide(); }, speedMs); }
   }
 
@@ -696,11 +821,36 @@
   }
 
   // Init
-  refreshPresetSelect();
-  loadManifest();
+  if (isExhibit) {
+    exhibitServer = getServerUrl();
+    // Hide the control bar in exhibit mode
+    document.getElementById('controls').style.display = 'none';
+    document.getElementById('exhibitDot').classList.remove('hidden');
+    // Load manifest for photo data, then start polling
+    fetch(exhibitServer + '/manifest')
+      .then(r => r.json())
+      .then(data => {
+        photos = data.photos || data;
+        if (photos.length > 0) {
+          // Apply initial state from server
+          pollExhibitState();
+        }
+      })
+      .catch(() => {
+        document.getElementById('exhibitDot').classList.add('disconnected');
+        // Fall back to normal mode
+        loadManifest();
+      });
+  } else {
+    refreshPresetSelect();
+    document.getElementById('btnShuffle').classList.toggle('active', shuffle);
+    loadManifest();
+  }
 
-  // Auto-start
-  setTimeout(() => { playing = true; nextSlide(); }, 300);
+  // Auto-start (only in non-exhibit mode — exhibit mode is driven by polling)
+  if (!isExhibit) {
+    setTimeout(() => { playing = true; nextSlide(); }, 300);
+  }
   </script>
 </body>
 </html>

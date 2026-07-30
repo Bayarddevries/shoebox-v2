@@ -297,7 +297,7 @@
   let photos = [], filtered = [], activePhotoIdx = 0, playing = true, speedMs = 5000;
   let transition = 'kenburns';
   let captionMode = 0; // 0=off, 1=title, 2=full
-  let shuffle = false;
+  let shuffle = true;
   let faceTrack = false;
   let timerId = null;
   let activeLayer = 'a';
@@ -843,6 +843,7 @@
       });
   } else {
     refreshPresetSelect();
+    document.getElementById('btnShuffle').classList.toggle('active', shuffle);
     loadManifest();
   }
 

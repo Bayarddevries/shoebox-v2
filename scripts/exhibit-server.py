@@ -113,7 +113,7 @@ state = {
     "speed": 5000,
     "transition": "kenburns",
     "captionMode": 0,
-    "shuffle": False,
+    "shuffle": True,
     "faceTrack": False,
     "playing": True,
     "serverTime": time.time(),
