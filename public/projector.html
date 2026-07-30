@@ -229,6 +229,7 @@
       <div class="ctrl-btns">
         <button onclick="cycleCaptions()" id="btnCaption" title="C">Captions</button>
         <button onclick="toggleShuffle()" id="btnShuffle" title="S">Shuffle</button>
+        <button onclick="toggleFaceTrack()" id="btnFace" title="G">Face</button>
         <button onclick="toggleFullscreen()" title="F">Fullscreen</button>
       </div>
     </div>
@@ -286,6 +287,7 @@
   let transition = 'kenburns';
   let captionMode = 0; // 0=off, 1=title, 2=full
   let shuffle = false;
+  let faceTrack = false;
   let timerId = null;
   let activeLayer = 'a';
 
@@ -415,9 +417,9 @@
     const base = window.location.pathname.includes('/shoebox-v2/') ? '/shoebox-v2/' : '/';
     const url = base + encodePath(photo.src);
 
-    // Compute face-aware position using faceX/faceY from manifest
+    // Compute position: center by default, face-aware if tracking is on
     let faceX = 0.5, faceY = 0.5;
-    if (photo.faceX != null && photo.faceY != null) {
+    if (faceTrack && photo.faceX != null && photo.faceY != null) {
       faceX = photo.faceX;
       faceY = photo.faceY;
     }
@@ -568,6 +570,13 @@
     showInfoTip('Shuffle: ' + (shuffle ? 'On' : 'Off'));
   }
 
+  function toggleFaceTrack() {
+    faceTrack = !faceTrack;
+    document.getElementById('btnFace').classList.toggle('active', faceTrack);
+    if (filtered.length > 0) loadPhoto(activePhotoIdx);
+    showInfoTip('Face tracking: ' + (faceTrack ? 'On' : 'Off'));
+  }
+
   // ─── Fullscreen ───
   function toggleFullscreen() {
     if (!document.fullscreenElement) document.documentElement.requestFullscreen();
@@ -582,7 +591,7 @@
   function savePreset() {
     const name = prompt('Preset name:', 'Event ' + new Date().toLocaleDateString());
     if (!name) return;
-    const preset = { filters: JSON.parse(JSON.stringify(activeFilters)), transition, speedMs, captionMode, shuffle };
+    const preset = { filters: JSON.parse(JSON.stringify(activeFilters)), transition, speedMs, captionMode, shuffle, faceTrack };
     const all = JSON.parse(localStorage.getItem('shoebox_presets') || '{}');
     all[name] = preset;
     localStorage.setItem('shoebox_presets', JSON.stringify(all));
@@ -599,8 +608,10 @@
     speedMs = preset.speedMs || 5000;
     captionMode = preset.captionMode || 0;
     shuffle = preset.shuffle || false;
+    faceTrack = preset.faceTrack || false;
     document.getElementById('btnShuffle').classList.toggle('active', shuffle);
     document.getElementById('btnCaption').classList.toggle('active', captionMode > 0);
+    document.getElementById('btnFace').classList.toggle('active', faceTrack);
     document.querySelectorAll('#filterPanel input[type="checkbox"]').forEach(cb => {
       const val = cb.value;
       let found = false;
@@ -628,6 +639,7 @@
     if (e.key === 'ArrowRight') nextSlide();
     if (e.key === 'c' || e.key === 'C') cycleCaptions();
     if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+    if (e.key === 'g' || e.key === 'G') toggleFaceTrack();
     if (e.key === 's' || e.key === 'S') toggleShuffle();
     if (e.key === 'Escape') closeFilters();
     if (e.key === 'F2') toggleFilters();
