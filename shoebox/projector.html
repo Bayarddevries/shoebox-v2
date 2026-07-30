@@ -78,26 +78,37 @@
       transition: width 0.6s ease-out;
     }
 
-    /* Controls panel (slide-out from bottom, auto-hides after 5s mouse idle) */
+    /* Controls panel (slide-out from bottom, auto-hides after 3s mouse idle) */
     #controls {
       position: fixed; inset: auto 2rem 2rem 2rem; z-index: 40;
       background: rgba(10,10,10,0.85); backdrop-filter: blur(14px) saturate(1.2);
       border: 1px solid rgba(255,255,255,0.06);
       border-radius: 16px; padding: 1.25rem 1.5rem;
-      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+      display: flex; align-items: stretch; gap: 1rem; flex-wrap: wrap;
       transition: transform 0.35s ease, opacity 0.35s ease;
       transform: translateY(0); opacity: 1;
     }
-    #controls.hidden-state { transform: translateY(120%); opacity: 0; pointer-events: none; }
-
-    /* Buttons */
-    .btn-group { display: flex; gap: 0.35rem; align-items: center; }
-    .btn-group button, .btn-group .btn-label {
+    .ctrl-group {
+      display: flex; flex-direction: column; gap: 0.25rem;
+    }
+    .ctrl-group .ctrl-label {
+      font-family: var(--font-kicker);
+      font-size: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--warm-gray);
+      line-height: 1;
+    }
+    .ctrl-btns {
+      display: flex; gap: 0.25rem; align-items: center;
+    }
+    .ctrl-btns button, .ctrl-btns .btn-label {
       background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-      color: var(--cream); padding: 0.45rem 0.7rem; border-radius: 8px;
-      font-size: 0.78rem; cursor: pointer; white-space: nowrap;
+      color: var(--cream); padding: 0.4rem 0.6rem; border-radius: 8px;
+      font-size: 0.75rem; cursor: pointer; white-space: nowrap;
       font-family: var(--font-sans); letter-spacing: 0.02em;
       transition: background 0.15s, border-color 0.15s;
+      line-height: 1;
     }
     .btn-group button:hover, .btn-group .btn-label.active {
       background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.18);
@@ -105,15 +116,42 @@
     .btn-group button.active { background: var(--accent-warm); color: var(--black); border-color: var(--accent-warm); }
     .btn-icon { font-size: 0.65rem; opacity: 0.7; }
 
+    /* Immersive mode — only slide images visible */
+    body.immersed .caption-overlay,
+    body.immersed #controls,
+    body.immersed .progress-area {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 0.6s ease;
+    }
+    body.immersed .slide-layer {
+      filter: brightness(1) saturate(1.05);
+      transition: filter 0.6s ease;
+    }
+
     /* Filter panel (slide-out from left) */
     #filterPanel {
       position: fixed; top: 0; left: 0; bottom: 0; width: min(420px, 95vw); z-index: 50;
       background: rgba(17,16,14,0.96); border-right: 1px solid rgba(255,255,255,0.08);
-      padding: 2rem 1.5rem 2rem 2rem; overflow-y: auto;
+      padding: 2rem 0 0 0;
+      display: flex; flex-direction: column;
       transform: translateX(-105%); transition: transform 0.35s ease;
       backdrop-filter: blur(20px);
     }
     #filterPanel.open { transform: translateX(0); }
+    .filter-scroll {
+      flex: 1; overflow-y: auto;
+      padding: 0 1.5rem 1rem 2rem;
+    }
+    .filter-actions-sticky {
+      flex-shrink: 0;
+      padding: 1rem 1.5rem 1.5rem 2rem;
+      background: rgba(17,16,14,0.98);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      bottom: 0;
+      z-index: 2;
+    }
     #filterPanel h3 { font-family: var(--font-kicker); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-warm); margin: 1.5rem 0 0.5rem; }
     #filterPanel .filter-row { display: flex; align-items: center; gap: 0.6rem; margin: 0.3rem 0; }
     #filterPanel label { color: var(--light-warm); font-size: 0.85rem; cursor: pointer; }
@@ -156,73 +194,88 @@
   <div class="progress-area"><div class="progress-fill" id="progressFill"></div></div>
 
   <div id="controls">
-    <div class="btn-group" aria-label="Playback">
-      <button onclick="togglePlay()" id="btnPlay" title="Space">⏸</button>
-      <button onclick="prevSlide()" title="Left Arrow">◀</button>
-      <button onclick="nextSlide()" title="Right Arrow">▶</button>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Playback</span>
+      <div class="ctrl-btns">
+        <button onclick="togglePlay()" id="btnPlay" title="Space">⏸</button>
+        <button onclick="prevSlide()" title="Left Arrow">◀</button>
+        <button onclick="nextSlide()" title="Right Arrow">▶</button>
+      </div>
     </div>
 
-    <div class="btn-group" aria-label="Speed">
-      <button onclick="setSpeed(3000)" data-ms="3000">3s</button>
-      <button onclick="setSpeed(5000)" data-ms="5000" class="active">5s</button>
-      <button onclick="setSpeed(7000)" data-ms="7000">7s</button>
-      <button onclick="setSpeed(10000)" data-ms="10000">10s</button>
-      <button onclick="setSpeed(15000)" data-ms="15000">15s</button>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Speed</span>
+      <div class="ctrl-btns">
+        <button onclick="setSpeed(3000)" data-ms="3000">3s</button>
+        <button onclick="setSpeed(5000)" data-ms="5000" class="active">5s</button>
+        <button onclick="setSpeed(7000)" data-ms="7000">7s</button>
+        <button onclick="setSpeed(10000)" data-ms="10000">10s</button>
+        <button onclick="setSpeed(15000)" data-ms="15000">15s</button>
+      </div>
     </div>
 
-    <div class="btn-group" aria-label="Transition">
-      <button onclick="setTransition('kenburns')" data-tr="kenburns" class="active" title="K">K</button>
-      <button onclick="setTransition('fade')" data-tr="fade" title="F">F</button>
-      <button onclick="setTransition('slide')" data-tr="slide" title="S">S</button>
-      <button onclick="setTransition('cut')" data-tr="cut" title="C">C</button>
-      <button onclick="setTransition('wipe')" data-tr="wipe" title="W">W</button>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Transition</span>
+      <div class="ctrl-btns">
+        <button onclick="setTransition('kenburns')" data-tr="kenburns" class="active" title="Ken Burns zoom">Ken</button>
+        <button onclick="setTransition('fade')" data-tr="fade" title="Crossfade">Fade</button>
+        <button onclick="setTransition('slide')" data-tr="slide" title="Slide left">Slide</button>
+        <button onclick="setTransition('cut')" data-tr="cut" title="Instant cut">Cut</button>
+        <button onclick="setTransition('wipe')" data-tr="wipe" title="Wipe right">Wipe</button>
+      </div>
     </div>
 
-    <div class="btn-group" aria-label="Captions">
-      <button onclick="cycleCaptions()" id="btnCaption" title="C">Captions: Off</button>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Display</span>
+      <div class="ctrl-btns">
+        <button onclick="cycleCaptions()" id="btnCaption" title="C">Captions</button>
+        <button onclick="toggleShuffle()" id="btnShuffle" title="S">Shuffle</button>
+        <button onclick="toggleFullscreen()" title="F">Fullscreen</button>
+      </div>
     </div>
 
-    <div class="btn-group" aria-label="Shuffle and Fullscreen">
-      <button onclick="toggleShuffle()" id="btnShuffle" title="S">Shuffle: Off</button>
-      <button onclick="toggleFullscreen()" title="F">⛶</button>
-    </div>
-
-    <div class="btn-group" aria-label="Filters and Counter">
-      <button onclick="toggleFilters()" title="Tag selection panel — F2">Tags ⧉</button>
-      <span style="font-size:0.7rem; color: var(--warm-gray); margin-left:0.5rem;" id="counter">0 / 0</span>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Filter</span>
+      <div class="ctrl-btns">
+        <button onclick="toggleFilters()" title="F2">Tags</button>
+        <span style="font-size:0.7rem; color: var(--warm-gray);" id="counter">0 / 0</span>
+      </div>
     </div>
   </div>
 
   <!-- Filter Panel -->
   <div id="filterPanel">
-    <h3>Filter Selection</h3>
-    <p style="font-size:0.78rem; color: var(--light-warm); margin-bottom: 1rem;">Select categories to include. Items within a category use OR logic. Active categories combine with AND logic.</p>
+    <div class="filter-scroll">
+      <h3>Filter Selection</h3>
+      <p style="font-size:0.78rem; color: var(--light-warm); margin-bottom: 1rem;">Select categories. Items within a category use OR logic. Active categories combine with AND.</p>
 
-    <h3>Communities</h3>
-    <div id="commChecks"></div>
+      <h3>Communities</h3>
+      <div id="commChecks"></div>
 
-    <h3>Families / People</h3>
-    <div id="peopleChecks"></div>
+      <h3>Families / People</h3>
+      <div id="peopleChecks"></div>
 
-    <h3>Decades</h3>
-    <div id="decadeChecks"></div>
+      <h3>Decades</h3>
+      <div id="decadeChecks"></div>
 
-    <h3>Keywords</h3>
-    <input type="text" id="keywordSearch" placeholder="Search keywords..." style="width:100%; padding:0.4rem; margin-bottom:0.5rem; background:var(--near-black); border:1px solid rgba(255,255,255,0.1); border-radius:6px; color:var(--cream); font-family:var(--font-sans); font-size:0.85rem;" oninput="filterKeywordChecks(this.value)">
-    <div id="keywordChecks"></div>
+      <h3>Keywords</h3>
+      <input type="text" id="keywordSearch" placeholder="Search keywords..." style="width:100%; padding:0.4rem; margin-bottom:0.5rem; background:var(--near-black); border:1px solid rgba(255,255,255,0.1); border-radius:6px; color:var(--cream); font-family:var(--font-sans); font-size:0.85rem;" oninput="filterKeywordChecks(this.value)">
+      <div id="keywordChecks"></div>
 
-    <h3>Presets</h3>
-    <div class="preset-row">
-      <select id="presetSelect" onchange="loadPreset(this.value)"><option value="">— Load preset —</option></select>
-      <button onclick="savePreset()">Save</button>
+      <h3>Presets</h3>
+      <div class="preset-row">
+        <select id="presetSelect" onchange="loadPreset(this.value)"><option value="">-- Load preset --</option></select>
+        <button onclick="savePreset()">Save</button>
+      </div>
+      <div id="activePills"></div>
     </div>
-    <div id="activePills"></div>
 
-    <h3>Actions</h3>
-    <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-      <button onclick="applyFilters()" style="background:var(--accent-warm); color:var(--black); border:none; border-radius:6px; padding:0.4rem 0.8rem; font-family:var(--font-sans); font-size:0.75rem; cursor:pointer;">Apply Filters</button>
-      <button onclick="clearFilters()" style="background:rgba(255,255,255,0.06); color:var(--cream); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:0.4rem 0.8rem; font-family:var(--font-sans); font-size:0.75rem; cursor:pointer;">Clear All</button>
-      <button onclick="closeFilters()" style="background:rgba(255,255,255,0.06); color:var(--cream); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:0.4rem 0.8rem; font-family:var(--font-sans); font-size:0.75rem; cursor:pointer;">Close ⟵</button>
+    <div class="filter-actions-sticky">
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <button onclick="applyFilters()" style="background:var(--accent-warm); color:var(--black); border:none; border-radius:6px; padding:0.4rem 0.8rem; font-family:var(--font-sans); font-size:0.75rem; cursor:pointer;">Apply Filters</button>
+        <button onclick="clearFilters()" style="background:rgba(255,255,255,0.06); color:var(--cream); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:0.4rem 0.8rem; font-family:var(--font-sans); font-size:0.75rem; cursor:pointer;">Clear All</button>
+        <button onclick="closeFilters()" style="background:rgba(255,255,255,0.06); color:var(--cream); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:0.4rem 0.8rem; font-family:var(--font-sans); font-size:0.75rem; cursor:pointer;">Close</button>
+      </div>
     </div>
   </div>
 
@@ -492,16 +545,18 @@
 
   function cycleCaptions() {
     captionMode = (captionMode + 1) % 3;
-    const labels = ['Captions: Off', 'Captions: Title', 'Captions: Full'];
-    document.getElementById('btnCaption').textContent = labels[captionMode];
+    const labels = ['Off', 'Title', 'Full'];
+    document.getElementById('btnCaption').textContent = 'Captions';
+    document.getElementById('btnCaption').classList.toggle('active', captionMode > 0);
     if (filtered.length > 0) loadPhoto(activePhotoIdx);
+    showInfoTip('Captions: ' + labels[captionMode]);
   }
 
   function toggleShuffle() {
     shuffle = !shuffle;
-    document.getElementById('btnShuffle').textContent = 'Shuffle: ' + (shuffle ? 'On' : 'Off');
     document.getElementById('btnShuffle').classList.toggle('active', shuffle);
     applyFilters();
+    showInfoTip('Shuffle: ' + (shuffle ? 'On' : 'Off'));
   }
 
   // ─── Fullscreen ───
@@ -535,12 +590,9 @@
     speedMs = preset.speedMs || 5000;
     captionMode = preset.captionMode || 0;
     shuffle = preset.shuffle || false;
-    document.getElementById('btnCaption').textContent = ['Captions: Off', 'Captions: Title', 'Captions: Full'][captionMode];
-    document.getElementById('btnShuffle').textContent = 'Shuffle: ' + (shuffle ? 'On' : 'Off');
     document.getElementById('btnShuffle').classList.toggle('active', shuffle);
+    document.getElementById('btnCaption').classList.toggle('active', captionMode > 0);
     document.querySelectorAll('#filterPanel input[type="checkbox"]').forEach(cb => {
-      const catKey = cb.closest('#filterPanel > div').parentElement.querySelector('h3');
-      // Use value matching for preset load
       const val = cb.value;
       let found = false;
       for (const [key, vals] of Object.entries(activeFilters)) {
@@ -550,7 +602,6 @@
     });
     document.getElementById('keywordSearch').value = '';
     applyFilters();
-    document.getElementById('btnCaption').textContent = ['Captions: Off', 'Captions: Title', 'Captions: Full'][captionMode];
     showInfoTip('Loaded preset: ' + name);
   }
   function refreshPresetSelect() {
@@ -592,15 +643,15 @@
     else togglePlay();
   }, { passive: true });
 
-  // Auto-hide controls after 5s
+  // Immersive mode — controls, captions, progress fade after 3s idle
   let mouseTimer = null;
-  function resetMouseTimer() {
-    document.getElementById('controls').classList.remove('hidden-state');
+  function showUI() {
+    document.body.classList.remove('immersed');
     clearTimeout(mouseTimer);
-    mouseTimer = setTimeout(() => document.getElementById('controls').classList.add('hidden-state'), 5000);
+    mouseTimer = setTimeout(() => document.body.classList.add('immersed'), 3000);
   }
-  document.addEventListener('mousemove', resetMouseTimer);
-  document.addEventListener('touchstart', resetMouseTimer);
+  document.addEventListener('mousemove', showUI);
+  document.addEventListener('touchstart', showUI);
 
   // Info tooltip
   let tipTimer = null;
