@@ -451,15 +451,25 @@
     }
 
     // Apply transition based on transition setting
-    applyImageToLayer(url, faceX, faceY, idx);
+    applyImageToLayer(url, faceX, faceY, photo, idx);
   }
 
-  function applyImageToLayer(url, faceX, faceY, idx) {
+  function applyImageToLayer(url, faceX, faceY, photo, idx) {
     const kb = getKenBurns(idx);
     const incoming = activeLayer === 'a' ? document.getElementById('layer-b') : document.getElementById('layer-a');
     const outgoing = activeLayer === 'a' ? document.getElementById('layer-a') : document.getElementById('layer-b');
 
+    // Smart background-size: fit height for portrait photos (avoid head cropping),
+    // fit width for landscape. Uses manifest width/height if available.
+    let bgSize = 'cover';
+    if (photo && photo.width && photo.height) {
+      const imgAspect = photo.width / photo.height;
+      const screenAspect = window.innerWidth / window.innerHeight;
+      bgSize = imgAspect < screenAspect ? 'auto 100%' : '100% auto';
+    }
+
     incoming.style.backgroundImage = `url("${url}")`;
+    incoming.style.backgroundSize = bgSize;
     incoming.style.backgroundPosition = `${faceX * 100}% ${faceY * 100}%`;
     incoming.style.opacity = '1';
     incoming.style.zIndex = '2';
