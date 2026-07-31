@@ -75,6 +75,43 @@
       background: radial-gradient(ellipse 120% 60% at 50% 100%, rgba(139,0,0,0.15) 0%, transparent 70%);
     }
     #attractCollage.show { opacity: 1; }
+
+    /* ─── Fire glow + sparks behind the photos ─── */
+    .fire-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 95% 60% at 50% 112%, rgba(196,80,20,0.4) 0%, rgba(139,0,0,0.25) 35%, transparent 72%),
+        radial-gradient(ellipse 55% 42% at 26% 118%, rgba(196,147,58,0.25) 0%, transparent 62%),
+        radial-gradient(ellipse 55% 42% at 74% 118%, rgba(255,120,40,0.18) 0%, transparent 62%);
+      animation: fireFlicker 2.6s ease-in-out infinite;
+      will-change: opacity, transform;
+    }
+    .fire-glow.glow2 {
+      animation-duration: 4.1s; animation-delay: 0.8s;
+      opacity: 0.65;
+    }
+    @keyframes fireFlicker {
+      0%, 100% { opacity: 0.55; transform: scaleY(1); }
+      22% { opacity: 0.95; transform: scaleY(1.05); }
+      48% { opacity: 0.7; transform: scaleY(0.97); }
+      72% { opacity: 1; transform: scaleY(1.07); }
+    }
+    .spark {
+      position: absolute; bottom: -8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffd9a0 0%, rgba(255,130,40,0.9) 40%, transparent 72%);
+      box-shadow: 0 0 8px 2px rgba(255,140,40,0.45);
+      animation: sparkRise linear infinite;
+      opacity: 0; pointer-events: none;
+      will-change: transform, opacity;
+    }
+    @keyframes sparkRise {
+      0%   { transform: translate(0, 0); opacity: 0; }
+      12%  { opacity: 0.9; }
+      70%  { opacity: 0.45; }
+      100% { transform: translate(var(--sway, 18px), -72vh); opacity: 0; }
+    }
+
     .ember-tile {
       position: absolute; top: 100%;
       border-radius: 6px; overflow: hidden;
@@ -748,10 +785,32 @@
     const c = document.getElementById('attractCollage');
     const brand = c.querySelector('.attract-brand');
     c.innerHTML = '';
+
+    // Fire glow base (two layers, independent flicker)
+    const glow1 = document.createElement('div');
+    glow1.className = 'fire-glow';
+    c.appendChild(glow1);
+    const glow2 = document.createElement('div');
+    glow2.className = 'fire-glow glow2';
+    c.appendChild(glow2);
+
+    // Rising ember sparks
+    for (let i = 0; i < 18; i++) {
+      const s = document.createElement('div');
+      const size = (2 + Math.random() * 3).toFixed(1);
+      const dur = (3 + Math.random() * 6).toFixed(1);
+      const delay = (-Math.random() * dur).toFixed(1);
+      const sway = (Math.random() * 40 - 20).toFixed(1);
+      s.className = 'spark';
+      s.style.cssText = `left:${(Math.random() * 100).toFixed(1)}vw;width:${size}px;height:${size}px;animation-duration:${dur}s;animation-delay:${delay}s;--sway:${sway}px`;
+      c.appendChild(s);
+    }
+
     for (let i = 0; i < 15; i++) {
       const p = photos[Math.floor(Math.random() * photos.length)];
+      const pa = (p.width && p.height) ? p.height / p.width : 1;
+      const aspect = Math.min(Math.max(pa, 0.6), 1.6);  // match the photo's real shape
       const w = 17 + Math.random() * 13;               // vw width
-      const aspect = 0.75 + Math.random() * 0.75;      // height/width
       const h = Math.min(w * aspect, 42);              // vh, capped
       const left = 4 + Math.random() * 62;             // vw
       const rot = (Math.random() * 12 - 6).toFixed(1); // degrees
@@ -767,6 +826,7 @@
       imgs[0].classList.add('on');
       tile._imgs = imgs;
       tile._on = 0;
+      tile._aspect = aspect;
     }
     c.appendChild(brand);
   }
@@ -775,7 +835,14 @@
     const tiles = document.querySelectorAll('#attractCollage .ember-tile');
     const picks = [...tiles].sort(() => Math.random() - 0.5).slice(0, 3);
     picks.forEach(t => {
-      const p = photos[Math.floor(Math.random() * photos.length)];
+      // Only swap in photos shaped like the tile, so nothing gets cropped weird
+      const a = t._aspect || 1;
+      const pool = photos.filter(q => {
+        const qa = (q.width && q.height) ? q.height / q.width : 1;
+        return Math.abs(qa - a) < 0.25;
+      });
+      const p = pool.length ? pool[Math.floor(Math.random() * pool.length)]
+                            : photos[Math.floor(Math.random() * photos.length)];
       const next = 1 - t._on;
       t._imgs[next].style.backgroundImage = `url(${thumbUrl(p)})`;
       t._imgs[next].classList.add('on');
