@@ -124,6 +124,7 @@ state = {
     "captionMode": 0,
     "shuffle": True,
     "faceTrack": False,
+    "kbZoom": 1.15,
     "playing": True,
     "serverTime": time.time(),
 }
@@ -215,7 +216,7 @@ class ExhibitHandler(BaseHTTPRequestHandler):
             with state_lock:
                 # Apply updates
                 for key in ['speed', 'transition', 'captionMode', 'shuffle',
-                            'faceTrack', 'playing']:
+                            'faceTrack', 'playing', 'kbZoom']:
                     if key in updates:
                         state[key] = updates[key]
 

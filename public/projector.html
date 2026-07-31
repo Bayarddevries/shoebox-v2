@@ -297,6 +297,7 @@
   let photos = [], filtered = [], activePhotoIdx = 0, playing = true, speedMs = 5000;
   let transition = 'kenburns';
   let captionMode = 0; // 0=off, 1=title, 2=full
+  let kbZoom = 1.15;   // Ken Burns zoom depth (push-in / pull-out amount)
   let shuffle = true;
   let faceTrack = false;
   let timerId = null;
@@ -439,6 +440,9 @@
     }
     if (remote.faceTrack != null && remote.faceTrack !== faceTrack) {
       faceTrack = remote.faceTrack; changed = true;
+    }
+    if (remote.kbZoom != null && remote.kbZoom !== kbZoom) {
+      kbZoom = remote.kbZoom; changed = true;
     }
     if (remote.playing != null && remote.playing !== playing) {
       playing = remote.playing; changed = true;
@@ -632,7 +636,7 @@
     // faceTrack only controls the static background position
     const kbFaceX = photo && photo.faceX != null ? photo.faceX : null;
     const kbFaceY = photo && photo.faceY != null ? photo.faceY : null;
-    const kb = getKenBurns(idx, kbFaceX, kbFaceY);
+    const kb = getKenBurns(idx, kbFaceX, kbFaceY, kbZoom);
     const incoming = activeLayer === 'a' ? document.getElementById('layer-b') : document.getElementById('layer-a');
     const outgoing = activeLayer === 'a' ? document.getElementById('layer-a') : document.getElementById('layer-b');
 
@@ -683,8 +687,8 @@
     activeLayer = activeLayer === 'a' ? 'b' : 'a';
   }
 
-  function getKenBurns(idx, faceX, faceY) {
-    const scaleTo = 1.15;
+  function getKenBurns(idx, faceX, faceY, zoom) {
+    const scaleTo = zoom || 1.15;
     // Face-aware Ken Burns: the zoom is anchored on the face, so it pushes
     // in toward the face or pulls out from it. Alternates every slide.
     if (faceX != null && faceY != null) {
@@ -701,10 +705,10 @@
     }
     // No face data: gentle random drift, centered
     const kbVariants = [
-      { from: 'scale(1)', to: 'scale(1.12) translate(-1.5%, -1%)', origin: 'center' },
-      { from: 'scale(1)', to: 'scale(1.12) translate(1.5%, 1%)', origin: 'center' },
-      { from: 'scale(1.12) translate(-1%, 1.5%)', to: 'scale(1)', origin: 'center' },
-      { from: 'scale(1.12) translate(1%, -1.5%)', to: 'scale(1)', origin: 'center' },
+      { from: 'scale(1)', to: `scale(${scaleTo}) translate(-1.5%, -1%)`, origin: 'center' },
+      { from: 'scale(1)', to: `scale(${scaleTo}) translate(1.5%, 1%)`, origin: 'center' },
+      { from: `scale(${scaleTo}) translate(-1%, 1.5%)`, to: 'scale(1)', origin: 'center' },
+      { from: `scale(${scaleTo}) translate(1%, -1.5%)`, to: 'scale(1)', origin: 'center' },
     ];
     return kbVariants[idx % kbVariants.length];
   }

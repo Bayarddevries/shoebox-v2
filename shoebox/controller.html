@@ -67,6 +67,40 @@
 
     .hidden { display: none !important; }
 
+    /* ─── Screensaver: floating photo collage ─── */
+    #attractCollage {
+      position: fixed; inset: 0; z-index: 2;
+      overflow: hidden; pointer-events: none;
+      opacity: 0; transition: opacity 0.8s ease;
+      background: radial-gradient(ellipse 120% 60% at 50% 100%, rgba(139,0,0,0.15) 0%, transparent 70%);
+    }
+    #attractCollage.show { opacity: 1; }
+    .col-tile {
+      position: absolute; border-radius: 6px; overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.06);
+      animation: collageDrift ease-in-out infinite alternate;
+    }
+    .col-img {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.4s ease;
+    }
+    .col-img.on { opacity: 1; }
+    @keyframes collageDrift {
+      from { transform: translate(0, 0) rotate(0deg); }
+      to { transform: translate(7px, -9px) rotate(1.3deg); }
+    }
+    .attract-brand {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      bottom: 5%;
+      font-family: var(--font-kicker); font-size: 0.78rem;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--cream); opacity: 0.8;
+      text-shadow: 0 2px 18px rgba(0,0,0,0.9);
+      white-space: nowrap; z-index: 1;
+    }
+
     /* ─── Layout ─── */
     #app {
       position: relative; z-index: 1;
@@ -167,23 +201,17 @@
     }
     .now-showing .photo-area {
       flex: 1; min-height: 0;
-      background-size: cover; background-position: center;
       background-color: var(--near-black);
       position: relative;
-      transition: background-image 0.8s ease;
+      overflow: hidden;
     }
-    .now-showing .photo-area .attract-text {
-      position: absolute; left: 50%; transform: translateX(-50%);
-      bottom: 14%;
-      text-align: center; pointer-events: none;
-      font-family: var(--font-kicker); font-size: 0.8rem;
-      letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--cream); opacity: 0.75;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.85);
-      white-space: nowrap;
-      animation: pulse 3.5s ease-in-out infinite;
+    .slide-layer {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1s ease;
+      will-change: opacity;
     }
-    @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.85; } }
+    .slide-layer.on { opacity: 1; }
     .now-showing .photo-area .tap-hint {
       position: absolute; bottom: 0.6rem; right: 0.6rem;
       font-family: var(--font-kicker); font-size: 0.45rem;
@@ -433,6 +461,8 @@
   <div class="mote"></div>
   <div class="mote"></div>
 
+  <div id="attractCollage"><div class="attract-brand">The Red River Métis Shoebox</div></div>
+
   <div id="app">
     <!-- Top bar -->
     <div class="top-bar chrome">
@@ -452,9 +482,10 @@
     <!-- Now Showing -->
     <div class="now-showing" id="nowShowing">
       <div class="photo-area" id="photoArea">
+        <div class="slide-layer" id="slideA"></div>
+        <div class="slide-layer" id="slideB"></div>
         <button class="nav-arrow prev" id="btnPrev" aria-label="Previous photo">&#8249;</button>
         <button class="nav-arrow next" id="btnNext" aria-label="Next photo">&#8250;</button>
-        <div class="attract-text hidden" id="attractText">The Red River Métis Shoebox</div>
         <div class="tap-hint hidden" id="tapHint">tap for details</div>
       </div>
       <div class="details hidden" id="details">
@@ -494,6 +525,7 @@
       <button class="ctrl-btn" id="btnCaption" onclick="cycleCaptions()">Captions</button>
       <button class="ctrl-btn" id="btnShuffle" onclick="toggleShuffle()">Shuffle</button>
       <button class="ctrl-btn" id="btnFace" onclick="toggleFace()">Face</button>
+      <button class="ctrl-btn" id="btnZoom" onclick="cycleZoom()">Zoom: Std</button>
       <div class="ctrl-spacer"></div>
       <span class="count-label" id="countLabel">376 photos</span>
     </div>
@@ -529,6 +561,9 @@
   let shuffle = false;
   let faceTrack = false;
   let playing = true;
+  let kbZoom = 1.15;
+  const ZOOM_PRESETS = [[1.05, 'Sub'], [1.15, 'Std'], [1.30, 'Dram']];
+  let zoomPresetIdx = 1;
   let themes = [];
   let isAttract = true;
   let isDetailOpen = false;
@@ -651,6 +686,24 @@
       playing = d.playing;
       document.getElementById('btnPlay').textContent = d.playing ? '⏸' : '▶';
     }
+    if (d.kbZoom != null && d.kbZoom !== kbZoom) {
+      kbZoom = d.kbZoom;
+      const i = ZOOM_PRESETS.findIndex(p => p[0] === kbZoom);
+      if (i >= 0) zoomPresetIdx = i;
+      updateZoomLabel();
+    }
+  }
+
+  function updateZoomLabel() {
+    const match = ZOOM_PRESETS.find(p => p[0] === kbZoom);
+    document.getElementById('btnZoom').textContent = match ? `Zoom: ${match[1]}` : `Zoom: ${kbZoom.toFixed(2)}x`;
+  }
+
+  function cycleZoom() {
+    zoomPresetIdx = (zoomPresetIdx + 1) % ZOOM_PRESETS.length;
+    kbZoom = ZOOM_PRESETS[zoomPresetIdx][0];
+    updateZoomLabel();
+    postState({ kbZoom });
   }
 
   // ─── Idle / Attract mode ───
@@ -666,34 +719,71 @@
     if (isDetailOpen) return;
     isAttract = true;
     document.getElementById('app').classList.add('attract');
-    document.getElementById('attractText').classList.remove('hidden');
+    document.getElementById('attractCollage').classList.add('show');
     document.getElementById('details').classList.add('hidden');
-    attractCycle();
+    startCollage();
   }
   function wakeFromAttract() {
     resetIdle();
     if (!isAttract) return;
     isAttract = false;
-    if (attractInterval) { clearInterval(attractInterval); attractInterval = null; }
+    stopCollage();
     document.getElementById('app').classList.remove('attract');
-    document.getElementById('attractText').classList.add('hidden');
+    document.getElementById('attractCollage').classList.remove('show');
     document.getElementById('tapHint') && document.getElementById('tapHint').classList.remove('hidden');
     document.getElementById('details').classList.remove('hidden');
     if (currentPhoto) updateNowShowing();
   }
-  function attractCycle() {
-    if (attractInterval) clearInterval(attractInterval);
-    if (!isAttract) return;
-    if (!photos.length) return;
-    const photoArea = document.getElementById('photoArea');
-    const show = () => {
-      if (!isAttract) return;
+
+  // ─── Screensaver: floating photo collage (whole screen) ───
+  let collageTimer = null;
+  let collageBuilt = false;
+  function buildCollage() {
+    if (collageBuilt || !photos.length) return;
+    collageBuilt = true;
+    const c = document.getElementById('attractCollage');
+    const brand = c.querySelector('.attract-brand');
+    c.innerHTML = '';
+    for (let i = 0; i < 12; i++) {
       const p = photos[Math.floor(Math.random() * photos.length)];
-      const t = thumbUrl(p);
-      if (t) photoArea.style.backgroundImage = `url(${t})`;
-    };
-    show();
-    attractInterval = setInterval(show, 5000);
+      const w = 26 + Math.random() * 16;
+      const h = w * (0.75 + Math.random() * 0.6);
+      const left = Math.random() * (100 - w);
+      const top = Math.random() * (100 - h * 0.85);
+      const dur = (14 + Math.random() * 12).toFixed(1);
+      const delay = (-Math.random() * 12).toFixed(1);
+      const tile = document.createElement('div');
+      tile.className = 'col-tile';
+      tile.style.cssText = `left:${left.toFixed(1)}%;top:${top.toFixed(1)}%;width:${w.toFixed(1)}%;height:${h.toFixed(1)}%;animation-duration:${dur}s;animation-delay:${delay}s`;
+      tile.innerHTML = '<div class="col-img"></div><div class="col-img"></div>';
+      c.appendChild(tile);
+      const imgs = tile.querySelectorAll('.col-img');
+      imgs[0].style.backgroundImage = `url(${thumbUrl(p)})`;
+      imgs[0].classList.add('on');
+      tile._imgs = imgs;
+      tile._on = 0;
+    }
+    c.appendChild(brand);
+  }
+  function collageSwap() {
+    if (!isAttract || !photos.length) return;
+    const tiles = document.querySelectorAll('#attractCollage .col-tile');
+    const picks = [...tiles].sort(() => Math.random() - 0.5).slice(0, 3);
+    picks.forEach(t => {
+      const p = photos[Math.floor(Math.random() * photos.length)];
+      const next = 1 - t._on;
+      t._imgs[next].style.backgroundImage = `url(${thumbUrl(p)})`;
+      t._imgs[next].classList.add('on');
+      t._imgs[t._on].classList.remove('on');
+      t._on = next;
+    });
+  }
+  function startCollage() {
+    buildCollage();
+    if (!collageTimer) collageTimer = setInterval(collageSwap, 9000);
+  }
+  function stopCollage() {
+    if (collageTimer) { clearInterval(collageTimer); collageTimer = null; }
   }
 
   // ─── Name cycling in search ───
@@ -798,11 +888,36 @@
   }
 
   // ─── Now Showing ───
+  let slideAB = true;
+  function showOnLayer(p, upgrade) {
+    const cur = slideAB ? 'slideA' : 'slideB';
+    const prev = slideAB ? 'slideB' : 'slideA';
+    slideAB = !slideAB;
+    const el = document.getElementById(cur);
+    const t = thumbUrl(p);
+    if (t) el.style.backgroundImage = `url(${t})`;
+    if (p.faceX != null && p.faceY != null) {
+      el.style.backgroundPosition = `${p.faceX * 100}% ${p.faceY * 100}%`;
+    } else {
+      el.style.backgroundPosition = '50% 50%';
+    }
+    el.classList.add('on');
+    document.getElementById(prev).classList.remove('on');
+    if (upgrade) {
+      const full = fullUrl(p);
+      if (full) {
+        const img = new Image();
+        img.onload = () => { if (el.classList.contains('on')) el.style.backgroundImage = `url(${full})`; };
+        img.src = full;
+      }
+    }
+  }
+
   function updateNowShowing() {
     if (isAttract) return;
     const p = currentPhoto;
     if (!p) return;
-    setBgUpgrade(document.getElementById('photoArea'), p);
+    showOnLayer(p, true);
     document.getElementById('detailTitle').textContent = p.title || p.alt || '';
     const meta = [p.year ? `c.${p.year}` : '', p.community || '', p.people || ''].filter(Boolean).join(' · ');
     document.getElementById('detailMeta').textContent = meta;
@@ -1058,9 +1173,22 @@
     startPolling();
     startIdleTimer();
 
-    // Wake on any touch
-    document.addEventListener('touchstart', wakeFromAttract);
-    document.addEventListener('click', wakeFromAttract);
+    // Wake on any touch, but swallow the click that ends the wake gesture
+    // so dismissing the screensaver doesn't also tap whatever is underneath
+    let suppressClicksUntil = 0;
+    document.addEventListener('touchstart', function() {
+      if (isAttract) suppressClicksUntil = Date.now() + 500;
+      wakeFromAttract();
+    });
+    document.addEventListener('click', function(e) {
+      if (Date.now() < suppressClicksUntil) {
+        suppressClicksUntil = 0;
+        e.stopPropagation();
+        e.preventDefault();
+        return;
+      }
+      wakeFromAttract();
+    }, true);
   }
 
   init();
