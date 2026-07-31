@@ -72,9 +72,15 @@
       position: fixed; inset: 0; z-index: 2;
       overflow: hidden; pointer-events: none;
       opacity: 0; transition: opacity 0.8s ease;
-      background: radial-gradient(ellipse 120% 60% at 50% 100%, rgba(139,0,0,0.15) 0%, transparent 70%);
+      /* opaque base so nothing from the app underneath can ghost through */
+      background:
+        radial-gradient(ellipse 120% 60% at 50% 100%, rgba(139,0,0,0.16) 0%, transparent 70%),
+        #0a0a0a;
     }
     #attractCollage.show { opacity: 1; }
+    /* while the screensaver is up, blank out the Now Showing photo behind it */
+    #app.attract .now-showing { background-color: var(--black); }
+    #app.attract .slide-layer { opacity: 0 !important; }
 
     /* ─── Fire glow + sparks behind the photos ─── */
     .fire-glow {
