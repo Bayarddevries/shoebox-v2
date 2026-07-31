@@ -67,7 +67,7 @@
 
     .hidden { display: none !important; }
 
-    /* ─── Screensaver: floating photo collage ─── */
+    /* ─── Screensaver: ember photo drift ─── */
     #attractCollage {
       position: fixed; inset: 0; z-index: 2;
       overflow: hidden; pointer-events: none;
@@ -75,21 +75,25 @@
       background: radial-gradient(ellipse 120% 60% at 50% 100%, rgba(139,0,0,0.15) 0%, transparent 70%);
     }
     #attractCollage.show { opacity: 1; }
-    .col-tile {
-      position: absolute; border-radius: 6px; overflow: hidden;
+    .ember-tile {
+      position: absolute; top: 100%;
+      border-radius: 6px; overflow: hidden;
       box-shadow: 0 8px 28px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.06);
-      animation: collageDrift ease-in-out infinite alternate;
+      border: 1px solid rgba(255,255,255,0.07);
+      animation: emberRise linear infinite;
+      will-change: transform, opacity;
     }
-    .col-img {
+    .ember-img {
       position: absolute; inset: 0;
       background-size: cover; background-position: center;
-      opacity: 0; transition: opacity 1.4s ease;
+      opacity: 0; transition: opacity 1.2s ease;
     }
-    .col-img.on { opacity: 1; }
-    @keyframes collageDrift {
-      from { transform: translate(0, 0) rotate(0deg); }
-      to { transform: translate(7px, -9px) rotate(1.3deg); }
+    .ember-img.on { opacity: 1; }
+    @keyframes emberRise {
+      0%   { transform: translateY(0) rotate(var(--rot, -4deg)); opacity: 0; }
+      8%   { opacity: 0.9; }
+      75%  { opacity: 0.65; }
+      100% { transform: translateY(-140vh) rotate(calc(var(--rot, -4deg) * -1.4)); opacity: 0; }
     }
     .attract-brand {
       position: absolute; left: 50%; transform: translateX(-50%);
@@ -735,7 +739,7 @@
     if (currentPhoto) updateNowShowing();
   }
 
-  // ─── Screensaver: floating photo collage (whole screen) ───
+  // ─── Screensaver: ember photo drift (whole screen) ───
   let collageTimer = null;
   let collageBuilt = false;
   function buildCollage() {
@@ -744,20 +748,21 @@
     const c = document.getElementById('attractCollage');
     const brand = c.querySelector('.attract-brand');
     c.innerHTML = '';
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 15; i++) {
       const p = photos[Math.floor(Math.random() * photos.length)];
-      const w = 26 + Math.random() * 16;
-      const h = w * (0.75 + Math.random() * 0.6);
-      const left = Math.random() * (100 - w);
-      const top = Math.random() * (100 - h * 0.85);
-      const dur = (14 + Math.random() * 12).toFixed(1);
-      const delay = (-Math.random() * 12).toFixed(1);
+      const w = 17 + Math.random() * 13;               // vw width
+      const aspect = 0.75 + Math.random() * 0.75;      // height/width
+      const h = Math.min(w * aspect, 42);              // vh, capped
+      const left = 4 + Math.random() * 62;             // vw
+      const rot = (Math.random() * 12 - 6).toFixed(1); // degrees
+      const dur = (20 + Math.random() * 15).toFixed(1);
+      const delay = (-Math.random() * dur).toFixed(1); // negative = mid-flight at boot
       const tile = document.createElement('div');
-      tile.className = 'col-tile';
-      tile.style.cssText = `left:${left.toFixed(1)}%;top:${top.toFixed(1)}%;width:${w.toFixed(1)}%;height:${h.toFixed(1)}%;animation-duration:${dur}s;animation-delay:${delay}s`;
-      tile.innerHTML = '<div class="col-img"></div><div class="col-img"></div>';
+      tile.className = 'ember-tile';
+      tile.style.cssText = `left:${left.toFixed(1)}vw;width:${w.toFixed(1)}vw;height:${h.toFixed(1)}vh;animation-duration:${dur}s;animation-delay:${delay}s;--rot:${rot}deg`;
+      tile.innerHTML = '<div class="ember-img"></div><div class="ember-img"></div>';
       c.appendChild(tile);
-      const imgs = tile.querySelectorAll('.col-img');
+      const imgs = tile.querySelectorAll('.ember-img');
       imgs[0].style.backgroundImage = `url(${thumbUrl(p)})`;
       imgs[0].classList.add('on');
       tile._imgs = imgs;
@@ -767,7 +772,7 @@
   }
   function collageSwap() {
     if (!isAttract || !photos.length) return;
-    const tiles = document.querySelectorAll('#attractCollage .col-tile');
+    const tiles = document.querySelectorAll('#attractCollage .ember-tile');
     const picks = [...tiles].sort(() => Math.random() - 0.5).slice(0, 3);
     picks.forEach(t => {
       const p = photos[Math.floor(Math.random() * photos.length)];
@@ -780,7 +785,7 @@
   }
   function startCollage() {
     buildCollage();
-    if (!collageTimer) collageTimer = setInterval(collageSwap, 9000);
+    if (!collageTimer) collageTimer = setInterval(collageSwap, 7000);
   }
   function stopCollage() {
     if (collageTimer) { clearInterval(collageTimer); collageTimer = null; }
