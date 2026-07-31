@@ -12,7 +12,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 PUBLIC_DIR="$PROJECT_DIR/public"
 STATE_PORT=8081
-STATIC_PORT=8080
+STATIC_PORT=8082
 
 echo "=== Métis Kin Exhibit ==="
 

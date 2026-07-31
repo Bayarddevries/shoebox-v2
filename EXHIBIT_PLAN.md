@@ -331,3 +331,15 @@ Each theme can specify any subset of state — filters, speed, transition, capti
 **Estimated build time:** ~6-8 hours (server: 45m, display mods: 1h, controller UI: 3-4h, themes config: 15m, testing: 1-2h)
 
 The subagent's estimate of 15-20 hours is inflated — the complex piece is the controller's visual design and search UX, not the server logic. The server is ~80 lines of Python with stdlib only.
+
+---
+
+## 8. Deferred / Next Session (2026-07-31)
+
+Bayard explicitly deferred these. Do NOT pick them up without his say-so.
+
+| Item | Status / context |
+|------|------------------|
+| **Audio story integration** | Deferred by Bayard ("not ready for it"). 4 m4a files EXIST at `public/assets/shoebox/audio/` (Mabel's Story.m4a, etc.). Listen buttons already in controller.html (lines 345, 385) but hardcoded hidden (line 602). Wiring = `<audio>` element + stories.json mapping. Separate consideration, revisit next session |
+| SSE push upgrade | Conditional: only if lag persists after ThreadingHTTPServer + keep-alive + thumbnails are verified on the phone |
+| Explore All grid | EXHIBIT_PLAN.md line 188 promises it. May be covered by the thumbnail gallery (shows full current set). Decide after gallery is built |

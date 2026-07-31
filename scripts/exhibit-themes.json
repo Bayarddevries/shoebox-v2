@@ -4,7 +4,17 @@
       "id": "families",
       "title": "Métis Families",
       "subtitle": "Generations of family, name by name",
-      "filters": {},
+      "filters": {
+        "people": [
+          "Lafferty", "Mercredi", "Anderson", "Chartrand", "Dejarlais",
+          "Cousineau", "Starmer", "Gately", "Carney", "Phaneuf", "Kerr",
+          "Cumming", "Beveridge", "Aaron", "Tralnberg", "Muncey", "Park",
+          "Nault", "Monkman", "Parisian", "Flett", "Boucher", "Cook",
+          "Hupe", "Hadfield", "Mitchell", "Hooker", "Sikora", "Ward",
+          "Bowser", "Vivier", "Chipman", "Alarie", "Granger", "Charpentier",
+          "Beaudin", "Carrier", "Ducharme", "Norquay"
+        ]
+      },
       "speed": 7000,
       "transition": "kenburns",
       "captionMode": 2
@@ -12,8 +22,14 @@
     {
       "id": "land-life",
       "title": "Land & Daily Life",
-      "subtitle": "Work, school, outdoors, and everyday moments",
-      "filters": {},
+      "subtitle": "Work, school, and the outdoors",
+      "filters": {
+        "keyword": [
+          "outdoors", "outdoor", "winter", "school", "day school",
+          "agriculture", "farm", "home", "house", "military", "children",
+          "trees", "trapping", "fishing", "logging", "hunting", "transport"
+        ]
+      },
       "speed": 5000,
       "transition": "fade",
       "captionMode": 1
@@ -22,7 +38,15 @@
       "id": "celebrations",
       "title": "Celebrations & Ceremonies",
       "subtitle": "NIPD, Louis Riel Day, AGA, weddings, and gatherings",
-      "filters": {},
+      "filters": {
+        "keyword": [
+          "aga", "aga 2025", "nipd", "national indigenous peoples day",
+          "louis riel day", "louis riel gravesite", "wedding", "anniversary",
+          "celebration", "powwow", "festival", "christmas", "birthday",
+          "gathering", "christening", "fiddle", "picnic", "dance", "dancing",
+          "stompers", "music", "flag", "event"
+        ]
+      },
       "speed": 6000,
       "transition": "kenburns",
       "captionMode": 2

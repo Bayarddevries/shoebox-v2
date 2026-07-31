@@ -21,7 +21,7 @@ import json
 import os
 import time
 import threading
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from http.server import HTTPServer, ThreadingHTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 
 PORT = 8081
@@ -73,8 +73,10 @@ def filter_photos(filters):
             elif key == 'decade':
                 year = p.get('year')
                 if year:
-                    y = round(float(year) / 10) * 10
-                    match = any(str(abs(int(float(v)))) == str(y) for v in vals)
+                    y = (int(float(year)) // 10) * 10
+                    match = any(int(float(v)) == y for v in vals)
+            elif key == 'id':
+                match = p.get('id') in vals
             elif key == 'keyword':
                 p_kw = [k.lower() for k in p.get('keywords', [])]
                 match = any(v.lower() in p_kw for v in vals)
@@ -85,23 +87,30 @@ def filter_photos(filters):
             result.append(p)
     return result
 
-def search_people(query):
-    """Search people field. Returns matching photos."""
+def search_all(query):
+    """Search people, title, description, location/community, and keywords. Returns matching photos."""
     q = query.lower().strip()
     if not q:
         return []
-    results = []
+    scored = []
     for p in MANIFEST:
         people = p.get('people', '')
-        if q in people.lower():
-            results.append(p)
-    # Sort: exact matches first, then partial
-    results.sort(key=lambda p: (
-        0 if any(n.strip().lower() == q for n in p.get('people','').split(';')) else
-        1 if any(q in n.strip().lower() for n in p.get('people','').split(';')) else 2,
-        p.get('year', 9999)
-    ))
-    return results
+        people_l = people.lower()
+        title = (p.get('title') or '').lower()
+        desc = ((p.get('caption') or '') + ' ' + (p.get('description') or '')).lower()
+        loc = ' '.join(str(x) for x in [p.get('location'), p.get('community'), p.get('province')] if x).lower()
+        kws = ' '.join(p.get('keywords', [])).lower()
+        if any(n.strip().lower() == q for n in people.split(';')):
+            score = 0          # exact person name
+        elif q in people_l:
+            score = 1          # partial person name
+        elif q in title or q in desc or q in loc or q in kws:
+            score = 2          # other fields (keyword, community, caption)
+        else:
+            continue
+        scored.append((score, p.get('year') or 9999, p))
+    scored.sort(key=lambda x: (x[0], x[1]))
+    return [p for _, _, p in scored]
 
 # ─── State ─────────────────────────────────────────────────────────────────
 
@@ -126,12 +135,11 @@ def rebuild_state(filters=None):
     f = filters if filters is not None else state.get("filters", {})
     filtered = filter_photos(f)
     photo_ids = [p.get('id', f'photo_{i}') for i, p in enumerate(filtered)]
-    old_idx = min(state.get('currentIndex', 0), max(len(photo_ids) - 1, 0))
-    current_id = photo_ids[old_idx] if photo_ids else None
+    current_id = photo_ids[0] if photo_ids else None
     state.update({
         "filters": f,
         "photoIds": photo_ids,
-        "currentIndex": old_idx if photo_ids else 0,
+        "currentIndex": 0,  # filter change always starts from the first photo
         "currentPhoto": PHOTO_LOOKUP.get(current_id) if current_id else None,
         "serverTime": time.time(),
     })
@@ -142,6 +150,7 @@ rebuild_state({})
 # ─── HTTP Handler ─────────────────────────────────────────────────────────
 
 class ExhibitHandler(BaseHTTPRequestHandler):
+    protocol_version = 'HTTP/1.1'  # keep-alive: halves TCP churn for 2s polling
 
     def _send_json(self, data, status=200):
         body = json.dumps(data, default=str).encode('utf-8')
@@ -181,7 +190,7 @@ class ExhibitHandler(BaseHTTPRequestHandler):
 
         elif path == '/search':
             q = params.get('q', [''])[0]
-            results = search_people(q)
+            results = search_all(q)
             self._send_json({"query": q, "count": len(results), "results": results})
 
         elif path == '/presets':
@@ -206,19 +215,30 @@ class ExhibitHandler(BaseHTTPRequestHandler):
             with state_lock:
                 # Apply updates
                 for key in ['speed', 'transition', 'captionMode', 'shuffle',
-                            'faceTrack', 'playing', 'currentIndex']:
+                            'faceTrack', 'playing']:
                     if key in updates:
                         state[key] = updates[key]
 
-                # If filters changed, rebuild
+                # Explicit photoIds override (e.g. related-photo sets from the controller)
+                if 'photoIds' in updates:
+                    valid = [i for i in updates['photoIds'] if i in PHOTO_LOOKUP]
+                    state['photoIds'] = valid or state['photoIds']
+                    state['currentIndex'] = 0
+
+                # If filters changed, rebuild and start from photo 0
                 if 'filters' in updates:
                     rebuild_state(updates['filters'])
                 else:
-                    # Even without filter change, resolve currentPhoto if index changed
+                    # Clamp and apply index change, resolve currentPhoto
                     if 'currentIndex' in updates:
-                        idx = state['currentIndex']
                         ids = state['photoIds']
-                        cid = ids[idx] if ids and 0 <= idx < len(ids) else None
+                        idx = int(updates['currentIndex'])
+                        if ids:
+                            idx = max(0, min(idx, len(ids) - 1))
+                        else:
+                            idx = 0
+                        state['currentIndex'] = idx
+                        cid = ids[idx] if ids else None
                         state['currentPhoto'] = PHOTO_LOOKUP.get(cid)
                     state['serverTime'] = time.time()
 
@@ -237,9 +257,8 @@ class ExhibitHandler(BaseHTTPRequestHandler):
 # ─── Main ──────────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
-    server = HTTPServer(('0.0.0.0', PORT), ExhibitHandler)
-    # Use non-threaded for v1 simplicity — single request at a time is fine
-    # for this traffic level (2 devices polling every 2s)
+    server = ThreadingHTTPServer(('0.0.0.0', PORT), ExhibitHandler)
+    # Threading so a slow phone request never blocks the display's polling
     print(f"Exhibit server running on http://0.0.0.0:{PORT}")
     print(f"  {len(MANIFEST)} photos loaded")
     print(f"  {len(THEMES.get('themes', []))} themes loaded")
