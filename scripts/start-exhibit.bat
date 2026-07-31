@@ -8,14 +8,14 @@ echo Starting servers in WSL...
 
 REM Kill any old exhibit servers first
 wsl -d Ubuntu pkill -f "exhibit-server.py" 2>nul
-wsl -d Ubuntu pkill -f "http.server 8082" 2>nul
+wsl -d Ubuntu pkill -f "serve-exhibit.py" 2>nul
 timeout /t 1 /nobreak >nul
 
 REM Start the state relay server (port 8081)
 start /min wsl -d Ubuntu bash -ic "cd ~/projects/Shoebox\ V2 && python3 scripts/exhibit-server.py"
 
 REM Start the static file server (port 8082 — NOT 8080, that's the website)
-start /min wsl -d Ubuntu bash -ic "cd ~/projects/Shoebox\ V2/public && python3 -m http.server 8082"
+start /min wsl -d Ubuntu bash -ic "cd ~/projects/Shoebox\ V2 && python3 scripts/serve-exhibit.py"
 
 REM Wait for servers to be ready
 timeout /t 3 /nobreak >nul

@@ -31,9 +31,9 @@ python3 "$SCRIPT_DIR/exhibit-server.py" &
 STATE_PID=$!
 sleep 2
 
-# Start the static file server
+# Start the static file server (no-cache so phones always get fresh HTML)
 echo "Starting static server on port $STATIC_PORT..."
-cd "$PUBLIC_DIR" && python3 -m http.server $STATIC_PORT &
+python3 "$SCRIPT_DIR/serve-exhibit.py" &
 STATIC_PID=$!
 sleep 1
 

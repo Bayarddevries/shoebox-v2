@@ -45,10 +45,10 @@ echo       Static :8082 -^> %WSLIP%:8082
 REM --- 4. Restart the exhibit servers in WSL ---
 echo [4/4] Starting servers...
 wsl -d Ubuntu pkill -f "exhibit-server.py" 2>nul
-wsl -d Ubuntu pkill -f "http.server 8082" 2>nul
+wsl -d Ubuntu pkill -f "serve-exhibit.py" 2>nul
 timeout /t 1 /nobreak >nul
 start /min wsl -d Ubuntu bash -ic "cd ~/projects/Shoebox\ V2 && python3 scripts/exhibit-server.py"
-start /min wsl -d Ubuntu bash -ic "cd ~/projects/Shoebox\ V2/public && python3 -m http.server 8082"
+start /min wsl -d Ubuntu bash -ic "cd ~/projects/Shoebox\ V2 && python3 scripts/serve-exhibit.py"
 timeout /t 3 /nobreak >nul
 
 REM --- Verify ---
