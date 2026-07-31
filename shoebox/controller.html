@@ -615,6 +615,7 @@
 
   <script>
   // ─── State ───
+  const APP_VERSION = 'v3.3.0';
   let serverUrl = 'http://localhost:8081';
   let photos = [];
   const byId = {};
@@ -640,6 +641,7 @@
   let attractInterval = null;
   let lastGalleryKey = '';
   let swiped = false;
+  let lastStateTime = Date.now();
   const nameCycleList = ['Lafferty', 'Chartrand', 'Mercredi', 'Anderson', 'Cousineau', 'Dejarlais', 'Starmer', 'Nault', 'Monkman', 'Parisian', 'Flett', 'Boucher', 'Cook', 'Carney', 'Mercredi'];
   let nameCycleIdx = 0;
 
@@ -710,6 +712,7 @@
       const res = await fetch(`${serverUrl}/state`, { signal: AbortSignal.timeout(2500) });
       if (!res.ok) throw new Error();
       const data = await res.json();
+      lastStateTime = Date.now();
       serverIds = data.photoIds || [];
       currentIndex = data.currentIndex || 0;
       currentPhoto = data.currentPhoto;
@@ -1032,7 +1035,7 @@
   }
 
   function updateCount() {
-    document.getElementById('countLabel').textContent = `${serverIds.length} photos`;
+    document.getElementById('countLabel').textContent = `${serverIds.length} photos · ${APP_VERSION}`;
   }
 
   // ─── Navigation: arrows + swipe ───
@@ -1287,11 +1290,18 @@
     startPolling();
     startIdleTimer();
 
-    // Wake on any touch, but swallow the click that ends the wake gesture
-    // so dismissing the screensaver doesn't also tap whatever is underneath
+    // Wake on any touch. Only swallow the click that ends the wake gesture
+    // when it passed through dead chrome (so dismissing the screensaver
+    // doesn't tap whatever is underneath). Taps that land directly on a
+    // button still work on the first try.
     let suppressClicksUntil = 0;
-    document.addEventListener('touchstart', function() {
-      if (isAttract) suppressClicksUntil = Date.now() + 500;
+    document.addEventListener('touchstart', function(e) {
+      if (isAttract) {
+        const t = e.target && e.target.closest
+          ? e.target.closest('button, .pile, .tl-chip, .gal-item, .related-card, input, .nav-arrow, .search-wrap')
+          : null;
+        if (!t) suppressClicksUntil = Date.now() + 500;
+      }
       wakeFromAttract();
     });
     document.addEventListener('click', function(e) {
@@ -1303,6 +1313,15 @@
       }
       wakeFromAttract();
     }, true);
+
+    // Kiosk watchdog: if the state feed goes quiet for 12s while the page is
+    // visible, reload. Recovers from wedged timers / suspended tabs so the
+    // controller never stays dead on a museum floor.
+    setInterval(() => {
+      if (document.visibilityState === 'visible' && Date.now() - lastStateTime > 12000) {
+        location.reload();
+      }
+    }, 5000);
   }
 
   init();
