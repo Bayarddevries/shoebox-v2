@@ -385,6 +385,7 @@
       activePhotoIdx = Math.min(remote.currentIndex || 0, filtered.length - 1);
       if (filtered.length > 0) loadPhoto(activePhotoIdx);
       else document.getElementById('counter').textContent = '0 / 0';
+      restartAdvanceTimer();
     }
 
     // Index changed
@@ -393,11 +394,24 @@
       if (idx >= 0 && idx !== activePhotoIdx) {
         activePhotoIdx = idx;
         if (filtered.length > 0) loadPhoto(activePhotoIdx);
+        // Someone commanded a specific photo: give it a full display cycle
+        // instead of letting the old countdown skip past it.
+        restartAdvanceTimer();
       }
     }
 
     // Settings
     applySettingsFromRemote(remote);
+  }
+
+  // Restart the auto-advance countdown at a full interval. Used after any
+  // remote jump so a commanded photo gets its full display time.
+  function restartAdvanceTimer() {
+    if (timerId) clearTimeout(timerId);
+    timerId = null;
+    if (playing && filtered.length > 1) {
+      timerId = setTimeout(nextSlide, speedMs);
+    }
   }
 
   function applyFiltersFromRemote(remote) {
@@ -614,7 +628,11 @@
   }
 
   function applyImageToLayer(url, faceX, faceY, photo, idx) {
-    const kb = getKenBurns(idx, faceX, faceY);
+    // Ken Burns always targets the detected face when data exists;
+    // faceTrack only controls the static background position
+    const kbFaceX = photo && photo.faceX != null ? photo.faceX : null;
+    const kbFaceY = photo && photo.faceY != null ? photo.faceY : null;
+    const kb = getKenBurns(idx, kbFaceX, kbFaceY);
     const incoming = activeLayer === 'a' ? document.getElementById('layer-b') : document.getElementById('layer-a');
     const outgoing = activeLayer === 'a' ? document.getElementById('layer-a') : document.getElementById('layer-b');
 
@@ -641,7 +659,7 @@
       incoming.style.setProperty('--kb-from', kb.from);
       incoming.style.setProperty('--kb-to', kb.to);
       incoming.style.animation = `kenBurns ${speedMs + 1500}ms ease-in-out both`;
-      incoming.style.transformOrigin = 'center';
+      incoming.style.transformOrigin = kb.origin || 'center';
     } else if (transition === 'fade') {
       incoming.style.animation = `fadeIn ${speedMs}ms ease-in-out both`;
       incoming.style.transform = 'none';
@@ -666,26 +684,27 @@
   }
 
   function getKenBurns(idx, faceX, faceY) {
-    const scaleTo = 1.12;
-    // Face-aware Ken Burns: zoom toward the detected face position
-    if (faceX != null && faceY != null && (faceX !== 0.5 || faceY !== 0.5)) {
-      // Translate so the zoom pulls toward the face
-      // faceX < 0.5 = face is left → translate right to bring face toward center
-      const tx = (0.5 - faceX) * 3;
-      const ty = (0.5 - faceY) * 3;
-      // Alternate: half the time zoom in, half zoom out for variety
+    const scaleTo = 1.15;
+    // Face-aware Ken Burns: the zoom is anchored on the face, so it pushes
+    // in toward the face or pulls out from it. Alternates every slide.
+    if (faceX != null && faceY != null) {
+      const ox = Math.max(0, Math.min(100, faceX * 100)).toFixed(1);
+      const oy = Math.max(0, Math.min(100, faceY * 100)).toFixed(1);
+      const origin = `${ox}% ${oy}%`;
       if (idx % 2 === 0) {
-        return { from: `scale(1) translate(0%, 0%)`, to: `scale(${scaleTo}) translate(${tx}%, ${ty}%)` };
+        // Push in: zoom toward the face
+        return { from: 'scale(1)', to: `scale(${scaleTo})`, origin };
       } else {
-        return { from: `scale(${scaleTo}) translate(${tx}%, ${ty}%)`, to: `scale(1) translate(0%, 0%)` };
+        // Pull out: start tight on the face, reveal the full image
+        return { from: `scale(${scaleTo})`, to: 'scale(1)', origin };
       }
     }
-    // Fallback: gentle random zooms for photos without face data
+    // No face data: gentle random drift, centered
     const kbVariants = [
-      { from: 'scale(1) translate(0, 0)', to: 'scale(1.12) translate(-1.5%, -1%)' },
-      { from: 'scale(1) translate(0, 0)', to: 'scale(1.12) translate(1.5%, 1%)' },
-      { from: 'scale(1) translate(0, 0)', to: 'scale(1.12) translate(-1%, 1.5%)' },
-      { from: 'scale(1) translate(0, 0)', to: 'scale(1.12) translate(1%, -1.5%)' },
+      { from: 'scale(1)', to: 'scale(1.12) translate(-1.5%, -1%)', origin: 'center' },
+      { from: 'scale(1)', to: 'scale(1.12) translate(1.5%, 1%)', origin: 'center' },
+      { from: 'scale(1.12) translate(-1%, 1.5%)', to: 'scale(1)', origin: 'center' },
+      { from: 'scale(1.12) translate(1%, -1.5%)', to: 'scale(1)', origin: 'center' },
     ];
     return kbVariants[idx % kbVariants.length];
   }

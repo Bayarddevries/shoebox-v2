@@ -590,14 +590,18 @@
 
   async function postState(updates) {
     buzz();
-    try {
-      await fetch(`${serverUrl}/state`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updates),
-        signal: AbortSignal.timeout(2500)
-      });
-    } catch (e) {}
+    // One retry: a dropped tap should not silently vanish on the big screen
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        await fetch(`${serverUrl}/state`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updates),
+          signal: AbortSignal.timeout(4000)
+        });
+        return;
+      } catch (e) { /* retry once */ }
+    }
   }
 
   async function fetchState() {
@@ -815,6 +819,15 @@
     const n = serverIds.length;
     if (!n) return;
     const idx = (currentIndex + offset + n) % n;
+    jumpTo(idx);
+  }
+  // Optimistic jump: update the tablet instantly, server confirms on next poll
+  function jumpTo(idx) {
+    if (idx < 0 || idx >= serverIds.length) return;
+    currentIndex = idx;
+    currentPhoto = byId[serverIds[idx]] || null;
+    updateNowShowing();
+    updateGallery();
     postState({ currentIndex: idx });
     wakeFromAttract();
   }
@@ -936,7 +949,7 @@
   document.getElementById('gallery').addEventListener('click', function(e) {
     const item = e.target.closest('.gal-item');
     if (!item) return;
-    postState({ currentIndex: parseInt(item.dataset.idx, 10) });
+    jumpTo(parseInt(item.dataset.idx, 10));
     wakeFromAttract();
   });
 
