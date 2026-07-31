@@ -310,6 +310,8 @@
   let exhibitServer = null; // set during init
   let lastRemoteState = null;
   let pollTimerId = null;
+  let pollFailCount = 0;
+  let inLocalFallback = false;
 
   function getServerUrl() {
     const param = new URLSearchParams(window.location.search).get('server');
@@ -329,12 +331,38 @@
       clearTimeout(timeout);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const remote = await res.json();
+      pollFailCount = 0;
+      if (inLocalFallback) {
+        // Server is back: force a full re-apply from remote state
+        inLocalFallback = false;
+        lastRemoteState = null;
+      }
       document.getElementById('exhibitDot').classList.remove('disconnected');
       applyRemoteState(remote);
     } catch (e) {
+      pollFailCount++;
       document.getElementById('exhibitDot').classList.add('disconnected');
+      if (pollFailCount >= 3) enterLocalFallback();
     }
-    pollTimerId = setTimeout(pollExhibitState, 2000);
+    pollTimerId = setTimeout(pollExhibitState, 1500);
+  }
+
+  // 3 failed polls in a row -> keep the show running locally with all photos.
+  // Polling continues underneath, so it reconnects automatically when the
+  // server comes back.
+  function enterLocalFallback() {
+    if (inLocalFallback) return;
+    inLocalFallback = true;
+    if (photos.length === 0) {
+      loadManifest();
+      return;
+    }
+    filtered = photos.slice();
+    activePhotoIdx = Math.min(activePhotoIdx, filtered.length - 1);
+    loadPhoto(activePhotoIdx);
+    if (!timerId && playing && filtered.length > 1) {
+      timerId = setTimeout(nextSlide, speedMs);
+    }
   }
 
   function applyRemoteState(remote) {
