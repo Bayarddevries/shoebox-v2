@@ -34,7 +34,31 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
       if (!data.submitterName) {
         throw new Error('Invalid or expired claim token')
       }
-      setSubmission(data)
+
+      // Resolve photo src/title against the live manifest, since the backend
+      // only knows photo ids, not image paths.
+      let manifestPhotos: { id: string | number; src: string; title?: string }[] = []
+      try {
+        const mres = await fetch(`${import.meta.env.BASE_URL}assets/shoebox/manifest.json`)
+        if (mres.ok) {
+          const mdata = await mres.json()
+          manifestPhotos = Array.isArray(mdata) ? mdata : (mdata.photos || [])
+        }
+      } catch (err) {
+        console.warn('Failed to load manifest for claim view:', err)
+      }
+
+      const manifestById = new Map(manifestPhotos.map((p) => [String(p.id), p]))
+      const photos = (data.photos || []).map((ph: any) => {
+        const mp = manifestById.get(String(ph.photoId))
+        if (mp) {
+          return { photoId: ph.photoId, src: mp.src, title: mp.title || ph.title || ph.photoId }
+        }
+        // Fallback: backend src may already be a usable path
+        return { photoId: ph.photoId, src: ph.src, title: ph.title || ph.photoId }
+      })
+
+      setSubmission({ submitterName: data.submitterName, photos, contributions: data.contributions || [] })
     } catch (err) {
       console.error('Failed to fetch submission:', err)
       setError(err instanceof Error ? err.message : 'Failed to fetch submission')
