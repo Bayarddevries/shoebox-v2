@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-08-27T00:00:00.000Z",
+  "note": "Persistent store of reviewed community contributions. scripts/generate_manifest.js merges approved rows into manifest.json after its exiftool pass; scripts/export_lightroom.js exports approved rows for Lightroom import. This file is the source of truth and is never rewritten by either script. The two EXAMPLE rows below use non-existent photoIds (photo_9998/9999) so they never touch real manifest photos; they exist to exercise the merge and export logic. Replace them with real contributions keyed by real photoIds.",
+  "contributions": [
+    {
+      "id": "example-0001",
+      "photoId": "photo_9998",
+      "submitterName": "EXAMPLE — Marie Mercredi",
+      "people": "Marie Laliberte",
+      "location": "St. Boniface, Manitoba, Canada",
+      "community": "St. Boniface",
+      "province": "Manitoba",
+      "country": "Canada",
+      "dateYear": 1925,
+      "dateEra": "1925-1950",
+      "occasion": "Wedding",
+      "story": "EXAMPLE approved contribution. This caption was reviewed and edited by the admin before approval.",
+      "caption": "EXAMPLE approved caption, admin-reviewed.",
+      "attribution": "Courtesy of the Mercredi Family Collection",
+      "keywords": ["wedding", "community"],
+      "status": "approved",
+      "submittedAt": "2026-08-25T18:00:00.000Z",
+      "reviewedAt": "2026-08-26T14:30:00.000Z",
+      "reviewedBy": "admin"
+    },
+    {
+      "id": "example-0002",
+      "photoId": "photo_9999",
+      "submitterName": "EXAMPLE — John Doe",
+      "people": "John Doe",
+      "location": "Selkirk, Manitoba, Canada",
+      "community": "Selkirk",
+      "province": "Manitoba",
+      "country": "Canada",
+      "dateYear": 1960,
+      "dateEra": "1950-1975",
+      "occasion": "Family gathering",
+      "story": "EXAMPLE pending contribution. Must NOT be merged into the manifest or exported to Lightroom until reviewed and approved.",
+      "caption": "EXAMPLE pending caption, NOT yet approved. Raw submitter text.",
+      "attribution": "Courtesy of the Doe Family Collection",
+      "keywords": ["family"],
+      "status": "pending",
+      "submittedAt": "2026-08-26T09:00:00.000Z",
+      "reviewedAt": null,
+      "reviewedBy": null
+    }
+  ]
+}

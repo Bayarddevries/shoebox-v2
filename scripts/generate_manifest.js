@@ -28,6 +28,7 @@ import fs from 'fs'
 import path from 'path'
 import { execSync } from 'child_process'
 import { fileURLToPath } from 'url'
+import { mergeContributions } from './merge_contributions.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const PROJECT_ROOT = path.resolve(__dirname, '..')
@@ -507,6 +508,25 @@ const manifest = {
   }
 }
 
+// ── Merge approved community contributions (review-gated) ──────────────────
+// Runs AFTER the exiftool pass and BEFORE writing output. Approved rows in
+// contributions.json fill/override community fields on matching photos; the
+// file itself is never modified, so approved work survives every regen.
+// A missing or malformed contributions.json is skipped silently.
+const CONTRIBUTIONS_FILE = path.join(PROJECT_ROOT, 'public/assets/shoebox/contributions.json')
+let mergedPhotoCount = 0
+if (fs.existsSync(CONTRIBUTIONS_FILE)) {
+  try {
+    const contributionsData = JSON.parse(fs.readFileSync(CONTRIBUTIONS_FILE, 'utf8'))
+    const contributionRows = Array.isArray(contributionsData.contributions)
+      ? contributionsData.contributions
+      : []
+    mergedPhotoCount = mergeContributions(manifest.photos, contributionRows)
+  } catch (e) {
+    console.warn(`  Skipping contributions merge (${e.message})`)
+  }
+}
+
 // ── Write output ──
 
 // ── Auto-run face detection (optional, if OpenCV available) ──
@@ -565,5 +585,8 @@ console.log(`  With country:        ${statsCount.country}/${manifest.photoCount}
 console.log(`  With GPS (EXIF):     ${statsCount.gps}/${manifest.photoCount}`)
 console.log(`  Geocoded (total):    ${statsCount.geocoded}/${manifest.photoCount}`)
 console.log(`  With people:         ${statsCount.people}/${manifest.photoCount}`)
+if (mergedPhotoCount > 0) {
+  console.log(`  Community merged:    ${mergedPhotoCount}/${manifest.photoCount} (approved contributions)`)
+}
 console.log()
 console.log(`  ✓ Output: ${OUTPUT_FILE}`)

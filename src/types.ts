@@ -108,3 +108,26 @@ export function toggleFilterValue(arr: string[], value: string): string[] {
 }
 
 export type Page = 'home' | 'archive' | 'stories' | 'map' | 'contribute' | 'admin'
+
+export interface Submission {
+  submitterName: string
+  photos: { photoId: number; src: string; title: string }[]
+  contributions: Contribution[]
+}
+
+export interface Contribution {
+  photoId: number
+  people?: string
+  location?: string
+  community?: string
+  province?: string
+  country?: string
+  dateYear?: string
+  dateEra?: string
+  occasion?: string
+  story?: string
+  caption?: string
+  attribution?: string
+  keywords?: string
+  status?: string
+}

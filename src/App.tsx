@@ -10,6 +10,7 @@ import StoriesView from './components/StoriesView'
 import ContributeForm from './components/ContributeForm'
 import HeroCarousel from './components/HeroCarousel'
 import AdminPanel from './components/AdminPanel'
+import ClaimView from './components/ClaimView'
 import IdleSlideshow from './components/IdleSlideshow'
 
 // Debounce hook
@@ -31,6 +32,10 @@ export default function App() {
   const [showContribute, setShowContribute] = useState(false)
   const [filters, setFilters] = useState<FilterState>(EMPTY_FILTERS)
   const initialUrlRead = useRef(false)
+
+  // Read ?claim= token at the very top so a private link renders ONLY the claim view
+  // (no public navbar/archive chrome) — submitters should not see the public archive UI.
+  const claimToken = new URLSearchParams(window.location.search).get('claim')
 
   // ── URL sync ──────────────────────────────────────────
   // Read filters from URL on mount
@@ -265,6 +270,11 @@ export default function App() {
         </div>
       </div>
     )
+  }
+
+  // Claim link — full-screen submitter view, bypasses the public archive UI entirely
+  if (claimToken) {
+    return <ClaimView token={claimToken} onDone={() => { window.location.search = '' }} />
   }
 
   return (
