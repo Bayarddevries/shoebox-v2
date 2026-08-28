@@ -15,12 +15,12 @@ export default function MetadataForm({ photoId: _pid,
   const [people, setPeople] = useState('')
   const [dateYear, setDateYear] = useState('')
   const [dateEra, setDateEra] = useState('')
-  const [location, setLocation] = useState('')
+  const [city, setCity] = useState('')
+  const [province, setProvince] = useState('')
   const [community, setCommunity] = useState('')
   const [occasion, setOccasion] = useState('')
   const [story, setStory] = useState('')
   const [caption, setCaption] = useState('')
-  const [attribution, setAttribution] = useState(t.defaultAttribution)
   const [keywords, setKeywords] = useState('')
   const [consent, setConsent] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -34,7 +34,7 @@ export default function MetadataForm({ photoId: _pid,
     }
     setSubmitting(true)
     try {
-      onSubmit({ people, dateYear, dateEra, location, community, province: 'Manitoba', country: 'Canada', occasion, story, caption, attribution, keywords, consent })
+      onSubmit({ people, dateYear, dateEra, location: city, province, community, country: 'Canada', occasion, story, caption, keywords, consent })
     } finally {
       setSubmitting(false)
     }
@@ -72,13 +72,18 @@ export default function MetadataForm({ photoId: _pid,
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label htmlFor="location" className="block text-sm font-medium mb-1">{t.labels.location}</label>
-          <input id="location" value={location} onChange={e => setLocation(e.target.value)} className="search-input w-full" placeholder={t.placeholders.location} />
+          <label htmlFor="city" className="block text-sm font-medium mb-1">{t.labels.city}</label>
+          <input id="city" value={city} onChange={e => setCity(e.target.value)} className="search-input w-full" placeholder={t.placeholders.city} />
         </div>
         <div>
-          <label htmlFor="community" className="block text-sm font-medium mb-1">{t.labels.community}</label>
-          <input id="community" value={community} onChange={e => setCommunity(e.target.value)} className="search-input w-full" placeholder={t.placeholders.community} />
+          <label htmlFor="province" className="block text-sm font-medium mb-1">{t.labels.province}</label>
+          <input id="province" value={province} onChange={e => setProvince(e.target.value)} className="search-input w-full" placeholder={t.placeholders.province} />
         </div>
+      </div>
+
+      <div>
+        <label htmlFor="community" className="block text-sm font-medium mb-1">{t.labels.community}</label>
+        <input id="community" value={community} onChange={e => setCommunity(e.target.value)} className="search-input w-full" placeholder={t.placeholders.community} />
       </div>
 
       <div>
@@ -94,11 +99,6 @@ export default function MetadataForm({ photoId: _pid,
       <div>
         <label htmlFor="caption" className="block text-sm font-medium mb-1">{t.labels.caption}</label>
         <input id="caption" value={caption} onChange={e => setCaption(e.target.value)} className="search-input w-full" placeholder={t.placeholders.caption} />
-      </div>
-
-      <div>
-        <label htmlFor="attribution" className="block text-sm font-medium mb-1">{t.labels.attribution}</label>
-        <input id="attribution" value={attribution} onChange={e => setAttribution(e.target.value)} className="search-input w-full" />
       </div>
 
       <div>

@@ -92,7 +92,6 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
       formData.append('occasion', data.occasion)
       formData.append('story', data.story)
       formData.append('caption', data.caption || '')
-      formData.append('attribution', data.attribution)
       formData.append('keywords', data.keywords)
       formData.append('consent', String(data.consent))
 
