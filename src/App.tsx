@@ -55,15 +55,26 @@ export default function App() {
     }
   }, [])
 
-  // Write filters to URL when they change
+  // Write filters to URL when they change (preserve ?claim= if present)
   useEffect(() => {
     if (!initialUrlRead.current) return
     const params = filtersToSearchParams(filters)
     const qs = params.toString()
-    const newUrl = qs
-      ? `${window.location.pathname}?${qs}${window.location.hash}`
-      : `${window.location.pathname}${window.location.hash}`
-    window.history.replaceState(null, '', newUrl)
+    const claim = new URLSearchParams(window.location.search).get('claim')
+    let newUrl: string
+    if (claim) {
+      // Keep the claim token in the URL at all times; append filters after it
+      const sep = qs ? `&${qs}` : ''
+      newUrl = `${window.location.pathname}?claim=${encodeURIComponent(claim)}${sep}${window.location.hash}`
+    } else {
+      newUrl = qs
+        ? `${window.location.pathname}?${qs}${window.location.hash}`
+        : `${window.location.pathname}${window.location.hash}`
+    }
+    const current = window.location.pathname + window.location.search + window.location.hash
+    if (current !== newUrl) {
+      window.history.replaceState(null, '', newUrl)
+    }
   }, [filters])
 
   // ── Data loading ──────────────────────────────────────
