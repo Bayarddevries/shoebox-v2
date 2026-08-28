@@ -1,8 +1,16 @@
 # Shoebox v2 — Tasks
 
 ## Build & Deploy
-- [ ] Verify build/deploy pipeline post-MM F rebrand (2026-05-19)
-- [ ] Confirm GitHub Pages serves correctly at bayarddevries.github.io/shoebox-v2/
+- [x] Verify build/deploy pipeline post-MM F rebrand (2026-05-19)
+- [x] Confirm GitHub Pages serves correctly at bayarddevries.github.io/shoebox-v2/
+
+## Submitter Follow-up System
+- [x] Photo intake: 74 new archival photos added (manifest 376 -> 450, Ste. Madeleine + Victory at Frog Plain 2026)
+- [x] Claim view: private `?claim=<token>` links render a submitter's own photos (`src/components/ClaimView.tsx`)
+- [x] Form fields: people, city/province/community split, year, era, occasion, story, caption, keywords, required consent checkbox (attribution removed)
+- [x] Notification emails: on contribution, emails metisshoebox@mmf.mb.ca + bayard.devries@mmf.mb.ca via `gmail.send` scope (MailApp)
+- [x] Live submissions: CH-001 (Cheryl Haas) and MH-001 (May Hupe) created and sent
+- [ ] OPEN: find + ingest the 6 missing Cheryl Haas images (Stemadeleine 21, 22, 23, 24, 28, 29 `.tif`), then add them to her CH-001 submission
 
 ## UI / UX Polish
 - [ ] Mobile nav polish — hamburger, full-screen overlay, z-index hierarchy
