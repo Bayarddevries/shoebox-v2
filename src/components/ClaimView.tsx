@@ -217,6 +217,27 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
       </header>
 
       <main className="max-w-4xl mx-auto px-4 py-6 md:py-8">
+        <section className="mb-6">
+          <div className="bg-white rounded-lg p-5 shadow-sm" style={{ borderLeft: '4px solid var(--color-gold)', borderColor: 'var(--color-crimson)' }}>
+            <h2 className="font-serif text-xl mb-2" style={{ color: 'var(--color-crimson)' }}>How to help document your photo</h2>
+            <p className="text-sm mb-2" style={{ color: 'var(--color-charcoal)' }}>
+              These are your photos from the event. For each one, fill in what you know. <strong>Not everything is required.</strong> Names, places, dates, and a short story are the most valuable — anything you write helps the archive hold them properly.
+            </p>
+            <details className="text-sm" style={{ color: 'var(--color-charcoal-light)' }}>
+              <summary style={{ cursor: 'pointer', fontWeight: 600, color: 'var(--color-crimson)' }}>What each box is for (open if helpful)</summary>
+              <ul className="list-disc pl-5 mt-2 space-y-1 text-sm" style={{ color: 'var(--color-charcoal)' }}>
+                <li><strong>People (left to right)</strong> — names + how they relate to you (e.g., "Margaret Lapointe, mother").</li>
+                <li><strong>Location</strong> — town, community, reserve, or region (e.g., "Winnipeg — St. Boniface").</li>
+                <li><strong>Approx. year / era</strong> — anything that helps: "around 1952", "early 1940s", "before the flood".</li>
+                <li><strong>Occasion</strong> — harvest, wedding, church gathering, meeting, school day.</li>
+                <li><strong>Story</strong> — a few sentences about what was happening and why it matters.</li>
+                <li><strong>Caption</strong> — a short line describing the image (what future readers should see).</li>
+                <li><strong>Attribution / credit</strong> — "photo by me" or leave blank.</li>
+              </ul>
+            </details>
+          </div>
+        </section>
+
         {/* Photo display */}
         <section className="mb-8">
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
