@@ -161,6 +161,7 @@ const TOPICAL_KEYWORDS = new Set([
   'HR', 'LR',
   // Event/org tags
   'Louis Riel Day', 'National Indigenous Peoples Day', 'NIPD',
+  'Ste. Madeleine Métis Days 2026', 'Victory at Frog Plain 2026',
   'Louis Riel Gravesite', 'St. Mary\'s Academy', 'Fort Garry Hotel', 'Fort Gary Hotel',
   'Selkirk Park', 'Prairie Bison Local', 'Local Meeting',
   'MMF', 'Manitoba Métis Federation', 'RRMNHC',
@@ -260,7 +261,7 @@ function buildLocationString(city, province, country) {
 
 // ─── Geocode a Photo ────────────────────────────────────────────────────────
 
-function geocode(city, province, exifLat, exifLng) {
+function geocode(city, province, exifLat, exifLng, keywords) {
   // 1. Use GPS from EXIF if available (already signed decimals from -n flag)
   if (exifLat !== undefined && exifLng !== undefined &&
       !isNaN(exifLat) && !isNaN(exifLng) &&
@@ -271,12 +272,28 @@ function geocode(city, province, exifLat, exifLng) {
     }
   }
 
-  // 2. Lookup by city name
-  if (city && GEOCODE_TABLE[city]) {
-    return GEOCODE_TABLE[city]
+  // 2. Lookup by city name (case-insensitive: EXIF may say "portage la prairie")
+  if (city) {
+    const cityLower = city.toLowerCase()
+    for (const [place, coords] of Object.entries(GEOCODE_TABLE)) {
+      if (place.toLowerCase() === cityLower) return coords
+    }
   }
 
-  // 3. No coordinates available
+  // 3. Lookup by keyword (e.g. event keywords like "Ste. Madeleine Métis Days 2026")
+  //    that name a known community. Checks each keyword (and substring) against
+  //    the geocode table so event/place-tagged scans still map.
+  const keywordList = Array.isArray(keywords) ? keywords : keywords ? [String(keywords)] : []
+  for (const kw of keywordList) {
+    const kwLower = String(kw).toLowerCase()
+    for (const [place, coords] of Object.entries(GEOCODE_TABLE)) {
+      if (kwLower === place.toLowerCase() || kwLower.includes(place.toLowerCase())) {
+        return coords
+      }
+    }
+  }
+
+  // 4. No coordinates available
   return { lat: null, lng: null }
 }
 
@@ -428,7 +445,7 @@ const photos = imageFiles.map((filename, index) => {
  const { photoYear, photoYearSource } = derivePhotoYear(topicalKeywords, title, exifYear)
 
   // ── Step 8: Geocoding ──
-  const coords = geocode(rawCity, rawProvince, exif.GPSLatitude, exif.GPSLongitude)
+  const coords = geocode(rawCity, rawProvince, exif.GPSLatitude, exif.GPSLongitude, keywords)
 
   // ── Stats ──
   if (rawCity) statsCount.city++
