@@ -25,7 +25,7 @@
 - [ ] Hero section cross-browser test (Safari, Firefox)
 
 ## Archive & Content
-- [ ] Build admin upload portal — drag-and-drop photo intake using the scripts/add-photos.py workflow (IPTC metadata extraction, surgical append, auto-build)
+- [ ] Build admin upload portal — drag-and-drop photo intake using the `scripts/ingest_photos.js` workflow (preflight, copy, manifest regen, thumbnails, build; never auto-commits)
 - [ ] Improve tagging workflow (keywords, people, year derivation)
 - [ ] Verify year derivation for all 302 photos (keyword → title → era midpoint → EXIF fallback)
 - [ ] Plan community visits/interviews for new photo collection
