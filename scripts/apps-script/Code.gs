@@ -14,6 +14,9 @@ const ADMIN_TOKEN = 'RgTSsLmm7_PPxlzfL1Az0Q-bcSxu6O3vHMG8rDInuiw'; // secret adm
 const SHEET_SUBMISSIONS = 'Submissions';
 const SHEET_CONTRIBUTIONS = 'Contributions';
 
+// Notification recipients for new contributions (project lead + archive admin)
+const NOTIFY_EMAILS = ['metisshoebox@mmf.mb.ca', 'bayard.devries@mmf.mb.ca'];
+
 // Column indices for Submissions (0-based, matching header order)
 const SUBMISSION_COLS = {
   submissionId: 0,
@@ -178,6 +181,14 @@ function doPost(e) {
     const contributions = ss.getSheetByName(SHEET_CONTRIBUTIONS);
     contributions.appendRow(row);
 
+    // Notify the archive team that a submitter added details
+    try {
+      sendContributionNotification(submitterName(targetSubmission), submissionId, photoId, params, submittedAt);
+    } catch (notifyErr) {
+      // Notification failure must not block the submission itself
+      console.warn('Contribution notification failed: ' + notifyErr.message);
+    }
+
     return jsonResponse({ status: 'ok', contributionId: newId });
   } catch (err) {
     return jsonResponse({ error: 'server_error', message: err.message }, 500);
@@ -185,6 +196,41 @@ function doPost(e) {
 }
 
 // Internal handlers
+
+function submitterName(row) {
+  return (row[SUBMISSION_COLS.submitterName] || 'Unknown submitter').toString();
+}
+
+function sendContributionNotification(submitter, submissionId, photoId, params, submittedAt) {
+  const people = params.people || '(not provided)';
+  const story = params.story || '(not provided)';
+  const location = params.location || params.community || '(not provided)';
+  const caption = params.caption || '(not provided)';
+  const occasion = params.occasion || '(not provided)';
+  const dateYear = params.dateYear || '(not provided)';
+  const era = params.dateEra || '(not provided)';
+
+  const subject = 'New photo details submitted: ' + submitter + ' (' + submissionId + ')';
+  const body =
+    'A submitter just added details to one of their photos.\n\n' +
+    'Submitter: ' + submitter + '\n' +
+    'Submission: ' + submissionId + '\n' +
+    'Photo ID: ' + photoId + '\n' +
+    'Submitted at: ' + submittedAt + '\n\n' +
+    'Details provided:\n' +
+    '- People: ' + people + '\n' +
+    '- Location: ' + location + '\n' +
+    '- Year: ' + dateYear + '  Era: ' + era + '\n' +
+    '- Occasion: ' + occasion + '\n' +
+    '- Caption: ' + caption + '\n' +
+    '- Story: ' + story + '\n\n' +
+    'Review in the Contributions tab of the Shoebox Submitter Metadata sheet, ' +
+    'then approve or edit before it merges into the archive.';
+
+  for (var i = 0; i < NOTIFY_EMAILS.length; i++) {
+    MailApp.sendEmail(NOTIFY_EMAILS[i], subject, body);
+  }
+}
 
 function handleGetSubmission(token) {
   if (!token) {
