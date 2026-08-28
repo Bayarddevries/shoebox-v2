@@ -49,6 +49,18 @@ photo should carry IPTC metadata written by Lightroom:
 | GPS | from the camera, if any | map pin |
 | Keywords | IPTC Keywords | people names and topical tags, and the photo's year |
 
+**GPS gotcha (Ste. Madeleine 2026 batch):** Lightroom stores GPS in XMP on the
+camera raw (CR2) files, but when those raws are exported as JPGs, the GPS is
+NOT carried to the JPG unless the export metadata template includes it. Scans
+made from an EPSON V800/V850 (TIF source) exported through Lightroom also drop
+GPS. Symptom: the GPS you set in Lightroom shows on the CR2/TIF but the exported
+JPGs have `exiftool -GPS*` empty. The generator falls back to a geocode lookup
+table (by IPTC City, then by keyword, case-insensitive) which puts the photo at
+the community center. If you need the precise pin, either export with GPS
+included, or patch the manifest `lat`/`lng` directly (as done for the 25
+Ste. Madeleine scans on 2026-08-28 → 50.58111, -101.43139 = Ste. Madeleine
+Cemetery).
+
 A photo with NO metadata still gets added, but it appears as an untitled,
 unlocated, undated entry. The generator falls back to the filename for the
 title (e.g. `IMG_2346.jpg` becomes "Img 2346"), which is not useful for an
