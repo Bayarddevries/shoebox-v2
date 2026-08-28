@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import MetadataForm from './MetadataForm'
+import { useClaimText, fmt } from '../claimText'
 
 interface Submission {
   submitterName: string
@@ -13,6 +14,7 @@ interface ClaimViewProps {
 }
 
 export default function ClaimView({ token, onDone }: ClaimViewProps) {
+  const t = useClaimText()
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [submission, setSubmission] = useState<Submission | null>(null)
@@ -130,7 +132,7 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--color-parchment)' }}>
         <div className="text-center">
-          <div className="cinzel text-xl mb-4" style={{ color: 'var(--color-crimson)' }}>Loading your photos...</div>
+          <div className="cinzel text-xl mb-4" style={{ color: 'var(--color-crimson)' }}>{t.loading.message}</div>
           <div className="w-48 h-2 mx-auto rounded overflow-hidden" style={{ background: 'var(--color-cream)' }}>
             <div className="h-full rounded shimmer" style={{ background: 'var(--color-crimson)', width: '60%' }} />
           </div>
@@ -143,11 +145,11 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--color-parchment)' }}>
         <div className="max-w-md w-full p-8 bg-white rounded-lg shadow-md text-center">
-          <div className="text-2xl mb-4">❌</div>
-          <h2 className="font-serif text-xl mb-2" style={{ color: 'var(--color-crimson)' }}>Error</h2>
-          <p className="mb-6" style={{ color: 'var(--color-charcoal)' }}>{error}</p>
+          <div className="text-2xl mb-4">{t.error.icon}</div>
+          <h2 className="font-serif text-xl mb-2" style={{ color: 'var(--color-crimson)' }}>{t.error.heading}</h2>
+          <p className="mb-6" style={{ color: 'var(--color-charcoal)' }}>{t.error.messagePrefix}{error}</p>
           <p className="text-sm" style={{ color: 'var(--color-charcoal-light)' }}>
-            Please check your link or contact us if the problem persists.
+            {t.error.footer}
           </p>
         </div>
       </div>
@@ -159,27 +161,27 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
   }
 
   // All done state
-  if (completedCount === totalPhotos) {
+  if (completedCount === totalPhotos && totalPhotos > 0) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--color-parchment)' }}>
         <div className="max-w-md w-full p-8 bg-white rounded-lg shadow-md text-center">
-          <div className="text-3xl mb-4">✨</div>
-          <h2 className="font-serif text-2xl mb-4" style={{ color: 'var(--color-crimson)' }}>Thank You!</h2>
+          <div className="text-3xl mb-4">{t.done.icon}</div>
+          <h2 className="font-serif text-2xl mb-4" style={{ color: 'var(--color-crimson)' }}>{t.done.heading}</h2>
           <p className="mb-4" style={{ color: 'var(--color-charcoal)' }}>
-            You’ve successfully added metadata to all {totalPhotos} of your photos.
+            {fmt(t.done.body, { total: totalPhotos })}
           </p>
           <p className="text-sm mb-6" style={{ color: 'var(--color-charcoal-light)' }}>
-            Your contributions are now in the queue for review. We appreciate you helping preserve Métis history!
+            {t.done.queueNote}
           </p>
           <p className="text-xs mb-2" style={{ color: 'var(--color-charcoal-light)' }}>
-            Want to add a story by phone? Call us at <strong>204-XXX-XXXX</strong>
+            {t.done.phoneNote}
           </p>
           {onDone && (
             <button
               onClick={onDone}
               className="mt-4 btn-secondary"
             >
-              Return to Archive
+              {t.done.returnButton}
             </button>
           )}
         </div>
@@ -198,10 +200,10 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
         <div className="max-w-6xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between mb-2">
             <h1 className="font-serif text-xl md:text-2xl" style={{ color: 'var(--color-crimson)' }}>
-              These are YOUR photos
+              {t.header.title}
             </h1>
             <div className="text-sm" style={{ color: 'var(--color-charcoal-light)' }}>
-              {completedCount} of {totalPhotos} completed
+              {fmt(t.header.progress, { completed: completedCount, total: totalPhotos })}
             </div>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
@@ -211,28 +213,24 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
             />
           </div>
           <p className="text-sm mt-2" style={{ color: 'var(--color-charcoal-light)' }}>
-            Submitter: <span className="font-medium">{submission.submitterName}</span>
+            {t.header.submitterLabel}<span className="font-medium">{submission.submitterName}</span>
           </p>
         </div>
       </header>
 
       <main className="max-w-4xl mx-auto px-4 py-6 md:py-8">
         <section className="mb-6">
-          <div className="bg-white rounded-lg p-5 shadow-sm" style={{ borderLeft: '4px solid var(--color-gold)', borderColor: 'var(--color-crimson)' }}>
-            <h2 className="font-serif text-xl mb-2" style={{ color: 'var(--color-crimson)' }}>How to help document your photo</h2>
+          <div className="bg-white rounded-lg p-5 shadow-sm" style={{ borderLeft: '4px solid var(--color-crimson)' }}>
+            <h2 className="font-serif text-xl mb-2" style={{ color: 'var(--color-crimson)' }}>{t.walkthrough.heading}</h2>
             <p className="text-sm mb-2" style={{ color: 'var(--color-charcoal)' }}>
-              These are your photos from the event. For each one, fill in what you know. <strong>Not everything is required.</strong> Names, places, dates, and a short story are the most valuable — anything you write helps the archive hold them properly.
+              {t.walkthrough.intro}
             </p>
             <details className="text-sm" style={{ color: 'var(--color-charcoal-light)' }}>
-              <summary style={{ cursor: 'pointer', fontWeight: 600, color: 'var(--color-crimson)' }}>What each box is for (open if helpful)</summary>
+              <summary style={{ cursor: 'pointer', fontWeight: 600, color: 'var(--color-crimson)' }}>{t.walkthrough.detailsSummary}</summary>
               <ul className="list-disc pl-5 mt-2 space-y-1 text-sm" style={{ color: 'var(--color-charcoal)' }}>
-                <li><strong>People (left to right)</strong> — names + how they relate to you (e.g., "Margaret Lapointe, mother").</li>
-                <li><strong>Location</strong> — town, community, reserve, or region (e.g., "Winnipeg — St. Boniface").</li>
-                <li><strong>Approx. year / era</strong> — anything that helps: "around 1952", "early 1940s", "before the flood".</li>
-                <li><strong>Occasion</strong> — harvest, wedding, church gathering, meeting, school day.</li>
-                <li><strong>Story</strong> — a few sentences about what was happening and why it matters.</li>
-                <li><strong>Caption</strong> — a short line describing the image (what future readers should see).</li>
-                <li><strong>Attribution / credit</strong> — "photo by me" or leave blank.</li>
+                {t.walkthrough.items.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
               </ul>
             </details>
           </div>
@@ -244,18 +242,18 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
             <div className="relative">
               <img
                 src={`${import.meta.env.BASE_URL}${encodePath(currentPhoto.src)}`}
-                alt={currentPhoto.title || `Photo ${currentPhoto.photoId}`}
+                alt={currentPhoto.title || fmt(t.photo.alt, { id: currentPhoto.photoId })}
                 className="w-full h-auto object-contain"
                 style={{ maxHeight: '70vh' }}
               />
               <div className="absolute top-2 right-2 px-3 py-1 rounded text-sm font-medium"
                    style={{ background: 'var(--color-cream)', color: 'var(--color-crimson)' }}>
-                Photo {currentPhotoIndex + 1}
+                {fmt(t.photo.badge, { n: currentPhotoIndex + 1 })}
               </div>
             </div>
             <div className="p-4" style={{ borderTop: '1px solid var(--color-border)' }}>
               <h2 className="font-serif text-lg md:text-xl" style={{ color: 'var(--color-charcoal)' }}>
-                {currentPhoto.title || `Photo ${currentPhoto.photoId}`}
+                {currentPhoto.title || fmt(t.photo.alt, { id: currentPhoto.photoId })}
               </h2>
             </div>
           </div>
@@ -268,6 +266,7 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
             submitterToken={token}
             onSubmit={(data: any) => handleFormSubmit(data, currentPhoto.photoId)}
             isCompleted={completedPhotos.has(currentPhoto.photoId)}
+            formText={t.form}
           />
         </section>
 
@@ -286,7 +285,7 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
                 : 'white'
             }}
           >
-            ← Previous
+            {t.nav.previous}
           </button>
 
           <button
@@ -302,7 +301,7 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
                 : 'white'
             }}
           >
-            {currentPhotoIndex === totalPhotos - 1 ? 'Done' : 'Next →'}
+            {currentPhotoIndex === totalPhotos - 1 ? t.nav.done : t.nav.next}
           </button>
         </section>
       </main>
@@ -310,7 +309,7 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
       <footer className="mt-12 py-6 border-t" style={{ borderColor: 'var(--color-border)' }}>
         <div className="max-w-6xl mx-auto px-4 text-center">
           <p className="text-xs" style={{ color: 'var(--color-charcoal-light)' }}>
-            Red River Métis Digital Archive | Shoebox v2 | Secure submitter experience
+            {t.footer.text}
           </p>
         </div>
       </footer>
