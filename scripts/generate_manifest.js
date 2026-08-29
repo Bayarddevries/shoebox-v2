@@ -217,6 +217,7 @@ function extractExifMetadata(filepath) {
  `-GPSLatitude -GPSLongitude -GPSLatitudeRef -GPSLongitudeRef ` +
  `-City -Sub-location -Province-State -Country-PrimaryLocationName ` +
  `-ImageWidth -ImageHeight ` +
+ `-Copyright -Rights ` +
  `"${filepath}"`,
  { encoding: 'utf8', timeout: 10000 }
  )
@@ -409,6 +410,14 @@ const photos = imageFiles.map((filename, index) => {
   const rawCaption = exif['Caption-Abstract'] || exif.ImageDescription || ''
   const caption = (typeof rawCaption === 'string' ? rawCaption : String(rawCaption)).trim()
 
+  // ── Step 3b: Submitter from IPTC Copyright/Rights ──
+  // The intake workflow tags the contributor in the copyright field as
+  // "© Submitted by <Name>" (the © is optional). This surfaces the submitter
+  // so the archive and the review-links workflow can group by contributor.
+  const rawCopyright = String(exif.Copyright || exif.Rights || '').trim()
+  const submitterMatch = rawCopyright.match(/Submitted by\s+(.+)/i)
+  const submitter = submitterMatch ? submitterMatch[1].trim() : null
+
   // ── Step 4: Location from IPTC structured fields ──
   const rawCity = normalizeCity(exif.City || '')
   const rawSublocation = (exif['Sub-location'] || '').trim()
@@ -465,6 +474,7 @@ const photos = imageFiles.map((filename, index) => {
  title: title,
  caption: caption,
  description: caption, // kept for backward compat
+ submitter: submitter, // from IPTC Copyright "© Submitted by <Name>" (or null)
  people: people.join('; '),
  location: location,
  community: rawCity || null,
