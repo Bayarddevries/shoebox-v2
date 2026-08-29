@@ -1,0 +1,17 @@
+wing: shoebox_v2
+rooms:
+  - name: general
+    description: All project files
+include:
+  - "src/**"
+  - "public/**"
+  - "scripts/**"
+  - "*.md"
+  - "vite.config.ts"
+  - "package.json"
+skipNames:
+  - "node_modules"
+  - ".git"
+  - ".github"
+  - "dist"
+  - "shoebox"
