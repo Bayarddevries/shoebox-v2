@@ -689,26 +689,18 @@
 
   function getKenBurns(idx, faceX, faceY, zoom) {
     const scaleTo = zoom || 1.15;
-    // Face-aware Ken Burns: the zoom is anchored on the face, so it pushes
-    // in toward the face or pulls out from it. Alternates every slide.
-    if (faceX != null && faceY != null) {
-      const ox = Math.max(0, Math.min(100, faceX * 100)).toFixed(1);
-      const oy = Math.max(0, Math.min(100, faceY * 100)).toFixed(1);
-      const origin = `${ox}% ${oy}%`;
-      if (idx % 2 === 0) {
-        // Push in: zoom toward the face
-        return { from: 'scale(1)', to: `scale(${scaleTo})`, origin };
-      } else {
-        // Pull out: start tight on the face, reveal the full image
-        return { from: `scale(${scaleTo})`, to: 'scale(1)', origin };
-      }
-    }
-    // No face data: gentle random drift, centered
+    // Match the known-good slideshow pattern (HeroCarousel / IdleSlideshow):
+    // gentle centered scale+translate drift, origin stays at center.
+    // Face focus is handled by background-position in applyImageToLayer, NOT
+    // by transform-origin — an off-center transform-origin on the oversized
+    // (inset:-4%) layer makes the zoom swing away from the face.
     const kbVariants = [
-      { from: 'scale(1)', to: `scale(${scaleTo}) translate(-1.5%, -1%)`, origin: 'center' },
-      { from: 'scale(1)', to: `scale(${scaleTo}) translate(1.5%, 1%)`, origin: 'center' },
-      { from: `scale(${scaleTo}) translate(-1%, 1.5%)`, to: 'scale(1)', origin: 'center' },
-      { from: `scale(${scaleTo}) translate(1%, -1.5%)`, to: 'scale(1)', origin: 'center' },
+      { from: 'scale(1) translate(0, 0)', to: `scale(${scaleTo}) translate(-2%, -1%)` },
+      { from: `scale(1.1) translate(-2%, 0)`, to: 'scale(1) translate(1%, -1%)' },
+      { from: 'scale(1) translate(1%, 0)', to: `scale(${scaleTo}) translate(-1%, 1%)` },
+      { from: `scale(1.08) translate(0, -1%)`, to: 'scale(1) translate(1%, 1%)' },
+      { from: `scale(1.05) translate(-1%, 1%)`, to: `scale(${scaleTo}) translate(1%, -1%)` },
+      { from: `scale(1.1) translate(1%, -1%)`, to: 'scale(1) translate(-1%, 1%)' },
     ];
     return kbVariants[idx % kbVariants.length];
   }
