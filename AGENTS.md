@@ -4,7 +4,7 @@ Quick-reference for AI agents (and humans) working on this project.
 
 ## Project Overview
 
-**Shoebox v2** is the **Red River Métis Digital Archive** — a Vite + React + TypeScript web app that displays 302 historical archival photos with metadata, stories, and audio narration. It deploys to GitHub Pages at:
+**Shoebox v2** is the **Red River Métis Digital Archive** — a Vite + React + TypeScript web app that displays 450 historical archival photos with metadata, stories, and audio narration. It deploys to GitHub Pages at:
 
 > https://bayarddevries.github.io/shoebox-v2/
 
@@ -22,7 +22,7 @@ Quick-reference for AI agents (and humans) working on this project.
 | `src/index.css` | All styles including hero split layout |
 | `public/assets/shoebox/manifest.json` | Photo manifest (generated, do not edit by hand) |
 | `public/assets/shoebox/stories.json` | Story metadata |
-| `public/assets/shoebox/photos/` | 376 archival photos — filenames have spaces (URL-encoded at runtime) |
+| `public/assets/shoebox/photos/` | 450 archival photos — filenames have spaces (URL-encoded at runtime) |
 | `public/assets/mmf_logo_rrm.png` | MMF RRM logo for navbar and hero |
 | `public/projector.html` | Standalone projector slideshow (kiosk/event mode) — NOT built by Vite |
 | `scripts/generate_manifest.js` | Node script that generates `manifest.json` with relative `src` paths |
@@ -151,7 +151,7 @@ fetch('/assets/shoebox/manifest.json')
 
 ### Photo filenames contain spaces
 
-The 302 photos in `public/assets/shoebox/photos/` have filenames with spaces (e.g., `"Old Photo 001.jpg"`). These are URL-encoded automatically by the browser and work fine. Do **not** rename them — the manifest references the original filenames.
+The 450 photos in `public/assets/shoebox/photos/` have filenames with spaces (e.g., `"Old Photo 001.jpg"`). These are URL-encoded automatically by the browser and work fine. Do **not** rename them — the manifest references the original filenames.
 
 ### Manifest is generated
 
@@ -211,12 +211,12 @@ The manifest generator is the **standard pipeline** for when new images are adde
 
 This logic lives in `formatYearBadge()` in `src/components/PhotoDetail.tsx`.
 
-### Current distribution (302 photos)
+### Current distribution (450 photos)
 
-- **89** from keyword-specific years (1890–1993)
-- **18** from title-parsed years (1910–2019)
-- **84** from era-range midpoints (1913–1988)
-- **111** fallback to scan date (2007–2026)
+- **154** from keyword-specific years (1890–2015)
+- **27** from title-parsed years (1892–2019)
+- **87** from era-range midpoints (1913–1988)
+- **182** fallback to scan date (2007–2026)
 
 ### When adding new photos
 
@@ -298,7 +298,7 @@ CSS `columns` uses column-major fill (top-to-bottom, left-to-right). With chrono
 
 ### Why this fixes it
 
-With 302 photos and 4 columns, the first 4 photos (oldest) go to columns 1-4 since they all start at height 0. Every column starts with an old photo. As items fill in, the algorithm keeps columns balanced — all columns progress through time at roughly the same rate.
+With 450 photos and 4 columns, the first 4 photos (oldest) go to columns 1-4 since they all start at height 0. Every column starts with an old photo. As items fill in, the algorithm keeps columns balanced — all columns progress through time at roughly the same rate.
 
 ### Key files
 
@@ -313,3 +313,66 @@ With 302 photos and 4 columns, the first 4 photos (oldest) go to columns 1-4 sin
 - ❌ **CSS columns + chunk reorder** — clever array reordering still can't overcome column-major fill with masonry heights
 - ❌ **CSS Grid** — gives row-major but no masonry (wasted space)
 - ✅ **JS masonry with shortest-column** — correct era distribution + masonry packing
+
+## Engineering Discipline (from Karpathy's CLAUDE.md)
+
+Bias toward caution over speed. For trivial tasks, use judgment.
+
+### 1. Think Before Coding
+
+**Don't assume. Don't hide confusion. Surface tradeoffs.**
+
+Before implementing:
+- State assumptions explicitly. If uncertain, ask.
+- If multiple interpretations exist, present them — don't pick silently.
+- If a simpler approach exists, say so. Push back when warranted.
+- If something is unclear, stop. Name what's confusing. Ask.
+
+### 2. Simplicity First
+
+**Minimum code that solves the problem. Nothing speculative.**
+
+- No features beyond what was asked.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for impossible scenarios.
+- If you write 200 lines and it could be 50, rewrite it.
+
+Ask: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+
+### 3. Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.**
+
+When editing existing code:
+- Don't "improve" adjacent code, comments, or formatting.
+- Don't refactor things that aren't broken.
+- Match existing style, even if you'd do it differently.
+- If you notice unrelated dead code, mention it — don't delete it.
+
+When your changes create orphans:
+- Remove imports/variables/functions that *your* changes made unused.
+- Don't remove pre-existing dead code unless asked.
+
+**Test:** Every changed line should trace directly to the user's request.
+
+### 4. Goal-Driven Execution
+
+**Define success criteria. Loop until verified.**
+
+Transform tasks into verifiable goals:
+- "Add validation" → "Write tests for invalid inputs, then make them pass"
+- "Fix the bug" → "Write a test that reproduces it, then make it pass"
+- "Refactor X" → "Ensure tests pass before and after"
+
+For multi-step tasks, state a brief plan:
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+
+Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+
+**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+
+---
+

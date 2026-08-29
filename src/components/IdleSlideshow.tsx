@@ -20,11 +20,80 @@ const KEN_BURNS = [
 // Fallback center when face coordinates are missing
 const FALLBACK_CENTER = { x: 0.5, y: 0.5 }
 
+// Face-anchored zoom variants: pure scale around the face point (no translate,
+// so the transform-origin fully controls where the zoom is anchored).
+// Alternating push-in / pull-out for variety.
+const FACE_ZOOM = [
+  { from: 'scale(1)', to: 'scale(1.15)' },
+  { from: 'scale(1.15)', to: 'scale(1)' },
+]
+
 function getFacePosition(photo: Photo) {
   if (photo.faceX != null && photo.faceY != null) {
     return { x: photo.faceX, y: photo.faceY }
   }
   return FALLBACK_CENTER
+}
+
+/**
+ * Compute the transform-origin (as % of the layer) that sits exactly on the
+ * detected face, given `background-size: cover` + `background-position: center`.
+ *
+ * With cover+center the image covers the oversized layer (inset -5%, so 110% of
+ * the viewport) with no gaps, and the image center is at the layer center. A
+ * face at normalized (fx, fy) therefore lands at:
+ *
+ *   face_x = Lw/2 + Iw*(fx - 0.5)      (Iw = cover-scaled image width)
+ *   face_y = Lh/2 + Ih*(fy - 0.5)
+ *
+ * Setting transform-origin to this point makes the scale zoom radiate from the
+ * face (the projector's old bug was using raw `faceX%` as the origin, which is
+ * wrong on an oversized layer and sent the zoom swinging off the face).
+ *
+ * Returns null when there is no face data, or the face sits so far off-screen
+ * that anchoring there would zoom empty space (those photos fall back to the
+ * smooth centered drift).
+ */
+function getFaceOrigin(photo: Photo): { x: number; y: number } | null {
+  const f = getFacePosition(photo)
+  const w = photo.width, h = photo.height
+  if (f.x === FALLBACK_CENTER.x && f.y === FALLBACK_CENTER.y) return null
+  if (!w || !h || w <= 0 || h <= 0) return null
+  const layerW = window.innerWidth * 1.1 // inset: -5% each side
+  const layerH = window.innerHeight * 1.1
+  const s = Math.max(layerW / w, layerH / h) // cover
+  const Iw = w * s, Ih = h * s
+  const ox = (layerW / 2 + Iw * (f.x - 0.5)) / layerW * 100
+  const oy = (layerH / 2 + Ih * (f.y - 0.5)) / layerH * 100
+  // Viewport is the central ~9%..91% of the layer; only anchor when the face
+  // is on-screen, otherwise the zoom would point at empty space.
+  const lo = 100 * (1 - 1 / 1.1) / 2 // 4.5%
+  const hi = 100 - lo
+  if (ox < lo || ox > hi || oy < lo || oy > hi) return null
+  return { x: ox, y: oy }
+}
+
+/**
+ * Set the background (cover+center: zero gaps) and the Ken Burns transform for
+ * one layer. When a usable face origin exists the zoom is anchored on the face;
+ * otherwise it uses the smooth centered drift (matching HeroCarousel).
+ */
+function applyBg(layer: HTMLElement, photo: Photo, baseUrl: string, idx: number) {
+  layer.style.backgroundImage = `url(${baseUrl}${encodePath(photo.src)})`
+  layer.style.backgroundSize = 'cover'
+  layer.style.backgroundPosition = 'center'
+  const origin = getFaceOrigin(photo)
+  if (origin) {
+    const kb = FACE_ZOOM[idx % FACE_ZOOM.length]
+    layer.style.transformOrigin = `${origin.x}% ${origin.y}%`
+    layer.style.setProperty('--kb-from', kb.from)
+    layer.style.setProperty('--kb-to', kb.to)
+  } else {
+    const kb = KEN_BURNS[idx % KEN_BURNS.length]
+    layer.style.transformOrigin = 'center'
+    layer.style.setProperty('--kb-from', kb.from)
+    layer.style.setProperty('--kb-to', kb.to)
+  }
 }
 
 function encodePath(path: string): string {
@@ -73,17 +142,10 @@ export default function IdleSlideshow({ photos, baseUrl }: IdleSlideshowProps) {
       const layerB = layerBRef.current
       if (!layerA || !layerB) return
 
-      const getKenBurns = (idx: number) => KEN_BURNS[idx % KEN_BURNS.length]
-
       // Init: A visible with image 0, B hidden
-      const kb0 = getKenBurns(0)
-      const pos0 = getFacePosition(shuffled[0])
       layerA.style.opacity = '1'
       layerA.style.zIndex = '2'
-      layerA.style.backgroundImage = `url(${baseUrl}${encodePath(shuffled[0].src)})`
-      layerA.style.backgroundPosition = `${pos0.x * 100}% ${pos0.y * 100}%`
-      layerA.style.setProperty('--kb-from', kb0.from)
-      layerA.style.setProperty('--kb-to', kb0.to)
+      applyBg(layerA, shuffled[0], baseUrl, 0)
       layerA.style.animation = 'none'
       void layerA.offsetHeight
       layerA.style.animation = `kenBurns ${SLIDE_DURATION + CROSSFADE_MS}ms ease-in-out both`
@@ -91,24 +153,17 @@ export default function IdleSlideshow({ photos, baseUrl }: IdleSlideshowProps) {
       layerB.style.opacity = '0'
       layerB.style.zIndex = '1'
       if (shuffled.length > 1) {
-        const pos1 = getFacePosition(shuffled[1])
-        layerB.style.backgroundImage = `url(${baseUrl}${encodePath(shuffled[1].src)})`
-        layerB.style.backgroundPosition = `${pos1.x * 100}% ${pos1.y * 100}%`
+        applyBg(layerB, shuffled[1], baseUrl, 1)
       }
 
       const advance = () => {
         const nextIdx = (slideIdxRef.current + 1) % shuffled.length
         const nextPhoto = shuffled[nextIdx]
-        const kb = getKenBurns(nextIdx)
-        const pos = getFacePosition(nextPhoto)
 
         const incoming = activeRef.current === 'a' ? layerB : layerA
         const outgoing = activeRef.current === 'a' ? layerA : layerB
 
-        incoming.style.backgroundImage = `url(${baseUrl}${encodePath(nextPhoto.src)})`
-        incoming.style.backgroundPosition = `${pos.x * 100}% ${pos.y * 100}%`
-        incoming.style.setProperty('--kb-from', kb.from)
-        incoming.style.setProperty('--kb-to', kb.to)
+        applyBg(incoming, nextPhoto, baseUrl, nextIdx)
         incoming.style.animation = 'none'
         void incoming.offsetHeight
         incoming.style.animation = `kenBurns ${SLIDE_DURATION + CROSSFADE_MS}ms ease-in-out both`
