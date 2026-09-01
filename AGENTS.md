@@ -162,9 +162,9 @@ node scripts/generate_manifest.js [SOURCE_DIR] [OUTPUT_FILE]
 # Defaults: ./public/assets/shoebox/photos → ./public/assets/shoebox/manifest.json
 ```
 
-### Manifest Generator v2 Pipeline
+### Manifest Generator v3 Pipeline
 
-The manifest generator is the **standard pipeline** for when new images are added. It reads structured IPTC/XMP metadata written by Adobe Lightroom:
+The manifest generator is the **standard pipeline** for when new images are added. It reads structured IPTC/XMP metadata written by Adobe Lightroom with **one bulk exiftool pass** over the whole directory (group-qualified tags, cached by filename — not one spawn per file):
 
 **Extraction steps:**
 1. **IPTC City / Sub-location / Province-State / Country** → builds full location string ("Community, Province, Canada")
@@ -174,6 +174,32 @@ The manifest generator is the **standard pipeline** for when new images are adde
 5. **Geocode fallback** — if no GPS in EXIF, looks up coordinates from a 30+ community table (Duck Bay, St. Eustache, Selkirk, etc.)
 6. **People extraction** — separates person names from topical keywords using a curated stop-list
 7. **Year derivation** — derives the *historical* photo date from keywords and title, falling back to the EXIF scan date. See "Year Derivation System" below.
+8. **Submitter** — parsed from IPTC Copyright "© Submitted by <Name>" (the intake attribution workflow)
+
+**Lightroom field coverage (v3) — every field is captured, nothing dropped:**
+
+| Manifest field | Lightroom / exif source | Notes |
+|---|---|---|
+| `title` | IPTC ObjectName / XMP-dc:Title | falls back to filename |
+| `caption` | IPTC Caption-Abstract / XMP-dc:Description | |
+| `keywords` | IPTC Keywords / XMP-dc:Subject | split people vs topical |
+| `people` | person-name keywords | |
+| `location` / `community` / `province` / `sublocation` / `countryCode` | IPTC City / Sub-location / Province-State / Country / CountryCode | |
+| `year` / `scanYear` / `photoYearSource` | derived + IPTC DateCreated / DateTimeOriginal | |
+| `lat` / `lng` | EXIF GPS (+ geocode fallback) | |
+| `rating` | XMP-xmp:Rating | Lightroom star rating |
+| `label` | XMP-xmp:Label | Lightroom color label |
+| `creator` | XMP-dc:Creator / IPTC By-line / Artist | photographer |
+| `credit` | XMP-photoshop:Credit / IPTC Credit | |
+| `source` | XMP-photoshop:Source / IPTC Source | |
+| `headline` | XMP-photoshop:Headline / IPTC Headline | |
+| `instructions` | XMP-photoshop:Instructions / IPTC Instructions | |
+| `scannerMake` / `scannerModel` | EXIF Make / Model | EPSON Perfection V800 etc. |
+| `scannerSerial` | EXIF SerialNumber / XMP-aux:SerialNumber | |
+| `software` | EXIF Software / XMP-tiff:Software | Adobe Lightroom version |
+| `metadata.dateCreated` / `timeCreated` / `dateTimeOriginal` / `createDate` / `copyright` / `rights` / `gpsLatitude` / `gpsLongitude` | raw, group-qualified | full preservation |
+
+**exiftool resolution:** generator + ingest preflight try `$EXIFTOOL` env, then `exiftool-bin`, then `exiftool`. On this machine `~/bin/exiftool` is a directory (the real binary is `~/bin/exiftool-bin`) — the code resolves it automatically.
 
 **When adding new photos:**
 1. Copy photos to `public/assets/shoebox/photos/`

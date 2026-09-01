@@ -1,27 +1,43 @@
 /**
- * Shoebox Manifest Generator v2
- * 
+ * Shoebox Manifest Generator v3
+ *
  * Standard pipeline for generating manifest.json from source photos.
- * Reads structured IPTC/XMP metadata written by Adobe Lightroom:
- *   - IPTC City, Sub-location, Province-State, Country
+ * Reads structured IPTC/XMP metadata written by Adobe Lightroom and
+ * captures EVERY field Lightroom writes, preserving provenance:
+ *   - IPTC City, Sub-location, Province-State, Country (+ CountryCode)
  *   - IPTC ObjectName (title), Caption-Abstract (description)
  *   - GPS coordinates (with proper sign handling for Western Canada)
  *   - Keywords (tags + people names)
+ *   - Copyright / Rights (used to derive submitter)
+ *   - Creator / By-line / Artist (photographer), Credit, Source, Headline
+ *   - Rating, Label (Lightroom star / color labels)
+ *   - Scanner provenance: Make, Model, SerialNumber, Software
+ *   - Dates: DateCreated, TimeCreated, DateTimeOriginal, CreateDate
  *
  * Enrichment steps:
- *   1. Extract all IPTC location fields → build full "Community, Province, Canada" location
- *   2. Normalize province spellings to full name
- *   3. Geocode: GPS from EXIF if present, otherwise lookup table for known Métis communities
- *   4. Separate people names from topical keywords
- *   5. Clean up year ranges and date metadata
- *   6. Face detection: run detect_faces.py to get faceX/faceY for each photo (for idle slideshow centering)
+ *   1. ONE bulk exiftool pass over the whole directory (not one spawn per
+ *      file) with group-qualified tag names, cached by filename.
+ *   2. Extract all IPTC/XMP location fields → build full "Community, Province, Canada"
+ *   3. Normalize province spellings to full name
+ *   4. Geocode: GPS from EXIF if present, otherwise lookup table for known Métis communities
+ *   5. Separate people names from topical keywords
+ *   6. Clean up year ranges and date metadata
+ *   7. Face detection: run detect_faces.py to get faceX/faceY for each photo
+ *
+ * Every photo carries a `metadata` object with the full raw field set so no
+ * Lightroom data is ever silently dropped. Derived fields (year, location,
+ * people, submitter) sit at the top level for the frontend.
  *
  * Usage:
  *   node scripts/generate_manifest.js [SOURCE_DIR] [OUTPUT_FILE]
- * 
+ *
  * Defaults:
  *   SOURCE_DIR  = ./public/assets/shoebox/photos
  *   OUTPUT_FILE = ./public/assets/shoebox/manifest.json
+ *
+ * Exiftool resolution: $EXIFTOOL env var first, then `exiftool-bin`, then
+ * `exiftool`. On this machine ~/bin/exiftool is a directory containing the
+ * real binary at ~/bin/exiftool-bin (see papercuts log 2026-09-01).
  */
 
 import fs from 'fs'
@@ -37,6 +53,28 @@ const PROJECT_ROOT = path.resolve(__dirname, '..')
 
 const SOURCE_DIR = process.argv[2] || path.join(PROJECT_ROOT, 'public/assets/shoebox/photos')
 const OUTPUT_FILE = process.argv[3] || path.join(PROJECT_ROOT, 'public/assets/shoebox/manifest.json')
+
+// ─── Exiftool resolution ────────────────────────────────────────────────────
+// Try, in order: $EXIFTOOL env (explicit), exiftool-bin (this machine's real
+// binary), exiftool (standard). Verify each actually runs before using it.
+function resolveExiftool() {
+  const candidates = [
+    process.env.EXIFTOOL,
+    'exiftool-bin',
+    'exiftool',
+  ].filter(Boolean)
+  for (const c of candidates) {
+    try {
+      execSync(`${c} -ver`, { encoding: 'utf8', timeout: 10000, stdio: ['ignore', 'pipe', 'ignore'] })
+      return c
+    } catch {
+      // try next candidate
+    }
+  }
+  return null
+}
+
+const EXIFTOOL = resolveExiftool()
 
 // ─── Province Normalization ─────────────────────────────────────────────────
 
@@ -167,12 +205,12 @@ const TOPICAL_KEYWORDS = new Set([
   'MMF', 'Manitoba Métis Federation', 'RRMNHC',
   'Minister', 'Prime Minister', 'President Chartrand',
  'Touched up', 'Foxhorn', 'rural',
- // Roles / titles (not people names)
+// Roles / titles (not people names)
  'Grey Nun', 'Grey Nuns', 'Nun', 'Nuns', 'nun', 'nuns',
  'Priest', 'priest', 'Bishop', 'bishop',
  'Chief', 'chief', 'Guide', 'guide',
  'Voyageur', 'Councillor', 'Interpreter',
- // Place names (these go to location, not people)
+// Place names (these go to location, not people)
  'Duck Bay', 'Selkirk', 'St. Boniface', 'Winnipeg', 'Winnipeg Region',
  'Red River', 'St. Eustache', 'Fort Smith', 'Fond Du Lac', 'The Pas',
  'Beaulieu', 'Prince Albert', 'Black Lake', 'Grand Rapids',
@@ -205,31 +243,58 @@ function isTopicalKeyword(kw) {
   return false
 }
 
-// ─── EXIF Metadata Extraction ───────────────────────────────────────────────
+// ─── EXIF Metadata Extraction (bulk pass) ───────────────────────────────────
+// One exiftool invocation over the whole directory (not one spawn per file).
+// Output is group-qualified (-G1) so we can tell IPTC vs XMP vs EXIF apart.
+// Returns a Map<filename, tags>.
 
-function extractExifMetadata(filepath) {
-  try {
- // -n flag: numeric output for GPS (signed decimals instead of DMS strings)
- const json = execSync(
- `${process.env.EXIFTOOL || 'exiftool'} -j -n ` +
- `-ImageDescription -ObjectName -Caption-Abstract -Keywords ` +
- `-DateTimeOriginal -DateCreated ` +
- `-GPSLatitude -GPSLongitude -GPSLatitudeRef -GPSLongitudeRef ` +
- `-City -Sub-location -Province-State -Country-PrimaryLocationName ` +
- `-ImageWidth -ImageHeight ` +
- `-Copyright -Rights ` +
- `"${filepath}"`,
- { encoding: 'utf8', timeout: 10000 }
- )
-    const data = JSON.parse(json)
-    if (data && data.length > 0) {
-      return data[0]
-    }
-  } catch (e) {
-    // exiftool might not be available or other error
-    console.warn(`  Warning: could not extract EXIF from ${path.basename(filepath)}: ${e.message}`)
+const EXIF_TAGS = [
+  '-ImageDescription', '-ObjectName', '-Caption-Abstract', '-Keywords',
+  '-DateTimeOriginal', '-CreateDate', '-DateCreated', '-TimeCreated',
+  '-GPSLatitude', '-GPSLongitude', '-GPSLatitudeRef', '-GPSLongitudeRef',
+  '-City', '-Sub-location', '-Province-State', '-Country-PrimaryLocationName', '-CountryCode',
+  '-ImageWidth', '-ImageHeight', '-Software', '-Make', '-Model', '-SerialNumber',
+  '-Copyright', '-Rights', '-Credit', '-Source', '-Headline', '-Instructions',
+  '-By-line', '-By-lineTitle', '-Creator', '-Rating', '-Label', '-Artist', '-CreatorWorkEmail',
+]
+
+function extractAllExif(dir) {
+  if (!EXIFTOOL) {
+    console.warn('  ⚠ exiftool not found — manifest will have NO metadata. Fix: set $EXIFTOOL or install exiftool.')
+    return new Map()
   }
-  return {}
+  try {
+    const json = execSync(
+      `${EXIFTOOL} -j -n -G1 -q ${EXIF_TAGS.join(' ')} "${dir}"`,
+      { encoding: 'utf8', timeout: 60000, maxBuffer: 256 * 1024 * 1024 }
+    )
+    const data = JSON.parse(json)
+    const map = new Map()
+    for (const rec of data) {
+      const fname = path.basename(rec.SourceFile)
+      map.set(fname, rec)
+    }
+    return map
+  } catch (e) {
+    console.warn(`  ⚠ exiftool bulk pass failed: ${e.message}`)
+    return new Map()
+  }
+}
+
+// Group-aware field picker: tries candidate keys in order, returns first present.
+function exifPick(exif, keys) {
+  for (const k of keys) {
+    const v = exif && exif[k]
+    if (v !== undefined && v !== null && v !== '') return v
+  }
+  return undefined
+}
+
+// String coercion: numbers from exiftool JSON (serial, width, rating...) become strings safely.
+function exifStr(exif, keys) {
+  const v = exifPick(exif, keys)
+  if (v === undefined || v === null) return ''
+  return String(v).trim()
 }
 
 // ─── Province Normalization ─────────────────────────────────────────────────
@@ -382,10 +447,11 @@ function formatTitleFromFilename(filename) {
 // ─── Main Pipeline ──────────────────────────────────────────────────────────
 
 console.log('╔══════════════════════════════════════════════════╗')
-console.log('║   Shoebox Manifest Generator v2                 ║')
+console.log('║   Shoebox Manifest Generator v3                 ║')
 console.log('╚══════════════════════════════════════════════════╝')
 console.log(`Source: ${SOURCE_DIR}`)
 console.log(`Output: ${OUTPUT_FILE}`)
+console.log(`Exiftool: ${EXIFTOOL || 'NOT FOUND'}`)
 console.log()
 
 const files = fs.readdirSync(SOURCE_DIR)
@@ -393,36 +459,41 @@ const imageFiles = files.filter(f => /\.(jpg|jpeg|png|gif|webp)$/i.test(f))
 
 console.log(`Found ${imageFiles.length} images to process...\n`)
 
-let statsCount = { city: 0, province: 0, country: 0, gps: 0, geocoded: 0, people: 0, title: 0, caption: 0, year: 0 }
+// Bulk metadata pass (ONE exiftool call for the whole directory)
+const exifCache = extractAllExif(SOURCE_DIR)
+
+let statsCount = {
+  city: 0, province: 0, country: 0, gps: 0, geocoded: 0, people: 0, title: 0, caption: 0, year: 0,
+  rating: 0, label: 0, creator: 0, credit: 0, source: 0, headline: 0,
+  scanner: 0, serial: 0, submitter: 0,
+}
 
 const photos = imageFiles.map((filename, index) => {
   const filepath = path.join(SOURCE_DIR, filename)
   const stats = fs.statSync(filepath)
 
-  // ── Step 1: Extract all metadata ──
-  const exif = extractExifMetadata(filepath)
+  // ── Step 1: Metadata (from bulk cache) ──
+  const exif = exifCache.get(filename) || {}
 
   // ── Step 2: Title ──
-  const exifTitle = (exif.ObjectName || '').trim()
+  const exifTitle = (exifPick(exif, ['IPTC:ObjectName', 'XMP-dc:Title', 'ObjectName']) || '').trim()
   const title = exifTitle || formatTitleFromFilename(filename)
 
   // ── Step 3: Caption / Description ──
-  const rawCaption = exif['Caption-Abstract'] || exif.ImageDescription || ''
+  const rawCaption = exifPick(exif, ['IPTC:Caption-Abstract', 'XMP-dc:Description', 'EXIF:ImageDescription', 'IFD0:ImageDescription', 'ImageDescription']) || ''
   const caption = (typeof rawCaption === 'string' ? rawCaption : String(rawCaption)).trim()
 
   // ── Step 3b: Submitter from IPTC Copyright/Rights ──
-  // The intake workflow tags the contributor in the copyright field as
-  // "© Submitted by <Name>" (the © is optional). This surfaces the submitter
-  // so the archive and the review-links workflow can group by contributor.
-  const rawCopyright = String(exif.Copyright || exif.Rights || '').trim()
+  const rawCopyright = String(exifPick(exif, ['IFD0:Copyright', 'EXIF:Copyright', 'XMP-dc:Rights', 'IPTC:CopyrightNotice', 'Copyright']) || '').trim()
   const submitterMatch = rawCopyright.match(/Submitted by\s+(.+)/i)
   const submitter = submitterMatch ? submitterMatch[1].trim() : null
 
   // ── Step 4: Location from IPTC structured fields ──
-  const rawCity = normalizeCity(exif.City || '')
-  const rawSublocation = (exif['Sub-location'] || '').trim()
-  const rawProvince = normalizeProvince(exif['Province-State'] || '')
-  const rawCountry = (exif['Country-PrimaryLocationName'] || '').trim()
+  const rawCity = normalizeCity(exifPick(exif, ['IPTC:City', 'XMP-photoshop:City', 'City']) || '')
+  const rawSublocation = (exifPick(exif, ['IPTC:Sub-location', 'XMP-iptc:Location', 'Sub-location']) || '').trim()
+  const rawProvince = normalizeProvince(exifPick(exif, ['IPTC:Province-State', 'XMP-photoshop:State', 'Province-State']) || '')
+  const rawCountry = (exifPick(exif, ['IPTC:Country-PrimaryLocationName', 'XMP-photoshop:Country', 'Country-PrimaryLocationName']) || '').trim()
+  const countryCode = (exifPick(exif, ['IPTC:CountryCode', 'XMP-iptc:CountryCode', 'CountryCode']) || '').trim() || null
 
   // Build display location: "Community, Province, Canada"
   // If sub-location is more specific than city and NOT a street address, use it
@@ -436,7 +507,7 @@ const photos = imageFiles.map((filename, index) => {
   const location = buildLocationString(community, rawProvince, rawCountry)
 
   // ── Step 5: Keywords ──
-  const rawKeywords = exif.Keywords || []
+  const rawKeywords = exifPick(exif, ['IPTC:Keywords', 'XMP-dc:Subject', 'Keywords']) || []
   let keywords = []
   if (typeof rawKeywords === 'string') {
     keywords = rawKeywords.split(',').map(k => k.trim()).filter(Boolean)
@@ -449,25 +520,62 @@ const photos = imageFiles.map((filename, index) => {
   const topicalKeywords = keywords.filter(kw => isTopicalKeyword(kw))
 
  // ── Step 7: Year ──
- const exifYear = extractYear(exif.DateCreated) || extractYear(exif.DateTimeOriginal)
+ const exifYear = extractYear(exifPick(exif, ['IPTC:DateCreated', 'XMP-photoshop:DateCreated', 'DateCreated'])) ||
+                  extractYear(exifPick(exif, ['ExifIFD:DateTimeOriginal', 'EXIF:DateTimeOriginal', 'DateTimeOriginal']))
  const scanYear = exifYear // EXIF timestamp = when the file was created/scanned
  const { photoYear, photoYearSource } = derivePhotoYear(topicalKeywords, title, exifYear)
 
   // ── Step 8: Geocoding ──
-  const coords = geocode(rawCity, rawProvince, exif.GPSLatitude, exif.GPSLongitude, keywords)
+  const gpsLat = exifPick(exif, ['Composite:GPSLatitude', 'GPS:GPSLatitude', 'GPSLatitude'])
+  const gpsLng = exifPick(exif, ['Composite:GPSLongitude', 'GPS:GPSLongitude', 'GPSLongitude'])
+  const coords = geocode(rawCity, rawProvince, gpsLat, gpsLng, keywords)
+
+  // ── Step 9: Photographer / credit fields ──
+  const creator = exifPick(exif, ['XMP-dc:Creator', 'IPTC:By-line', 'IFD0:Artist', 'EXIF:Artist', 'By-line'])
+  const creatorStr = Array.isArray(creator) ? creator.join('; ') : exifStr(exif, ['XMP-dc:Creator', 'IPTC:By-line', 'IFD0:Artist', 'EXIF:Artist', 'By-line']) || null
+  const credit = exifStr(exif, ['XMP-photoshop:Credit', 'IPTC:Credit', 'Credit']) || null
+  const source = exifStr(exif, ['XMP-photoshop:Source', 'IPTC:Source', 'Source']) || null
+  const headline = exifStr(exif, ['XMP-photoshop:Headline', 'IPTC:Headline', 'Headline']) || null
+  const instructions = exifStr(exif, ['XMP-photoshop:Instructions', 'IPTC:Instructions', 'Instructions']) || null
+
+  // ── Step 10: Scanner provenance ──
+  const scannerMake = exifStr(exif, ['IFD0:Make', 'EXIF:Make', 'Make']) || null
+  const scannerModel = exifStr(exif, ['IFD0:Model', 'EXIF:Model', 'Model']) || null
+  const scannerSerial = exifStr(exif, ['ExifIFD:SerialNumber', 'XMP-aux:SerialNumber', 'SerialNumber']) || null
+  const software = exifStr(exif, ['IFD0:Software', 'XMP-tiff:Software', 'EXIF:Software', 'Software']) || null
+
+  // ── Step 11: Dates (preserve the full set) ──
+  const dateCreated = exifStr(exif, ['IPTC:DateCreated', 'XMP-photoshop:DateCreated', 'DateCreated']) || null
+  const timeCreated = exifStr(exif, ['IPTC:TimeCreated', 'TimeCreated']) || null
+  const dateTimeOriginal = exifStr(exif, ['ExifIFD:DateTimeOriginal', 'EXIF:DateTimeOriginal', 'DateTimeOriginal']) || null
+  const createDate = exifStr(exif, ['XMP-xmp:CreateDate', 'ExifIFD:CreateDate', 'CreateDate']) || null
+
+  // ── Step 12: Rating / Label ──
+  const ratingRaw = exifPick(exif, ['XMP-xmp:Rating', 'Rating'])
+  const rating = (ratingRaw !== undefined && ratingRaw !== null && ratingRaw !== '') ? Number(ratingRaw) : null
+  const label = exifStr(exif, ['XMP-xmp:Label', 'Label']) || null
 
   // ── Stats ──
   if (rawCity) statsCount.city++
   if (rawProvince) statsCount.province++
   if (rawCountry) statsCount.country++
   if (coords.lat !== null) statsCount.geocoded++
-  if (exif.GPSLatitude !== undefined) statsCount.gps++
+  if (gpsLat !== undefined) statsCount.gps++
   if (people.length > 0) statsCount.people++
   if (title) statsCount.title++
   if (caption) statsCount.caption++
  if (photoYear) statsCount.year++
+  if (rating !== null) statsCount.rating++
+  if (label) statsCount.label++
+  if (creatorStr) statsCount.creator++
+  if (credit) statsCount.credit++
+  if (source) statsCount.source++
+  if (headline) statsCount.headline++
+  if (scannerMake || scannerModel) statsCount.scanner++
+  if (scannerSerial) statsCount.serial++
+  if (submitter) statsCount.submitter++
 
- return {
+  return {
  id: `photo_${index + 1}`,
  src: `assets/shoebox/photos/${filename}`,
  alt: filename,
@@ -480,12 +588,13 @@ const photos = imageFiles.map((filename, index) => {
  community: rawCity || null,
  province: rawProvince || null,
  sublocation: rawSublocation || null,
+ countryCode: countryCode,
  keywords: topicalKeywords,
  year: photoYear, // historical photo date (derived from keywords/title/era)
  scanYear: scanYear, // EXIF scan/digitization date
  photoYearSource: photoYearSource,
- width: exif.ImageWidth || null,
- height: exif.ImageHeight || null,
+ width: exifPick(exif, ['File:ImageWidth', 'ImageWidth']) || null,
+ height: exifPick(exif, ['File:ImageHeight', 'ImageHeight']) || null,
  lat: coords.lat,
  lng: coords.lng,
  lastModified: stats.mtimeMs,
@@ -494,7 +603,29 @@ const photos = imageFiles.map((filename, index) => {
  zIndex: 0,
  faceX: null, // populated by detect_faces.py (normalized 0-1, or null if no face detected)
  faceY: null, // populated by detect_faces.py
- }
+ // Lightroom / provenance fields (full preservation)
+ rating: rating,
+ label: label,
+ creator: creatorStr,
+ credit: credit,
+ source: source,
+ headline: headline,
+ instructions: instructions,
+ scannerMake: scannerMake,
+ scannerModel: scannerModel,
+ scannerSerial: scannerSerial,
+ software: software,
+ metadata: {
+   dateCreated: dateCreated,
+   timeCreated: timeCreated,
+   dateTimeOriginal: dateTimeOriginal,
+   createDate: createDate,
+   copyright: rawCopyright || null,
+   rights: (exifPick(exif, ['XMP-dc:Rights', 'Rights']) || '').trim() || null,
+   gpsLatitude: gpsLat !== undefined ? gpsLat : null,
+   gpsLongitude: gpsLng !== undefined ? gpsLng : null,
+ },
+  }
 })
 
 // ── Sort chronologically ──
@@ -532,6 +663,15 @@ const manifest = {
     photosWithGps: statsCount.gps,
     photosGeocoded: statsCount.geocoded,
     photosWithPeople: statsCount.people,
+    photosWithRating: statsCount.rating,
+    photosWithLabel: statsCount.label,
+    photosWithCreator: statsCount.creator,
+    photosWithCredit: statsCount.credit,
+    photosWithSource: statsCount.source,
+    photosWithHeadline: statsCount.headline,
+    photosWithScanner: statsCount.scanner,
+    photosWithScannerSerial: statsCount.serial,
+    photosWithSubmitter: statsCount.submitter,
   }
 }
 
@@ -612,6 +752,15 @@ console.log(`  With country:        ${statsCount.country}/${manifest.photoCount}
 console.log(`  With GPS (EXIF):     ${statsCount.gps}/${manifest.photoCount}`)
 console.log(`  Geocoded (total):    ${statsCount.geocoded}/${manifest.photoCount}`)
 console.log(`  With people:         ${statsCount.people}/${manifest.photoCount}`)
+console.log(`  With submitter:      ${statsCount.submitter}/${manifest.photoCount}`)
+console.log(`  With rating:         ${statsCount.rating}/${manifest.photoCount}`)
+console.log(`  With label:          ${statsCount.label}/${manifest.photoCount}`)
+console.log(`  With creator:        ${statsCount.creator}/${manifest.photoCount}`)
+console.log(`  With credit:         ${statsCount.credit}/${manifest.photoCount}`)
+console.log(`  With source:         ${statsCount.source}/${manifest.photoCount}`)
+console.log(`  With headline:       ${statsCount.headline}/${manifest.photoCount}`)
+console.log(`  With scanner:        ${statsCount.scanner}/${manifest.photoCount}`)
+console.log(`  With scanner serial: ${statsCount.serial}/${manifest.photoCount}`)
 if (mergedPhotoCount > 0) {
   console.log(`  Community merged:    ${mergedPhotoCount}/${manifest.photoCount} (approved contributions)`)
 }

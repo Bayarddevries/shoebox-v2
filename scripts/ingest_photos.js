@@ -134,18 +134,39 @@ function classify(files) {
   return result
 }
 
+// ─── Exiftool resolution ────────────────────────────────────────────────────
+// Try, in order: $EXIFTOOL env (explicit), exiftool-bin (this machine's real
+// binary — ~/bin/exiftool is a directory containing it, see papercuts log
+// 2026-09-01), exiftool (standard). Verify each actually runs before using it.
+function resolveExiftool() {
+  const candidates = [
+    process.env.EXIFTOOL,
+    'exiftool-bin',
+    'exiftool',
+  ].filter(Boolean)
+  for (const c of candidates) {
+    try {
+      const ver = execSync(`${c} -ver`, { encoding: 'utf8', timeout: 15000 }).trim()
+      if (ver) return c
+    } catch {
+      // try next candidate
+    }
+  }
+  return null
+}
+
 function preflight(zipSource) {
   const checks = []
   // exiftool is the data backbone; without it the manifest silently loses IPTC
   let exiftoolOk = false
-  try {
-    const ver = execSync('exiftool -ver', { encoding: 'utf8', timeout: 15000 }).trim()
-    checks.push(`exiftool ${ver} on PATH (OK)`)
+  const et = resolveExiftool()
+  if (et) {
+    checks.push(`exiftool ${et} on PATH (OK)`)
     exiftoolOk = true
-  } catch {
+  } else {
     checks.push(
       'exiftool MISSING. The manifest generator would silently drop all IPTC metadata. ' +
-      'Fix: add /home/bayarddevries/bin/exiftool to PATH or install exiftool.'
+      'Fix: set $EXIFTOOL, add exiftool-bin to PATH, or install exiftool.'
     )
   }
   try {
