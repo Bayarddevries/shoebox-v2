@@ -211,7 +211,7 @@ function extractExifMetadata(filepath) {
   try {
  // -n flag: numeric output for GPS (signed decimals instead of DMS strings)
  const json = execSync(
- `exiftool -j -n ` +
+ `${process.env.EXIFTOOL || 'exiftool'} -j -n ` +
  `-ImageDescription -ObjectName -Caption-Abstract -Keywords ` +
  `-DateTimeOriginal -DateCreated ` +
  `-GPSLatitude -GPSLongitude -GPSLatitudeRef -GPSLongitudeRef ` +
