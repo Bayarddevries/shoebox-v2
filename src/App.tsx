@@ -149,7 +149,8 @@ export default function App() {
 
       // Family names from people field
       if (p.people) {
-        p.people.split(',').forEach(name => {
+        // people is semicolon-separated ("Lafferty; Marie Laliberte"); split on both ; and ,
+        p.people.split(/[;,]/).forEach(name => {
           const trimmed = name.trim()
           const parts = trimmed.split(' ')
           if (parts.length > 1) {
