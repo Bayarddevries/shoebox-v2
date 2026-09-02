@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-01T15:26:45.615Z",
+  "generatedAt": "2026-09-02T16:22:30.516Z",
   "photoCount": 540,
   "photos": [
     {
@@ -1087,13 +1087,14 @@
       "caption": "",
       "description": "",
       "submitter": "Wendy Sikora",
-      "people": "Water; Germaine Lafferty; Lafferty",
+      "people": "Germaine Lafferty; Lafferty",
       "location": "Fort Smith",
       "community": "Fort Smith",
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Water",
         "black and white",
         "1900-1925"
       ],
@@ -1690,13 +1691,14 @@
       "caption": "",
       "description": "",
       "submitter": "Wendy Sikora",
-      "people": "Water; Lafferty; Margaret Lafferty Beveridge; Henri Derosiers Lafferty",
+      "people": "Lafferty; Margaret Lafferty Beveridge; Henri Derosiers Lafferty",
       "location": "Stony Rapids, Saskatchewan, Canada",
       "community": "Stony Rapids",
       "province": "Saskatchewan",
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Water",
         "1924",
         "boat",
         "black and white",
@@ -2024,13 +2026,14 @@
       "caption": "Henri Lafferty and Germain Mercredi pose for a photo in front of Lac St. Anne Church.",
       "description": "Henri Lafferty and Germain Mercredi pose for a photo in front of Lac St. Anne Church.",
       "submitter": "Wendy Sikora",
-      "people": "Car; Henri Derosiers Lafferty; Germain Mercredi; Lafferty",
+      "people": "Henri Derosiers Lafferty; Germain Mercredi; Lafferty",
       "location": "Lac St. Anne Church, Lac St. Anne",
       "community": "Lac St. Anne",
       "province": null,
       "sublocation": "Lac St. Anne Church",
       "countryCode": null,
       "keywords": [
+        "Car",
         "1925-1930",
         "Church"
       ],
@@ -2132,7 +2135,7 @@
       "caption": "",
       "description": "",
       "submitter": "Wendy Sikora",
-      "people": "Military uniform",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
@@ -2143,7 +2146,8 @@
         "Outdoor",
         "military",
         "black and white",
-        "1930"
+        "1930",
+        "Military uniform"
       ],
       "year": 1930,
       "scanYear": 2009,
@@ -2241,7 +2245,7 @@
       "caption": "Celine, Agatha and Dorothy go for a boat ride ca.",
       "description": "Celine, Agatha and Dorothy go for a boat ride ca.",
       "submitter": "Wendy Sikora",
-      "people": "Celine Lafferty Aaron; Water; Dorothy Lafferty Cumming; Agatha Lafferty Kerr",
+      "people": "Celine Lafferty Aaron; Dorothy Lafferty Cumming; Agatha Lafferty Kerr",
       "location": "Stony Rapids, Saskatchewan, Canada",
       "community": "Stony Rapids",
       "province": "Saskatchewan",
@@ -2251,6 +2255,7 @@
         "1930-1935",
         "fishing",
         "Outdoor",
+        "Water",
         "Boat",
         "black and white",
         "1930"
@@ -2754,7 +2759,7 @@
       "caption": "",
       "description": "",
       "submitter": "Wendy Sikora",
-      "people": "Lafferty; Anne Mercredi; Water; Boats",
+      "people": "Lafferty; Anne Mercredi; Boats",
       "location": "Stony Rapids, Saskatchewan, Canada",
       "community": "Stony Rapids",
       "province": "Saskatchewan",
@@ -2762,6 +2767,7 @@
       "countryCode": null,
       "keywords": [
         "Trees",
+        "Water",
         "Stony Rapids",
         "1935",
         "Boat",
@@ -3255,7 +3261,7 @@
       "caption": "Four generations of Chartrand men: Alphonse, Rene , Gaspard, and Micheal, pose for a family portrait.",
       "description": "Four generations of Chartrand men: Alphonse, Rene , Gaspard, and Micheal, pose for a family portrait.",
       "submitter": null,
-      "people": "Chartrand; Métis woman; Métis family",
+      "people": "Chartrand",
       "location": "",
       "community": null,
       "province": null,
@@ -3267,6 +3273,8 @@
         "historical",
         "hats",
         "Métis Shoebox",
+        "Métis woman",
+        "Métis family",
         "family portrait",
         "generations",
         "family",
@@ -3317,7 +3325,7 @@
       "caption": "Maggie Starmer, Edna Starmer, Mabel Starmer and grandmother Charlotte Beads pose in front of their home. Maggie Starmer (1870-1961)Edna Starmer(1906-1932), Charlotte Beads (Flett A’dhemar)(1840-1910)\rMabel Starmer(1903-1941) 2nd row",
       "description": "Maggie Starmer, Edna Starmer, Mabel Starmer and grandmother Charlotte Beads pose in front of their home. Maggie Starmer (1870-1961)Edna Starmer(1906-1932), Charlotte Beads (Flett A’dhemar)(1840-1910)\rMabel Starmer(1903-1941) 2nd row",
       "submitter": null,
-      "people": "Maggie Starmer; Edna Starmer; Mabel Starmer; Charlotte Beads; Generations; Starmer family",
+      "people": "Maggie Starmer; Edna Starmer; Mabel Starmer; Charlotte Beads; Generations",
       "location": "Prince Albert, Saskatchewan, Canada",
       "community": "Prince Albert",
       "province": "Saskatchewan",
@@ -3334,6 +3342,7 @@
         "outdoors",
         "Family",
         "black and white",
+        "Starmer family",
         "Vintage"
       ],
       "year": 1938,
@@ -3437,7 +3446,7 @@
       "caption": "A group of eight, dressed warmly, gather in front of a rustic trapper's cabin in The Pas MB.",
       "description": "A group of eight, dressed warmly, gather in front of a rustic trapper's cabin in The Pas MB.",
       "submitter": null,
-      "people": "trapper cabin; Northern Manitoba; log cabin; vintage photo",
+      "people": "Northern Manitoba; log cabin; vintage photo",
       "location": "The Pas, Manitoba, Canada",
       "community": "The Pas",
       "province": "Manitoba",
@@ -3445,6 +3454,7 @@
       "countryCode": null,
       "keywords": [
         "group portrait",
+        "trapper cabin",
         "forest",
         "friends",
         "outdoors",
@@ -3666,7 +3676,7 @@
       "caption": "Albert Cousineau poses for a quick photo at Stall Lake while working on the rails.",
       "description": "Albert Cousineau poses for a quick photo at Stall Lake while working on the rails.",
       "submitter": null,
-      "people": "stall lake; Albert Cousineau",
+      "people": "Albert Cousineau",
       "location": "Stall Lake, Manitoba, Canada",
       "community": "Stall Lake",
       "province": "Manitoba",
@@ -3676,6 +3686,7 @@
         "1925-1950",
         "outdoors",
         "railroad",
+        "stall lake",
         "winter",
         "scanned in house"
       ],
@@ -4195,7 +4206,7 @@
       "caption": "Gordon Starmer in military uniform poses for a formal portrait, framed by patriotic Canadian and British symbols and banners declaring 'For King & Country'.",
       "description": "Gordon Starmer in military uniform poses for a formal portrait, framed by patriotic Canadian and British symbols and banners declaring 'For King & Country'.",
       "submitter": null,
-      "people": "Military uniform; Vintage photograph; For King and Country; Roll of Honour; World War I (WWI); Studio portrait; Canada; George P. Etherd; Soldier; Gordon Starmer; Patriotism",
+      "people": "George P. Etherd; Gordon Starmer",
       "location": "Winnipeg, Manitoba, Canada",
       "community": "Winnipeg",
       "province": "Manitoba",
@@ -4203,9 +4214,18 @@
       "countryCode": null,
       "keywords": [
         "1925-1950",
+        "Military uniform",
         "scanned in house",
+        "Vintage photograph",
         "military",
-        "military service"
+        "For King and Country",
+        "Roll of Honour",
+        "World War I (WWI)",
+        "Studio portrait",
+        "Canada",
+        "Soldier",
+        "military service",
+        "Patriotism"
       ],
       "year": 1938,
       "scanYear": 2025,
@@ -4312,7 +4332,7 @@
       "caption": "Gordon Starmer poses for a full-length portrait in his military uniform and cap.",
       "description": "Gordon Starmer poses for a full-length portrait in his military uniform and cap.",
       "submitter": null,
-      "people": "uniformed man; vintage photograph; Gordon Starmer; military uniform",
+      "people": "Gordon Starmer",
       "location": "Winnipeg, Manitoba, Canada",
       "community": "Winnipeg",
       "province": "Manitoba",
@@ -4321,12 +4341,15 @@
       "keywords": [
         "1925-1950",
         "early 20th century",
+        "uniformed man",
+        "vintage photograph",
         "formal",
         "studio portrait",
         "portrait",
         "soldier",
         "military",
-        "scanned in house"
+        "scanned in house",
+        "military uniform"
       ],
       "year": 1938,
       "scanYear": 2025,
@@ -4723,7 +4746,7 @@
       "caption": "Albert Dejarlais and Rose Boucher on their wedding day. George and Alice Boucher (Left). Albert Dejarlais and Rose Boucher (Middle) Clara and Jospeh Moise Dejarlais (Right) Aprox early 1950s",
       "description": "Albert Dejarlais and Rose Boucher on their wedding day. George and Alice Boucher (Left). Albert Dejarlais and Rose Boucher (Middle) Clara and Jospeh Moise Dejarlais (Right) Aprox early 1950s",
       "submitter": null,
-      "people": "Boucher family; Rose Boucher; Alice Boucher; Clara Dejarlais; George Boucher; Albert Dejarlais",
+      "people": "Rose Boucher; Alice Boucher; Clara Dejarlais; George Boucher; Albert Dejarlais",
       "location": "Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
@@ -4731,6 +4754,7 @@
       "countryCode": null,
       "keywords": [
         "1925-1950",
+        "Boucher family",
         "wedding",
         "scanned in house",
         "scanning",
@@ -4848,7 +4872,7 @@
       "caption": "The girls gather at 'The Corner' near Ste. Madeleine. Pat Dejarlais (Far right) May Dejarlais (Second from right)",
       "description": "The girls gather at 'The Corner' near Ste. Madeleine. Pat Dejarlais (Far right) May Dejarlais (Second from right)",
       "submitter": null,
-      "people": "May Dejarlais; Ste. Madeleine; the corner; Pat Dejarlais",
+      "people": "May Dejarlais; the corner; Pat Dejarlais",
       "location": "Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
@@ -4856,6 +4880,7 @@
       "countryCode": null,
       "keywords": [
         "scanning",
+        "Ste. Madeleine",
         "Dejarlais family",
         "scanned in house",
         "1950-1975",
@@ -4908,7 +4933,7 @@
       "caption": "Joseph Moise Dejarlais poses for a professional photo.",
       "description": "Joseph Moise Dejarlais poses for a professional photo.",
       "submitter": null,
-      "people": "Ste. Eustache; Joseph Moise Dejarlais",
+      "people": "Joseph Moise Dejarlais",
       "location": "St. Eustache, Manitoba, Canada",
       "community": "St. Eustache",
       "province": "Manitoba",
@@ -4917,6 +4942,7 @@
       "keywords": [
         "scanning",
         "portrait",
+        "Ste. Eustache",
         "professional portrait",
         "1950-1975",
         "HR",
@@ -5413,7 +5439,7 @@
       "caption": "Stony Rapids School Class Photo (1942)",
       "description": "Stony Rapids School Class Photo (1942)",
       "submitter": "Wendy Sikora",
-      "people": "Lafferty; Christmas",
+      "people": "Lafferty",
       "location": "Stony Rapids School, Stony Rapids, Saskatchewan, Canada",
       "community": "Stony Rapids",
       "province": "Saskatchewan",
@@ -5423,6 +5449,7 @@
         "1942",
         "1940-1945",
         "School",
+        "Christmas",
         "Children",
         "black and white"
       ],
@@ -5698,16 +5725,19 @@
       "caption": "Etienne, Harve and David Ducharme pose for a photo in their Military attire. WWII",
       "description": "Etienne, Harve and David Ducharme pose for a photo in their Military attire. WWII",
       "submitter": "Heather Keens",
-      "people": "WW2; Etienne (Steve) Ducharme; Harve Ducharme; Ducharme; Collected at Winnipeg Regional Meeting 2026; David Ducharme; military uniform",
+      "people": "Etienne (Steve) Ducharme; Harve Ducharme; Ducharme; David Ducharme",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "WW2",
         "military",
+        "Collected at Winnipeg Regional Meeting 2026",
         "scanned in house",
-        "military service"
+        "military service",
+        "military uniform"
       ],
       "year": 1945,
       "scanYear": 2026,
@@ -6146,7 +6176,7 @@
       "caption": "Albert Cousineau takes a break from hunting at the trapper cabin just outside of The Pas.",
       "description": "Albert Cousineau takes a break from hunting at the trapper cabin just outside of The Pas.",
       "submitter": null,
-      "people": "Hunting; Forest; Cabin; Lakeside Cabin; Trapper; Albert Cousineau",
+      "people": "Hunting; Cabin; Lakeside Cabin; Trapper; Albert Cousineau",
       "location": "The Pas, Manitoba, Canada",
       "community": "The Pas",
       "province": "Manitoba",
@@ -6159,6 +6189,7 @@
         "Snow",
         "winter",
         "Outdoors",
+        "Forest",
         "outdoors",
         "Winter",
         "Trapper Cabin",
@@ -6265,7 +6296,7 @@
       "caption": "George Monkman, Canadian Reservist-engineer, poses for a photo in his uniform.",
       "description": "George Monkman, Canadian Reservist-engineer, poses for a photo in his uniform.",
       "submitter": null,
-      "people": "George Monkman; Military uniform",
+      "people": "George Monkman",
       "location": "",
       "community": null,
       "province": null,
@@ -6276,7 +6307,8 @@
         "portrait",
         "1945-1950",
         "1948",
-        "military"
+        "military",
+        "Military uniform"
       ],
       "year": 1948,
       "scanYear": 2025,
@@ -7275,7 +7307,7 @@
       "caption": "Sharon Anderson School photo age 4",
       "description": "Sharon Anderson School photo age 4",
       "submitter": null,
-      "people": "Sharon Hazel Anderson; Lockport",
+      "people": "Sharon Hazel Anderson",
       "location": "Lockport, Manitoba",
       "community": "Lockport",
       "province": "Manitoba",
@@ -7284,7 +7316,8 @@
       "keywords": [
         "1955",
         "scanned in house",
-        "professional portrait"
+        "professional portrait",
+        "Lockport"
       ],
       "year": 1955,
       "scanYear": 2026,
@@ -7329,14 +7362,16 @@
       "caption": "Barb and Joen holding hands on Greenwood Ave. Selkirk MB. 1955",
       "description": "Barb and Joen holding hands on Greenwood Ave. Selkirk MB. 1955",
       "submitter": null,
-      "people": "Greenwood Ave.; Joan Hadfield; Home; Barb Mitchell",
+      "people": "Joan Hadfield; Barb Mitchell",
       "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
       "community": "Selkirk",
       "province": "Manitoba",
       "sublocation": "Greenwood Ave.",
       "countryCode": null,
       "keywords": [
+        "Greenwood Ave.",
         "1950-1955",
+        "Home",
         "outdoor",
         "Selkirk",
         "scanned in house",
@@ -7385,14 +7420,16 @@
       "caption": "Jeon Hadfield, Ron Mitchell and Leon Hooker playing in the sand on Greendwood Ave.",
       "description": "Jeon Hadfield, Ron Mitchell and Leon Hooker playing in the sand on Greendwood Ave.",
       "submitter": null,
-      "people": "Greenwood Ave.; Leon Hooker; Home; Joan Hadfield",
+      "people": "Leon Hooker; Joan Hadfield",
       "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
       "community": "Selkirk",
       "province": "Manitoba",
       "sublocation": "Greenwood Ave.",
       "countryCode": null,
       "keywords": [
+        "Greenwood Ave.",
         "1950-1955",
+        "Home",
         "outdoor",
         "Selkirk",
         "1955",
@@ -7441,7 +7478,7 @@
       "caption": "Joan Hadfield swinging at grandma's house",
       "description": "Joan Hadfield swinging at grandma's house",
       "submitter": null,
-      "people": "Greenwood Ave.; Joan Hadfield; Home",
+      "people": "Joan Hadfield",
       "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
       "community": "Selkirk",
       "province": "Manitoba",
@@ -7449,10 +7486,12 @@
       "countryCode": null,
       "keywords": [
         "1955",
+        "Greenwood Ave.",
         "outdoor",
         "1950-1955",
         "Selkirk",
-        "scanned in house"
+        "scanned in house",
+        "Home"
       ],
       "year": 1955,
       "scanYear": 2026,
@@ -7497,18 +7536,20 @@
       "caption": "Joen Hadfield, Barb Mitchell, Ron Mitchell and Leon Hooker pose for a photo on Greenwood Ave.",
       "description": "Joen Hadfield, Barb Mitchell, Ron Mitchell and Leon Hooker pose for a photo on Greenwood Ave.",
       "submitter": null,
-      "people": "Greenwood Ave.; Joan Hadfield; Leon Hooker; Barb Mitchell; Ron Mitchell; Home",
+      "people": "Joan Hadfield; Leon Hooker; Barb Mitchell; Ron Mitchell",
       "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
       "community": "Selkirk",
       "province": "Manitoba",
       "sublocation": "Greenwood Ave.",
       "countryCode": null,
       "keywords": [
+        "Greenwood Ave.",
         "1950-1955",
         "Selkirk",
         "scanned in house",
         "1955",
-        "outdoor"
+        "outdoor",
+        "Home"
       ],
       "year": 1955,
       "scanYear": 2026,
@@ -7553,14 +7594,16 @@
       "caption": "Joen and Barb in front of her Grandmother's house on greenwood ave.",
       "description": "Joen and Barb in front of her Grandmother's house on greenwood ave.",
       "submitter": null,
-      "people": "Greenwood Ave.; Joan Hadfield; Home; Barb Mitchell",
+      "people": "Joan Hadfield; Barb Mitchell",
       "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
       "community": "Selkirk",
       "province": "Manitoba",
       "sublocation": "Greenwood Ave.",
       "countryCode": null,
       "keywords": [
+        "Greenwood Ave.",
         "1950-1955",
+        "Home",
         "outdoor",
         "Selkirk",
         "scanned in house",
@@ -7609,17 +7652,19 @@
       "caption": "Ron Mitchell and Leon Hooker playing in the grass on Greenwood Ave.",
       "description": "Ron Mitchell and Leon Hooker playing in the grass on Greenwood Ave.",
       "submitter": null,
-      "people": "Greenwood Ave.; Leon Hooker; Home; Ron Mitchell",
+      "people": "Leon Hooker; Ron Mitchell",
       "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
       "community": "Selkirk",
       "province": "Manitoba",
       "sublocation": "Greenwood Ave.",
       "countryCode": null,
       "keywords": [
+        "Greenwood Ave.",
         "Selkirk",
         "1950-1955",
         "1955",
         "scanned in house",
+        "Home",
         "outdoor"
       ],
       "year": 1955,
@@ -7665,7 +7710,7 @@
       "caption": "Granny Suzanne Chartrand watches over her grandchildren George and Gary.",
       "description": "Granny Suzanne Chartrand watches over her grandchildren George and Gary.",
       "submitter": "Lynda Monkman",
-      "people": "Suzanne Chartrand; Monkman; George Monkman; Monkman family; Gary Monkman; Collected at Winnipeg Regional Meeting 2026",
+      "people": "Suzanne Chartrand; Monkman; George Monkman; Gary Monkman",
       "location": "",
       "community": null,
       "province": null,
@@ -7673,8 +7718,10 @@
       "countryCode": null,
       "keywords": [
         "1955-1960",
+        "Monkman family",
         "Outdoors",
         "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026",
         "Children",
         "1955"
       ],
@@ -7721,15 +7768,17 @@
       "caption": "Mary Smith runshed to Joen Hadfield, Ron Mitchell and Leon Hooker.",
       "description": "Mary Smith runshed to Joen Hadfield, Ron Mitchell and Leon Hooker.",
       "submitter": null,
-      "people": "Greenwood Ave.; Leon Hooker; Home; Joan Hadfield; Mary Smith",
+      "people": "Leon Hooker; Joan Hadfield; Mary Smith",
       "location": "Greenwood Ave., Selkirk, Manitoba, Canada",
       "community": "Selkirk",
       "province": "Manitoba",
       "sublocation": "Greenwood Ave.",
       "countryCode": null,
       "keywords": [
+        "Greenwood Ave.",
         "1950-1955",
         "Selkirk",
+        "Home",
         "outdoor",
         "1955",
         "scanned in house"
@@ -8888,21 +8937,27 @@
       "caption": "Rainy Chartrand wearing a fur-trimmed, fringed coat with intricate floral beadwork.",
       "description": "Rainy Chartrand wearing a fur-trimmed, fringed coat with intricate floral beadwork.",
       "submitter": null,
-      "people": "Métis family; Floral Beadwork; Rainy Chartrand; Fringed Coat; Indigenous Culture; Traditional Clothing; Métis woman",
+      "people": "Rainy Chartrand",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Métis family",
         "Portrait",
         "Historical",
         "Chartrand family",
+        "Floral Beadwork",
         "AGA 2024",
         "Métis Shoebox",
         "1950-1975",
+        "Fringed Coat",
+        "Indigenous Culture",
+        "Traditional Clothing",
         "Manitoba",
-        "Métis"
+        "Métis",
+        "Métis woman"
       ],
       "year": 1963,
       "scanYear": 2024,
@@ -9067,7 +9122,7 @@
       "caption": "Roderick and Margrette Flett stand outside their brick home in winter.",
       "description": "Roderick and Margrette Flett stand outside their brick home in winter.",
       "submitter": null,
-      "people": "Métis family; Margaret Flett; Couple; Margrette Flett; Roderick Flett; Métis woman",
+      "people": "Margaret Flett; Margrette Flett; Roderick Flett",
       "location": "Bacon Ridge, Manitoba, Canada",
       "community": "Bacon Ridge",
       "province": "Manitoba",
@@ -9075,6 +9130,7 @@
       "countryCode": null,
       "keywords": [
         "Red River Métis",
+        "Métis family",
         "winter",
         "Winter portrait",
         "AGA 2024",
@@ -9084,10 +9140,12 @@
         "1950-1975",
         "Historic photo",
         "Métis Shoebox",
+        "Couple",
         "home",
         "Outdoors",
         "outdoors",
-        "couple"
+        "couple",
+        "Métis woman"
       ],
       "year": 1963,
       "scanYear": 2024,
@@ -9196,7 +9254,7 @@
       "caption": "Irene Chartrand beams in a fur-lined parka.",
       "description": "Irene Chartrand beams in a fur-lined parka.",
       "submitter": null,
-      "people": "Métis family; Irene Chartrand; Traditional clothing; Métis woman; Fur parka; Beadwork",
+      "people": "Irene Chartrand",
       "location": "",
       "community": null,
       "province": null,
@@ -9205,12 +9263,17 @@
       "keywords": [
         "Red River Métis",
         "portrait",
+        "Métis family",
         "Historic photo",
         "Métis Shoebox",
+        "Traditional clothing",
+        "Métis woman",
         "Métis",
+        "Fur parka",
         "1950-1975",
         "AGA 2024",
-        "Manitoba Métis Federation"
+        "Manitoba Métis Federation",
+        "Beadwork"
       ],
       "year": 1963,
       "scanYear": 2024,
@@ -9308,7 +9371,7 @@
       "caption": "Formal portrait of Gaspard Chartrand and Cécile Ducharme outdoors.",
       "description": "Formal portrait of Gaspard Chartrand and Cécile Ducharme outdoors.",
       "submitter": null,
-      "people": "Métis family; Cecile Ducharme; Gaspard Chartrand; Cécile Ducharme; Métis woman",
+      "people": "Cecile Ducharme; Gaspard Chartrand; Cécile Ducharme",
       "location": "",
       "community": null,
       "province": null,
@@ -9318,6 +9381,7 @@
         "family portrait",
         "Métis Shoebox",
         "Portrait",
+        "Métis family",
         "Manitoba",
         "couple",
         "1950-1975",
@@ -9325,7 +9389,8 @@
         "Red River",
         "Family",
         "AGA 2024",
-        "Métis"
+        "Métis",
+        "Métis woman"
       ],
       "year": 1963,
       "scanYear": 2024,
@@ -9370,7 +9435,7 @@
       "caption": "Chris, Chick and Irene smile for a photo on the family couch.",
       "description": "Chris, Chick and Irene smile for a photo on the family couch.",
       "submitter": null,
-      "people": "Métis family; Irene Chartrand; Chris Chartrand; Chick Chartrand; family gathering; Métis woman",
+      "people": "Irene Chartrand; Chris Chartrand; Chick Chartrand; family gathering",
       "location": "",
       "community": null,
       "province": null,
@@ -9379,6 +9444,7 @@
       "keywords": [
         "Red River Métis",
         "portrait",
+        "Métis family",
         "AGA 2024",
         "Chartrand family",
         "livingroom",
@@ -9392,7 +9458,8 @@
         "irene",
         "family",
         "smiles",
-        "Manitoba Métis Federation"
+        "Manitoba Métis Federation",
+        "Métis woman"
       ],
       "year": 1963,
       "scanYear": 2024,
@@ -9437,7 +9504,7 @@
       "caption": "The Chartrand Men pose for a family photo.",
       "description": "The Chartrand Men pose for a family photo.",
       "submitter": null,
-      "people": "Métis family; Métis woman",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
@@ -9449,6 +9516,7 @@
         "portrait",
         "historical",
         "suits",
+        "Métis family",
         "soldiers",
         "Métis Shoebox",
         "1950-1975",
@@ -9457,7 +9525,8 @@
         "Manitoba",
         "family",
         "AGA 2024",
-        "Métis"
+        "Métis",
+        "Métis woman"
       ],
       "year": 1963,
       "scanYear": 2024,
@@ -9502,7 +9571,7 @@
       "caption": "Gordon Thurston cuts Christmas trees to sell in town.",
       "description": "Gordon Thurston cuts Christmas trees to sell in town.",
       "submitter": null,
-      "people": "Gordon Thurston; Bow saw",
+      "people": "Gordon Thurston",
       "location": "",
       "community": null,
       "province": null,
@@ -9518,6 +9587,7 @@
         "1950-1975",
         "Bush work",
         "evergreen",
+        "Bow saw",
         "Logging",
         "AGA 2024",
         "resource gathering",
@@ -10073,7 +10143,7 @@
       "caption": "The Lafferty family gets together for a picnic.",
       "description": "The Lafferty family gets together for a picnic.",
       "submitter": null,
-      "people": "Lafferty; Len Kerr; Eric Gately; Gordon Kerr; Annetoinette Lafferty Gately; Park; Margaret Lafferty Beveridge; Dorothy Lafferty Cumming; Keith Muncey; Agatha Lafferty Kerr",
+      "people": "Lafferty; Len Kerr; Eric Gately; Gordon Kerr; Annetoinette Lafferty Gately; Margaret Lafferty Beveridge; Dorothy Lafferty Cumming; Keith Muncey; Agatha Lafferty Kerr",
       "location": "Saskatoon, Saskatchewan, Canada",
       "community": "Saskatoon",
       "province": "Saskatchewan",
@@ -10082,7 +10152,8 @@
       "keywords": [
         "black and white",
         "1950-1975",
-        "picnic"
+        "picnic",
+        "Park"
       ],
       "year": 1963,
       "scanYear": 2025,
@@ -10364,7 +10435,7 @@
       "caption": "Grade 5 Children attend class in Duck Bay. Back row Janet Thompson; Archie St. Godard; Audrey Sutherland; Middle Larry Flett Anthony Chartrand Darlene Jenai Marlene Campbell; Front Margaret Delaronde",
       "description": "Grade 5 Children attend class in Duck Bay. Back row Janet Thompson; Archie St. Godard; Audrey Sutherland; Middle Larry Flett Anthony Chartrand Darlene Jenai Marlene Campbell; Front Margaret Delaronde",
       "submitter": null,
-      "people": "Learning; Education; Students; Classroom; Desks",
+      "people": "Learning; Education; Classroom; Desks",
       "location": "Duck Bay School, Duck Bay, Manitoba, Canada",
       "community": "Duck Bay",
       "province": "Manitoba",
@@ -10372,6 +10443,7 @@
       "countryCode": null,
       "keywords": [
         "Duck Bay",
+        "Students",
         "Day School",
         "1950-1975",
         "School",
@@ -10423,7 +10495,7 @@
       "caption": "Gordon Thurston cuts Christmas trees to sell in town.",
       "description": "Gordon Thurston cuts Christmas trees to sell in town.",
       "submitter": null,
-      "people": "Gordon Thurston; Bow saw; Resource gathering",
+      "people": "Gordon Thurston",
       "location": "",
       "community": null,
       "province": null,
@@ -10438,8 +10510,10 @@
         "1950-1975",
         "Bush work",
         "forest",
+        "Bow saw",
         "Logging",
         "AGA 2024",
+        "Resource gathering",
         "snow"
       ],
       "year": 1963,
@@ -11610,7 +11684,7 @@
       "caption": "Chick Chartrand smiles outside a barbershop in 1969.",
       "description": "Chick Chartrand smiles outside a barbershop in 1969.",
       "submitter": null,
-      "people": "Métis family; Irene Chartrand; 1960s fashion; winter fashion; fur coat; Chick Chartrand; Métis woman",
+      "people": "Irene Chartrand; 1960s fashion; winter fashion; fur coat; Chick Chartrand",
       "location": "",
       "community": null,
       "province": null,
@@ -11619,6 +11693,7 @@
       "keywords": [
         "Red River Métis",
         "portrait",
+        "Métis family",
         "AGA 2024",
         "barbershop",
         "Métis Shoebox",
@@ -11626,7 +11701,8 @@
         "Métis",
         "outdoors",
         "Winnipeg",
-        "1969"
+        "1969",
+        "Métis woman"
       ],
       "year": 1969,
       "scanYear": 2024,
@@ -11671,7 +11747,7 @@
       "caption": "Rose Fleury(left) Marie Dejarlais (right) pose in front of their home (Aprox. 1970)",
       "description": "Rose Fleury(left) Marie Dejarlais (right) pose in front of their home (Aprox. 1970)",
       "submitter": null,
-      "people": "Rose Fleury; Marie Dejarlais; Ste. Madeleine",
+      "people": "Rose Fleury; Marie Dejarlais",
       "location": "Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
@@ -11682,6 +11758,7 @@
         "women",
         "1950-1975",
         "1970",
+        "Ste. Madeleine",
         "HR",
         "scanning",
         "scanned in house",
@@ -11787,7 +11864,7 @@
       "caption": "Sharon celebrates her wedding shower with Alfred.",
       "description": "Sharon celebrates her wedding shower with Alfred.",
       "submitter": null,
-      "people": "Wedding; Wedding Shower; Sharon Hazel Anderson; Alfred Anderson",
+      "people": "Wedding Shower; Sharon Hazel Anderson; Alfred Anderson",
       "location": "St. Andrews, Manitoba",
       "community": "St. Andrews",
       "province": "Manitoba",
@@ -11797,6 +11874,7 @@
         "1971",
         "St. Andrews school",
         "scanned in house",
+        "Wedding",
         "1970-1975"
       ],
       "year": 1971,
@@ -11842,7 +11920,7 @@
       "caption": "Alfred and Sharon Anderson pose for a photo on their wedding day.",
       "description": "Alfred and Sharon Anderson pose for a photo on their wedding day.",
       "submitter": null,
-      "people": "Alfred Anderson; Wedding; Sharon Hazel Anderson",
+      "people": "Alfred Anderson; Sharon Hazel Anderson",
       "location": "Lockport, Manitoba",
       "community": "Lockport",
       "province": "Manitoba",
@@ -11850,6 +11928,7 @@
       "countryCode": null,
       "keywords": [
         "1971",
+        "Wedding",
         "scanned in house"
       ],
       "year": 1971,
@@ -12326,7 +12405,7 @@
       "caption": "",
       "description": "",
       "submitter": "Heather Keens",
-      "people": "Harve Ducharme; Ducharme; Emile Ducharme; Marie Ducharme; Collected at Winnipeg Regional Meeting 2026; Lorette Ducharme; Tom Ducharme",
+      "people": "Harve Ducharme; Ducharme; Emile Ducharme; Marie Ducharme; Lorette Ducharme; Tom Ducharme",
       "location": "",
       "community": null,
       "province": null,
@@ -12334,6 +12413,7 @@
       "countryCode": null,
       "keywords": [
         "1977",
+        "Collected at Winnipeg Regional Meeting 2026",
         "1975-1980",
         "scanned in house"
       ],
@@ -12540,14 +12620,16 @@
       "caption": "Irene Chartrand, smiling in an embroidered fringed jacket.",
       "description": "Irene Chartrand, smiling in an embroidered fringed jacket.",
       "submitter": null,
-      "people": "Métis woman; Métis family; Irene Chartrand; cultural art; beaded jewelry; handmade crafts; fringed jacket",
+      "people": "Irene Chartrand; cultural art; beaded jewelry; handmade crafts; fringed jacket",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Métis woman",
         "1975-2000",
+        "Métis family",
         "artisan",
         "necklaces",
         "Métis Shoebox",
@@ -12659,7 +12741,7 @@
       "caption": "A close-up portrait of Ted Chartrand in a beaded jacket.",
       "description": "A close-up portrait of Ted Chartrand in a beaded jacket.",
       "submitter": null,
-      "people": "Métis family; Ted Chartrand; Leader; Regalia; Pins; Métis woman",
+      "people": "Ted Chartrand; Leader; Regalia; Pins",
       "location": "",
       "community": null,
       "province": null,
@@ -12668,13 +12750,15 @@
       "keywords": [
         "1975-2000",
         "Portrait",
+        "Métis family",
         "Métis",
         "Métis Shoebox",
         "AGA 2024",
         "jacket",
         "portrait",
         "Manitoba",
-        "Manitoba Métis Federation"
+        "Manitoba Métis Federation",
+        "Métis woman"
       ],
       "year": 1988,
       "scanYear": 2024,
@@ -12719,7 +12803,7 @@
       "caption": "Irene Chartrand, bundled in a warm, fur-hooded parka, stands gracefully amidst snow-covered trees.",
       "description": "Irene Chartrand, bundled in a warm, fur-hooded parka, stands gracefully amidst snow-covered trees.",
       "submitter": null,
-      "people": "Irene Chartrand; cold weather; evergreen trees; Métis family; Métis woman",
+      "people": "Irene Chartrand; cold weather; evergreen trees",
       "location": "",
       "community": null,
       "province": null,
@@ -12738,8 +12822,10 @@
         "Métis Shoebox",
         "parka",
         "fur hood",
+        "Métis family",
         "Portrait",
-        "winter"
+        "winter",
+        "Métis woman"
       ],
       "year": 1988,
       "scanYear": 2024,
@@ -14858,7 +14944,7 @@
       "caption": "Gerry and the Dog team",
       "description": "Gerry and the Dog team",
       "submitter": "Wendy Sikora",
-      "people": "Germaine Lafferty; dog team; Forest",
+      "people": "Germaine Lafferty; dog team",
       "location": "Stony Rapids, Saskatchewan, Canada",
       "community": "Stony Rapids",
       "province": "Saskatchewan",
@@ -14869,7 +14955,8 @@
         "Dog",
         "black and white",
         "winter",
-        "trees"
+        "trees",
+        "Forest"
       ],
       "year": 2009,
       "scanYear": 2009,
@@ -15021,7 +15108,7 @@
       "caption": "Metalwork of a Red River cart on Jules Brazeau's property San Clara.",
       "description": "Metalwork of a Red River cart on Jules Brazeau's property San Clara.",
       "submitter": "Jules Brazeau",
-      "people": "Jules Brazeau; Ste. Madeleine; San Clara",
+      "people": "Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
@@ -15030,6 +15117,8 @@
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
         "2012",
+        "Ste. Madeleine",
+        "San Clara",
         "Manitoba"
       ],
       "year": 2012,
@@ -15075,7 +15164,7 @@
       "caption": "",
       "description": "",
       "submitter": "Jules Brazeau",
-      "people": "Jules Brazeau; Ste. Madeleine; San Clara",
+      "people": "Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
@@ -15084,6 +15173,8 @@
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
         "2012",
+        "Ste. Madeleine",
+        "San Clara",
         "Manitoba"
       ],
       "year": 2012,
@@ -15129,17 +15220,24 @@
       "caption": "Red River cart built by Jules Brazeau. 2012",
       "description": "Red River cart built by Jules Brazeau. 2012",
       "submitter": "Jules Brazeau",
-      "people": "Cart; Craftsman; Jules Brazeau; Woodworking; Artist; Ste. Madeleine; San Clara; Red River Cart",
+      "people": "Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Cart",
+        "Craftsman",
         "artisan",
+        "Woodworking",
+        "Artist",
+        "Ste. Madeleine",
         "2012",
+        "San Clara",
         "Manitoba",
-        "Ste. Madeleine Métis Days 2026"
+        "Ste. Madeleine Métis Days 2026",
+        "Red River Cart"
       ],
       "year": 2012,
       "scanYear": 2026,
@@ -15184,17 +15282,24 @@
       "caption": "Red River cart built by Jules Brazeau. 2012",
       "description": "Red River cart built by Jules Brazeau. 2012",
       "submitter": "Jules Brazeau",
-      "people": "Cart; Craftsman; Jules Brazeau; Woodworking; Artist; Ste. Madeleine; San Clara; Red River Cart",
+      "people": "Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Cart",
+        "Craftsman",
         "artisan",
+        "Woodworking",
+        "Artist",
+        "Ste. Madeleine",
         "2012",
+        "San Clara",
         "Manitoba",
-        "Ste. Madeleine Métis Days 2026"
+        "Ste. Madeleine Métis Days 2026",
+        "Red River Cart"
       ],
       "year": 2012,
       "scanYear": 2026,
@@ -15239,7 +15344,7 @@
       "caption": "Metalwork of a Red River cart on Jules Brazeau's property San Clara.",
       "description": "Metalwork of a Red River cart on Jules Brazeau's property San Clara.",
       "submitter": "Jules Brazeau",
-      "people": "Jules Brazeau; Ste. Madeleine; San Clara",
+      "people": "Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
@@ -15248,6 +15353,8 @@
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
         "2012",
+        "Ste. Madeleine",
+        "San Clara",
         "Manitoba"
       ],
       "year": 2012,
@@ -15293,7 +15400,7 @@
       "caption": "Jules Brazeau constructs traps at his workshop in San Clara MB.",
       "description": "Jules Brazeau constructs traps at his workshop in San Clara MB.",
       "submitter": "Jules Brazeau",
-      "people": "Jules Brazeau; Ste. Madeleine; San Clara",
+      "people": "Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
@@ -15302,6 +15409,8 @@
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
         "2012",
+        "Ste. Madeleine",
+        "San Clara",
         "Manitoba"
       ],
       "year": 2012,
@@ -15347,7 +15456,7 @@
       "caption": "Fabricating a rifle stock at Jules Brazeau's workshop in San Clara MB.",
       "description": "Fabricating a rifle stock at Jules Brazeau's workshop in San Clara MB.",
       "submitter": "Jules Brazeau",
-      "people": "Hunting; Craftsman; Ste. Madeleine; Woodworking; Art; San Clara; Rifle; Jules Brazeau",
+      "people": "Hunting; Art; Rifle; Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
@@ -15355,8 +15464,12 @@
       "countryCode": null,
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
+        "Craftsman",
+        "Ste. Madeleine",
         "artisan",
+        "Woodworking",
         "2012",
+        "San Clara",
         "Manitoba"
       ],
       "year": 2012,
@@ -15402,7 +15515,7 @@
       "caption": "Two rifles, handcrafted by Jules Brazeau in San Clara MB. 2012",
       "description": "Two rifles, handcrafted by Jules Brazeau in San Clara MB. 2012",
       "submitter": "Jules Brazeau",
-      "people": "Hunting; Craftsman; Ste. Madeleine; Woodworking; Art; San Clara; Rifle; Jules Brazeau",
+      "people": "Hunting; Art; Rifle; Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
@@ -15410,8 +15523,12 @@
       "countryCode": null,
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
+        "Craftsman",
+        "Ste. Madeleine",
         "artisan",
+        "Woodworking",
         "2012",
+        "San Clara",
         "Manitoba"
       ],
       "year": 2012,
@@ -15457,17 +15574,25 @@
       "caption": "Red River cart wheel being bent into shape at Jules Brazeau's workshop in San Clara MB. 2012",
       "description": "Red River cart wheel being bent into shape at Jules Brazeau's workshop in San Clara MB. 2012",
       "submitter": "Jules Brazeau",
-      "people": "Cart; Craftsman; Jules Brazeau; Artist; Woodworking; Cart wheel; Ste. Madeleine; San Clara; Red River Cart",
+      "people": "Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Cart",
+        "Craftsman",
+        "Artist",
+        "Woodworking",
         "artisan",
+        "Cart wheel",
+        "Ste. Madeleine",
         "2012",
+        "San Clara",
         "Manitoba",
-        "Ste. Madeleine Métis Days 2026"
+        "Ste. Madeleine Métis Days 2026",
+        "Red River Cart"
       ],
       "year": 2012,
       "scanYear": 2026,
@@ -15512,17 +15637,24 @@
       "caption": "Red River cart built by Jules Brazeau. 2012",
       "description": "Red River cart built by Jules Brazeau. 2012",
       "submitter": "Jules Brazeau",
-      "people": "Cart; Craftsman; Jules Brazeau; Woodworking; Artist; Ste. Madeleine; San Clara; Red River Cart",
+      "people": "Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Cart",
+        "Craftsman",
         "artisan",
+        "Woodworking",
+        "Artist",
+        "Ste. Madeleine",
         "2012",
+        "San Clara",
         "Manitoba",
-        "Ste. Madeleine Métis Days 2026"
+        "Ste. Madeleine Métis Days 2026",
+        "Red River Cart"
       ],
       "year": 2012,
       "scanYear": 2026,
@@ -15567,7 +15699,7 @@
       "caption": "Fabricating a rifle stock at Jules Brazeau's workshop in San Clara MB.",
       "description": "Fabricating a rifle stock at Jules Brazeau's workshop in San Clara MB.",
       "submitter": "Jules Brazeau",
-      "people": "Hunting; Craftsman; Ste. Madeleine; Woodworking; Art; San Clara; Rifle; Jules Brazeau",
+      "people": "Hunting; Art; Rifle; Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
@@ -15575,8 +15707,12 @@
       "countryCode": null,
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
+        "Craftsman",
+        "Ste. Madeleine",
         "artisan",
+        "Woodworking",
         "2012",
+        "San Clara",
         "Manitoba"
       ],
       "year": 2012,
@@ -15622,7 +15758,7 @@
       "caption": "Two rifles, handcrafted by Jules Brazeau in San Clara MB. 2012",
       "description": "Two rifles, handcrafted by Jules Brazeau in San Clara MB. 2012",
       "submitter": "Jules Brazeau",
-      "people": "Hunting; Craftsman; Ste. Madeleine; Woodworking; Art; San Clara; Rifle; Jules Brazeau",
+      "people": "Hunting; Art; Rifle; Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
@@ -15630,8 +15766,12 @@
       "countryCode": null,
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
+        "Craftsman",
+        "Ste. Madeleine",
         "artisan",
+        "Woodworking",
         "2012",
+        "San Clara",
         "Manitoba"
       ],
       "year": 2012,
@@ -15677,16 +15817,19 @@
       "caption": "Horse cart built by Jules Brazeau. 2012",
       "description": "Horse cart built by Jules Brazeau. 2012",
       "submitter": "Jules Brazeau",
-      "people": "Cart; Jules Brazeau; Ste. Madeleine; San Clara",
+      "people": "Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Cart",
         "Ste. Madeleine Métis Days 2026",
         "2012",
-        "Manitoba"
+        "Ste. Madeleine",
+        "Manitoba",
+        "San Clara"
       ],
       "year": 2012,
       "scanYear": 2026,
@@ -15731,7 +15874,7 @@
       "caption": "Fabricating rifles at Jules Brazeau's workshop in San Clara MB.",
       "description": "Fabricating rifles at Jules Brazeau's workshop in San Clara MB.",
       "submitter": "Jules Brazeau",
-      "people": "Hunting; Craftsman; Ste. Madeleine; Woodworking; Art; San Clara; Rifle; Jules Brazeau",
+      "people": "Hunting; Art; Rifle; Jules Brazeau",
       "location": "San Clara, Manitoba, Canada",
       "community": "San Clara",
       "province": "Manitoba",
@@ -15739,8 +15882,12 @@
       "countryCode": null,
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
+        "Craftsman",
+        "Ste. Madeleine",
         "artisan",
+        "Woodworking",
         "2012",
+        "San Clara",
         "Manitoba"
       ],
       "year": 2012,
@@ -15786,15 +15933,17 @@
       "caption": "",
       "description": "",
       "submitter": null,
-      "people": "Interlake; Jack Park; Christmas; Alfred Anderson",
+      "people": "Jack Park; Alfred Anderson",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Interlake",
         "2015",
         "2015-2020",
+        "Christmas",
         "scanned in house"
       ],
       "year": 2015,
@@ -15840,15 +15989,17 @@
       "caption": "",
       "description": "",
       "submitter": null,
-      "people": "Interlake; Jack Park; Christmas; Alfred Anderson",
+      "people": "Jack Park; Alfred Anderson",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Interlake",
         "2015",
         "2015-2020",
+        "Christmas",
         "scanned in house"
       ],
       "year": 2015,
@@ -15894,15 +16045,17 @@
       "caption": "",
       "description": "",
       "submitter": null,
-      "people": "Interlake; Jack Park; Christmas; Alfred Anderson",
+      "people": "Jack Park; Alfred Anderson",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Interlake",
         "2015",
         "2015-2020",
+        "Christmas",
         "scanned in house"
       ],
       "year": 2015,
@@ -15948,15 +16101,17 @@
       "caption": "",
       "description": "",
       "submitter": null,
-      "people": "Interlake; Jack Park; Christmas; Alfred Anderson",
+      "people": "Jack Park; Alfred Anderson",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Interlake",
         "2015",
         "2015-2020",
+        "Christmas",
         "scanned in house"
       ],
       "year": 2015,
@@ -16222,7 +16377,7 @@
       "caption": "Larry, Wayne, Jerold, and David Flett take a break from playing in the snow for a photo.",
       "description": "Larry, Wayne, Jerold, and David Flett take a break from playing in the snow for a photo.",
       "submitter": null,
-      "people": "David Flett; Brothers; Vogar; Jerold Flett",
+      "people": "David Flett; Brothers; Jerold Flett",
       "location": "Vogar, Manitoba, Canada",
       "community": "Vogar",
       "province": "Manitoba",
@@ -16236,6 +16391,7 @@
         "Children",
         "Snow",
         "family portrait",
+        "Vogar",
         "Métis Shoebox",
         "children",
         "Winter",
@@ -16288,7 +16444,7 @@
       "caption": "Ted Chartrand proudly displays his fringed vest with colorful beadwork.",
       "description": "Ted Chartrand proudly displays his fringed vest with colorful beadwork.",
       "submitter": null,
-      "people": "traditional attire; Métis family; beaded vest; Indigenous culture; Ted Chartrand; bolo tie; Métis woman",
+      "people": "traditional attire; beaded vest; Ted Chartrand; bolo tie",
       "location": "",
       "community": null,
       "province": null,
@@ -16296,6 +16452,8 @@
       "countryCode": null,
       "keywords": [
         "portrait",
+        "Métis family",
+        "Indigenous culture",
         "AGA 2024",
         "regalia",
         "indoor",
@@ -16306,7 +16464,8 @@
         "Métis",
         "sash",
         "2000-2025",
-        "fringe"
+        "fringe",
+        "Métis woman"
       ],
       "year": 2024,
       "scanYear": 2024,
@@ -17291,7 +17450,7 @@
       "caption": "Monkman Family portrait.",
       "description": "Monkman Family portrait.",
       "submitter": null,
-      "people": "Monkman family; Monkman",
+      "people": "Monkman",
       "location": "",
       "community": null,
       "province": null,
@@ -17299,6 +17458,7 @@
       "countryCode": null,
       "keywords": [
         "LR",
+        "Monkman family",
         "family portrait"
       ],
       "year": 2025,
@@ -18140,7 +18300,7 @@
       "caption": "Jacko, Leonard and Joe pose in their uniforms. Jacko Hayden(left) Leonard Dejarlais (middle) Joe Kline (Right)",
       "description": "Jacko, Leonard and Joe pose in their uniforms. Jacko Hayden(left) Leonard Dejarlais (middle) Joe Kline (Right)",
       "submitter": null,
-      "people": "Jacko Hayden; Military uniform; Leonard Dejarlais; Joe Kline",
+      "people": "Jacko Hayden; Leonard Dejarlais; Joe Kline",
       "location": "Ontario, Canada",
       "community": null,
       "province": "Ontario",
@@ -18149,6 +18309,7 @@
       "keywords": [
         "scanning",
         "uniforms",
+        "Military uniform",
         "uniform",
         "military",
         "outdoors",
@@ -18200,7 +18361,7 @@
       "caption": "Albert Dejarlais in his military uniform .Albert served in the armed forces for 30 years as a cook.",
       "description": "Albert Dejarlais in his military uniform .Albert served in the armed forces for 30 years as a cook.",
       "submitter": null,
-      "people": "Military uniform",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
@@ -18214,7 +18375,8 @@
         "uniform",
         "HR",
         "black and white",
-        "scanned in house"
+        "scanned in house",
+        "Military uniform"
       ],
       "year": 2025,
       "scanYear": 2025,
@@ -18318,7 +18480,7 @@
       "caption": "Jean Victor Nault, Son of Joseph and Roseanna Nault,. poses for a photo in his Military uniform.",
       "description": "Jean Victor Nault, Son of Joseph and Roseanna Nault,. poses for a photo in his Military uniform.",
       "submitter": null,
-      "people": "Jean Victor Nault; Military uniform",
+      "people": "Jean Victor Nault",
       "location": "",
       "community": null,
       "province": null,
@@ -18328,7 +18490,8 @@
         "military",
         "uniform",
         "black and white",
-        "portrait"
+        "portrait",
+        "Military uniform"
       ],
       "year": 2025,
       "scanYear": 2025,
@@ -18427,7 +18590,7 @@
       "caption": "Goulet Family",
       "description": "Goulet Family",
       "submitter": null,
-      "people": "Goulet family",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
@@ -18436,6 +18599,7 @@
       "keywords": [
         "family",
         "LR",
+        "Goulet family",
         "collage"
       ],
       "year": 2025,
@@ -18481,7 +18645,7 @@
       "caption": "Joseph Bernard Nault poses for a photo in uniform.",
       "description": "Joseph Bernard Nault poses for a photo in uniform.",
       "submitter": null,
-      "people": "Joseph Bernard Nault; Military uniform",
+      "people": "Joseph Bernard Nault",
       "location": "",
       "community": null,
       "province": null,
@@ -18489,7 +18653,8 @@
       "countryCode": null,
       "keywords": [
         "military",
-        "black and white"
+        "black and white",
+        "Military uniform"
       ],
       "year": 2025,
       "scanYear": 2025,
@@ -18855,7 +19020,7 @@
       "caption": "Tracy Fehr visits the MMF to plan for the development of a Community Collaborative art project.",
       "description": "Tracy Fehr visits the MMF to plan for the development of a Community Collaborative art project.",
       "submitter": null,
-      "people": "Tracy Fehr; Community Collaborative Artwork; Artist",
+      "people": "Tracy Fehr; Community Collaborative Artwork",
       "location": "Winnipeg, Manitoba, Canada",
       "community": "Winnipeg",
       "province": "Manitoba",
@@ -18866,6 +19031,7 @@
         "200 Main st.",
         "2000-2025",
         "RRMNHC",
+        "Artist",
         "2025"
       ],
       "year": 2025,
@@ -21037,7 +21203,7 @@
       "caption": "Bernie Anderson with his son Kevin in front of the family home in St. Andrews.",
       "description": "Bernie Anderson with his son Kevin in front of the family home in St. Andrews.",
       "submitter": null,
-      "people": "Home; Kevin Anderson; Bernie Anderson",
+      "people": "Kevin Anderson; Bernie Anderson",
       "location": "St. Andrews, Manitoba",
       "community": "St. Andrews",
       "province": "Manitoba",
@@ -21045,6 +21211,7 @@
       "countryCode": null,
       "keywords": [
         "St. Andrews",
+        "Home",
         "Outdoors",
         "scanned in house"
       ],
@@ -22788,15 +22955,17 @@
       "caption": "",
       "description": "",
       "submitter": "Jim Griffiths",
-      "people": "Bercier; Wedding; Collected at Winnipeg Regional Meeting 2026",
+      "people": "Bercier",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Wedding",
         "black and white",
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -22841,7 +23010,7 @@
       "caption": "Edna and Emma Bercier pose for a photo on Emma's wedding day.",
       "description": "Edna and Emma Bercier pose for a photo on Emma's wedding day.",
       "submitter": "Jim Griffiths",
-      "people": "Bercier; Wedding; Collected at Winnipeg Regional Meeting 2026; Emma Bercier; Emma Griffiths; Edna Bercier",
+      "people": "Bercier; Emma Bercier; Emma Griffiths; Edna Bercier",
       "location": "",
       "community": null,
       "province": null,
@@ -22849,7 +23018,9 @@
       "countryCode": null,
       "keywords": [
         "black and white",
-        "scanned in house"
+        "scanned in house",
+        "Wedding",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -22894,14 +23065,16 @@
       "caption": "Edna and Emma Bercier pose for a photo on Emma's wedding day.",
       "description": "Edna and Emma Bercier pose for a photo on Emma's wedding day.",
       "submitter": "Jim Griffiths",
-      "people": "Wedding; Bercier; Edna Bercier; Collected at Winnipeg Regional Meeting 2026; Emma Griffiths; Emma Bercier",
+      "people": "Bercier; Edna Bercier; Emma Griffiths; Emma Bercier",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Wedding",
         "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026",
         "black and white"
       ],
       "year": 2026,
@@ -22947,7 +23120,7 @@
       "caption": "Violet, Edna, Emma Bercier and their friend Anne pose for a photo on Emma's Wedding day.",
       "description": "Violet, Edna, Emma Bercier and their friend Anne pose for a photo on Emma's Wedding day.",
       "submitter": "Jim Griffiths",
-      "people": "Bercier; Edna Bercier; Violet Bercier; Wedding; Emma Bercier; Emma Griffiths; Collected at Winnipeg Regional Meeting 2026",
+      "people": "Bercier; Edna Bercier; Violet Bercier; Emma Bercier; Emma Griffiths",
       "location": "",
       "community": null,
       "province": null,
@@ -22956,7 +23129,9 @@
       "keywords": [
         "black and white",
         "outdoors",
-        "scanned in house"
+        "Wedding",
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -23001,15 +23176,17 @@
       "caption": "",
       "description": "",
       "submitter": "Jim Griffiths",
-      "people": "Bercier; Wedding; Collected at Winnipeg Regional Meeting 2026",
+      "people": "Bercier",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Wedding",
         "black and white",
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -23054,16 +23231,18 @@
       "caption": "Jean, Violet, Emma, Liz and Edna Bercier pose for a photo on Emma's Wedding day.",
       "description": "Jean, Violet, Emma, Liz and Edna Bercier pose for a photo on Emma's Wedding day.",
       "submitter": "Jim Griffiths",
-      "people": "Bercier; Edna Bercier; Collected at Winnipeg Regional Meeting 2026; Violet Bercier; Wedding; Jean Bercier; Emma Bercier; Emma Griffiths; Liz Bercier",
+      "people": "Bercier; Edna Bercier; Violet Bercier; Jean Bercier; Emma Bercier; Emma Griffiths; Liz Bercier",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Collected at Winnipeg Regional Meeting 2026",
         "scanned in house",
         "black and white",
-        "outdoors"
+        "outdoors",
+        "Wedding"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -23108,15 +23287,17 @@
       "caption": "",
       "description": "",
       "submitter": "Jim Griffiths",
-      "people": "Bercier; Wedding; Collected at Winnipeg Regional Meeting 2026",
+      "people": "Bercier",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Wedding",
         "black and white",
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -23161,7 +23342,7 @@
       "caption": "Simon and his grandmother Ursula Bercier pose for a photo.",
       "description": "Simon and his grandmother Ursula Bercier pose for a photo.",
       "submitter": "Jim Griffiths",
-      "people": "Bercier; Ursula Bercier; Simon Bercier; Collected at Winnipeg Regional Meeting 2026",
+      "people": "Bercier; Ursula Bercier; Simon Bercier",
       "location": "",
       "community": null,
       "province": null,
@@ -23169,6 +23350,7 @@
       "countryCode": null,
       "keywords": [
         "Outdoors",
+        "Collected at Winnipeg Regional Meeting 2026",
         "scanned in house",
         "field"
       ],
@@ -23215,14 +23397,15 @@
       "caption": "Emma Bercier poses for a photo with her friend in front of the family pickup.",
       "description": "Emma Bercier poses for a photo with her friend in front of the family pickup.",
       "submitter": "Jim Griffiths",
-      "people": "Emma Bercier; Collected at Winnipeg Regional Meeting 2026",
+      "people": "Emma Bercier",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -23267,7 +23450,7 @@
       "caption": "Photograph of Emma Bercier in a field.",
       "description": "Photograph of Emma Bercier in a field.",
       "submitter": "Jim Griffiths",
-      "people": "Bercier; Collected at Winnipeg Regional Meeting 2026; Emma Bercier; Field",
+      "people": "Bercier; Emma Bercier",
       "location": "Boggy Creek, Manitoba, Canada",
       "community": "Boggy Creek",
       "province": "Manitoba",
@@ -23275,7 +23458,9 @@
       "countryCode": null,
       "keywords": [
         "Outdoors",
-        "scanned in house"
+        "Collected at Winnipeg Regional Meeting 2026",
+        "scanned in house",
+        "Field"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -23320,14 +23505,16 @@
       "caption": "Jim and Emma Griffiths alon with Ruth Paul pose for a photo in a field.",
       "description": "Jim and Emma Griffiths alon with Ruth Paul pose for a photo in a field.",
       "submitter": "Jim Griffiths",
-      "people": "Jim Griffiths; Bercier; Boggy Creek; Collected at Winnipeg Regional Meeting 2026; Emma Griffiths; Griffiths",
+      "people": "Jim Griffiths; Bercier; Emma Griffiths; Griffiths",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Boggy Creek",
         "outdoors",
+        "Collected at Winnipeg Regional Meeting 2026",
         "scanned in house",
         "Manitoba"
       ],
@@ -23374,14 +23561,16 @@
       "caption": "Jim and Ruth Paul (Nee Bercier) sit in a field on a summer day.",
       "description": "Jim and Ruth Paul (Nee Bercier) sit in a field on a summer day.",
       "submitter": "Jim Griffiths",
-      "people": "Jim Griffiths; Bercier; Boggy Creek; Collected at Winnipeg Regional Meeting 2026; Emma Griffiths; Griffiths",
+      "people": "Jim Griffiths; Bercier; Emma Griffiths; Griffiths",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Boggy Creek",
         "outdoors",
+        "Collected at Winnipeg Regional Meeting 2026",
         "scanned in house",
         "Manitoba"
       ],
@@ -23428,15 +23617,17 @@
       "caption": "Jim and Emma Griffiths alon with Ruth Paul pose for a photo in a field.",
       "description": "Jim and Emma Griffiths alon with Ruth Paul pose for a photo in a field.",
       "submitter": "Jim Griffiths",
-      "people": "Jim Griffiths; Bercier; Boggy Creek; Emma Griffiths; Collected at Winnipeg Regional Meeting 2026; Ruth Griffiths; Griffiths",
+      "people": "Jim Griffiths; Bercier; Emma Griffiths; Ruth Griffiths; Griffiths",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Boggy Creek",
         "outdoors",
         "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026",
         "Manitoba"
       ],
       "year": 2026,
@@ -23482,14 +23673,16 @@
       "caption": "Jim Griffiths stands next a sapling athe the family homstead in Boggy Creek",
       "description": "Jim Griffiths stands next a sapling athe the family homstead in Boggy Creek",
       "submitter": "Jim Griffiths",
-      "people": "Boggy Creek; Bercier; Jim Griffiths; Collected at Winnipeg Regional Meeting 2026; Griffiths",
+      "people": "Bercier; Jim Griffiths; Griffiths",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Boggy Creek",
         "outdoors",
+        "Collected at Winnipeg Regional Meeting 2026",
         "Manitoba",
         "scanned in house"
       ],
@@ -23536,14 +23729,16 @@
       "caption": "George Monkman with animal pelts in the late 1940's",
       "description": "George Monkman with animal pelts in the late 1940's",
       "submitter": "Lynda Monkman",
-      "people": "George Monkman; Monkman family; Collected at Winnipeg Regional Meeting 2026; Monkman",
+      "people": "George Monkman; Monkman",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
+        "Monkman family",
         "Outdoors",
+        "Collected at Winnipeg Regional Meeting 2026",
         "winter",
         "black and white",
         "scanned in house"
@@ -23591,14 +23786,15 @@
       "caption": "",
       "description": "",
       "submitter": "Lynda Monkman",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -23643,7 +23839,7 @@
       "caption": "Joe and Ellen Ducharme pose for a photo.",
       "description": "Joe and Ellen Ducharme pose for a photo.",
       "submitter": "Lynda Monkman",
-      "people": "Ducharme; Ellen Ducharme; Ducharme Family; Collected at Winnipeg Regional Meeting 2026; Joe Ducharme",
+      "people": "Ducharme; Ellen Ducharme; Joe Ducharme",
       "location": "",
       "community": null,
       "province": null,
@@ -23651,6 +23847,8 @@
       "countryCode": null,
       "keywords": [
         "Outdoors",
+        "Ducharme Family",
+        "Collected at Winnipeg Regional Meeting 2026",
         "black and white",
         "scanned in house"
       ],
@@ -23697,14 +23895,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -23749,14 +23948,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -23801,14 +24001,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -23853,14 +24054,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -23905,14 +24107,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -23957,14 +24160,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24009,14 +24213,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24061,14 +24266,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24113,14 +24319,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24165,14 +24372,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24217,14 +24425,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24269,14 +24478,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24321,14 +24531,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24373,14 +24584,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24425,14 +24637,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24477,14 +24690,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24529,14 +24743,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24581,14 +24796,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24633,14 +24849,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24685,14 +24902,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24737,14 +24955,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24789,14 +25008,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24841,14 +25061,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24893,14 +25114,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24945,14 +25167,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -24997,14 +25220,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25049,14 +25273,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25101,14 +25326,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25153,14 +25379,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25205,14 +25432,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25257,14 +25485,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25309,14 +25538,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25361,14 +25591,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25413,14 +25644,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25465,14 +25697,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25517,14 +25750,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25569,14 +25803,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25621,14 +25856,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25673,14 +25909,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25725,14 +25962,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25777,14 +26015,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25829,14 +26068,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25881,14 +26121,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25933,14 +26174,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -25985,14 +26227,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26037,14 +26280,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26089,14 +26333,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26141,14 +26386,15 @@
       "caption": "",
       "description": "",
       "submitter": "Justin Cure",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26193,14 +26439,15 @@
       "caption": "",
       "description": "",
       "submitter": "Brian Hunter",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26245,14 +26492,15 @@
       "caption": "",
       "description": "",
       "submitter": "Brian Hunter",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26297,14 +26545,15 @@
       "caption": "",
       "description": "",
       "submitter": "Louise McQuade",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26349,14 +26598,15 @@
       "caption": "",
       "description": "",
       "submitter": "Louise McQuade",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26401,14 +26651,15 @@
       "caption": "",
       "description": "",
       "submitter": "Louise McQuade",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26453,14 +26704,15 @@
       "caption": "",
       "description": "",
       "submitter": "Louise McQuade",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26505,14 +26757,15 @@
       "caption": "",
       "description": "",
       "submitter": "Louise McQuade",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26557,14 +26810,15 @@
       "caption": "",
       "description": "",
       "submitter": "Chandra Brown-Erlendson",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26609,14 +26863,15 @@
       "caption": "",
       "description": "",
       "submitter": "Chandra Brown-Erlendson",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26661,14 +26916,15 @@
       "caption": "",
       "description": "",
       "submitter": "Chandra Brown-Erlendson",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -26713,14 +26969,15 @@
       "caption": "",
       "description": "",
       "submitter": "Chandra Brown-Erlendson",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -27193,13 +27450,14 @@
       "caption": "",
       "description": "",
       "submitter": null,
-      "people": "Ste. Madeleine",
+      "people": "",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
       "sublocation": "Ste. Madeleine Cemetary",
       "countryCode": null,
       "keywords": [
+        "Ste. Madeleine",
         "Ste. Madeleine Métis Days 2026",
         "2026"
       ],
@@ -27246,14 +27504,15 @@
       "caption": "",
       "description": "",
       "submitter": "Carole Zastre",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -27298,14 +27557,15 @@
       "caption": "",
       "description": "",
       "submitter": "Carole Zastre",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -27350,14 +27610,15 @@
       "caption": "",
       "description": "",
       "submitter": "Carole Zastre",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -27402,14 +27663,15 @@
       "caption": "",
       "description": "",
       "submitter": "Carole Zastre",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -27454,14 +27716,15 @@
       "caption": "",
       "description": "",
       "submitter": "Carole Zastre",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -27506,14 +27769,15 @@
       "caption": "",
       "description": "",
       "submitter": "Carole Zastre",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -27558,14 +27822,15 @@
       "caption": "",
       "description": "",
       "submitter": "Carole Zastre",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -27610,14 +27875,15 @@
       "caption": "",
       "description": "",
       "submitter": "Carole Zastre",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -27662,14 +27928,15 @@
       "caption": "",
       "description": "",
       "submitter": "Carole Zastre",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -27714,14 +27981,15 @@
       "caption": "",
       "description": "",
       "submitter": "Carole Zastre",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -27766,14 +28034,15 @@
       "caption": "",
       "description": "",
       "submitter": "Carole Zastre",
-      "people": "Collected at Winnipeg Regional Meeting 2026",
+      "people": "",
       "location": "",
       "community": null,
       "province": null,
       "sublocation": null,
       "countryCode": null,
       "keywords": [
-        "scanned in house"
+        "scanned in house",
+        "Collected at Winnipeg Regional Meeting 2026"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -27818,7 +28087,7 @@
       "caption": "A cross sits atop the old school bus at Ste. Madeleine Cemetary 2026",
       "description": "A cross sits atop the old school bus at Ste. Madeleine Cemetary 2026",
       "submitter": null,
-      "people": "School Bus; Religious; Ste. Madeleine",
+      "people": "School Bus; Religious",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
@@ -27828,6 +28097,7 @@
         "Ste. Madeleine Métis Days 2026",
         "Outdoor",
         "trees",
+        "Ste. Madeleine",
         "Church",
         "2026"
       ],
@@ -27874,7 +28144,7 @@
       "caption": "Photo of the monument unveiled at Ste. Madeleine Métis Days 2026.",
       "description": "Photo of the monument unveiled at Ste. Madeleine Métis Days 2026.",
       "submitter": null,
-      "people": "Ste. Madeleine Cemetary; Monument; Ste. Madeleine; Religious",
+      "people": "Monument; Religious",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
@@ -27883,6 +28153,8 @@
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
         "Outdoors",
+        "Ste. Madeleine Cemetary",
+        "Ste. Madeleine",
         "2026"
       ],
       "year": 2026,
@@ -27928,7 +28200,7 @@
       "caption": "Photo of the Church and bell that sit in the middle of Ste. Madeleine Cemetary.",
       "description": "Photo of the Church and bell that sit in the middle of Ste. Madeleine Cemetary.",
       "submitter": null,
-      "people": "Ste. Madeleine Cemetary; Religious; Ste. Madeleine",
+      "people": "Religious",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
@@ -27937,7 +28209,9 @@
       "keywords": [
         "Outdoors",
         "Ste. Madeleine Métis Days 2026",
+        "Ste. Madeleine Cemetary",
         "religious",
+        "Ste. Madeleine",
         "Church",
         "2026"
       ],
@@ -27984,7 +28258,7 @@
       "caption": "The sign at the entrance to Ste. Madeleine Cemetary 2026.",
       "description": "The sign at the entrance to Ste. Madeleine Cemetary 2026.",
       "submitter": null,
-      "people": "Ste. Madeleine Cemetary; Sign; Ste. Madeleine; Religious",
+      "people": "Sign; Religious",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
@@ -27993,6 +28267,8 @@
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
         "outdoors",
+        "Ste. Madeleine Cemetary",
+        "Ste. Madeleine",
         "2026"
       ],
       "year": 2026,
@@ -28038,7 +28314,7 @@
       "caption": "Fleury family graves with flowers at Ste. Madeleine Cemetary.",
       "description": "Fleury family graves with flowers at Ste. Madeleine Cemetary.",
       "submitter": null,
-      "people": "Ste. Madeleine Cemetary; Cemetary; Ste. Madeleine; Religious",
+      "people": "Cemetary; Religious",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
@@ -28046,7 +28322,9 @@
       "countryCode": null,
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
+        "Ste. Madeleine Cemetary",
         "Outdoors",
+        "Ste. Madeleine",
         "2026"
       ],
       "year": 2026,
@@ -28092,13 +28370,14 @@
       "caption": "",
       "description": "",
       "submitter": null,
-      "people": "Ste. Madeleine",
+      "people": "",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
       "sublocation": "Ste. Madeleine Cemetary",
       "countryCode": null,
       "keywords": [
+        "Ste. Madeleine",
         "Ste. Madeleine Métis Days 2026",
         "2026"
       ],
@@ -28145,13 +28424,14 @@
       "caption": "Tim Inkster poses for a photo at Ste. Madeleine Cemetary curing Ste. Madeleine Métis Days 2026.",
       "description": "Tim Inkster poses for a photo at Ste. Madeleine Cemetary curing Ste. Madeleine Métis Days 2026.",
       "submitter": null,
-      "people": "Religious; Tim Inkster; Inkster; Ste. Madeleine",
+      "people": "Religious; Tim Inkster; Inkster",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
       "sublocation": "Ste. Madeleine Cemetary",
       "countryCode": null,
       "keywords": [
+        "Ste. Madeleine",
         "Ste. Madeleine Métis Days 2026",
         "2026"
       ],
@@ -28251,14 +28531,16 @@
       "caption": "May and Claudette work on scrapbook panels at Ste. Madeleine Métis Days 2026.",
       "description": "May and Claudette work on scrapbook panels at Ste. Madeleine Métis Days 2026.",
       "submitter": null,
-      "people": "Hupe Family; Hupe; May Hupe; Ste. Madeleine; Claudette Hupe",
+      "people": "Hupe; May Hupe; Claudette Hupe",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
       "sublocation": "Ste. Madeleine Cemetary",
       "countryCode": null,
       "keywords": [
+        "Hupe Family",
         "Ste. Madeleine Métis Days 2026",
+        "Ste. Madeleine",
         "2026"
       ],
       "year": 2026,
@@ -28357,14 +28639,16 @@
       "caption": "",
       "description": "",
       "submitter": null,
-      "people": "Hupe Family; Hupe; May Hupe; Ste. Madeleine; Claudette Hupe",
+      "people": "Hupe; May Hupe; Claudette Hupe",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
       "sublocation": "Ste. Madeleine Cemetary",
       "countryCode": null,
       "keywords": [
+        "Hupe Family",
         "Ste. Madeleine Métis Days 2026",
+        "Ste. Madeleine",
         "2026"
       ],
       "year": 2026,
@@ -28410,7 +28694,7 @@
       "caption": "",
       "description": "",
       "submitter": null,
-      "people": "Ste. Madeleine",
+      "people": "",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
@@ -28418,6 +28702,7 @@
       "countryCode": null,
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
+        "Ste. Madeleine",
         "2026"
       ],
       "year": 2026,
@@ -28728,7 +29013,7 @@
       "caption": "",
       "description": "",
       "submitter": null,
-      "people": "Joanne Remillard; Minister Remillard; Ste. Madeleine",
+      "people": "Joanne Remillard; Minister Remillard",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
@@ -28736,6 +29021,7 @@
       "countryCode": null,
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
+        "Ste. Madeleine",
         "2026"
       ],
       "year": 2026,
@@ -29099,13 +29385,15 @@
       "caption": "The monument in front of the Ste. Madeleine Cemetary.",
       "description": "The monument in front of the Ste. Madeleine Cemetary.",
       "submitter": null,
-      "people": "Monument; Ste. Madeleine Cemetary; Cemetary; Ste. Madeleine",
+      "people": "Monument; Cemetary",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
       "sublocation": "Ste. Madeleine Cemetary",
       "countryCode": null,
       "keywords": [
+        "Ste. Madeleine Cemetary",
+        "Ste. Madeleine",
         "Ste. Madeleine Métis Days 2026",
         "2026"
       ],
@@ -29152,13 +29440,14 @@
       "caption": "Shelley visits the Descendants tent at Ste. Madeleine days 2026.",
       "description": "Shelley visits the Descendants tent at Ste. Madeleine days 2026.",
       "submitter": null,
-      "people": "Shelley Belhumeur; Ste. Madeleine",
+      "people": "Shelley Belhumeur",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
       "sublocation": "Ste. Madeleine Cemetary",
       "countryCode": null,
       "keywords": [
+        "Ste. Madeleine",
         "Ste. Madeleine Métis Days 2026",
         "2026"
       ],
@@ -29205,14 +29494,15 @@
       "caption": "Eddie and the Breeze entertain the audience at Ste. Madeleine Métis Days 2026.",
       "description": "Eddie and the Breeze entertain the audience at Ste. Madeleine Métis Days 2026.",
       "submitter": null,
-      "people": "Eddie and the Breeze; Fleury; Music; Ste. Madeleine; Eddie Fleury",
+      "people": "Eddie and the Breeze; Fleury; Music; Eddie Fleury",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
       "sublocation": "Ste. Madeleine Cemetary",
       "countryCode": null,
       "keywords": [
-        "Ste. Madeleine Métis Days 2026"
+        "Ste. Madeleine Métis Days 2026",
+        "Ste. Madeleine"
       ],
       "year": 2026,
       "scanYear": 2026,
@@ -29310,13 +29600,14 @@
       "caption": "",
       "description": "",
       "submitter": null,
-      "people": "Dancing; Ste. Madeleine; Music",
+      "people": "Dancing; Music",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
       "sublocation": "Ste. Madeleine Cemetary",
       "countryCode": null,
       "keywords": [
+        "Ste. Madeleine",
         "Ste. Madeleine Métis Days 2026",
         "2026"
       ],
@@ -29363,7 +29654,7 @@
       "caption": "The cross at Ste. Madeleine cemetary in the afternoon sun.",
       "description": "The cross at Ste. Madeleine cemetary in the afternoon sun.",
       "submitter": null,
-      "people": "Ste. Madeleine Cemetary; Cross; Ste. Madeleine",
+      "people": "Cross",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
@@ -29371,6 +29662,8 @@
       "countryCode": null,
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
+        "Ste. Madeleine Cemetary",
+        "Ste. Madeleine",
         "religious",
         "2026"
       ],
@@ -29470,7 +29763,7 @@
       "caption": "Sheila and Kim pose for a photo in front of the newly unveiled monument at Ste. Madeleine cemetary.",
       "description": "Sheila and Kim pose for a photo in front of the newly unveiled monument at Ste. Madeleine cemetary.",
       "submitter": null,
-      "people": "Ste. Madeleine Cemetary; Monument; Kim Venne; Sheila Kim Chipman",
+      "people": "Monument; Kim Venne; Sheila Kim Chipman",
       "location": "Ste. Madeleine Cemetary, Ste. Madeleine, Manitoba, Canada",
       "community": "Ste. Madeleine",
       "province": "Manitoba",
@@ -29478,6 +29771,7 @@
       "countryCode": null,
       "keywords": [
         "Ste. Madeleine Métis Days 2026",
+        "Ste. Madeleine Cemetary",
         "Outdoor",
         "2026"
       ],
@@ -29741,7 +30035,7 @@
     "photosWithLocation": 336,
     "photosWithGps": 88,
     "photosGeocoded": 455,
-    "photosWithPeople": 432,
+    "photosWithPeople": 354,
     "photosWithRating": 19,
     "photosWithLabel": 1,
     "photosWithCreator": 9,
