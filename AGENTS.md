@@ -4,7 +4,7 @@ Quick-reference for AI agents (and humans) working on this project.
 
 ## Project Overview
 
-**Shoebox v2** is the **Red River Métis Digital Archive** — a Vite + React + TypeScript web app that displays 450 historical archival photos with metadata, stories, and audio narration. It deploys to GitHub Pages at:
+**Shoebox v2** is the **Red River Métis Digital Archive** — a Vite + React + TypeScript web app that displays 540 historical archival photos with metadata, stories, and audio narration. It deploys to GitHub Pages at:
 
 > https://bayarddevries.github.io/shoebox-v2/
 
@@ -22,7 +22,7 @@ Quick-reference for AI agents (and humans) working on this project.
 | `src/index.css` | All styles including hero split layout |
 | `public/assets/shoebox/manifest.json` | Photo manifest (generated, do not edit by hand) |
 | `public/assets/shoebox/stories.json` | Story metadata |
-| `public/assets/shoebox/photos/` | 450 archival photos — filenames have spaces (URL-encoded at runtime) |
+| `public/assets/shoebox/photos/` | 540 archival photos — filenames have spaces (URL-encoded at runtime) |
 | `public/assets/mmf_logo_rrm.png` | MMF RRM logo for navbar and hero |
 | `public/projector.html` | Standalone projector slideshow (kiosk/event mode) — NOT built by Vite |
 | `scripts/generate_manifest.js` | Node script that generates `manifest.json` with relative `src` paths |
@@ -151,7 +151,7 @@ fetch('/assets/shoebox/manifest.json')
 
 ### Photo filenames contain spaces
 
-The 450 photos in `public/assets/shoebox/photos/` have filenames with spaces (e.g., `"Old Photo 001.jpg"`). These are URL-encoded automatically by the browser and work fine. Do **not** rename them — the manifest references the original filenames.
+The 540 photos in `public/assets/shoebox/photos/` have filenames with spaces (e.g., `"Old Photo 001.jpg"`). These are URL-encoded automatically by the browser and work fine. Do **not** rename them — the manifest references the original filenames.
 
 ### Manifest is generated
 

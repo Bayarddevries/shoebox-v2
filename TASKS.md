@@ -5,7 +5,7 @@
 - [x] Confirm GitHub Pages serves correctly at bayarddevries.github.io/shoebox-v2/
 
 ## Submitter Follow-up System
-- [x] Photo intake: 74 new archival photos added (manifest 376 -> 450, Ste. Madeleine + Victory at Frog Plain 2026)
+- [x] Photo intake: 90 photos from Winnipeg Regional Meeting 2026 (manifest 450 -> 540)
 - [x] Claim view: private `?claim=<token>` links render a submitter's own photos (`src/components/ClaimView.tsx`)
 - [x] Form fields: people, city/province/community split, year, era, occasion, story, caption, keywords, required consent checkbox (attribution removed)
 - [x] Notification emails: on contribution, emails metisshoebox@mmf.mb.ca + bayard.devries@mmf.mb.ca via `gmail.send` scope (MailApp)
@@ -27,7 +27,7 @@
 ## Archive & Content
 - [ ] Build admin upload portal — drag-and-drop photo intake using the `scripts/ingest_photos.js` workflow (preflight, copy, manifest regen, thumbnails, build; never auto-commits)
 - [ ] Improve tagging workflow (keywords, people, year derivation)
-- [ ] Verify year derivation for all 302 photos (keyword → title → era midpoint → EXIF fallback)
+- [ ] Verify year derivation for all 540 photos (keyword → title → era midpoint → EXIF fallback)
 - [ ] Plan community visits/interviews for new photo collection
 
 ## Integration
