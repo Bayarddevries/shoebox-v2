@@ -193,8 +193,17 @@ const TOPICAL_KEYWORDS = new Set([
   'candid', 'smiling', 'serene',
   'indoor', 'livingroom', 'landscape', 'field', 'grass', 'lake', 'water',
   'car', 'storefront', 'uniform', 'uniforms', 'military', 'military service', 'soldier',
-  'wedding', 'food', 'scanning', 'scanned in house',
+  'wedding', 'Wedding', 'food', 'scanning', 'scanned in house',
   'fur hood', 'evergreen', 'Evergreen',
+  'Cart', 'cart', 'Red River Cart', 'Cart wheel', 'cart wheel', 'Craftsman', 'craftsman',
+  'Artist', 'artist', 'Woodworking', 'woodworking', 'Park', 'park',
+  // Descriptive phrases found in keyword data (not people)
+  'Floral Beadwork', 'Beadwork', 'Fringed Coat', 'Fur parka',
+  'Traditional Clothing', 'Traditional clothing', 'Indigenous Culture',
+  'Métis woman', 'Métis man', 'Metis woman', 'Metis man',
+  'Military uniform', 'military uniform', 'uniformed man',
+  'Vintage photograph', 'For King and Country', 'Roll of Honour',
+  'World War I (WWI)', 'WW2', 'Patriotism', 'Canada', 'Interlake', 'Christmas',
   // HR/LR = Lightroom edit flags (not people!)
   'HR', 'LR',
   // Event/org tags
@@ -217,6 +226,15 @@ const TOPICAL_KEYWORDS = new Set([
  'Stony Rapids', 'Saskatoon', 'St. Andrews', 'Fort Chipewyan',
  'Fort Rae', 'Fort Resolution', 'Fort Qu\'Appelle', 'Fort Garry',
  'Saskatchewan', 'Manitoba', 'Alberta',
+ 'Ste. Madeleine', 'St. Madeleine', 'Stemadeleine', 'San Clara',
+ 'Foxwarren', 'Rooster Town', 'Boggy Creek', 'Marchand', 'Pine Falls',
+ 'Vogar', 'Willow Bunch', 'Winnipeg Beach', 'Bacon Ridge', 'Churchill',
+ 'Fatima', 'Stony Lake', 'Stall Lake', 'Lockport', 'Selkirk Park',
+ 'Louis Riel Gravesite', 'Louis Riel Day', 'Louis Riel', 'Duck Bay School',
+ 'Stony Rapids School', 'St. Andrews School', 'Greenwood Ave.',
+ 'St. Mary\'s Academy', 'Holy Angels Convent', 'Assiniboia Downs',
+ 'Assinaboia Downs', 'Fort Garry Hotel', 'Fort Gary Hotel',
+ 'Monument to the Victory at Frog Plain', 'Monument to the Victory at Frog',
   // Street addresses (not people)
   '200 Main St.', '200 Main st.', '335 Main St.', '42 Thorncliff Bay', '787 Main St',
   '1963 Roblin Blvd. Shelmerdene Dr',
@@ -224,16 +242,25 @@ const TOPICAL_KEYWORDS = new Set([
 
 // Patterns that indicate a topical (non-person) keyword
 const TOPICAL_PATTERNS = [
- /^\d{4}$/, // Pure year: 1964
- /^\d{4}-\d{4}$/, // Year range: 1950-1975
- /^\d+\s/, // Starts with number: "200 Main st."
- /^\d{4}s$/, // Decade: "1950s"
- /^(Fort|St\.|Saint|Mount|Lake|Port)\s/i, // Place name prefixes
+  /^\d{4}$/, // Pure year: 1964
+  /^\d{4}-\d{4}$/, // Year range: 1950-1975
+  /^\d+\s/, // Starts with number: "200 Main st."
+  /^\d{4}s$/, // Decade: "1950s"
+  /^(Fort|St\.|Ste\.|Saint|Mount|Lake|Port)\s/i, // Place name prefixes (Ste. Madeleine etc.)
+  /family$/i, // "Métis family", "Starmer family" — descriptor, not a person
+  /^collected at /i, // "Collected at Winnipeg Regional Meeting 2026" — provenance note, not a person
+  /^métis /i, // "Métis woman", "Métis man" — descriptor, not a person
+  /uniform/i, // "Military uniform", "uniformed man", "uniforms"
+  /^(ww1|ww2|world war)/i, // wars as subject, not person
+  /vintage photograph/i, // descriptor
 ]
+
+// Lowercase copy for case-insensitive matching (data has 'Wedding' vs 'wedding')
+const TOPICAL_KEYWORDS_LC = new Set([...TOPICAL_KEYWORDS].map(k => k.toLowerCase()))
 
 function isTopicalKeyword(kw) {
   const strKw = String(kw)
-  if (TOPICAL_KEYWORDS.has(strKw)) return true
+  if (TOPICAL_KEYWORDS_LC.has(strKw.toLowerCase())) return true
   for (const pattern of TOPICAL_PATTERNS) {
     if (pattern.test(strKw)) return true
   }
