@@ -106,6 +106,9 @@ function doGet(e) {
     if (action === 'admin_delete_contribution') {
       return handleAdminDeleteContribution(params.id, admin_token);
     }
+    if (action === 'admin_test_notification') {
+      return handleAdminTestNotification(admin_token);
+    }
 
     // Submitter-facing actions
     if (action === 'submission') {
@@ -185,8 +188,13 @@ function doPost(e) {
     try {
       sendContributionNotification(submitterName(targetSubmission), submissionId, photoId, params, submittedAt);
     } catch (notifyErr) {
-      // Notification failure must not block the submission itself
-      console.warn('Contribution notification failed: ' + notifyErr.message);
+      // Notification failure must NOT be silent. Log to the NotificationLog tab
+      // so the archive team can see it in the sheet (console.warn is invisible).
+      try {
+        logNotificationFailure('sendContributionNotification', submissionId, photoId, notifyErr.message);
+      } catch (logErr) {
+        console.warn('Notification log failed: ' + logErr.message);
+      }
     }
 
     return jsonResponse({ status: 'ok', contributionId: newId });
@@ -230,6 +238,29 @@ function sendContributionNotification(submitter, submissionId, photoId, params, 
   for (var i = 0; i < NOTIFY_EMAILS.length; i++) {
     MailApp.sendEmail(NOTIFY_EMAILS[i], subject, body);
   }
+}
+
+// Visible failure log for notification sends. Appends a row to a
+// "NotificationLog" tab (created on demand). The archive team checks this
+// tab when a submission arrives with no email.
+function logNotificationFailure(context, submissionId, photoId, message) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var log = ss.getSheetByName('NotificationLog');
+  if (!log) log = ss.insertSheet('NotificationLog');
+  log.appendRow([new Date().toISOString(), context, submissionId, photoId, message]);
+}
+
+// Admin: send a test notification email to all NOTIFY_EMAILS. Use to verify
+// the gmail.send authorization works after re-approving the /exec URL.
+function handleAdminTestNotification(providedToken) {
+  if (providedToken !== ADMIN_TOKEN) {
+    return jsonResponse({ error: 'unauthorized' }, 403);
+  }
+  var body = 'Shoebox test notification from the Apps Script backend.\nSent at: ' + new Date().toISOString() + '\nIf you received this, email notifications are working.';
+  for (var i = 0; i < NOTIFY_EMAILS.length; i++) {
+    MailApp.sendEmail(NOTIFY_EMAILS[i], 'Shoebox test notification', body);
+  }
+  return jsonResponse({ status: 'sent', to: NOTIFY_EMAILS });
 }
 
 function handleGetSubmission(token) {
