@@ -151,7 +151,11 @@ def main():
         state['seen_contributions'].append(c.get('id'))
 
     save_state(state)
-    print('emails sent: %d (new subs: %d, new contribs: %d)' % (sent, len(new_subs), len(new_contribs)))
+    if sent == 0:
+        # Silent: nothing new. Cron delivers nothing.
+        print('')
+    else:
+        print('emails sent: %d (new subs: %d, new contribs: %d)' % (sent, len(new_subs), len(new_contribs)))
 
 if __name__ == '__main__':
     main()
