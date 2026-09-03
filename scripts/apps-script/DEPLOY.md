@@ -24,11 +24,37 @@
 
 The `SPREADSHEET_ID` constant at the top of `Code.gs` must point to the same Google Sheet you created (the one with "Submissions" and "Contributions" tabs). It is already set to the correct ID in this file. If you recreate the sheet, update the constant and re-deploy.
 
+## Email notifications (Hermes-side watcher)
+
+**Architecture decision (2026-09-03):** notification emails are NOT sent by the
+Apps Script. `MailApp.sendEmail` requires the `script.send_mail` scope and the
+owner authorization dialog never appeared for the anonymous web app, so every
+send failed silently inside the try/catch. The deployment manifest now declares
+`gmail.send` + `script.send_mail` (v6), and failures are logged to a
+`NotificationLog` tab, but the reliable path is the Hermes watcher:
+
+- **Script:** `scripts/notify_new_contributions.py` (repo) → symlink-free
+  wrapper `~/.hermes/scripts/shoebox-notify.py` (Hermes cron scripts dir)
+- **Cron:** `shoebox-notify-watcher`, every 15m, no_agent mode. Silent when
+  nothing new; prints a one-line summary when emails are sent.
+- **Mechanism:** polls `admin_list_contributions` + `admin_list_submissions`,
+  diffs against `~/.hermes/state/shoebox_notify_state.json`, sends via Gmail
+  API (gmail.send scope on the Hermes OAuth token) to
+  `bayard.devries@mmf.mb.ca` and `metisshoebox@mmf.mb.ca`.
+- **Ops:** `python3 scripts/notify_new_contributions.py --seed` resets the
+  seen-state; `--test` sends a test email without touching state.
+
+**MailApp scope gotcha:** `MailApp.sendEmail` needs
+`https://www.googleapis.com/auth/script.send_mail` in `oauthScopes`, NOT
+`gmail.send` (that's for GmailApp). If the owner cannot trigger the
+authorization dialog from the editor (it silently refuses on anonymous web
+apps), do not fight it, use the watcher instead.
+
 ## Live deployment (2026-08-27)
 
-- **Web app URL (v2, current):** `https://script.google.com/macros/s/AKfycbwx0l2LijEV5MkodZcKMWPGNj5ADiZvS0Yfj9zUsITaEhhoFn_1mzd3jLi-w42qduNe/exec`
+- **Web app URL (v6, current):** `https://script.google.com/macros/s/AKfycbwx0l2LijEV5MkodZcKMWPGNj5ADiZvS0Yfj9zUsITaEhhoFn_1mzd3jLi-w42qduNe/exec`
 - **Script project:** `https://script.google.com/macros/edit?lib=1Jy2Hd1PjoEr1UikN1QI1eXmogPB4If8AJ-7Li7klBgqmXzhXIAi8-5Lq`
-- **Admin token:** stored in `Code.gs` (line 13) — keep it out of public repos
+- **Admin token:** stored in `Code.gs` (line 13), keep it out of public repos
 - **Claim link format:** `https://bayarddevries.github.io/shoebox-v2/?claim=<TOKEN>`
 - **Verified end-to-end:** admin create submission → GET submission by token → POST contribution → row lands in sheet with status `pending`. All tested live 2026-08-27.
 
