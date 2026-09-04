@@ -1,0 +1,43 @@
+{
+  "city": {
+    "st. lazar": ["St. Lazare", "Manitoba", "Canada"],
+    "st lazar": ["St. Lazare", "Manitoba", "Canada"],
+    "st.lazar": ["St. Lazare", "Manitoba", "Canada"],
+    "stemadeleine": ["Ste. Madeleine", "Manitoba", "Canada"],
+    "ste madeleine": ["Ste. Madeleine", "Manitoba", "Canada"],
+    "ste.madeleine": ["Ste. Madeleine", "Manitoba", "Canada"],
+    "ste madeleine mb": ["Ste. Madeleine", "Manitoba", "Canada"],
+    "fond du lac": ["Fond du Lac", "Saskatchewan", "Canada"],
+    "fond du lac, saskatchewan": ["Fond du Lac", "Saskatchewan", "Canada"],
+    "roostertown": ["Rooster Town", "Manitoba", "Canada"],
+    "rooster town": ["Rooster Town", "Manitoba", "Canada"],
+    "fort gary hotel": ["Fort Garry Hotel", null, null],
+    "fort gary": ["Fort Garry Hotel", null, null],
+    "portage la prairie": ["Portage la Prairie", null, null],
+    "san clara": ["San Clara", null, null],
+    "fort rhae": ["Fort Rae", null, null],
+    "number 8 hwy meadowdale rod.": ["Number 8 HWY Meadowdale Road", null, null],
+    "e.b. campbell hydroelectric stat": ["E.B. Campbell Hydroelectric Station", null, null],
+    "200 main st.": ["200 Main St.", null, null],
+    "200 main st": ["200 Main St.", null, null]
+  },
+  "sublocation": {
+    "ste. madeleine cemetary": ["Ste. Madeleine Cemetery", null, null],
+    "stemadeleine cemetary": ["Ste. Madeleine Cemetery", null, null],
+    "ste madeleine cemetary": ["Ste. Madeleine Cemetery", null, null],
+    "assinaboia downs": ["Assiniboia Downs", null, null],
+    "fort gary hotel": ["Fort Garry Hotel", null, null],
+    "200 main st.": ["200 Main St.", null, null],
+    "200 main st": ["200 Main St.", null, null],
+    "duck bay school": ["Duck Bay School", null, null],
+    "louanne apartments": ["Louanne Apartments", null, null],
+    "lake winnipegosis behind duck ba": ["Lake Winnipegosis behind Duck Bay", null, null],
+    "monument to the victory at frog": ["Monument to the Victory at Frog Plain", null, null],
+    "e.b. campbell hydroelectric stat": ["E.B. Campbell Hydroelectric Station", null, null],
+    "number 8 hwy meadowdale rod.": ["Number 8 HWY Meadowdale Road", null, null]
+  },
+  "country": {
+    "canada (country field has typo)": ["Canada", null, null],
+    "canada, (typo)": ["Canada", null, null]
+  }
+}

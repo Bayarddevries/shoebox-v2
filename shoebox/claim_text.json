@@ -77,6 +77,10 @@
     "done": "Done"
   },
   "footer": {
-    "text": "Red River Métis Digital Archive | Shoebox v2 | Secure submitter experience"
+    "text": "Red River Métis Digital Archive | Shoebox v2 | Secure submitter experience",
+    "consent": {
+      "heading": "Your consent matters",
+      "body": "Every photo in this archive has a signed consent form on file (MMF V3). Scanned forms are stored in the RRMNHC OneDrive and hardcopies are kept in the project lead's desk. If you want a photo removed, email metisshoebox@mmf.mb.ca and reference the takedown policy. We will follow up with you directly."
+    }
   }
 }
