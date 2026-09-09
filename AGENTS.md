@@ -4,7 +4,7 @@ Quick-reference for AI agents (and humans) working on this project.
 
 ## Project Overview
 
-**Shoebox v2** is the **Red River Métis Digital Archive** — a Vite + React + TypeScript web app that displays 540 historical archival photos with metadata, stories, and audio narration. It deploys to GitHub Pages at:
+**Shoebox v2** is the **Red River Métis Digital Archive** — a Vite + React + TypeScript web app that displays 544 historical archival photos with metadata, stories, and audio narration. It deploys to GitHub Pages at:
 
 > https://bayarddevries.github.io/shoebox-v2/
 
@@ -81,7 +81,16 @@ fetch('/assets/shoebox/manifest.json')
 
 ### Photo filenames contain spaces
 
-The 540 photos in `public/assets/shoebox/photos/` have filenames with spaces (e.g., `"Old Photo 001.jpg"`). These are URL-encoded automatically by the browser and work fine. Do **not** rename them — the manifest references the original filenames.
+The 544 photos in `public/assets/shoebox/photos/` have filenames with spaces (e.g., `"Old Photo 001.jpg"`). These are URL-encoded automatically by the browser and work fine. Do **not** rename them — the manifest references the original filenames.
+
+### Photo IDs are STABLE (hash of filename) — never index-based
+
+⚠️ **CRITICAL:** Photo IDs are `photo_<sha1(filename).slice(0,10)>` — derived from the FILENAME, NOT the array index. The old scheme (`photo_1` ... `photo_544`, assigned by scan/sort order) was **unstable**: adding photos renumbered everything, breaking submission, consent, and claim-link references.
+
+- Adding/removing photos NEVER changes existing photo IDs (filenames unchanged).
+- Renaming a file changes its ID → any submission/consent/contribution referencing it breaks.
+- **Never** reintroduce index-based IDs in `scripts/generate_manifest.js` (`stablePhotoId()` is the only ID source).
+- To update an image's metadata, replace the file content but KEEP the filename (ID stays stable, metadata refreshes).
 
 ### Manifest is generated
 
