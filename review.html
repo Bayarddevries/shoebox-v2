@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shoebox — Submission Review</title>
+<style>
+  :root {
+    --crimson: #8b1a1a;
+    --parchment: #faf5e9;
+    --ink: #2b2b2b;
+    --muted: #6b6b6b;
+    --good: #2e7d32;
+    --warn: #c77b00;
+    --bad: #b00020;
+    --border: #ddd0b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--parchment);
+    color: var(--ink);
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  h1 { color: var(--crimson); font-size: 1.6rem; margin-bottom: 4px; }
+  .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .card .num { font-size: 1.8rem; font-weight: bold; color: var(--crimson); }
+  .card .label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+  .submitter {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .submitter h3 { color: var(--crimson); font-size: 1.1rem; margin-bottom: 4px; }
+  .submitter .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; }
+  .progress {
+    background: #eee;
+    border-radius: 10px;
+    height: 12px;
+    margin: 8px 0 12px;
+    overflow: hidden;
+  }
+  .progress .fill {
+    height: 100%;
+    background: var(--good);
+    border-radius: 10px;
+    transition: width 0.3s;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    margin-right: 6px;
+    font-weight: bold;
+  }
+  .tag.pending { background: #fff3e0; color: var(--warn); }
+  .tag.approved { background: #e8f5e9; color: var(--good); }
+  .tag.rejected { background: #fce4ec; color: var(--bad); }
+  .missing-list {
+    background: #fff8f0;
+    border-left: 3px solid var(--warn);
+    padding: 8px 12px;
+    margin: 10px 0;
+    font-size: 0.85rem;
+  }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 0.85rem; }
+  th, td { border: 1px solid var(--border); padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background: #f0e8d8; }
+  .contrib { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin: 6px 0; font-size: 0.85rem; }
+  .contrib .c-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .contrib .photo { font-weight: bold; }
+  .contrib .actions { margin-top: 6px; }
+  .btn {
+    border: none;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-right: 6px;
+    font-family: inherit;
+  }
+  .btn.approve { background: var(--good); color: #fff; }
+  .btn.reject { background: var(--bad); color: #fff; }
+  .btn:hover { opacity: 0.85; }
+  .empty { color: var(--muted); font-style: italic; padding: 12px; }
+  .error { background: #fdecea; border: 1px solid var(--bad); color: var(--bad); padding: 12px; border-radius: 6px; margin: 12px 0; }
+  .note { font-size: 0.8rem; color: var(--muted); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+  <h1>Shoebox — Submission Review</h1>
+  <div class="sub">Red River Métis Digital Archive · live view of submitter metadata and consent coverage</div>
+
+  <div id="error" class="error" style="display:none"></div>
+  <div id="summary" class="summary-cards"></div>
+
+  <h2 style="color:var(--crimson); margin-bottom:12px;">Submitters</h2>
+  <div id="submitters"></div>
+
+  <h2 style="color:var(--crimson); margin:24px 0 12px;">Pending Contributions</h2>
+  <div id="contributions"></div>
+
+<script>
+const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbwx0l2LijEV5MkodZcKMWPGNj5ADiZvS0Yfj9zUsITaEhhoFn_1mzd3jLi-w42qduNe/exec';
+// Admin token passed via ?token= so it's not hardcoded in the source.
+// Keep it out of version control — use the URL you get from the server.
+// Also accepts a token saved in sessionStorage (set once, survives reloads).
+const ADMIN_TOKEN = new URLSearchParams(window.location.search).get('token') || sessionStorage.getItem('shoebox_admin_token') || '';
+
+async function api(action) {
+  const url = BACKEND_URL + '?action=' + action + '&admin_token=' + encodeURIComponent(ADMIN_TOKEN);
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error('API error ' + resp.status);
+  return resp.json();
+}
+
+// Map photo_XXX id -> real filename from the manifest (loaded at runtime)
+let PHOTO_MAP = {};
+async function loadPhotoMap() {
+  try {
+    const base = location.pathname.includes('/shoebox-v2/') ? '/shoebox-v2/' : '/';
+    const resp = await fetch(base + 'assets/shoebox/manifest.json');
+    const data = await resp.json();
+    const map = {};
+    for (const p of (data.photos || [])) {
+      if (p.id) map[p.id] = p;
+    }
+    PHOTO_MAP = map;
+  } catch (e) {
+    console.warn('Could not load manifest for photo map:', e);
+  }
+}
+
+function photoInfo(pid) {
+  const p = PHOTO_MAP[pid];
+  if (!p) return null;
+  return {
+    src: p.src,
+    filename: p.src.split('/').pop(),
+    title: p.title || '',
+    submitter: p.submitter || ''
+  };
+}
+
+// Local fallback registry of submitters with consent confirmed (from register work)
+const CONSENTED = [
+  'Brian Hunter','Carole Zastre','Cathy Fidierchuk','Chandra Brown-Erlendson','Cheryl Haas',
+  'Gail Hargreaves','Heather Keens','Jim Griffiths','Joen Hadfield','Justin Cure','Larry Flett',
+  'Lesley Kelemen','Louise McQuade','Lynda Monkman','May Hupe','Paul Laporte','Richard Charpentier',
+  'Sheila Kim Chipman','Vicki Lynne Johnstone','Wendy Sikora','Bayard deVries',
+  // verbal/email confirmed
+  'Alfred Anderson','Erynne Gilpin','Gordon Thurston','Jules Brazeau','Marie-Claire Granger'
+];
+
+// Hardcoded photo count per submitter from the register (submitter -> photo count)
+const SUBMITTER_PHOTOS = {
+  'Wendy Sikora': 146, 'Alfred Anderson': 51, 'Justin Cure': 48, 'Pat Dejarlais': 18,
+  'Paul Laporte': 17, 'Jules Brazeau': 14, 'Erynne Gilpin': 14, 'Jim Griffiths': 14,
+  'Joen Hadfield': 13, 'Carole Zastre': 11, 'Lynda Monkman': 11, 'Marie-Claire Granger': 9,
+  'May Hupe': 9, 'Cheryl Haas': 19, 'Gail Hargreaves': 21, 'Sheila Kim Chipman': 7,
+  'Lesley Kelemen': 7, 'Louise McQuade': 5, 'Heather Keens': 4, 'Chandra Brown-Erlendson': 4,
+  'Richard Charpentier': 2, 'Cathy Fidierchuk': 2, 'Gordon Thurston': 2, 'Brian Hunter': 2,
+  'Vicki Lynne Johnstone': 3, 'Larry Flett': 1, 'Bayard deVries': 1
+};
+
+const SUBMISSION_EMAILS = {
+  'MH-001': 'mayhupe1980@gmail.com', 'CH-001': 'Chaas9@yahoo.ca',
+  'HK-001': 'Vintagecruiser1@yahoo.ca', 'JG-001': 'egriffiths@mymts.net',
+  'LM-001': 'Lylomonk@mts.net', 'JC-001': 'Justin_cure@hotmail.com',
+  'LQ-001': 'lmcquade777@gmail.com', 'CB-001': 'Chandra.erlendson@gmail.com',
+  'CZ-001': 'carolezastre38@gmail.com', 'BH-001': 'hunterbrian@gmail.com'
+};
+
+function esc(s) {
+  if (s === null || s === undefined) return '';
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+async function load() {
+  const errEl = document.getElementById('error');
+  errEl.style.display = 'none';
+  if (!ADMIN_TOKEN) {
+    errEl.style.display = 'block';
+    errEl.textContent = 'Missing admin token. Open this page with ?token=YOUR_ADMIN_TOKEN (from scripts/apps-script/Code.gs).';
+    return;
+  }
+  try {
+    await loadPhotoMap();
+    const [subsData, contribsData] = await Promise.all([
+      api('admin_list_submissions'),
+      api('admin_list_contributions')
+    ]);
+    const subs = subsData.submissions || [];
+    const contribs = (contribsData.contributions || []).filter(c => !/TEST/i.test((c.people||'') + (c.caption||'') + (c.story||'')));
+
+    // ---- Summary cards ----
+    const approved = contribs.filter(c => c.status === 'approved').length;
+    const pending = contribs.filter(c => c.status === 'pending').length;
+    const totalPhotos = Object.values(SUBMITTER_PHOTOS).reduce((a,b) => a+b, 0);
+    document.getElementById('summary').innerHTML = `
+      <div class="card"><div class="num">${subs.length}</div><div class="label">Submissions (claim links)</div></div>
+      <div class="card"><div class="num">${contribs.length}</div><div class="label">Metadata contributions</div></div>
+      <div class="card"><div class="num">${pending}</div><div class="label">Pending review</div></div>
+      <div class="card"><div class="num">${approved}</div><div class="label">Approved</div></div>
+    `;
+
+    // ---- Submitter coverage ----
+    const contribBySub = {};
+    for (const c of contribs) {
+      const key = c.submissionId || '?';
+      if (!contribBySub[key]) contribBySub[key] = [];
+      contribBySub[key].push(c);
+    }
+
+    const subEl = document.getElementById('submitters');
+    let html = '';
+    for (const s of subs) {
+      const sid = s.submissionId;
+      const email = s.email || SUBMISSION_EMAILS[sid] || '(no email)';
+      // Use the register's authoritative per-submitter photo count when available;
+      // fall back to the API photoIds count if the field looks like a list.
+      const subName = s.submitterName || sid;
+      let photos = SUBMITTER_PHOTOS[subName] || 0;
+      if (!photos && Array.isArray(s.photoIds)) photos = s.photoIds.length;
+      const contributed = (contribBySub[sid] || []).length;
+      const missing = Math.max(0, photos - contributed);
+      const pct = photos ? Math.round(contributed/photos*100) : 0;
+      html += `
+        <div class="submitter">
+          <h3>${esc(subName)} <span class="note">(${sid})</span></h3>
+          <div class="meta">${esc(email)} · ${photos} photos · ${contributed} with metadata</div>
+          <div class="progress"><div class="fill" style="width:${pct}%"></div></div>
+          ${missing > 0 ? `<div class="missing-list"><b>${missing} photos still need metadata.</b> Reminder email suggested.</div>` : '<div class="note">All photos covered.</div>'}
+        </div>`;
+    }
+    // Submitters from register with no submission row yet
+    for (const [name, count] of Object.entries(SUBMITTER_PHOTOS)) {
+      if (!subs.some(s => (s.submitterName || '').toLowerCase() === name.toLowerCase())) {
+        html += `
+        <div class="submitter">
+          <h3>${esc(name)} <span class="tag pending">NO SUBMISSION ROW</span></h3>
+          <div class="meta">${count} photos · no claim link sent</div>
+          <div class="missing-list"><b>${count} photos.</b> Create a submission + claim link, or check paper forms.</div>
+        </div>`;
+      }
+    }
+    subEl.innerHTML = html;
+
+    // ---- Contributions list ----
+    const cEl = document.getElementById('contributions');
+    if (contribs.length === 0) {
+      cEl.innerHTML = '<div class="empty">No contributions yet. When submitters fill the claim form, their entries appear here for review.</div>';
+    } else {
+      let ch = '';
+      for (const c of contribs) {
+        const info = photoInfo(c.photoId);
+        const thumb = info
+          ? `<a href="${esc(info.src)}" target="_blank"><img src="${esc(info.src)}" style="width:90px;height:60px;object-fit:cover;border-radius:4px;border:1px solid var(--border);vertical-align:middle" alt=""></a>`
+          : '';
+        const filename = info ? `<span style="font-weight:normal;color:var(--muted)"> · ${esc(info.filename)}</span>` : '';
+        const fields = [
+          ['People', c.people], ['Location', c.location || c.community],
+          ['Province', c.province], ['Country', c.country],
+          ['Year', c.dateYear || c.dateEra], ['Occasion', c.occasion],
+          ['Story', c.story], ['Caption', c.caption], ['Keywords', c.keywords]
+        ].filter(f => f[1] && String(f[1]).trim());
+        ch += `
+          <div class="contrib">
+            <div class="c-head">
+              <span class="photo">${esc(c.photoId)}${filename} · ${esc(c.submissionId)}</span>
+              <span class="tag ${c.status}">${esc(c.status)}</span>
+            </div>
+            <div class="note">Submitted ${esc((c.submittedAt||'').slice(0,10))}</div>
+            ${thumb}
+            ${fields.map(f => `<div><b>${f[0]}:</b> ${esc(f[1])}</div>`).join('')}
+          </div>`;
+      }
+      cEl.innerHTML = ch;
+    }
+  } catch (e) {
+    const errEl = document.getElementById('error');
+    errEl.style.display = 'block';
+    errEl.textContent = 'Failed to load data: ' + e.message;
+  }
+}
+
+load();
+</script>
+</body>
+</html>
