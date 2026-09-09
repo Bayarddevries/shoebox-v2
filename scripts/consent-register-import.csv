@@ -1,0 +1,568 @@
+# Consent Register Import CSV
+#
+# Purpose: Import into Google Sheet 'Shoebox Submitter Metadata' → 'Consent Register' tab.
+#
+# Import process:
+# 1. Open the Google Sheet 'Shoebox Submitter Metadata'.
+# 2. Go to the 'Consent Register' tab.
+# 3. Select row 1 (the header row) and delete all existing data rows below it (keep the header).
+# 4. From the menu: File → Import → Upload → select this CSV file.
+# 5. Choose "Insert new sheet(s)" or "Replace spreadsheet" depending on your needs.
+#    - For a fresh import: "Replace spreadsheet" (careful — this wipes the sheet).
+#    - For appending: import into a new tab, then copy/paste rows into 'Consent Register'.
+# 6. After import, verify row count = 544 data rows + 1 header = 545 total.
+# 7. Do NOT overwrite the header row — the first line of this CSV is the column header.
+#
+# Notes:
+# - consentStatus is left blank for all rows. Bayard fills these by reviewing paper forms.
+# - consentVersion defaults to V3 (MMF V# field, blank year).
+# - submissionId is a proposed ID (first-initial + sequence); confirm with each submitter.
+# - Scanned PDFs live in RRMNHC OneDrive; hardcopies in Bayard's desk.
+# - Last updated: 2026-09-04
+# - Generated from: shoebox-v2/public/assets/shoebox/manifest.json
+#
+photoId,src,submitter,submissionId,consentRef,consentVersion,consentStatus,signedDate,mmfVNumber,tier,evidence,notes,lastUpdated,updatedBy
+photo_1,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 93.jpg,,,,V3,,,,,,,,
+photo_2,assets/shoebox/photos/Mushums Mom Marie Laliberte.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_3,assets/shoebox/photos/fond du lac chipewyan tent 30 july 1892 jb tyrrell 0001-4-0.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_4,assets/shoebox/photos/fond du lac 29 june 1893 hcb trading post jb tyrrell 0001-4-0.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_5,assets/shoebox/photos/fond du lac 29 june 1893 rc church jb tyrrell 0001-4-0.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_6,assets/shoebox/photos/Wendy Sikora_1.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_7,assets/shoebox/photos/Grandma lafferty.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_8,assets/shoebox/photos/Antoinette in FonduLac.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_9,assets/shoebox/photos/Fond du Lac Carman's House 1900 0001-4-0.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_10,assets/shoebox/photos/Grandma Lafferty age 7.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_11,assets/shoebox/photos/grandma & sister darie.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_12,assets/shoebox/photos/a-dorothy mom and celine.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_13,assets/shoebox/photos/Grandma - Sister Darie.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_14,assets/shoebox/photos/14.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_15,assets/shoebox/photos/Daniel cousins-fred and john james daniels.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_16,assets/shoebox/photos/Gerry at fort smith with who.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_17,assets/shoebox/photos/Henri cigar.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_18,assets/shoebox/photos/Lafferty Family FDL  with Father Falaize and father lafferty.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_19,assets/shoebox/photos/Lafferty family 3.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_20,assets/shoebox/photos/Lafferty family 4.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_21,"assets/shoebox/photos/Mercredi  Uncle pierre and auntie marie, leon mercredi - fort resolution.jpg",Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_22,assets/shoebox/photos/gerry.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_23,assets/shoebox/photos/house xx family.jpg,,,,V3,,,,,,,,
+photo_24,assets/shoebox/photos/lafferty's at home - no matte.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_25,assets/shoebox/photos/Fr Lafferty w cousin Michel 1.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_26,assets/shoebox/photos/Henri.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_27,assets/shoebox/photos/frlafferty - desrosiers.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_28,assets/shoebox/photos/Fr Lafferty Old Ft Rae (1).jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_29,assets/shoebox/photos/Fr Lafferty formal.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_30,assets/shoebox/photos/Mushum and henri back left Lac St Anne.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_31,assets/shoebox/photos/beaulieu family st boniface.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_32,assets/shoebox/photos/tbi2.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_33,assets/shoebox/photos/a-boat auntie margaret.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_34,assets/shoebox/photos/1930s close to Willowbunch SK Blanche Carriere Adelard Beaudin.jpg,Marie-Claire Granger,,Marie-Claire Granger-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_35,assets/shoebox/photos/Daniel - Grandmas grandfather.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_36,assets/shoebox/photos/Henri  Bishop Breynat leaving FDL.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_37,assets/shoebox/photos/fr lafferty in bush.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_38,assets/shoebox/photos/w-grandma & dorothy.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_39,assets/shoebox/photos/Mushum and henri lac st anne.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_40,assets/shoebox/photos/girls in stony.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_41,assets/shoebox/photos/John 2.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_42,assets/shoebox/photos/Mushum and Wife.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_43,"assets/shoebox/photos/a-celine, agatha, dorothy.jpg",Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_44,assets/shoebox/photos/fr  lafferty marirose gerry.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_45,assets/shoebox/photos/lafferty picnic.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_46,assets/shoebox/photos/laffertys sunday best.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_47,assets/shoebox/photos/w-margaret hospital.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_48,assets/shoebox/photos/04 - riding the bufallo.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_49,assets/shoebox/photos/Lafferty family 2.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_50,assets/shoebox/photos/Wendy Sikora_4.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_51,assets/shoebox/photos/Wendy Sikora_6.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_52,assets/shoebox/photos/a-anne - stony.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_53,assets/shoebox/photos/black lake church and various residents .jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_54,assets/shoebox/photos/w-agatha fishing.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_55,assets/shoebox/photos/w-agathamarie.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_56,assets/shoebox/photos/Beaulieu to my dear niece.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_57,assets/shoebox/photos/1-2.jpg,Sheila Kim Chipman,,Sheila Kim Chipman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_58,assets/shoebox/photos/1-4.jpg,Cathy Fidierchuk,,Cathy Fidierchuk-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_59,assets/shoebox/photos/1.jpg,,,,V3,,,,,,,,
+photo_60,assets/shoebox/photos/2.jpg,,,,V3,,,,,,,,
+photo_61,assets/shoebox/photos/4-2.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_62,assets/shoebox/photos/Gail_Hargreaves_1.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_63,assets/shoebox/photos/Gail_Hargreaves_10.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_64,assets/shoebox/photos/Gail_Hargreaves_11.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_65,assets/shoebox/photos/Gail_Hargreaves_13.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_66,assets/shoebox/photos/Gail_Hargreaves_14.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_67,assets/shoebox/photos/Gail_Hargreaves_15.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_68,assets/shoebox/photos/Gail_Hargreaves_16.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_69,assets/shoebox/photos/Gail_Hargreaves_17.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_70,assets/shoebox/photos/Gail_Hargreaves_18.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_71,assets/shoebox/photos/Gail_Hargreaves_19.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_72,assets/shoebox/photos/Gail_Hargreaves_2.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_73,assets/shoebox/photos/Gail_Hargreaves_20.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_74,assets/shoebox/photos/Gail_Hargreaves_3.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_75,assets/shoebox/photos/Gail_Hargreaves_4.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_76,assets/shoebox/photos/Gail_Hargreaves_5.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_77,assets/shoebox/photos/Gail_Hargreaves_6.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_78,assets/shoebox/photos/Gail_Hargreaves_7.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_79,assets/shoebox/photos/Gail_Hargreaves_8.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_80,assets/shoebox/photos/Gail_Hargreaves_9.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_81,assets/shoebox/photos/Image 4.jpg,Sheila Kim Chipman,,Sheila Kim Chipman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_82,assets/shoebox/photos/Lynda Monkman_1.jpg,Lynda Monkman,,Lynda Monkman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_83,assets/shoebox/photos/PD1.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_84,assets/shoebox/photos/PD_14.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_85,assets/shoebox/photos/PD_16.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_86,assets/shoebox/photos/PD_3.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_87,assets/shoebox/photos/PD_4.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_88,assets/shoebox/photos/PD_5.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_89,assets/shoebox/photos/PD_6.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_90,assets/shoebox/photos/PD_7.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_91,assets/shoebox/photos/20260515 JoanHadfield 1.jpg,Joen Hadfield,,Joen Hadfield-consent,V3,consent_on_file,,,,Digitized consent form on file (JoanHadfield scans),,2026-09-09,Bayard
+photo_92,assets/shoebox/photos/Wendy Sikora_11.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_93,assets/shoebox/photos/gerry & alphonse.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_94,"assets/shoebox/photos/w-anne, margaret, gerry.jpg",Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_95,assets/shoebox/photos/Lesley_Kellemen_2.jpg,Lesley Kelemen,,Lesley Kelemen-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_96,assets/shoebox/photos/Stony Lake Church after Mass.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_97,assets/shoebox/photos/stony school xmas concert.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_98,assets/shoebox/photos/stony.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_99,assets/shoebox/photos/stony2.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_100,assets/shoebox/photos/Wendy Sikora_5.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_101,assets/shoebox/photos/Henri garden.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_102,"assets/shoebox/photos/Lafferty grandpa ernestine mercredi, emil tralnberg.jpg",Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_103,assets/shoebox/photos/20260829 Stemadeleine 3.jpg,Heather Keens,,Heather Keens-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_104,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 2.jpg,Heather Keens,,Heather Keens-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_105,assets/shoebox/photos/Wendy Sikora_22.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_106,assets/shoebox/photos/a-F1000052-alphonse magloire and gerry.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_107,assets/shoebox/photos/a-plane.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_108,assets/shoebox/photos/gerry and anne 1945.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_109,assets/shoebox/photos/henri guttingfish.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_110,assets/shoebox/photos/stony school - 1945.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_111,assets/shoebox/photos/Wendy Sikora_7.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_112,assets/shoebox/photos/Gail_Hargreaves_12.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_113,assets/shoebox/photos/Celine w jean lous team.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_114,assets/shoebox/photos/Lynda Monkman_5.jpg,Lynda Monkman,,Lynda Monkman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_115,assets/shoebox/photos/Wendy Sikora_32.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_116,assets/shoebox/photos/Wendy Sikora_40.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_117,assets/shoebox/photos/20260515 JoanHadfield 3.jpg,Joen Hadfield,,Joen Hadfield-consent,V3,consent_on_file,,,,Digitized consent form on file (JoanHadfield scans),,2026-09-09,Bayard
+photo_118,assets/shoebox/photos/20260515 JoanHadfield 4.jpg,Joen Hadfield,,Joen Hadfield-consent,V3,consent_on_file,,,,Digitized consent form on file (JoanHadfield scans),,2026-09-09,Bayard
+photo_119,assets/shoebox/photos/Lafferty family uncle leon willie and blanche mercredi.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_120,assets/shoebox/photos/PD2.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_121,assets/shoebox/photos/PD_9.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_122,assets/shoebox/photos/Wendy Sikora_12.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_123,assets/shoebox/photos/Wendy Sikora_3.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_124,assets/shoebox/photos/Wendy Sikora_41.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_125,assets/shoebox/photos/PD_8.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_126,assets/shoebox/photos/Wendy Sikora_15.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_127,assets/shoebox/photos/Wendy Sikora_19.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_128,assets/shoebox/photos/20260413 AlfredAnderson 6.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_129,"assets/shoebox/photos/1955 Mom married Hercule, Fatima, Granger home place.jpg",Marie-Claire Granger,,Marie-Claire Granger-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_130,"assets/shoebox/photos/1955 mom married Hercule, Fatima, Omer & Cécile Gregoire.jpg",,,,V3,,,,,,,,
+photo_131,assets/shoebox/photos/20260413 AlfredAnderson 1.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_132,assets/shoebox/photos/20260413 AlfredAnderson 2.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_133,assets/shoebox/photos/20260515 JoanHadfield 10.jpg,Joen Hadfield,,Joen Hadfield-consent,V3,consent_on_file,,,,Digitized consent form on file (JoanHadfield scans),,2026-09-09,Bayard
+photo_134,assets/shoebox/photos/20260515 JoanHadfield 5.jpg,Joen Hadfield,,Joen Hadfield-consent,V3,consent_on_file,,,,Digitized consent form on file (JoanHadfield scans),,2026-09-09,Bayard
+photo_135,assets/shoebox/photos/20260515 JoanHadfield 6.jpg,Joen Hadfield,,Joen Hadfield-consent,V3,consent_on_file,,,,Digitized consent form on file (JoanHadfield scans),,2026-09-09,Bayard
+photo_136,assets/shoebox/photos/20260515 JoanHadfield 7.jpg,Joen Hadfield,,Joen Hadfield-consent,V3,consent_on_file,,,,Digitized consent form on file (JoanHadfield scans),,2026-09-09,Bayard
+photo_137,assets/shoebox/photos/20260515 JoanHadfield 8.jpg,Joen Hadfield,,Joen Hadfield-consent,V3,consent_on_file,,,,Digitized consent form on file (JoanHadfield scans),,2026-09-09,Bayard
+photo_138,assets/shoebox/photos/20260515 JoanHadfield 9.jpg,Joen Hadfield,,Joen Hadfield-consent,V3,consent_on_file,,,,Digitized consent form on file (JoanHadfield scans),,2026-09-09,Bayard
+photo_139,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 30.jpg,Lynda Monkman,,Lynda Monkman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_140,assets/shoebox/photos/Image 2 (2).jpg,Joen Hadfield,,Joen Hadfield-consent,V3,consent_on_file,,,,Digitized consent form on file (JoanHadfield scans),,2026-09-09,Bayard
+photo_141,assets/shoebox/photos/Lynda Monkman_6.jpg,Lynda Monkman,,Lynda Monkman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_142,assets/shoebox/photos/Wendy Sikora_13.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_143,assets/shoebox/photos/Wendy Sikora_18.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_144,assets/shoebox/photos/Wendy Sikora_2.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_145,assets/shoebox/photos/Wendy Sikora_20.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_146,assets/shoebox/photos/Wendy Sikora_21.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_147,assets/shoebox/photos/Wendy Sikora_26.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_148,assets/shoebox/photos/Wendy Sikora_27.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_149,assets/shoebox/photos/Wendy Sikora_30.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_150,assets/shoebox/photos/Wendy Sikora_34.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_151,assets/shoebox/photos/Wendy Sikora_35.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_152,assets/shoebox/photos/Wendy Sikora_39.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_153,assets/shoebox/photos/Wendy Sikora_43.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_154,assets/shoebox/photos/Wendy Sikora_9.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_155,assets/shoebox/photos/Lynda Monkman_4.jpg,Lynda Monkman,,Lynda Monkman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_156,"assets/shoebox/photos/1960 St. Eustache Amanda Alarie, Cecile and Emile Granger .jpg",Marie-Claire Granger,,Marie-Claire Granger-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_157,assets/shoebox/photos/20260413 AlfredAnderson 24.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_158,assets/shoebox/photos/Wendy Sikora_29.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_159,assets/shoebox/photos/Wendy Sikora_38.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_160,assets/shoebox/photos/grandma and mom - no matte.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_161,assets/shoebox/photos/1-5.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_162,assets/shoebox/photos/11(1).jpg,,,,V3,,,,,,,,
+photo_163,assets/shoebox/photos/1963 very recent birth of calf Fatima Marie-Claire Granger.jpg,Marie-Claire Granger,,Marie-Claire Granger-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_164,assets/shoebox/photos/2-2.jpg,Cathy Fidierchuk,,Cathy Fidierchuk-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_165,assets/shoebox/photos/2-3.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_166,assets/shoebox/photos/3-2.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_167,assets/shoebox/photos/4.jpg,,,,V3,,,,,,,,
+photo_168,assets/shoebox/photos/5.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_169,assets/shoebox/photos/6.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_170,assets/shoebox/photos/7.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_171,assets/shoebox/photos/Dad havesting christmas trees-4x5.jpg,Gordon Thurston,,Gordon Thurston-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded,,2026-09-09,Bayard
+photo_172,assets/shoebox/photos/Image 1.jpg,Sheila Kim Chipman,,Sheila Kim Chipman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_173,assets/shoebox/photos/Image 2-2.jpg,Sheila Kim Chipman,,Sheila Kim Chipman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_174,assets/shoebox/photos/Lesley_Kellemen_1.jpg,Lesley Kelemen,,Lesley Kelemen-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_175,assets/shoebox/photos/PD_12.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_176,assets/shoebox/photos/PD_15.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_177,assets/shoebox/photos/PD_17.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_178,assets/shoebox/photos/Santa-Claus-Mr-Wartman.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_179,assets/shoebox/photos/Wendy Sikora_23.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_180,assets/shoebox/photos/Wendy Sikora_24.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_181,assets/shoebox/photos/Wendy Sikora_25.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_182,assets/shoebox/photos/Wendy Sikora_28.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_183,assets/shoebox/photos/class.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_184,assets/shoebox/photos/classroom.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_185,assets/shoebox/photos/classroom2.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_186,assets/shoebox/photos/classroom3.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_187,assets/shoebox/photos/dad cutting christmass tress dec 1957.jpg,Gordon Thurston,,Gordon Thurston-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded,,2026-09-09,Bayard
+photo_188,assets/shoebox/photos/hockey-team.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_189,assets/shoebox/photos/playground.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_190,assets/shoebox/photos/sewing-class.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_191,assets/shoebox/photos/shops-class.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_192,assets/shoebox/photos/teachers-house.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_193,assets/shoebox/photos/the-class.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_194,assets/shoebox/photos/boys.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_195,assets/shoebox/photos/church-and-school.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_196,assets/shoebox/photos/20260413 AlfredAnderson 4.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_197,assets/shoebox/photos/girls-choir.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_198,assets/shoebox/photos/girls.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_199,assets/shoebox/photos/grandma lafferty - formal.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_200,assets/shoebox/photos/hockey-team2.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_201,assets/shoebox/photos/w-grandma&grandpa 50th.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_202,assets/shoebox/photos/Wendy Sikora_14.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_203,assets/shoebox/photos/Wendy Sikora_16.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_204,assets/shoebox/photos/Wendy Sikora_17.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_205,assets/shoebox/photos/altar-boys.jpg,Paul Laporte,,Paul Laporte-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_206,assets/shoebox/photos/Wendy Sikora_33.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_207,assets/shoebox/photos/mom - colorized.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_208,assets/shoebox/photos/8.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_209,assets/shoebox/photos/PD_19.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_210,assets/shoebox/photos/Wendy Sikora_36.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_211,assets/shoebox/photos/20260413 AlfredAnderson 10.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_212,assets/shoebox/photos/20260413 AlfredAnderson 5.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_213,assets/shoebox/photos/Lesley_Kellemen_5.jpg,Lesley Kelemen,,Lesley Kelemen-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_214,assets/shoebox/photos/1975 4 generations St. Eustache Amanda Alarie Aime Menard Cecile Lucienne Granger.jpg,Marie-Claire Granger,,Marie-Claire Granger-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_215,assets/shoebox/photos/1975 St. Eustache Amanda Alarie Omer Gregoire Cecile Granger and daughter Cecile 1975.jpg,Marie-Claire Granger,,Marie-Claire Granger-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_216,assets/shoebox/photos/1975 St. Eustache Cécile (Grégoire) Granger & mother Amanda (Ménard) Allarie.jpg,,,,V3,,,,,,,,
+photo_217,assets/shoebox/photos/1979 St. Eustache Cecile Granger Amanda Alarie son Omer Gregoire.jpg,Marie-Claire Granger,,Marie-Claire Granger-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_218,"assets/shoebox/photos/1979 moving to B.C., St. Eustache Amanda Alarie.jpg",Marie-Claire Granger,,Marie-Claire Granger-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_219,assets/shoebox/photos/1975 Amanda and Jean Alarie house St. Eustache.jpg,Marie-Claire Granger,,Marie-Claire Granger-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_220,assets/shoebox/photos/Wendy Sikora_42.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_221,assets/shoebox/photos/20260829 Stemadeleine 1.jpg,Heather Keens,,Heather Keens-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_222,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 1.jpg,Heather Keens,,Heather Keens-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_223,assets/shoebox/photos/a-grandma 80.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_224,assets/shoebox/photos/w-grandma90th.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_225,assets/shoebox/photos/Lesley_Kellemen_3.jpg,Lesley Kelemen,,Lesley Kelemen-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_226,assets/shoebox/photos/10.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_227,assets/shoebox/photos/13.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_228,assets/shoebox/photos/2-4.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_229,assets/shoebox/photos/9.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_230,assets/shoebox/photos/Image 2.jpg,Richard Charpentier,,Richard Charpentier-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_231,assets/shoebox/photos/Image 3.jpg,Sheila Kim Chipman,,Sheila Kim Chipman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_232,assets/shoebox/photos/Image 5.jpg,Sheila Kim Chipman,,Sheila Kim Chipman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_233,assets/shoebox/photos/20260515 JoanHadfield 27.jpg,Joen Hadfield,,Joen Hadfield-consent,V3,consent_on_file,,,,Digitized consent form on file (JoanHadfield scans),,2026-09-09,Bayard
+photo_234,assets/shoebox/photos/20260515 JoanHadfield 28.jpg,Joen Hadfield,,Joen Hadfield-consent,V3,consent_on_file,,,,Digitized consent form on file (JoanHadfield scans),,2026-09-09,Bayard
+photo_235,assets/shoebox/photos/Untitled_1.jpg,,,,V3,,,,,,,,
+photo_236,assets/shoebox/photos/Image 1-3.jpg,Bayard deVries,,Bayard deVries-consent,V3,consent_on_file,,,,Project lead's own photo - inherent consent,,2026-09-09,Bayard
+photo_237,assets/shoebox/photos/20260417 AlfredAnderson 33.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_238,assets/shoebox/photos/20260417 AlfredAnderson 38.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_239,assets/shoebox/photos/20260417 AlfredAnderson 40.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_240,assets/shoebox/photos/20260417 AlfredAnderson 41.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_241,assets/shoebox/photos/20260417 AlfredAnderson 42.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_242,assets/shoebox/photos/20260417 AlfredAnderson 43.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_243,assets/shoebox/photos/20260417 AlfredAnderson 45.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_244,assets/shoebox/photos/20260417 AlfredAnderson 47.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_245,assets/shoebox/photos/daniel cousins (2).jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_246,assets/shoebox/photos/marierose and kid.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_247,assets/shoebox/photos/20260417 AlfredAnderson 26.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_248,assets/shoebox/photos/20260417 AlfredAnderson 28.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_249,assets/shoebox/photos/20260417 AlfredAnderson 29.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_250,assets/shoebox/photos/20260417 AlfredAnderson 30.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_251,assets/shoebox/photos/20260417 AlfredAnderson 31.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_252,assets/shoebox/photos/20260417 AlfredAnderson 32.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_253,assets/shoebox/photos/20260417 AlfredAnderson 34.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_254,assets/shoebox/photos/20260417 AlfredAnderson 35.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_255,assets/shoebox/photos/20260417 AlfredAnderson 36.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_256,assets/shoebox/photos/20260417 AlfredAnderson 37.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_257,assets/shoebox/photos/Beaulieu Kookums brothers jean baptise and pierre.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_258,assets/shoebox/photos/Gerry uniform.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_259,"assets/shoebox/photos/Lafferty henri, dorothy and janet.jpg",Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_260,assets/shoebox/photos/daniel - Pierre and Baptiste.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_261,assets/shoebox/photos/fr lafferty Brother Crenne ft chip.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_262,assets/shoebox/photos/fr lafferty first communion.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_263,assets/shoebox/photos/girls-2.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_264,assets/shoebox/photos/marierose n gerry.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_265,assets/shoebox/photos/mom and sisters - early 50s.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_266,assets/shoebox/photos/w-annegarden.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_267,assets/shoebox/photos/w-gerrydogteam.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_268,assets/shoebox/photos/w-margaret doll.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_269,assets/shoebox/photos/20260417 AlfredAnderson 50.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_270,assets/shoebox/photos/Stemadeleine_01.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_271,assets/shoebox/photos/Stemadeleine_02.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_272,assets/shoebox/photos/Stemadeleine_03.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_273,assets/shoebox/photos/Stemadeleine_04.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_274,assets/shoebox/photos/Stemadeleine_05.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_275,assets/shoebox/photos/Stemadeleine_06.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_276,assets/shoebox/photos/Stemadeleine_07.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_277,assets/shoebox/photos/Stemadeleine_08.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_278,assets/shoebox/photos/Stemadeleine_09.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_279,assets/shoebox/photos/Stemadeleine_10.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_280,assets/shoebox/photos/Stemadeleine_11.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_281,assets/shoebox/photos/Stemadeleine_12.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_282,assets/shoebox/photos/Stemadeleine_13.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_283,assets/shoebox/photos/Stemadeleine_14.jpg,Jules Brazeau,,Jules Brazeau-consent,V3,retro_consent_confirmed,,,,Verbal consent given at Ste. Madeleine event,,2026-09-09,Bayard
+photo_284,assets/shoebox/photos/20260417 AlfredAnderson 44.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_285,assets/shoebox/photos/20260417 AlfredAnderson 46.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_286,assets/shoebox/photos/20260417 AlfredAnderson 48.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_287,assets/shoebox/photos/20260417 AlfredAnderson 49.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_288,assets/shoebox/photos/Henri Desrosiers Lafferty.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_289,assets/shoebox/photos/DSC_0015.jpg,May Hupe,,May Hupe-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_290,assets/shoebox/photos/DSC_0020.jpg,May Hupe,,May Hupe-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_291,assets/shoebox/photos/DSC_0021.jpg,May Hupe,,May Hupe-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_292,assets/shoebox/photos/1-3.jpg,Larry Flett,,Larry Flett-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_293,assets/shoebox/photos/12.jpg,Erynne Gilpin,,Erynne Gilpin-consent,V3,retro_consent_confirmed,,,,Consent via emailed images to project,,2026-09-09,Bayard
+photo_294,assets/shoebox/photos/Image 1-2.jpg,Richard Charpentier,,Richard Charpentier-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_295,assets/shoebox/photos/3.jpg,,,,V3,,,,,,,,
+photo_296,assets/shoebox/photos/Henri - formal.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_297,assets/shoebox/photos/Henri at fort rae.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_298,assets/shoebox/photos/Henri roasting weenies.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_299,assets/shoebox/photos/IMG_1179.jpg,,,,V3,,,,,,,,
+photo_300,assets/shoebox/photos/IMG_1294.jpg,,,,V3,,,,,,,,
+photo_301,assets/shoebox/photos/IMG_1295.jpg,,,,V3,,,,,,,,
+photo_302,assets/shoebox/photos/IMG_1346.jpg,,,,V3,,,,,,,,
+photo_303,assets/shoebox/photos/IMG_1370.jpg,,,,V3,,,,,,,,
+photo_304,assets/shoebox/photos/IMG_1385.jpg,,,,V3,,,,,,,,
+photo_305,assets/shoebox/photos/IMG_1386.jpg,,,,V3,,,,,,,,
+photo_306,assets/shoebox/photos/IWS 2.jpg,,,,V3,,,,,,,,
+photo_307,assets/shoebox/photos/Image.jpg,,,,V3,,,,,,,,
+photo_308,assets/shoebox/photos/Lesley_Kellemen_4.jpg,Lesley Kelemen,,Lesley Kelemen-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_309,assets/shoebox/photos/Lesley_Kellemen_6.jpg,Lesley Kelemen,,Lesley Kelemen-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_310,assets/shoebox/photos/Lesley_Kellemen_7.jpg,Lesley Kelemen,,Lesley Kelemen-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_311,assets/shoebox/photos/Lynda Monkman_2.jpg,Lynda Monkman,,Lynda Monkman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_312,assets/shoebox/photos/Lynda Monkman_3.jpg,Lynda Monkman,,Lynda Monkman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_313,assets/shoebox/photos/Lynda Monkman_7.jpg,Lynda Monkman,,Lynda Monkman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_314,assets/shoebox/photos/Maries 1st  communion.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_315,"assets/shoebox/photos/Minister Anderson, Minister Park 2.jpg",,,,V3,,,,,,,,
+photo_316,"assets/shoebox/photos/Minister Anderson, Minister Park.jpg",,,,V3,,,,,,,,
+photo_317,"assets/shoebox/photos/Minister Beaudin, Minister Remillard, Minister Carrier 2.jpg",,,,V3,,,,,,,,
+photo_318,"assets/shoebox/photos/Minister Beaudin, Minister Remillard, Minister Carrier.jpg",,,,V3,,,,,,,,
+photo_319,assets/shoebox/photos/Minister Fleming (2).jpg,,,,V3,,,,,,,,
+photo_320,assets/shoebox/photos/Minister Fleming.jpg,,,,V3,,,,,,,,
+photo_321,assets/shoebox/photos/Minister Goodon 2.jpg,,,,V3,,,,,,,,
+photo_322,assets/shoebox/photos/Minister Lagimodiere (2).jpg,,,,V3,,,,,,,,
+photo_323,assets/shoebox/photos/Minister Lagimodiere 2.jpg,,,,V3,,,,,,,,
+photo_324,"assets/shoebox/photos/Minister Thomas, Minister Nault, Minister Gauthier 2.jpg",,,,V3,,,,,,,,
+photo_325,"assets/shoebox/photos/Minister Thomas, Minister Nault, Minister Gauthier.jpg",,,,V3,,,,,,,,
+photo_326,assets/shoebox/photos/PD_10.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_327,assets/shoebox/photos/PD_11.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_328,assets/shoebox/photos/PD_13.jpg,Pat Dejarlais,,,V3,,,,,,,,
+photo_329,assets/shoebox/photos/Untitled_2.jpg,Vicki Lynne Johnstone,,Vicki Lynne Johnstone-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_330,assets/shoebox/photos/Untitled_3.jpg,Vicki Lynne Johnstone,,Vicki Lynne Johnstone-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_331,assets/shoebox/photos/Untitled_4.jpg,Vicki Lynne Johnstone,,Vicki Lynne Johnstone-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_332,assets/shoebox/photos/Untitled_5.jpg,,,,V3,,,,,,,,
+photo_333,assets/shoebox/photos/Wendy Sikora_10.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_334,assets/shoebox/photos/Wendy Sikora_31.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_335,assets/shoebox/photos/Wendy Sikora_37.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_336,assets/shoebox/photos/Wendy Sikora_8.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_337,assets/shoebox/photos/_MG_0850.jpg,Gail Hargreaves,,Gail Hargreaves-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_338,assets/shoebox/photos/_MG_0882.jpg,,,,V3,,,,,,,,
+photo_339,assets/shoebox/photos/_MG_0887.jpg,,,,V3,,,,,,,,
+photo_340,assets/shoebox/photos/_MG_1099.jpg,,,,V3,,,,,,,,
+photo_341,assets/shoebox/photos/_MG_1103.jpg,,,,V3,,,,,,,,
+photo_342,assets/shoebox/photos/_MG_1106.jpg,,,,V3,,,,,,,,
+photo_343,assets/shoebox/photos/_MG_1117.jpg,,,,V3,,,,,,,,
+photo_344,assets/shoebox/photos/_MG_1118.jpg,,,,V3,,,,,,,,
+photo_345,assets/shoebox/photos/_MG_1165.jpg,,,,V3,,,,,,,,
+photo_346,assets/shoebox/photos/_MG_1167.jpg,,,,V3,,,,,,,,
+photo_347,assets/shoebox/photos/_MG_1171.jpg,,,,V3,,,,,,,,
+photo_348,assets/shoebox/photos/_MG_1172.jpg,,,,V3,,,,,,,,
+photo_349,assets/shoebox/photos/_MG_1176.jpg,,,,V3,,,,,,,,
+photo_350,assets/shoebox/photos/_MG_1177.jpg,,,,V3,,,,,,,,
+photo_351,assets/shoebox/photos/_MG_1178.jpg,,,,V3,,,,,,,,
+photo_352,assets/shoebox/photos/_MG_1361.jpg,,,,V3,,,,,,,,
+photo_353,assets/shoebox/photos/_MG_9240.jpg,,,,V3,,,,,,,,
+photo_354,assets/shoebox/photos/_MG_9260.jpg,,,,V3,,,,,,,,
+photo_355,assets/shoebox/photos/_MG_9270.jpg,,,,V3,,,,,,,,
+photo_356,assets/shoebox/photos/_MG_9287.jpg,,,,V3,,,,,,,,
+photo_357,assets/shoebox/photos/a-alphonse & Margaret.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_358,assets/shoebox/photos/a-auntie Gerry.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_359,assets/shoebox/photos/a-gerry at dock.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_360,assets/shoebox/photos/a-grandpa with Dorothy and Celine.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_361,assets/shoebox/photos/a-margaret and alex wedding.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_362,assets/shoebox/photos/a-margaret and john.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_363,assets/shoebox/photos/a-mom n jeanette.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_364,assets/shoebox/photos/alida closeup.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_365,assets/shoebox/photos/fr lafferty with cousins.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_366,assets/shoebox/photos/fr lafferty with the erasmus family 2.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_367,assets/shoebox/photos/grandma & Grandpa Lafferty 50th.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_368,assets/shoebox/photos/lafferty girls.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_369,assets/shoebox/photos/souvenirsdemesso00grouuoft_0257.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_370,assets/shoebox/photos/uncle alphonse - young.jpg,Wendy Sikora,,Wendy Sikora-consent,V3,consent_on_file,,,,Digitized consent forms on file (consent_1 + consent_2),,2026-09-09,Bayard
+photo_371,assets/shoebox/photos/20260413 AlfredAnderson 11.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_372,assets/shoebox/photos/20260413 AlfredAnderson 12.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_373,assets/shoebox/photos/20260413 AlfredAnderson 13.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_374,assets/shoebox/photos/20260413 AlfredAnderson 14.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_375,assets/shoebox/photos/20260413 AlfredAnderson 15.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_376,assets/shoebox/photos/20260413 AlfredAnderson 16.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_377,assets/shoebox/photos/20260413 AlfredAnderson 17.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_378,assets/shoebox/photos/20260413 AlfredAnderson 18.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_379,assets/shoebox/photos/20260413 AlfredAnderson 19.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_380,assets/shoebox/photos/20260413 AlfredAnderson 20.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_381,assets/shoebox/photos/20260413 AlfredAnderson 21.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_382,assets/shoebox/photos/20260413 AlfredAnderson 22.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_383,assets/shoebox/photos/20260413 AlfredAnderson 23.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_384,assets/shoebox/photos/20260413 AlfredAnderson 25.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_385,assets/shoebox/photos/20260413 AlfredAnderson 3.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_386,assets/shoebox/photos/20260413 AlfredAnderson 7.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_387,assets/shoebox/photos/20260413 AlfredAnderson 8.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_388,assets/shoebox/photos/20260413 AlfredAnderson 9.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_389,assets/shoebox/photos/20260417 AlfredAnderson 27.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_390,assets/shoebox/photos/20260417 AlfredAnderson 39.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_391,assets/shoebox/photos/20260417 AlfredAnderson 53.jpg,Alfred Anderson,,Alfred Anderson-consent,V3,retro_consent_confirmed,,,,Verbal consent recorded during scanning conversation,,2026-09-09,Bayard
+photo_392,assets/shoebox/photos/20260515 JoanHadfield 23.jpg,Joen Hadfield,,Joen Hadfield-consent,V3,consent_on_file,,,,Digitized consent form on file (JoanHadfield scans),,2026-09-09,Bayard
+photo_393,assets/shoebox/photos/20260822 Stemadeleine 15.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_394,assets/shoebox/photos/20260822 Stemadeleine 16.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_395,assets/shoebox/photos/20260822 Stemadeleine 17.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_396,assets/shoebox/photos/20260822 Stemadeleine 18.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_397,assets/shoebox/photos/20260822 Stemadeleine 19.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_398,assets/shoebox/photos/20260822 Stemadeleine 20.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_399,assets/shoebox/photos/20260822 Stemadeleine 25.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_400,assets/shoebox/photos/20260822 Stemadeleine 26.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_401,assets/shoebox/photos/20260822 Stemadeleine 27.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_402,assets/shoebox/photos/20260822 Stemadeleine 30.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_403,assets/shoebox/photos/20260822 Stemadeleine 31.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_404,assets/shoebox/photos/20260822 Stemadeleine 32.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_405,assets/shoebox/photos/20260822 Stemadeleine 33.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_406,assets/shoebox/photos/20260822 Stemadeleine 34.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_407,assets/shoebox/photos/20260822 Stemadeleine 35.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_408,assets/shoebox/photos/20260822 Stemadeleine 36.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_409,assets/shoebox/photos/20260822 Stemadeleine 37.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_410,assets/shoebox/photos/20260822 Stemadeleine 38.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_411,assets/shoebox/photos/20260822 Stemadeleine 39.jpg,Cheryl Haas,,Cheryl Haas-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_412,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 26-2.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_413,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 26-3.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_414,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 26-4.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_415,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 26-5.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_416,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 26-6.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_417,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 26-7.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_418,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 26.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_419,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 27-2.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_420,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 27-3.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_421,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 27.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_422,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 28-2.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_423,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 28-3.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_424,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 28-4.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_425,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 28.jpg,Jim Griffiths,,Jim Griffiths-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_426,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 29.jpg,Lynda Monkman,,Lynda Monkman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_427,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 31.jpg,Lynda Monkman,,Lynda Monkman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_428,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 32.jpg,Lynda Monkman,,Lynda Monkman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_429,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 33.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_430,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 34.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_431,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 35.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_432,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 36.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_433,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 37.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_434,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 38.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_435,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 39.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_436,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 40.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_437,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 41.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_438,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 42.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_439,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 43.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_440,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 44.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_441,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 45.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_442,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 46.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_443,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 47.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_444,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 48.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_445,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 49.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_446,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 50.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_447,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 51.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_448,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 52.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_449,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 53.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_450,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 54.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_451,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 55.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_452,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 56.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_453,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 57.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_454,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 58.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_455,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 59.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_456,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 60.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_457,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 61.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_458,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 62.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_459,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 63.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_460,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 64.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_461,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 65.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_462,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 66.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_463,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 67.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_464,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 68.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_465,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 69.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_466,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 70.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_467,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 71.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_468,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 72.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_469,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 73.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_470,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 74.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_471,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 75.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_472,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 76.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_473,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 77.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_474,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 78.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_475,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 79.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_476,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 80.jpg,Justin Cure,,Justin Cure-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_477,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 81.jpg,Brian Hunter,,Brian Hunter-consent,V3,consent_on_file,,,,Digitized signed consent form on file,,2026-09-09,Bayard
+photo_478,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 82.jpg,Brian Hunter,,Brian Hunter-consent,V3,consent_on_file,,,,Digitized signed consent form on file,,2026-09-09,Bayard
+photo_479,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 83.jpg,Louise McQuade,,Louise McQuade-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_480,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 84.jpg,Louise McQuade,,Louise McQuade-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_481,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 85.jpg,Louise McQuade,,Louise McQuade-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_482,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 86.jpg,Louise McQuade,,Louise McQuade-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_483,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 87.jpg,Louise McQuade,,Louise McQuade-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_484,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 88.jpg,Chandra Brown-Erlendson,,Chandra Brown-Erlendson-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_485,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 89.jpg,Chandra Brown-Erlendson,,Chandra Brown-Erlendson-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_486,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 90.jpg,Chandra Brown-Erlendson,,Chandra Brown-Erlendson-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_487,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 91.jpg,Chandra Brown-Erlendson,,Chandra Brown-Erlendson-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_488,assets/shoebox/photos/20260829 Winnipeg regional meeting 2026 92.jpg,,,,V3,,,,,,,,
+photo_489,assets/shoebox/photos/28fa9e04-d73f-4d6f-a127-52546a8fccb6.jpg,May Hupe,,May Hupe-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_490,assets/shoebox/photos/5d5618ce-8dcf-4b8b-87a5-6c192b1de36a.jpg,May Hupe,,May Hupe-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_491,assets/shoebox/photos/6631601f-497c-4c04-9063-669df17253cb.jpg,May Hupe,,May Hupe-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_492,assets/shoebox/photos/FFA60EAC-DF7C-4055-B748-667A4430AB77.jpg,Sheila Kim Chipman,,Sheila Kim Chipman-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_493,assets/shoebox/photos/IMG_2332.jpg,,,,V3,,,,,,,,
+photo_494,assets/shoebox/photos/IMG_2336.jpg,,,,V3,,,,,,,,
+photo_495,assets/shoebox/photos/IMG_2337.jpg,,,,V3,,,,,,,,
+photo_496,assets/shoebox/photos/IMG_2346.jpg,,,,V3,,,,,,,,
+photo_497,assets/shoebox/photos/IMG_2954.jpg,,,,V3,,,,,,,,
+photo_498,assets/shoebox/photos/Winnipeg regional meeting 2026 10.jpg,Carole Zastre,,Carole Zastre-consent,V3,consent_on_file,,,,Digitized consent form on file (Adobe Scan),,2026-09-09,Bayard
+photo_499,assets/shoebox/photos/Winnipeg regional meeting 2026 11.jpg,Carole Zastre,,Carole Zastre-consent,V3,consent_on_file,,,,Digitized consent form on file (Adobe Scan),,2026-09-09,Bayard
+photo_500,assets/shoebox/photos/Winnipeg regional meeting 2026 12.jpg,Carole Zastre,,Carole Zastre-consent,V3,consent_on_file,,,,Digitized consent form on file (Adobe Scan),,2026-09-09,Bayard
+photo_501,assets/shoebox/photos/Winnipeg regional meeting 2026 13.jpg,Carole Zastre,,Carole Zastre-consent,V3,consent_on_file,,,,Digitized consent form on file (Adobe Scan),,2026-09-09,Bayard
+photo_502,assets/shoebox/photos/Winnipeg regional meeting 2026 14.jpg,Carole Zastre,,Carole Zastre-consent,V3,consent_on_file,,,,Digitized consent form on file (Adobe Scan),,2026-09-09,Bayard
+photo_503,assets/shoebox/photos/Winnipeg regional meeting 2026 15.jpg,Carole Zastre,,Carole Zastre-consent,V3,consent_on_file,,,,Digitized consent form on file (Adobe Scan),,2026-09-09,Bayard
+photo_504,assets/shoebox/photos/Winnipeg regional meeting 2026 16.jpg,Carole Zastre,,Carole Zastre-consent,V3,consent_on_file,,,,Digitized consent form on file (Adobe Scan),,2026-09-09,Bayard
+photo_505,assets/shoebox/photos/Winnipeg regional meeting 2026 3.jpg,Carole Zastre,,Carole Zastre-consent,V3,consent_on_file,,,,Digitized consent form on file (Adobe Scan),,2026-09-09,Bayard
+photo_506,assets/shoebox/photos/Winnipeg regional meeting 2026 7.jpg,Carole Zastre,,Carole Zastre-consent,V3,consent_on_file,,,,Digitized consent form on file (Adobe Scan),,2026-09-09,Bayard
+photo_507,assets/shoebox/photos/Winnipeg regional meeting 2026 8.jpg,Carole Zastre,,Carole Zastre-consent,V3,consent_on_file,,,,Digitized consent form on file (Adobe Scan),,2026-09-09,Bayard
+photo_508,assets/shoebox/photos/Winnipeg regional meeting 2026 9.jpg,Carole Zastre,,Carole Zastre-consent,V3,consent_on_file,,,,Digitized consent form on file (Adobe Scan),,2026-09-09,Bayard
+photo_509,assets/shoebox/photos/_MG_2844.jpg,,,,V3,,,,,,,,
+photo_510,assets/shoebox/photos/_MG_2847.jpg,,,,V3,,,,,,,,
+photo_511,assets/shoebox/photos/_MG_2858.jpg,,,,V3,,,,,,,,
+photo_512,assets/shoebox/photos/_MG_2869.jpg,,,,V3,,,,,,,,
+photo_513,assets/shoebox/photos/_MG_2961.jpg,,,,V3,,,,,,,,
+photo_514,assets/shoebox/photos/_MG_2965.jpg,,,,V3,,,,,,,,
+photo_515,assets/shoebox/photos/_MG_2966.jpg,,,,V3,,,,,,,,
+photo_516,assets/shoebox/photos/_MG_2979.jpg,,,,V3,,,,,,,,
+photo_517,assets/shoebox/photos/_MG_2983.jpg,,,,V3,,,,,,,,
+photo_518,assets/shoebox/photos/_MG_2994.jpg,,,,V3,,,,,,,,
+photo_519,assets/shoebox/photos/_MG_3018.jpg,,,,V3,,,,,,,,
+photo_520,assets/shoebox/photos/_MG_3028.jpg,,,,V3,,,,,,,,
+photo_521,assets/shoebox/photos/_MG_3032.jpg,,,,V3,,,,,,,,
+photo_522,assets/shoebox/photos/_MG_3036.jpg,,,,V3,,,,,,,,
+photo_523,assets/shoebox/photos/_MG_3065.jpg,,,,V3,,,,,,,,
+photo_524,assets/shoebox/photos/_MG_3070.jpg,,,,V3,,,,,,,,
+photo_525,assets/shoebox/photos/_MG_3074.jpg,,,,V3,,,,,,,,
+photo_526,assets/shoebox/photos/_MG_3075.jpg,,,,V3,,,,,,,,
+photo_527,assets/shoebox/photos/_MG_3078.jpg,,,,V3,,,,,,,,
+photo_528,assets/shoebox/photos/_MG_3092.jpg,,,,V3,,,,,,,,
+photo_529,assets/shoebox/photos/_MG_3094.jpg,,,,V3,,,,,,,,
+photo_530,assets/shoebox/photos/_MG_3095.jpg,,,,V3,,,,,,,,
+photo_531,assets/shoebox/photos/_MG_3105.jpg,,,,V3,,,,,,,,
+photo_532,assets/shoebox/photos/_MG_3109.jpg,,,,V3,,,,,,,,
+photo_533,assets/shoebox/photos/_MG_3121.jpg,,,,V3,,,,,,,,
+photo_534,assets/shoebox/photos/_MG_3125.jpg,,,,V3,,,,,,,,
+photo_535,assets/shoebox/photos/_MG_3152.jpg,,,,V3,,,,,,,,
+photo_536,assets/shoebox/photos/_MG_3155.jpg,,,,V3,,,,,,,,
+photo_537,assets/shoebox/photos/_MG_3158.jpg,,,,V3,,,,,,,,
+photo_538,assets/shoebox/photos/_MG_3175.jpg,,,,V3,,,,,,,,
+photo_539,assets/shoebox/photos/_MG_3190.jpg,,,,V3,,,,,,,,
+photo_540,assets/shoebox/photos/_MG_3236.jpg,,,,V3,,,,,,,,
+photo_541,assets/shoebox/photos/_MG_3244.jpg,,,,V3,,,,,,,,
+photo_542,assets/shoebox/photos/b55fc877-634d-42a3-bd33-81f409c5c7a5.jpg,May Hupe,,May Hupe-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_543,assets/shoebox/photos/c1f8ee0b-8614-40dd-b63a-18e8531e0467.jpg,May Hupe,,May Hupe-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard
+photo_544,assets/shoebox/photos/e6e8d9a2-63e8-4637-b832-8addda5ff8e2.jpg,May Hupe,,May Hupe-consent,V3,consent_on_file,,,,Digitized consent form on file,,2026-09-09,Bayard

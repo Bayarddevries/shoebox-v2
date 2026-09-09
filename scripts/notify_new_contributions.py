@@ -25,9 +25,9 @@ import datetime
 REPO = os.path.expanduser('/home/bayarddevries/shoebox-v2')
 BACKEND_URL = ('https://script.google.com/macros/s/'
                'AKfycbwx0l2LijEV5MkodZcKMWPGNj5ADiZvS0Yfj9zUsITaEhhoFn_1mzd3jLi-w42qduNe/exec')
-TOKEN_PATH = '/home/bayarddevries/Hermes Agent State/google_token.json'
+TOKEN_PATH = '/home/bayarddevries/.hermes/google_token.json'
 STATE_PATH = os.path.expanduser('~/.hermes/state/shoebox_notify_state.json')
-NOTIFY_EMAILS = ['bayard.devries@mmf.mb.ca', 'metisshoebox@mmf.mb.ca']
+NOTIFY_EMAILS = ['bayarddevries@gmail.com', 'bayard.devries@mmf.mb.ca', 'metisshoebox@mmf.mb.ca']
 
 # Read ADMIN_TOKEN from Code.gs (single source of truth)
 def get_admin_token():

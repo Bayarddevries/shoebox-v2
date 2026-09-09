@@ -42,6 +42,7 @@
 
 import fs from 'fs'
 import path from 'path'
+import crypto from 'crypto'
 import { execSync } from 'child_process'
 import { fileURLToPath } from 'url'
 import { mergeContributions } from './merge_contributions.js'
@@ -75,6 +76,17 @@ function resolveExiftool() {
 }
 
 const EXIFTOOL = resolveExiftool()
+
+// ─── Stable photo IDs ───────────────────────────────────────────────────────
+// Photo IDs are DERIVED FROM THE FILENAME (sha1 prefix), NOT the array index.
+// This keeps IDs stable when new photos are added or the sort order changes.
+// Old index-based IDs (photo_1, photo_2, ...) were unstable: every manifest
+// regeneration after adding photos renumbered everything, so submission and
+// consent records that referenced photo_XXX pointed at the WRONG photos.
+function stablePhotoId(filename) {
+  const hash = crypto.createHash('sha1').update(filename).digest('hex')
+  return `photo_${hash.slice(0, 10)}`
+}
 
 // ─── Province Normalization ─────────────────────────────────────────────────
 
@@ -603,8 +615,8 @@ const photos = imageFiles.map((filename, index) => {
   if (submitter) statsCount.submitter++
 
   return {
- id: `photo_${index + 1}`,
- src: `assets/shoebox/photos/${filename}`,
+    id: stablePhotoId(filename),
+    src: `assets/shoebox/photos/${filename}`,
  alt: filename,
  title: title,
  caption: caption,
@@ -661,11 +673,6 @@ photos.sort((a, b) => {
   if (a.year) return -1
   if (b.year) return 1
   return a.title.localeCompare(b.title)
-})
-
-// ── Reassign IDs after sort ──
-photos.forEach((photo, index) => {
-  photo.id = `photo_${index + 1}`
 })
 
 // ── Build manifest ──
