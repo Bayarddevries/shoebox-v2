@@ -524,7 +524,8 @@ const photos = imageFiles.map((filename, index) => {
 
   // ── Step 3b: Submitter from IPTC Copyright/Rights ──
   const rawCopyright = String(exifPick(exif, ['IFD0:Copyright', 'EXIF:Copyright', 'XMP-dc:Rights', 'IPTC:CopyrightNotice', 'Copyright']) || '').trim()
-  const submitterMatch = rawCopyright.match(/Submitted by\s+(.+)/i)
+  // Accept both "© Submitted by <Name>" (submitter) and "© Photographed by <Name>" (photographer-as-submitter)
+  const submitterMatch = rawCopyright.match(/(?:Submitted by|Photographed by)\s+(.+)/i)
   const submitter = submitterMatch ? submitterMatch[1].trim() : null
 
   // ── Step 4: Location from IPTC structured fields ──
