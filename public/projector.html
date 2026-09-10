@@ -659,18 +659,64 @@
     document.getElementById('progressFill').style.width = ((idx + 1) / filtered.length * 100) + '%';
     document.getElementById('counter').textContent = (idx + 1) + ' / ' + filtered.length;
 
-    // Preload next
-    const nextIdx = (idx + 1) % filtered.length;
-    if (filtered[nextIdx]) {
-      const pre = new Image();
-      pre.src = base + encodePath(filtered[nextIdx].src);
-    }
+    // Preload the next TWO images with decode-completion tracking, so the
+    // layer swap below never waits on the network mid-slide. Each preloaded
+    // entry resolves when its bytes are fetched AND decoded (async decode).
+    preloadDecodeAhead(idx, 2);
 
     // Apply transition based on transition setting
     applyImageToLayer(url, faceX, faceY, photo, idx);
   }
 
+  // ─── Image decode-ahead ───
+  // Keep a small ring of decoded Images ahead of the active index so the
+  // slide change is instant on the floor. `new Image()` + setting .src warms
+  // the browser's decode cache; `decode()` gives us an explicit readiness
+  // signal without rendering.
+  const preloadCache = new Map(); // url -> Promise<Image>
+  function preloadImage(url) {
+    if (preloadCache.has(url)) return preloadCache.get(url);
+    const p = new Promise((resolve) => {
+      const img = new Image();
+      img.decoding = 'async';
+      img.onload = () => { try { img.decode().then(() => resolve(img)).catch(() => resolve(img)); } catch (e) { resolve(img); } };
+      img.onerror = () => resolve(null);
+      img.src = url;
+    });
+    preloadCache.set(url, p);
+    // Bound the cache: drop old entries (they're decoded; browser cache holds them)
+    if (preloadCache.size > 8) {
+      const first = preloadCache.keys().next().value;
+      preloadCache.delete(first);
+    }
+    return p;
+  }
+  function preloadDecodeAhead(idx, count) {
+    for (let i = 1; i <= count; i++) {
+      const p = filtered[(idx + i) % filtered.length];
+      if (p) {
+        const base = window.location.pathname.includes('/shoebox-v2/') ? '/shoebox-v2/' : '/';
+        preloadImage(base + encodePath(p.src));
+      }
+    }
+  }
+  // Ensure the ACTIVE image is decoded before the layer swap paints it —
+  // if it isn't ready yet, hold the current frame (no black gap) until it is.
+  function decodeForLayer(url, fallbackIdx) {
+    if (preloadCache.has(url)) return preloadCache.get(url);
+    return preloadImage(url);
+  }
+
+  // ─── Layer swap state ───
+  // Because the swap now waits for decode, two loadPhoto calls can overlap
+  // (remote jump + local advance). A serial token makes the newest request
+  // win: each call captures its token, and only the call whose token is still
+  // current gets to flip activeLayer when its decode resolves. Older decodes
+  // that resolve later are ignored (no double-flip, no crossed layers).
+  let swapToken = 0;
+
   function applyImageToLayer(url, faceX, faceY, photo, idx) {
+    const token = ++swapToken;
     // Face-anchored Ken Burns ONLY when faceTrack is on — the transform-origin
     // must pivot exactly where the static background-position is anchored
     // (face % when tracking, center otherwise), or the zoom swings off-face.
@@ -697,38 +743,43 @@
     // Force reflow so the animation below restarts cleanly
     void incoming.offsetHeight;
 
-    // Ken Burns / fade / slide keyframes control opacity themselves (fade in →
-    // hold → fade out over exactly one advance interval), so we never force
-    // opacity here. The outgoing layer keeps playing its own fade-out while
-    // the incoming fades in on top = smooth crossfade, no instant cut.
-    if (transition === 'kenburns') {
-      incoming.style.setProperty('--kb-from', kb.from);
-      incoming.style.setProperty('--kb-to', kb.to);
-      incoming.style.animation = `kenBurnsFade ${speedMs}ms ease-in-out both`;
-      incoming.style.transformOrigin = kb.origin || 'center';
-    } else if (transition === 'fade') {
-      incoming.style.animation = `fadeInOut ${speedMs}ms ease-in-out both`;
-      incoming.style.transform = 'none';
-    } else if (transition === 'slide') {
-      incoming.style.animation = `slideInOut ${speedMs}ms ease-in-out both`;
-      incoming.style.transform = 'translateX(0)';
-    } else if (transition === 'cut') {
-      incoming.style.animation = 'none';
-      incoming.style.opacity = '1';
-      incoming.style.transform = 'scale(1)';
-    } else if (transition === 'wipe') {
-      incoming.style.animation = 'fadeIn 0.8s ease-in-out both';
-      incoming.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
-      // Simple wipe simulation: fade overlay
-    }
-
-    if (transition === 'cut') {
-      // Hard cut: drop the old image instantly (that IS the transition).
-      outgoing.style.opacity = '0';
-    }
-    outgoing.style.zIndex = '1';
-
-    activeLayer = activeLayer === 'a' ? 'b' : 'a';
+    // Hold the swap until the incoming image is actually decoded — otherwise
+    // the browser paints the layer as soon as the URL is set, showing a
+    // partial/blank frame while the (possibly multi-MB) image decodes. The
+    // previous slide's last frame stays visible during the wait; the 14%
+    // fade-in then covers the reveal. decodeForLayer resolves from the
+    // preload ring when possible (no extra network fetch).
+    decodeForLayer(url).then(() => {
+      if (token !== swapToken) return;      // superseded by a newer slide
+      if (activePhotoIdx !== idx) return;   // safety
+      if (!incoming.isConnected) return;
+      if (transition === 'kenburns') {
+        incoming.style.setProperty('--kb-from', kb.from);
+        incoming.style.setProperty('--kb-to', kb.to);
+        incoming.style.animation = `kenBurnsFade ${speedMs}ms ease-in-out both`;
+        incoming.style.transformOrigin = kb.origin || 'center';
+      } else if (transition === 'fade') {
+        incoming.style.animation = `fadeInOut ${speedMs}ms ease-in-out both`;
+        incoming.style.transform = 'none';
+      } else if (transition === 'slide') {
+        incoming.style.animation = `slideInOut ${speedMs}ms ease-in-out both`;
+        incoming.style.transform = 'translateX(0)';
+      } else if (transition === 'cut') {
+        incoming.style.animation = 'none';
+        incoming.style.opacity = '1';
+        incoming.style.transform = 'scale(1)';
+      } else if (transition === 'wipe') {
+        incoming.style.animation = 'fadeIn 0.8s ease-in-out both';
+        incoming.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+        // Simple wipe simulation: fade overlay
+      }
+      if (transition === 'cut') {
+        // Hard cut: drop the old image instantly (that IS the transition).
+        outgoing.style.opacity = '0';
+      }
+      outgoing.style.zIndex = '1';
+      activeLayer = activeLayer === 'a' ? 'b' : 'a';
+    });
   }
 
   function getKenBurns(idx, faceX, faceY, zoom) {
