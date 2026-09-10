@@ -606,6 +606,7 @@
   let lastGalleryKey = '';
   let swiped = false;
   let lastStateTime = Date.now();
+  let lastUserActivity = 0;
   const nameCycleList = ['Lafferty', 'Chartrand', 'Mercredi', 'Anderson', 'Cousineau', 'Dejarlais', 'Starmer', 'Nault', 'Monkman', 'Parisian', 'Flett', 'Boucher', 'Cook', 'Carney', 'Mercredi'];
   let nameCycleIdx = 0;
 
@@ -1325,16 +1326,22 @@
     startPolling();
     startIdleTimer();
 
-    // Wake on any touch. The gesture that dismisses the screensaver must
-    // never also press a control underneath: while in attract, EVERY touch
-    // arms the suppression window, so the click completing the wake gesture
-    // is swallowed no matter what it lands on. A separate, deliberate tap is
-    // then required to press a button/pile/chip.
+    // Wake on any pointer press (touch, pen, or mouse — touchstart alone
+    // misses mouse-driven setups and some browser tap translations). The
+    // gesture that dismisses the screensaver must never also press a control
+    // underneath: while in attract, EVERY press arms the suppression window,
+    // so the click completing the wake gesture is swallowed no matter what it
+    // lands on. A separate, deliberate tap is then required to press a
+    // button/pile/chip. Any interaction also counts as "alive" so the kiosk
+    // watchdog never reloads the page mid-use.
     let suppressClicksUntil = 0;
-    document.addEventListener('touchstart', function() {
+    function armWake() {
+      lastUserActivity = Date.now();
       if (isAttract) suppressClicksUntil = Date.now() + 500;
       wakeFromAttract();
-    });
+    }
+    document.addEventListener('pointerdown', armWake);
+    document.addEventListener('touchstart', armWake); // fallback for older engines
     document.addEventListener('click', function(e) {
       if (Date.now() < suppressClicksUntil) {
         suppressClicksUntil = 0;
@@ -1347,10 +1354,13 @@
     }, true);
 
     // Kiosk watchdog: if the state feed goes quiet for 12s while the page is
-    // visible, reload. Recovers from wedged timers / suspended tabs so the
-    // controller never stays dead on a museum floor.
+    // visible AND the visitor hasn't touched it, reload. Recovers from wedged
+    // timers / suspended tabs so the controller never stays dead on a museum
+    // floor — but never yanks the page out from under an active user.
     setInterval(() => {
-      if (document.visibilityState === 'visible' && Date.now() - lastStateTime > 12000) {
+      if (document.visibilityState === 'visible' &&
+          Date.now() - lastStateTime > 12000 &&
+          Date.now() - lastUserActivity > 12000) {
         location.reload();
       }
     }, 5000);
