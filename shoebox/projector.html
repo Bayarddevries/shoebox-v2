@@ -442,6 +442,18 @@
     applySettingsFromRemote(remote);
   }
 
+  // Report the projector's current index to the state server so the
+  // controller's gallery and "now showing" highlight the same photo that's on
+  // the big screen. Fire-and-forget; the next poll confirms it.
+  function reportIndex(idx) {
+    if (!isExhibit || !exhibitServer) return;
+    fetch(`${exhibitServer}/state`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ currentIndex: idx })
+    }).catch(() => {});
+  }
+
   function applySettingsFromRemote(remote) {
     let changed = false;
     if (remote.speed && remote.speed !== speedMs) {
@@ -746,18 +758,17 @@
   }
 
   // ─── Playback controls ───
-  // Start/restart the auto-advance countdown. In exhibit mode the big screen
-  // is a PURE FOLLOWER: the controller drives currentIndex through the state
-  // server, so no local advance timer runs while the server is healthy. The
-  // timer only runs in standalone mode or when the server is lost (local
-  // fallback) — otherwise the local timer and the remote index fight and the
-  // display jumps. The advance interval EQUALS the slide animation duration,
-  // so a slide's fade-out overlaps the next slide's fade-in (continuous
-  // crossfade, never a mid-zoom cut).
+  // Start/restart the auto-advance countdown. The projector is the DRIVER of
+  // the slideshow: it advances through the server's photoIds (the same order
+  // the controller's thumbnail gallery shows) and posts each new index back to
+  // the server, so the controller's active thumb and "now showing" stay in
+  // sync. The controller only jumps the index when a visitor taps a photo —
+  // it has no auto-advance of its own. The advance interval EQUALS the slide
+  // animation duration, so a slide's fade-out overlaps the next slide's
+  // fade-in (continuous crossfade, never a mid-zoom cut).
   function scheduleAdvance() {
     if (timerId) clearTimeout(timerId);
     timerId = null;
-    if (isExhibit && !inLocalFallback) return;
     if (playing && filtered.length > 1) {
       timerId = setTimeout(nextSlide, speedMs);
     }
@@ -766,12 +777,14 @@
   function nextSlide() {
     if (filtered.length === 0) return;
     loadPhoto((activePhotoIdx + 1) % filtered.length);
+    reportIndex(activePhotoIdx);
     scheduleAdvance();
   }
 
   function prevSlide() {
     if (filtered.length === 0) return;
     loadPhoto((activePhotoIdx - 1 + filtered.length) % filtered.length);
+    reportIndex(activePhotoIdx);
     scheduleAdvance();
   }
 
