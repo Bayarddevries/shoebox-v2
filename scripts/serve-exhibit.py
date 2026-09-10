@@ -12,7 +12,7 @@ from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
 PORT = 8082
-ROOT = os.path.expanduser('~/projects/Shoebox V2/public')
+ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'public'))
 
 
 class NoCacheHandler(SimpleHTTPRequestHandler):

@@ -91,7 +91,12 @@ def detect_faces_yunet(detector, photo_path, input_size=(320, 320)):
         return None
 
     h, w = img.shape[:2]
-    detector.setInputSize(input_size)
+    # OpenCV 5 YuNet REQUIRES the input size to match the actual image.
+    # Rather than resize every photo to 320 (which loses small faces), we
+    # scale the DETECTOR to the image's real dimensions, then normalize.
+    # YuNet returns boxes in the input-image coordinate space, so with
+    # setInputSize((w, h)) the box coords are image pixels: normalize by /w,/h.
+    detector.setInputSize((w, h))
     _, faces = detector.detect(img)
 
     if faces is None or len(faces) == 0:
@@ -99,15 +104,11 @@ def detect_faces_yunet(detector, photo_path, input_size=(320, 320)):
 
     # Use the face with highest confidence
     best = max(faces, key=lambda f: float(f[4]))
-    # best[0:4] = x, y, w, h (relative to input_size, need to scale to image)
+    # best[0:4] = x, y, w, h — in IMAGE PIXELS (input size = image size)
     fx, fy, fw, fh = best[0:4]
 
-    # Scale back to actual image dimensions
-    scale_x = w / input_size[0]
-    scale_y = h / input_size[1]
-
-    face_x = ((fx * scale_x) + (fw * scale_x) / 2) / w
-    face_y = ((fy * scale_y) + (fh * scale_y) / 2) / h
+    face_x = (fx + fw / 2) / w
+    face_y = (fy + fh / 2) / h
 
     return {"faceX": round(face_x, 3), "faceY": round(face_y, 3)}
 
@@ -179,7 +180,11 @@ def main():
         try:
             result = detect_faces(filepath, detector, mode)
             if result:
-                results[filename] = result
+                # OpenCV returns numpy float32; JSON needs plain Python floats
+                results[filename] = {
+                    "faceX": float(result["faceX"]),
+                    "faceY": float(result["faceY"]),
+                }
         except Exception as e:
             print(f"  Warning: {filename}: {e}", file=sys.stderr)
 
