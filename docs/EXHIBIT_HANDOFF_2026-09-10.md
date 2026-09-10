@@ -37,20 +37,41 @@ the full architecture, the rejected-design list, and the face-detection saga).
   present 2-3 polished directions as static mockups, let Bayard pick, THEN
   build ONE. Do not iterate blindly on the table again.
 
-### 2. Projector page — images are JUMPY, needs to be buttery smooth
-- "images can appear jumpy on the projector page... it sometimes jumps quickly
+### 2. Projector page — images are JUMPY, needs to be buttery smooth ✅ FIXED 2026-09-10 night
+- ~~"images can appear jumpy on the projector page... it sometimes jumps quickly
   from one image to the next even without changing the speed. This needs to be
-  bullet proof for display."
-- Likely suspects (verify, don't assume): slide advance timing vs Ken Burns
-  animation duration mismatch (animation is 6.5-8.5s but speed may advance
-  sooner, causing a visible cut mid-zoom); `transition` classes not re-triggered
-  cleanly between slides (reflow/class-token race); preload of the next image
-  missing so the next layer pops in; exhibit-server speed clamp (5000ms) vs
-  projector's own timer; GPU compositing hiccups from two layers crossfading
-  with transform-origin changes mid-transition.
-- Acceptance: NO visible jump between slides at any speed; Ken Burns must
-  always be mid-motion when the crossfade starts; preload next image; verify on
-  the real tablet/big screen, not just headless.
+  bullet proof for display."~~
+- Root causes found + fixed (commit `f8eb50d` + correction `87cd9b5`):
+  1. **No crossfade at all** — incoming layer opacity forced to 1 instantly,
+     outgoing zeroed instantly (hard cut every slide).
+  2. **Ken Burns interrupted mid-zoom** — animation was `speedMs + 1500` while
+     the advance timer fired at `speedMs`, cutting every zoom at ~77%.
+  3. **Double-advance bug** — the self-scheduled timer pre-incremented
+     `activePhotoIdx` and `nextSlide` incremented again (counter jumped
+     2→4→6, skipping every other photo).
+  4. **Zoom swing** — transform-origin used the face% even when faceTrack was
+     off while background-position stayed center (origin now always matches
+     bg-position: face% only when faceTrack, else center).
+- Fix: each slide animation (`kenBurnsFade`/`fadeInOut`/`slideInOut`) lasts
+  EXACTLY one advance interval with fade-in at 0-14% and fade-out at 86-100%;
+  the next slide's fade-in overlaps the current fade-out = continuous
+  crossfade. Single `scheduleAdvance()` helper (advance interval == animation
+  duration).
+- ⚠️ ARCHITECTURE (corrected after `f8eb50d` froze the show — commit `87cd9b5`):
+  the PROJECTOR is the DRIVER of the slideshow. It auto-advances through the
+  SERVER's photoIds order (same order as the controller's thumbnail gallery)
+  and posts each new currentIndex to the state server (`reportIndex`), so the
+  controller's active thumb + now-showing highlight the same photo. The
+  controller has NO auto-advance — it only posts currentIndex on user taps
+  (jumpTo / prev / next / swipe). Do NOT remove the projector's timer or
+  reportIndex "to stop the fight" — that desyncs the screens.
+- Verified live: projector advances (timer active), server index moves
+  0→2→4, controller's 1.5s poll picks it up, woken gallery highlights
+  activeIdx == server currentIndex with the matching photo. Remote taps still
+  jump + restart the countdown for a full display cycle.
+- ⚠️ BAYARD to confirm the feel on the real big screen/tablet (his acceptance:
+  no visible jump at any speed). Speeds 3s/5s/7s/10s/15s all animate at the
+  same cadence now.
 
 ### 3. Related-photos popup (click active image on controller) — pixelated, unclear
 - When an image is active and you click it, a menu pops up showing RELATED
