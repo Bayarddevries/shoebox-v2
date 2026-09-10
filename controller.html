@@ -425,12 +425,18 @@
     #detailOverlay.open { display: flex; }
     #detailOverlay .detail-close {
       align-self: flex-end;
-      background: none; border: 1px solid rgba(255,255,255,0.1);
-      color: var(--cream); padding: 0.4rem 0.9rem; border-radius: 8px;
-      font-family: var(--font-kicker); font-size: 0.6rem;
-      cursor: pointer; margin-bottom: 0.6rem;
-      min-height: 44px;
+      background: rgba(10,10,10,0.6); border: 1px solid rgba(255,255,255,0.18);
+      color: var(--cream); padding: 0.55rem 1.2rem; border-radius: 10px;
+      font-family: var(--font-kicker); font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer; margin-bottom: 0.7rem;
+      min-height: 48px; min-width: 96px;
+      display: flex; align-items: center; justify-content: center; gap: 0.45rem;
     }
+    .detail-close .close-x { font-size: 1rem; line-height: 1; }
+    /* Tap anywhere on the dark backdrop to dismiss — the close button is
+       backup, the whole overlay is the target. */
+    #detailOverlay .detail-close:active { background: rgba(139,0,0,0.5); }
     #detailOverlay .detail-photo {
       flex: 1; min-height: 42vh;
       background-size: contain; background-repeat: no-repeat;
@@ -474,6 +480,15 @@
       width: 100%; aspect-ratio: 4 / 3;
       background-size: cover; background-position: center;
     }
+    .related-card .rc-badge {
+      position: absolute; top: 0.4rem; left: 0.4rem; z-index: 2;
+      background: rgba(10,10,10,0.82); border: 1px solid var(--gold);
+      color: var(--gold); font-family: var(--font-kicker);
+      font-size: 0.52rem; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.22rem 0.5rem; border-radius: 999px;
+      pointer-events: none; backdrop-filter: blur(4px);
+    }
+    .related-card .rc-photo-wrap { position: relative; }
     .related-card .rc-info {
       padding: 0.45rem 0.55rem 0.55rem;
     }
@@ -561,9 +576,9 @@
     </div>
   </div>
 
-  <!-- Detail overlay -->
+  <!-- Detail overlay: tap the dark backdrop OR swipe down to dismiss -->
   <div id="detailOverlay">
-    <button class="detail-close" onclick="closeDetail()">CLOSE</button>
+    <button class="detail-close" onclick="closeDetail()"><span class="close-x">&#10005;</span> Close</button>
     <div class="detail-photo" id="detailPhoto"></div>
     <div class="detail-info">
       <div class="detail-title" id="detailOverlayTitle"></div>
@@ -1109,24 +1124,58 @@
     resetIdle();
   }
 
-  // ─── Related photos (same people, community, or keywords) ───
+  // Dismiss the detail overlay by tapping anywhere on the dark backdrop
+  // (the photo + info area) — the CLOSE button is the backup. Taps on the
+  // related cards still select, they don't dismiss.
+  document.getElementById('detailOverlay').addEventListener('click', function(e) {
+    if (!isDetailOpen) return;
+    if (e.target.closest('.related-card')) return;
+    closeDetail();
+  });
+
+  // Swipe down on the overlay to dismiss (feels natural on a tablet).
+  let detailSwipeY = null;
+  document.getElementById('detailOverlay').addEventListener('touchstart', function(e) {
+    detailSwipeY = e.touches[0].clientY;
+  }, { passive: true });
+  document.getElementById('detailOverlay').addEventListener('touchmove', function(e) {
+    if (detailSwipeY == null || !isDetailOpen) return;
+    const dy = e.touches[0].clientY - detailSwipeY;
+    if (dy > 90) { detailSwipeY = null; closeDetail(); }
+  }, { passive: true });
+
+  // ─── Related photos (same people, community, year, or keywords) ───
+  // Returns [{ p, score, reasons[] }] — reasons are the human-readable
+  // connection labels shown on each card so visitors understand WHY a photo
+  // is related (same people / community / year / keyword).
   function computeRelated(p, max) {
     if (!p) return [];
     const people = (p.people || '').split(';').map(s => s.trim().toLowerCase()).filter(Boolean);
     const comm = (p.community || '').toLowerCase();
+    const year = p.year ? Math.round(Number(p.year)) : null;
     const kws = (p.keywords || []).map(k => k.toLowerCase());
     const scored = [];
     for (const q of photos) {
       if (q.id === p.id) continue;
       const qp = (q.people || '').split(';').map(s => s.trim().toLowerCase()).filter(Boolean);
       let score = 0;
-      if (people.length && qp.length && people.some(x => qp.some(y => y.includes(x) || x.includes(y)))) score += 3;
-      if (comm && (q.community || '').toLowerCase() === comm) score += 2;
-      if (kws.length && (q.keywords || []).some(k => kws.includes(k.toLowerCase()))) score += 1;
-      if (score > 0) scored.push({ p: q, score });
+      const reasons = [];
+      // Shared people: strongest signal — find the actual shared name(s)
+      if (people.length && qp.length) {
+        const shared = people.filter(x => qp.some(y => y.includes(x) || x.includes(y)));
+        if (shared.length) { score += 3; reasons.push('Same people'); }
+      }
+      // Same community
+      if (comm && (q.community || '').toLowerCase() === comm) { score += 2; reasons.push('Same community'); }
+      // Same year (within ±1 for c. approximations)
+      const qy = q.year ? Math.round(Number(q.year)) : null;
+      if (year != null && qy != null && Math.abs(qy - year) <= 1) { score += 2; reasons.push('Same year'); }
+      // Shared keyword
+      if (kws.length && (q.keywords || []).some(k => kws.includes(k.toLowerCase()))) { score += 1; reasons.push('Shared keyword'); }
+      if (score > 0) scored.push({ p: q, score, reasons });
     }
     scored.sort((a, b) => b.score - a.score);
-    return scored.slice(0, max || 24).map(s => s.p);
+    return scored.slice(0, max || 24);
   }
 
   function showRelated(p) {
@@ -1135,24 +1184,37 @@
     if (!rel.length) { section.classList.add('hidden'); return; }
     section.classList.remove('hidden');
     document.getElementById('relatedCount').textContent = `(${rel.length})`;
-    document.getElementById('relatedStrip').innerHTML = rel.map(q => {
+    document.getElementById('relatedStrip').innerHTML = rel.map(({ p: q, reasons }) => {
       const meta = [q.year ? `c.${q.year}` : '', q.community || ''].filter(Boolean).join(' · ');
       const pos = (q.faceX != null && q.faceY != null) ? `${q.faceX * 100}% ${q.faceY * 100}%` : '50% 50%';
+      const reason = reasons.length ? reasons[0] : 'Related';
       return `<div class="related-card" data-id="${q.id}">
-        <div class="rc-photo" style="background-image:url('${thumbUrl(q)}');background-position:${pos}"></div>
+        <div class="rc-photo-wrap">
+          <div class="rc-badge">${esc(reason)}</div>
+          <div class="rc-photo" data-full="${esc(fullUrl(q))}" data-thumb="${esc(thumbUrl(q))}" style="background-image:url('${thumbUrl(q)}');background-position:${pos}"></div>
+        </div>
         <div class="rc-info">
           <div class="rc-title">${esc(q.title || q.alt || '')}</div>
           <div class="rc-meta">${meta}</div>
         </div>
       </div>`;
     }).join('');
+    // Upgrade each related photo from thumb to full-res after the grid paints
+    // (thumb shows instantly, full image sharpens in place — no pixelation)
+    document.querySelectorAll('#relatedStrip .rc-photo').forEach(el => {
+      const full = el.dataset.full;
+      if (!full) return;
+      const img = new Image();
+      img.onload = () => { el.style.backgroundImage = `url(${full})`; };
+      img.src = full;
+    });
   }
 
   document.getElementById('relatedStrip').addEventListener('click', function(e) {
     const item = e.target.closest('.related-card');
     if (!item) return;
     const rel = computeRelated(currentPhoto, 24);
-    const ids = [currentPhoto.id].concat(rel.map(q => q.id));
+    const ids = [currentPhoto.id].concat(rel.map(r => r.p.id));
     const idx = ids.indexOf(item.dataset.id);
     postState({ photoIds: ids, currentIndex: Math.max(idx, 0) });
     closeDetail();
