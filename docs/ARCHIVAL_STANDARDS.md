@@ -83,20 +83,25 @@ Every acquisition (event batch, mail-in, drop-off, individual gift) gets a
 outside the repo, not yet operative) becomes the operative register; one row
 per batch. Move it into `docs/` or `scripts/` when it goes live.
 
-### 2.2 Item-level IDs
+### 2.2 Every photo has its own permanent name (ID)
 
-Every photo has a stable, permanent identifier that survives renames and
-re-exports:
+Every photo in the archive gets a permanent ID that never changes — no
+matter how many photos we add later, or what else changes.
 
-- **Stable photo ID:** `photo_<sha1(filename).slice(0,10)>` (derived from
-  filename, never index-based). This is the ID used in submissions, consent
-  register, and claim links. Adding photos never changes existing IDs;
-  renaming a file changes its ID, so filenames are frozen once ingested.
-- **Human reference:** the Lightroom filename itself (e.g.
-  `20260417 AlfredAnderson 39.jpg`) is the working reference in daily use.
+- **The archive ID:** a short code like `photo_6248a99112`. This is the
+  photo's private name inside the archive. It is how we keep track of the
+  photo in submissions, consent records, and the claim links citizens use to
+  review their own photos. The code is built from the file's name, so the
+  same photo always has the same ID. Adding new photos never changes the
+  IDs of photos we already have.
+- **The everyday name:** the Lightroom filename (for example,
+  `20260417 AlfredAnderson 39.jpg`) is what we actually use day to day. It
+  already tells you who submitted the photo and roughly when.
 
-**Rule:** never reintroduce index-based IDs. The stable-hash scheme is the
-only ID source.
+**The one rule that protects all of this:** once a photo is in the archive,
+its filename never changes. If a file is renamed, its archive ID changes
+too — and that would break the links to its consent record, submission, and
+claim link. So filenames are frozen once a photo is ingested.
 
 ---
 
@@ -167,10 +172,30 @@ not have consented, treat it as sensitive and review before public display.
 Flag such photos. This is the single biggest legal gap in the system and the
 priority for legal review with Fillmore Riley.
 
+**How it works in practice:** flagged photos go to the restricted/sensitive
+tier (§8), the project lead reviews them, and anything unresolved stays off
+the public site. Flagging happens at intake or during the metadata review;
+the consent register notes the flag.
+
 ### 3.5 Takedown
 
 The operative Takedown Policy (docs/TAKEDOWN_POLICY.md) governs removal.
 Every takedown is logged.
+
+### 3.6 Rights for photos with no living contributor
+
+Most photos come with a signed consent form from the contributor. Two
+situations need a defined default:
+
+- **Contributor is deceased:** a family member signs the consent form on
+  the contributor's behalf before the photos are ingested.
+- **Copyright holder unknown:** photos with no identifiable holder (or
+  no one able to sign) are treated as restricted — not displayed publicly —
+  until the rights question is resolved. The project lead decides; legal
+  (Fillmore Riley) reviews anything uncertain.
+
+This default protects the archive: better to hold a photo back than to
+display it without clear rights.
 
 ---
 
@@ -221,14 +246,55 @@ entered in Lightroom; the manifest is generated, never hand-edited.
 
 ### 4.1 Keyword categories
 
-- People & Roles: louis riel, guillaume sayer, elder, child, family
-- Places: turtle mountain, st laurent, red river, batoche
-- Objects & Artifacts: beadwork, fur stretcher, red river cart, scout jacket
-- Themes: resistance, ceremony, homesteading, storytelling
-- Language & Culture: michif, oral history, french, english
-- Quality: HR (high-res, display-ready) / LR (low-res, unfit for enlargement)
-- Time: year + year range (e.g. 2025, 2000-2025; best-estimate range when
-  exact year unknown)
+Keywords are how the archive remembers what matters: who was there, what
+was happening, what gathering it came from. Tag freely and generously —
+more tags mean the archive is easier to search, sort, and build exhibits
+from. The categories below are a guide, not a cage.
+
+1. **Events & Gatherings** — the biggest and most personal category. Tag
+   the event name + year so a whole batch stays findable together:
+   `Ste. Madeleine Métis Days 2026`, `Winnipeg Regional Meeting 2026`,
+   `AGA 2024`, `NIPD`, `Louis Riel Day`, `wedding`, `funeral`, `gathering`.
+   (Event tags were the top keywords in the live archive — this category
+   just puts a name on what we already do.)
+2. **People & Roles** — names (louis riel, guillaume sayer) and roles
+   (elder, child, Minister, veteran, President Chartrand). People are also
+   tagged by name in the `people` field; role keywords help exhibits
+   ("veterans", "Ministers").
+3. **Places** — turtle mountain, st laurent, red river, batoche, Ste.
+   Madeleine, Duck Bay, Stony Rapids, Selkirk, San Clara. Place also lives
+   in the location fields; keywords catch places that matter culturally
+   even when the photo wasn't taken there (e.g. a family's home
+   community).
+4. **Objects & Artifacts** — beadwork, fur stretcher, red river cart,
+   scout jacket, fiddle, trapper cabin, cart wheel.
+5. **Themes & Activities** — resistance, ceremony, homesteading,
+   storytelling, military service, agriculture, fishing, trapping, school,
+   church, winter, outdoors, home, family. These are the exhibit hooks:
+   "flag military images", "flag agricultural images" is exactly this
+   category.
+6. **Language & Culture** — michif, oral history, french, english. Still
+   thin in the archive; grows as audio stories arrive.
+7. **Technical** — HR (high-res, display-ready) / LR (low-res, unfit for
+   enlargement), black and white, scanned in house, year + year range
+   (e.g. 2025, 2000-2025; best-estimate range when the exact year is
+   unknown).
+
+**Rules that keep keywords healthy:**
+
+- **Lowercase everything.** `outdoors` and `Outdoors` are the same tag to
+  the archive; a capitalized variant splits the filter and makes counts
+  lie. Enter lowercase, and fix existing capital variants at source
+  (Lightroom find-replace) rather than in the manifest.
+- **Tag freely, tag generously.** More description is better when sorting
+  and filtering. Event names, themes, and objects are all welcome — no
+  need to stay inside one bucket.
+- **Never delete a keyword from Lightroom to fix a leak.** If a keyword
+  shows up as a fake family in the people filter, add it to the blocklist
+  in `generate_manifest.js` instead.
+- **QA after every manifest regen:** run a keyword variant check (same
+  idea as the place-name check) to catch new case splits before they
+  accumulate.
 
 ---
 
@@ -239,24 +305,22 @@ and themes are authority-controlled so variants collapse.
 
 ### 5.1 Place names
 
-- Canonical spellings are decided and locked (2026-09-02):
-  - St. Lazare (not St. Lazar)
-  - Ste. Madeleine (canonical)
-  - Fond du Lac province → Saskatchewan
-  - Rooster Town stays its own community
-  - Sublocations stay under their city
-- Live variant counts (check_metadata.js, 2026-09-10 — run it again after any
-  regen; do not trust numbers in this doc over the live tool):
-  - Cemetary → Cemetery (54)
-  - Fort Gary → Fort Garry (10)
-  - Assinaboia → Assiniboia (10)
-  - "Monument to the Victory at Frog" → Frog Plain (3)
-  - Canaada/Territoties/canada (3 total: Canada 1, Northwest Territories 1,
-    plus variants)
-  - Fort Rae (1), Hydroelectric Station (1), behind Duck Bay (1)
-  - Total 82 values need canonical fix
-- `place-aliases.json` (alias table) collapses variants in display even if
-  IPTC still holds them.
+**Rule:** one place, one spelling. Enter the official spelling in Lightroom
+(City / Sub-location / Province); fix variants at the source, never in the
+manifest (the manifest is generated and would just be overwritten). When
+unsure whether a name is official, flag it for the archive lead — don't
+guess. `place-aliases.json` is a safety net that collapses old spellings in
+display, but it doesn't replace fixing the source.
+
+**Locked spellings (2026-09-02):** St. Lazare (not St. Lazar), Ste.
+Madeleine, Fond du Lac = Saskatchewan, Rooster Town stays its own community,
+sublocations stay under their city.
+
+**Live variants (check_metadata.js, 2026-09-10 — re-run after regens):**
+Cemetary → Cemetery (54), Fort Gary → Fort Garry (10), Assinaboia →
+Assiniboia (10), "Victory at Frog" → Frog Plain (3), Canaada/Territoties/
+canada (3), Fort Rae (1), Hydroelectric Station (1), behind Duck Bay (1).
+Total: 82.
 
 ### 5.2 Personal names
 
@@ -268,12 +332,26 @@ and themes are authority-controlled so variants collapse.
 - Authority list maintained as people are added; future addition to link to
   the Métis Research Wiki entity pages.
 
-### 5.3 Themes
+### 5.3 Theme keywords
 
-- Keyword blocklist (in `generate_manifest.js`) prevents descriptor leakage
-  into the family filter: place prefixes, `/family$/`, `/^métis /`, `/uniform/i`,
-  `/^collected at /i`, explicit phrases.
-- Never delete a keyword from Lightroom to fix a leak; add it to the blocklist.
+Some words describe what a photo is *about* (a theme) rather than naming a
+person — words like "family", "portrait", "winter", "uniform", "collected
+at". These belong in the keywords, not in the family-name filter. The
+archive's keyword blocklist keeps theme words from showing up as fake
+family names in the website filter.
+
+**The rules:**
+
+- **Blocklist, don't delete.** If a theme word is leaking into the family
+  filter, it gets added to the blocklist in `generate_manifest.js` so it
+  stays a keyword but stops being treated as a person. Never delete the
+  keyword from Lightroom to fix a leak — that loses real tagging.
+- **Never block a real surname.** Some words are both a theme and a family
+  name (e.g. "Park" is a person in 8 photos). The blocklist is checked
+  against real family names before anything is added.
+- **After any blocklist change**, regenerate the manifest and re-check the
+  family filter + the "with people" count to confirm the fix moved the
+  right way.
 
 ---
 
@@ -309,8 +387,15 @@ table: warm, personal, and proud of who these people were.
   elder, not just elder).
 - Warm where natural, but the job of alt text is to make the image visible
   to someone who cannot see it — clarity beats voice here.
-- **Current gap:** the manifest's `alt` field holds the filename, not alt
-  text. Real alt text is a planned pass (§10).
+**Current gap:** the manifest's `alt` field holds the filename, not alt
+text. Real alt text is a planned pass (§10).
+
+### 6.3 Language
+
+The archive serves the Red River Métis in English first. French and Michif
+terms are welcome in keywords and captions where they are how people speak.
+Bilingual interface text is a planned phase; until then, keep captions and
+titles in English so the whole community can read them.
 
 ---
 
@@ -337,28 +422,47 @@ table: warm, personal, and proud of who these people were.
 
 ### 7.3 File integrity & backup
 
-- **3-2-1 status (2026-08-28):** masters on work PC + Lightroom cloud. No
-  documented third/offsite copy. **Gap.**
-- **Fix:** periodic export of masters + Lightroom catalog to RRMNHC OneDrive
-  (pjerome@mmf.mb.ca); document a test-restore.
-- **Checksums:** hash IDs derive from filenames (deterministic), but full
-  archive fixity (content hashes + verification) is a planned addition.
-- **Exit path:** Lightroom cloud is proprietary lock-in. Document the export
-  path (Originals + Settings → Classic/local) in the runbook.
+**3-2-1 rule:** three copies of every master, on two different kinds of
+storage, with one copy off site. This is the durability target, not the
+current state — treat it as the gap to close, and check off each copy as
+it is added. (The gap register tracks it.)
+
+- **Fix:** keep one copy in the project's normal working location, one in
+  a second location (e.g. cloud), and one off site (e.g. MMF OneDrive);
+  document a test-restore so a real loss is recoverable.
+- **Checksums:** archive IDs are derived from filenames (deterministic),
+  but full archive fixity (content hashes + verification) is a planned
+  addition.
+- **Exit path:** document how the archive leaves its current platform
+  (export originals + settings to a local catalog) in the runbook, so the
+  masters are never trapped in a proprietary system.
 
 ### 7.4 File naming
 
-`[ContributorInitials]_[YYYYMMDD]_[ShortDescription]_[SequenceNumber].jpg`
+**The standard going forward (new batches only — existing filenames are
+frozen and stay as they are):**
 
-- ContributorInitials: person/family who provided the image (e.g. MD for
-  Marie Dumas)
-- Date: when the photo/story was created (YYYYMMDD; estimate or YYYY if
-  unknown)
-- ShortDescription: 3–5 words max, no spaces
-- SequenceNumber: multiple related files (01, 02)
+`[Submitter]_[Event or Date]_[SequenceNumber].jpg`
 
-Applies to audio files identically (matching name, .mp3). **Renaming a file
-after ingest changes its photo ID** — filenames are frozen once ingested.
+- **Submitter:** the person or family who provided the photo (e.g. Alfred
+  Anderson, Wendy Sikora).
+- **Event or Date:** the gathering it came from (e.g. `SteMadeleine2026`,
+  `WinnipegRegional2026`) or the date if no event (e.g. `20260417`).
+- **SequenceNumber:** for multiple related files (01, 02, ...).
+
+Example: `AlfredAnderson_SteMadeleine2026_01.jpg`
+
+This is the pattern already in use for recent batches (e.g.
+`20260417 AlfredAnderson 39.jpg` — submitter + date + sequence). It keeps
+files identifiable at a glance and groups a submitter's photos together.
+Descriptions do not go in the filename; they belong in the title and
+caption fields, which is where the archive is searched.
+
+**Rules:**
+- Renaming a file after ingest changes its archive ID and breaks its
+  links (consent, submission, claim link). Filenames are frozen once a
+  photo is ingested.
+- Applies to audio files identically (matching name, .mp3).
 
 ### 7.5 Audio (planned expansion)
 
