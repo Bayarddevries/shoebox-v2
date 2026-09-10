@@ -41,12 +41,16 @@
       pointer-events: none;
     }
 
-    /* Transitions */
-    @keyframes kenBurns { from { transform: var(--kb-from); } to { transform: var(--kb-to); } }
+    /* Transitions — each slide animation lasts EXACTLY one advance interval
+       (speedMs). Fade in at the start, Ken Burns / slide motion through the
+       middle, fade out at the end. The next slide's animation starts the
+       instant this one ends, so its fade-in overlaps this fade-out and the
+       swap reads as one continuous crossfade — no instant cut, no mid-zoom
+       interruption. */
+    @keyframes kenBurnsFade { 0% { opacity: 0; transform: var(--kb-from); } 14% { opacity: 1; transform: var(--kb-from); } 86% { opacity: 1; transform: var(--kb-to); } 100% { opacity: 0; transform: var(--kb-to); } }
+    @keyframes fadeInOut { 0% { opacity: 0; } 14% { opacity: 1; } 86% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes slideInOut { 0% { opacity: 0; transform: translateX(4%); } 14% { opacity: 1; transform: translateX(0); } 86% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(-4%); } }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
-    @keyframes slideIn { from { opacity: 0; transform: translateX(4%); } to { opacity: 1; transform: translateX(0); } }
-    @keyframes slideOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(-4%); } }
 
     /* Stage-scale caption overlay: viewport-scaled typography + staggered reveal */
     @keyframes captionUp {
@@ -56,12 +60,16 @@
     .caption-overlay {
       position: absolute; bottom: 0; left: 0; right: 0;
       z-index: 20; pointer-events: none;
-      background: linear-gradient(transparent 22%, rgba(10,10,10,0.74) 52%, rgba(10,10,10,0.96));
+      /* Full-width bottom scrim: the gradient bleeds off the screen's left,
+         right and bottom edges so no hard plaque edges are visible. The top
+         fades to transparent; the bottom is fully opaque so any browser-chrome
+         gap below blends into the black page. */
+      background: linear-gradient(transparent 18%, rgba(10,10,10,0.8) 46%, rgba(10,10,10,1) 100%);
       padding: clamp(1.5rem, 4vh, 3.5rem) 6vw clamp(1.25rem, 3vh, 2.5rem);
-      /* Plaque: keep the text column readable at stage scale, don't span full width */
       display: flex; flex-direction: column; align-items: flex-start;
-      max-width: min(72vw, 64rem);
     }
+    /* Text stays readable at stage scale without widening the scrim */
+    .caption-overlay > div { width: 100%; max-width: min(72vw, 64rem); }
     .caption-overlay .caption-kicker {
       font-family: var(--font-kicker); text-transform: uppercase; letter-spacing: 0.35em;
       font-size: clamp(0.7rem, 1.2vw, 1.4rem); color: var(--accent-warm);
@@ -376,9 +384,7 @@
     filtered = photos.slice();
     activePhotoIdx = Math.min(activePhotoIdx, filtered.length - 1);
     loadPhoto(activePhotoIdx);
-    if (!timerId && playing && filtered.length > 1) {
-      timerId = setTimeout(nextSlide, speedMs);
-    }
+    scheduleAdvance(); // inLocalFallback is true, so the exhibit guard passes
   }
 
   function applyRemoteState(remote) {
@@ -421,13 +427,10 @@
   }
 
   // Restart the auto-advance countdown at a full interval. Used after any
-  // remote jump so a commanded photo gets its full display time.
+  // remote jump so a commanded photo gets its full display time. No-op in
+  // exhibit mode while the server is healthy (the controller drives).
   function restartAdvanceTimer() {
-    if (timerId) clearTimeout(timerId);
-    timerId = null;
-    if (playing && filtered.length > 1) {
-      timerId = setTimeout(nextSlide, speedMs);
-    }
+    scheduleAdvance();
   }
 
   function applyFiltersFromRemote(remote) {
@@ -462,27 +465,12 @@
     if (remote.playing != null && remote.playing !== playing) {
       playing = remote.playing; changed = true;
     }
-    // Only restart timer when settings or filtered set actually changed,
-    // not on every poll (which would keep resetting the countdown)
-    if (changed) {
-      if (timerId) clearTimeout(timerId);
-      if (playing && filtered.length > 1) {
-        timerId = setTimeout(nextSlide, speedMs);
-      }
+    // Restart the timer when settings actually changed (not on every poll) or
+    // when none exists yet (first start). No-op in exhibit mode — the
+    // controller drives; the timer only matters for standalone/fallback.
+    if (changed || (!timerId && playing && filtered.length > 1)) {
+      scheduleAdvance();
     }
-    // Ensure timer exists if playing and nothing changed (first start)
-    if (!changed && !timerId && playing && filtered.length > 1) {
-      timerId = setTimeout(nextSlide, speedMs);
-    }
-  }
-
-  function reportIndex(idx) {
-    if (!isExhibit || !exhibitServer) return;
-    fetch(`${exhibitServer}/state`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ currentIndex: idx })
-    }).catch(() => {});
   }
 
   // ─── Manifest loader ───
@@ -493,8 +481,7 @@
       const data = await res.json();
       photos = data.photos || data;
       buildFilters();
-      applyFilters();
-      nextSlide();
+      applyFilters(); // loads the first photo; the advance timer starts below
     } catch (e) {
       document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:Inter;color:#cfc8be;"><div><h2>Manifest not found</h2><p>Make sure <code>assets/shoebox/manifest.json</code> is available.</p></div></div>';
     }
@@ -672,10 +659,11 @@
   }
 
   function applyImageToLayer(url, faceX, faceY, photo, idx) {
-    // Ken Burns always targets the detected face when data exists;
-    // faceTrack only controls the static background position
-    const kbFaceX = photo && photo.faceX != null ? photo.faceX : null;
-    const kbFaceY = photo && photo.faceY != null ? photo.faceY : null;
+    // Face-anchored Ken Burns ONLY when faceTrack is on — the transform-origin
+    // must pivot exactly where the static background-position is anchored
+    // (face % when tracking, center otherwise), or the zoom swings off-face.
+    const kbFaceX = faceTrack && photo && photo.faceX != null ? photo.faceX : null;
+    const kbFaceY = faceTrack && photo && photo.faceY != null ? photo.faceY : null;
     const kb = getKenBurns(idx, kbFaceX, kbFaceY, kbZoom);
     const incoming = activeLayer === 'a' ? document.getElementById('layer-b') : document.getElementById('layer-a');
     const outgoing = activeLayer === 'a' ? document.getElementById('layer-a') : document.getElementById('layer-b');
@@ -692,23 +680,25 @@
     incoming.style.backgroundImage = `url("${url}")`;
     incoming.style.backgroundSize = bgSize;
     incoming.style.backgroundPosition = `${faceX * 100}% ${faceY * 100}%`;
-    incoming.style.opacity = '1';
     incoming.style.zIndex = '2';
     incoming.style.animation = 'none';
-    // Force reflow
+    // Force reflow so the animation below restarts cleanly
     void incoming.offsetHeight;
 
-    // Set animation based on transition
+    // Ken Burns / fade / slide keyframes control opacity themselves (fade in →
+    // hold → fade out over exactly one advance interval), so we never force
+    // opacity here. The outgoing layer keeps playing its own fade-out while
+    // the incoming fades in on top = smooth crossfade, no instant cut.
     if (transition === 'kenburns') {
       incoming.style.setProperty('--kb-from', kb.from);
       incoming.style.setProperty('--kb-to', kb.to);
-      incoming.style.animation = `kenBurns ${speedMs + 1500}ms ease-in-out both`;
+      incoming.style.animation = `kenBurnsFade ${speedMs}ms ease-in-out both`;
       incoming.style.transformOrigin = kb.origin || 'center';
     } else if (transition === 'fade') {
-      incoming.style.animation = `fadeIn ${speedMs}ms ease-in-out both`;
+      incoming.style.animation = `fadeInOut ${speedMs}ms ease-in-out both`;
       incoming.style.transform = 'none';
     } else if (transition === 'slide') {
-      incoming.style.animation = `slideIn ${speedMs}ms ease-in-out both`;
+      incoming.style.animation = `slideInOut ${speedMs}ms ease-in-out both`;
       incoming.style.transform = 'translateX(0)';
     } else if (transition === 'cut') {
       incoming.style.animation = 'none';
@@ -720,9 +710,11 @@
       // Simple wipe simulation: fade overlay
     }
 
-    outgoing.style.opacity = '0';
+    if (transition === 'cut') {
+      // Hard cut: drop the old image instantly (that IS the transition).
+      outgoing.style.opacity = '0';
+    }
     outgoing.style.zIndex = '1';
-    outgoing.style.animation = 'none';
 
     activeLayer = activeLayer === 'a' ? 'b' : 'a';
   }
@@ -754,32 +746,46 @@
   }
 
   // ─── Playback controls ───
-  function nextSlide() {
-    const idx = (activePhotoIdx + 1) % Math.max(filtered.length, 1);
-    loadPhoto(idx);
-    reportIndex(idx);
-    if (playing) { if (timerId) clearTimeout(timerId); timerId = setTimeout(() => { activePhotoIdx = (activePhotoIdx + 1) % Math.max(filtered.length, 1); nextSlide(); }, speedMs); }
+  // Start/restart the auto-advance countdown. In exhibit mode the big screen
+  // is a PURE FOLLOWER: the controller drives currentIndex through the state
+  // server, so no local advance timer runs while the server is healthy. The
+  // timer only runs in standalone mode or when the server is lost (local
+  // fallback) — otherwise the local timer and the remote index fight and the
+  // display jumps. The advance interval EQUALS the slide animation duration,
+  // so a slide's fade-out overlaps the next slide's fade-in (continuous
+  // crossfade, never a mid-zoom cut).
+  function scheduleAdvance() {
+    if (timerId) clearTimeout(timerId);
+    timerId = null;
+    if (isExhibit && !inLocalFallback) return;
+    if (playing && filtered.length > 1) {
+      timerId = setTimeout(nextSlide, speedMs);
+    }
   }
+
+  function nextSlide() {
+    if (filtered.length === 0) return;
+    loadPhoto((activePhotoIdx + 1) % filtered.length);
+    scheduleAdvance();
+  }
+
   function prevSlide() {
-    const idx = (activePhotoIdx - 1 + Math.max(filtered.length, 1)) % Math.max(filtered.length, 1);
-    loadPhoto(idx);
-    reportIndex(idx);
-    if (playing) { if (timerId) clearTimeout(timerId); timerId = setTimeout(() => { activePhotoIdx = (activePhotoIdx + 1) % Math.max(filtered.length, 1); nextSlide(); }, speedMs); }
+    if (filtered.length === 0) return;
+    loadPhoto((activePhotoIdx - 1 + filtered.length) % filtered.length);
+    scheduleAdvance();
   }
 
   function togglePlay() {
     playing = !playing;
     document.getElementById('btnPlay').textContent = playing ? '⏸' : '▶';
-    if (playing) { timerId = setTimeout(() => { nextSlide(); updateTimerIdx(); }, speedMs); }
-    else { if (timerId) clearTimeout(timerId); }
+    scheduleAdvance();
   }
-  function updateTimerIdx() { activePhotoIdx = (activePhotoIdx) % Math.max(filtered.length, 1); }
 
   function setSpeed(ms) {
     speedMs = ms;
     document.querySelectorAll('#controls button[data-ms]').forEach(b => b.classList.remove('active'));
     document.querySelector('#controls button[data-ms="' + ms + '"]').classList.add('active');
-    if (playing) { if (timerId) clearTimeout(timerId); timerId = setTimeout(() => { activePhotoIdx = (activePhotoIdx + 1) % Math.max(filtered.length, 1); nextSlide(); }, speedMs); }
+    scheduleAdvance();
     showInfoTip(ms / 1000 + 's per slide');
   }
 
@@ -953,9 +959,10 @@
     loadManifest();
   }
 
-  // Auto-start (only in non-exhibit mode — exhibit mode is driven by polling)
+  // Auto-start the advance timer (only in non-exhibit mode — exhibit mode is
+  // driven by the controller via the state server, no local timer).
   if (!isExhibit) {
-    setTimeout(() => { playing = true; nextSlide(); }, 300);
+    setTimeout(() => { playing = true; scheduleAdvance(); }, 300);
   }
   </script>
 </body>
