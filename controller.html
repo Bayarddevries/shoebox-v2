@@ -44,109 +44,77 @@
       pointer-events: none;
     }
 
-    /* ─── Particle motes ─── */
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
-      10% { opacity: 0.6; }
-      90% { opacity: 0.3; }
-      100% { transform: translateY(-100vh) translateX(40px) scale(0.5); opacity: 0; }
-    }
-    .mote {
-      position: fixed; bottom: -10px; z-index: 0;
-      width: 3px; height: 3px; border-radius: 50%;
-      background: var(--accent-warm);
-      animation: float linear infinite;
-      pointer-events: none;
-      opacity: 0;
-    }
-    .mote:nth-child(1) { left: 15%; animation-duration: 22s; animation-delay: 0s; width: 2px; height: 2px; }
-    .mote:nth-child(2) { left: 35%; animation-duration: 28s; animation-delay: 4s; width: 3px; height: 3px; }
-    .mote:nth-child(3) { left: 55%; animation-duration: 25s; animation-delay: 8s; width: 2px; height: 2px; background: var(--crimson); }
-    .mote:nth-child(4) { left: 75%; animation-duration: 30s; animation-delay: 2s; width: 4px; height: 4px; }
-    .mote:nth-child(5) { left: 90%; animation-duration: 20s; animation-delay: 6s; width: 2px; height: 2px; background: var(--crimson); }
-
     .hidden { display: none !important; }
 
-    /* ─── Screensaver: ember photo drift ─── */
+    /* ─── Screensaver: The Scanning Table ───
+       Archival prints laid flat on a warm charcoal surface, each sized to its
+       OWN aspect ratio (no crop, no uniform cells), slight rotation, soft
+       shadows, edge-overlap for density. One layer drifts slowly; a fresh
+       table crossfades in every ~90s. Wordmark top-center with scrim. */
     #attractCollage {
       position: fixed; inset: 0; z-index: 2;
       overflow: hidden; pointer-events: none;
       opacity: 0; transition: opacity 0.8s ease;
-      /* opaque base so nothing from the app underneath can ghost through */
+      /* the scanning surface: a real tabletop with a warm light from above,
+         a soft wood/paper grain, and a vignette so prints sit ON something */
       background:
-        radial-gradient(ellipse 120% 60% at 50% 100%, rgba(139,0,0,0.16) 0%, transparent 70%),
-        #0a0a0a;
+        radial-gradient(ellipse 120% 70% at 50% -10%, rgba(120,95,70,0.35) 0%, transparent 45%),
+        radial-gradient(ellipse 130% 90% at 50% 115%, rgba(0,0,0,0.6) 0%, transparent 55%),
+        repeating-linear-gradient(92deg, rgba(255,240,220,0.016) 0px, rgba(255,240,220,0.016) 2px, rgba(0,0,0,0.03) 3px, rgba(0,0,0,0.03) 5px),
+        linear-gradient(180deg, #241d17 0%, #1a1410 45%, #0f0b08 100%);
     }
     #attractCollage.show { opacity: 1; }
     /* while the screensaver is up, blank out the Now Showing photo behind it */
     #app.attract .now-showing { background-color: var(--black); }
     #app.attract .slide-layer { opacity: 0 !important; }
 
-    /* ─── Fire glow + sparks behind the photos ─── */
-    .fire-glow {
-      position: absolute; inset: 0; pointer-events: none;
-      background:
-        radial-gradient(ellipse 95% 60% at 50% 112%, rgba(196,80,20,0.4) 0%, rgba(139,0,0,0.25) 35%, transparent 72%),
-        radial-gradient(ellipse 55% 42% at 26% 118%, rgba(196,147,58,0.25) 0%, transparent 62%),
-        radial-gradient(ellipse 55% 42% at 74% 118%, rgba(255,120,40,0.18) 0%, transparent 62%);
-      animation: fireFlicker 2.6s ease-in-out infinite;
-      will-change: opacity, transform;
-    }
-    .fire-glow.glow2 {
-      animation-duration: 4.1s; animation-delay: 0.8s;
-      opacity: 0.65;
-    }
-    @keyframes fireFlicker {
-      0%, 100% { opacity: 0.55; transform: scaleY(1); }
-      22% { opacity: 0.95; transform: scaleY(1.05); }
-      48% { opacity: 0.7; transform: scaleY(0.97); }
-      72% { opacity: 1; transform: scaleY(1.07); }
-    }
-    .spark {
-      position: absolute; bottom: -8px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #ffd9a0 0%, rgba(255,130,40,0.9) 40%, transparent 72%);
-      box-shadow: 0 0 8px 2px rgba(255,140,40,0.45);
-      animation: sparkRise linear infinite;
-      opacity: 0; pointer-events: none;
-      will-change: transform, opacity;
-    }
-    @keyframes sparkRise {
-      0%   { transform: translate(0, 0); opacity: 0; }
-      12%  { opacity: 0.9; }
-      70%  { opacity: 0.45; }
-      100% { transform: translate(var(--sway, 18px), -72vh); opacity: 0; }
-    }
-
-    .ember-tile {
-      position: absolute; top: 100%;
-      height: 24vh; /* placeholder, corrected to the real image aspect on load */
-      border-radius: 6px; overflow: hidden;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.07);
-      animation: emberRise linear infinite;
-      will-change: transform, opacity;
-    }
-    .ember-img {
+    .table-scene {
       position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      opacity: 0; transition: opacity 1.2s ease;
+      will-change: transform;
+      animation: tableDrift 80s ease-in-out infinite alternate;
     }
-    .ember-img.on { opacity: 1; }
-    @keyframes emberRise {
-      0%   { transform: translateY(0) rotate(var(--rot, -4deg)); opacity: 0; }
-      8%   { opacity: 0.9; }
-      75%  { opacity: 0.65; }
-      100% { transform: translateY(-140vh) rotate(calc(var(--rot, -4deg) * -1.4)); opacity: 0; }
+    @keyframes tableDrift {
+      from { transform: scale(1.0) translate(0, 0); }
+      to   { transform: scale(1.06) translate(-1.2%, 1.2%); }
+    }
+    .print {
+      position: absolute;
+      width: var(--w); height: var(--h);
+      left: var(--x); top: var(--y);
+      transform: rotate(var(--rot, 0deg));
+      /* each print is contain at its own aspect: complete photo, no crop */
+      background-size: contain; background-repeat: no-repeat;
+      background-position: center;
+      /* consistent top-light: soft cast down + a tighter contact shadow */
+      box-shadow: 0 14px 34px rgba(0,0,0,0.55), 0 3px 8px rgba(0,0,0,0.5);
+      background-color: #1a1613;
+    }
+    .print .print-cap {
+      position: absolute; left: 0; right: 0; bottom: -1.6em;
+      font-family: var(--font-serif); font-style: italic;
+      font-size: clamp(0.7rem, 1.4vw, 1rem);
+      color: rgba(232,226,214,0.82);
+      text-align: center; text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      pointer-events: none;
     }
     .attract-brand {
-      position: absolute; left: 50%; transform: translateX(-50%);
-      bottom: 5%;
-      font-family: var(--font-kicker); font-size: 0.78rem;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--cream); opacity: 0.8;
-      text-shadow: 0 2px 18px rgba(0,0,0,0.9);
-      white-space: nowrap; z-index: 1;
+      position: absolute; left: 50%; top: 6%; transform: translateX(-50%);
+      font-family: var(--font-kicker); font-weight: 700;
+      /* Fixed size that FITS any tablet: 1280px wide max. Measured C1 fix:
+         the old clamp + 0.18em tracking overflowed to 1922px and clipped
+         "BOX". Now sized to fit within the viewport at every size. */
+      font-size: clamp(1.6rem, 4.2vw, 3.4rem);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--cream); z-index: 3; text-align: center;
+      line-height: 1.15;
+      white-space: nowrap;
+      /* subtle dark scrim so the hero text reads over ANY photo */
+      padding: 0.3em 1em;
+      background: radial-gradient(ellipse 75% 130% at 50% 50%, rgba(10,10,10,0.66) 0%, rgba(10,10,10,0.38) 60%, transparent 100%);
+      border-radius: 0.4em;
+      /* one static soft shadow — no breathing animation (museum-calm) */
+      text-shadow: 0 2px 14px rgba(0,0,0,0.85);
     }
 
     /* ─── Layout ─── */
@@ -236,6 +204,8 @@
       transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
     .tl-chip.active { background: var(--crimson); border-color: var(--crimson); color: var(--cream); }
+    /* keep the decade suffix lowercase: '1850s', not '1850S' */
+    .tl-chip .tl-s { text-transform: lowercase; letter-spacing: 0; }
 
     /* ─── Now Showing panel ─── */
     .now-showing {
@@ -521,12 +491,6 @@
   </style>
 </head>
 <body>
-  <div class="mote"></div>
-  <div class="mote"></div>
-  <div class="mote"></div>
-  <div class="mote"></div>
-  <div class="mote"></div>
-
   <div id="attractCollage"><div class="attract-brand">The Red River Métis Shoebox</div></div>
 
   <div id="app">
@@ -776,13 +740,39 @@
   }
 
   // ─── Idle / Attract mode ───
+  // After IDLE_RESET_MS of no interaction, drop back to the default exhibit
+  // state, then enter the screensaver. Any interaction restarts the window.
+  const IDLE_RESET_MS = 120000;
   function startIdleTimer() {
     clearTimeout(idleTimer);
-    idleTimer = setTimeout(enterAttract, 60000);
+    idleTimer = setTimeout(returnToDefault, IDLE_RESET_MS);
   }
   function resetIdle() {
     clearTimeout(idleTimer);
-    idleTimer = setTimeout(enterAttract, 60000);
+    idleTimer = setTimeout(returnToDefault, IDLE_RESET_MS);
+  }
+  function returnToDefault() {
+    // (a) Clear the search input and stop its placeholder name-cycling
+    const input = document.getElementById('searchInput');
+    if (input) {
+      input.value = '';
+      input.blur();
+      input.placeholder = 'FIND A NAME · Lafferty · Chartrand · Mercredi · Anderson···';
+    }
+    if (nameCycleTimer) { clearInterval(nameCycleTimer); nameCycleTimer = null; }
+    nameCycleIdx = 0;
+    // (b) Clear active era/filter chips and close the detail panel
+    clearTimelineActive();
+    const results = document.getElementById('searchResults');
+    if (results) results.classList.remove('open');
+    isDetailOpen = false;
+    const overlay = document.getElementById('detailOverlay');
+    if (overlay) overlay.classList.remove('open');
+    // (c) Post the clean default state so the projector follows back to the
+    // default hero carousel
+    postState({ filters: {}, currentIndex: 0, shuffle: true, playing: true, transition: 'kenburns', speed: 5000, captionMode: 2, faceTrack: false });
+    // (d) Then go to attract
+    enterAttract();
   }
   function enterAttract() {
     if (isDetailOpen) return;
@@ -804,95 +794,115 @@
     if (currentPhoto) updateNowShowing();
   }
 
-  // ─── Screensaver: ember photo drift (whole screen) ───
+  // ─── Screensaver: The Scanning Table ───
   let collageTimer = null;
   let collageBuilt = false;
+  let collageRebuildTimer = null;
+  // Only pre-1950 archival photos belong in the screensaver (modern 2020s
+  // colour shots look wrong beside 1890s sepia portraits). Falls back to all
+  // photos if nothing carries a year.
+  function collagePool() {
+    const pre1950 = photos.filter(p => p.year != null && p.year < 1950);
+    return pre1950.length ? pre1950 : photos;
+  }
+  // Shuffle-deal without replacement so no duplicate prints ever appear.
+  function shuffledPool() {
+    const pool = collagePool().slice();
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+    return pool;
+  }
+  function printCaption(p) {
+    // name · community · year, or the caption when it's the only story
+    const people = (p.people || '').split(';').map(s => s.trim()).filter(Boolean).slice(0, 2).join(', ');
+    const place = p.community || '';
+    const year = p.year ? (p.year < 2000 ? 'c.' + p.year : '' + p.year) : '';
+    const seg = [people, place, year].filter(Boolean);
+    if (seg.length >= 2) return seg.join(' · ');
+    if (p.caption) return p.caption;
+    return seg[0] || '';
+  }
   function buildCollage() {
-    if (collageBuilt || !photos.length) return;
-    collageBuilt = true;
     const c = document.getElementById('attractCollage');
     const brand = c.querySelector('.attract-brand');
     c.innerHTML = '';
 
-    // Fire glow base (two layers, independent flicker)
-    const glow1 = document.createElement('div');
-    glow1.className = 'fire-glow';
-    c.appendChild(glow1);
-    const glow2 = document.createElement('div');
-    glow2.className = 'fire-glow glow2';
-    c.appendChild(glow2);
+    const pool = shuffledPool();
+    const scene = document.createElement('div');
+    scene.className = 'table-scene';
 
-    // Rising ember sparks
-    for (let i = 0; i < 18; i++) {
-      const s = document.createElement('div');
-      const size = (2 + Math.random() * 3).toFixed(1);
-      const dur = (3 + Math.random() * 6).toFixed(1);
-      const delay = (-Math.random() * dur).toFixed(1);
-      const sway = (Math.random() * 40 - 20).toFixed(1);
-      s.className = 'spark';
-      s.style.cssText = `left:${(Math.random() * 100).toFixed(1)}vw;width:${size}px;height:${size}px;animation-duration:${dur}s;animation-delay:${delay}s;--sway:${sway}px`;
-      c.appendChild(s);
-    }
-
-    for (let i = 0; i < 11; i++) {
-      const p = photos[Math.floor(Math.random() * photos.length)];
+    // ~20-22 prints, each sized to its OWN aspect ratio (no uniform cells),
+    // laid flat with rotation, DENSE overlap (photos partially covering each
+    // other, like a real shoebox spill — not a grid), consistent shadow
+    // direction from a single top-light.
+    const count = 21;
+    const vw = window.innerWidth, vh = window.innerHeight;
+    // Anchor points scattered across the whole surface; prints drawn in order
+    // so later ones overlap earlier ones naturally.
+    const cols = 4, rows = 5;
+    const cellW = vw / cols, cellH = vh / rows;
+    for (let i = 0; i < count; i++) {
+      const p = pool[i % pool.length];
       const pa = (p.width && p.height) ? p.height / p.width : 1;
-      const aspect = Math.min(Math.max(pa, 0.5), 2.2); // match the photo's real shape
-      const w = 26 + Math.random() * 18;               // vw width (bigger, readable)
-      const left = 2 + Math.random() * 60;             // vw
-      const rot = (Math.random() * 12 - 6).toFixed(1); // degrees
-      const dur = (20 + Math.random() * 15).toFixed(1);
-      const delay = (-Math.random() * dur).toFixed(1); // negative = mid-flight at boot
-      const tile = document.createElement('div');
-      tile.className = 'ember-tile';
-      tile.style.cssText = `left:${left.toFixed(1)}vw;width:${w.toFixed(1)}vw;animation-duration:${dur}s;animation-delay:${delay}s;--rot:${rot}deg`;
-      tile.innerHTML = '<div class="ember-img"></div><div class="ember-img"></div>';
-      c.appendChild(tile);
-      const imgs = tile.querySelectorAll('.ember-img');
-      imgs[0].style.backgroundImage = `url(${thumbUrl(p)})`;
-      imgs[0].classList.add('on');
-      tile._imgs = imgs;
-      tile._on = 0;
-      tile._aspect = aspect;
-      // Size the tile from the ACTUAL image dimensions once it loads,
-      // so landscape photos always render landscape regardless of data
-      const probe = new Image();
-      probe.onload = () => {
-        const a = probe.naturalHeight / probe.naturalWidth;
-        const realAspect = Math.min(Math.max(a, 0.5), 2.2);
-        tile.style.height = Math.min(w * realAspect, 48).toFixed(1) + 'vh';
-        tile._aspect = realAspect;
-      };
-      probe.src = thumbUrl(p);
+      const aspect = Math.min(Math.max(pa, 0.4), 2.4);
+      // size LARGER than the cell so neighbors overlap (density)
+      let w = cellW * (0.78 + Math.random() * 0.28);
+      let h = w * aspect;
+      if (h > cellH * 1.12) { h = cellH * 1.12; w = h / aspect; }
+      // position at the cell center with bigger jitter so edges overlap;
+      // first row starts below the wordmark's safe zone (top ~12vh)
+      const cx = (i % cols) * cellW + (cellW - w) / 2 + (Math.random() * 0.5 - 0.25) * cellW;
+      const rowY = Math.floor(i / cols);
+      const cy = (rowY === 0 ? vh * 0.12 : rowY * cellH) + (cellH - h) / 2 + (Math.random() * 0.5 - 0.25) * cellH;
+      // varied rotation, some straight (museum flat-lay feel)
+      const rot = (Math.random() < 0.3 ? 0 : (Math.random() * 7 - 3.5)).toFixed(1);
+      const el = document.createElement('div');
+      el.className = 'print';
+      el.style.setProperty('--w', w.toFixed(1) + 'px');
+      el.style.setProperty('--h', h.toFixed(1) + 'px');
+      el.style.setProperty('--x', cx.toFixed(1) + 'px');
+      el.style.setProperty('--y', cy.toFixed(1) + 'px');
+      el.style.setProperty('--rot', rot + 'deg');
+      el.style.backgroundImage = `url(${thumbUrl(p)})`;
+      // captions on a subset (only where there's a story to tell), drawn
+      // AFTER the print so they sit on top and stay readable
+      if (i % 3 === 0) {
+        const cap = printCaption(p);
+        if (cap) {
+          const capEl = document.createElement('div');
+          capEl.className = 'print-cap';
+          capEl.textContent = cap;
+          el.appendChild(capEl);
+        }
+      }
+      scene.appendChild(el);
     }
+    c.appendChild(scene);
     c.appendChild(brand);
   }
-  function collageSwap() {
+  // Rebuild the table with fresh photos + arrangement on every idle session
+  // (or ~90s), crossfading over the existing 0.8s opacity transition so there
+  // is never a mid-flight swap.
+  function collageRefresh() {
     if (!isAttract || !photos.length) return;
-    const tiles = document.querySelectorAll('#attractCollage .ember-tile');
-    const picks = [...tiles].sort(() => Math.random() - 0.5).slice(0, 3);
-    picks.forEach(t => {
-      // Only swap in photos shaped like the tile, so nothing gets cropped weird
-      const a = t._aspect || 1;
-      const pool = photos.filter(q => {
-        const qa = (q.width && q.height) ? q.height / q.width : 1;
-        return Math.abs(qa - a) < 0.25;
-      });
-      const p = pool.length ? pool[Math.floor(Math.random() * pool.length)]
-                            : photos[Math.floor(Math.random() * photos.length)];
-      const next = 1 - t._on;
-      t._imgs[next].style.backgroundImage = `url(${thumbUrl(p)})`;
-      t._imgs[next].classList.add('on');
-      t._imgs[t._on].classList.remove('on');
-      t._on = next;
-    });
+    const c = document.getElementById('attractCollage');
+    // fade out, rebuild, fade back in — one clean crossfade
+    c.style.transition = 'opacity 0.8s ease';
+    c.style.opacity = '0';
+    setTimeout(() => {
+      buildCollage();
+      c.style.opacity = '1';
+    }, 800);
   }
   function startCollage() {
     buildCollage();
-    if (!collageTimer) collageTimer = setInterval(collageSwap, 7000);
+    // rotate the table every ~90s while idle
+    if (!collageRebuildTimer) collageRebuildTimer = setInterval(collageRefresh, 90000);
   }
   function stopCollage() {
-    if (collageTimer) { clearInterval(collageTimer); collageTimer = null; }
+    if (collageRebuildTimer) { clearInterval(collageRebuildTimer); collageRebuildTimer = null; }
   }
 
   // ─── Name cycling in search ───
@@ -981,7 +991,7 @@
     const bar = document.getElementById('timelineBar');
     bar.innerHTML = `<span class="tl-label">Era</span>` +
       `<button class="tl-chip active" data-decade="">All</button>` +
-      sorted.map(d => `<button class="tl-chip" data-decade="${d}">${d}s</button>`).join('');
+      sorted.map(d => `<button class="tl-chip" data-decade="${d}">${d}<span class="tl-s">s</span></button>`).join('');
     bar.addEventListener('click', function(e) {
       const chip = e.target.closest('.tl-chip');
       if (!chip) return;
@@ -1153,6 +1163,8 @@
   });
 
   // ─── Gallery strip ───
+  let userScrolling = false;
+  let userScrollTimer = null;
   function updateGallery() {
     const gal = document.getElementById('gallery');
     if (isAttract) {
@@ -1160,20 +1172,35 @@
       return;
     }
     gal.classList.remove('hidden');
-    const key = serverIds.join(',') + '|' + currentIndex;
-    if (key === lastGalleryKey) return;
-    lastGalleryKey = key;
-    gal.innerHTML = serverIds.map((id, i) => {
-      const p = byId[id];
-      if (!p) return '';
-      return `<div class="gal-item${i === currentIndex ? ' active' : ''}" data-idx="${i}" style="background-image:url('${thumbUrl(p)}')" aria-label="${esc(p.title || p.alt || '')}"></div>`;
-    }).join('');
-    const active = gal.querySelector('.gal-item.active');
-    if (active) {
-      const rect = active.getBoundingClientRect();
-      const cRect = gal.getBoundingClientRect();
-      if (rect.left < cRect.left || rect.right > cRect.right) {
-        active.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+    const key = serverIds.join(',');
+    // Full rebuild only when the SET changes (filters/search/related). A pure
+    // currentIndex advance must NOT rebuild the strip — it would reset the
+    // user's scroll position and yank them back to the active thumb.
+    if (key !== lastGalleryKey) {
+      lastGalleryKey = key;
+      gal.innerHTML = serverIds.map((id, i) => {
+        const p = byId[id];
+        if (!p) return '';
+        return `<div class="gal-item${i === currentIndex ? ' active' : ''}" data-idx="${i}" style="background-image:url('${thumbUrl(p)}')" aria-label="${esc(p.title || p.alt || '')}"></div>`;
+      }).join('');
+    }
+    // Update active class in place — no innerHTML rebuild on index change
+    const items = gal.querySelectorAll('.gal-item');
+    items.forEach((it, i) => it.classList.toggle('active', i === currentIndex));
+    // NEVER auto-scroll the strip on state updates. If the user has scrolled
+    // away, a poll-driven scrollIntoView yanks them back to the active thumb
+    // ("rubber-banding"). The strip only scrolls when the user taps a thumb
+    // (jumpTo), which sets currentIndex and the tap itself is in view.
+    // If the active thumb is off-screen after a FILTER change, snap (not
+    // smooth) to it once so the selection is visible; user scrolls override.
+    if (key !== lastGalleryKey && !userScrolling) {
+      const active = gal.querySelector('.gal-item.active');
+      if (active) {
+        const rect = active.getBoundingClientRect();
+        const cRect = gal.getBoundingClientRect();
+        if (rect.left < cRect.left || rect.right > cRect.right) {
+          active.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'auto' });
+        }
       }
     }
   }
@@ -1184,6 +1211,14 @@
     jumpTo(parseInt(item.dataset.idx, 10));
     wakeFromAttract();
   });
+
+  // While the user is dragging/scrolling the strip, don't let slide advances
+  // yank it back to the active thumb. Cleared shortly after they stop.
+  document.getElementById('gallery').addEventListener('scroll', function() {
+    userScrolling = true;
+    clearTimeout(userScrollTimer);
+    userScrollTimer = setTimeout(function() { userScrolling = false; }, 1200);
+  }, { passive: true });
 
   // ─── Story Piles ───
   function renderPiles() {
@@ -1290,18 +1325,14 @@
     startPolling();
     startIdleTimer();
 
-    // Wake on any touch. Only swallow the click that ends the wake gesture
-    // when it passed through dead chrome (so dismissing the screensaver
-    // doesn't tap whatever is underneath). Taps that land directly on a
-    // button still work on the first try.
+    // Wake on any touch. The gesture that dismisses the screensaver must
+    // never also press a control underneath: while in attract, EVERY touch
+    // arms the suppression window, so the click completing the wake gesture
+    // is swallowed no matter what it lands on. A separate, deliberate tap is
+    // then required to press a button/pile/chip.
     let suppressClicksUntil = 0;
-    document.addEventListener('touchstart', function(e) {
-      if (isAttract) {
-        const t = e.target && e.target.closest
-          ? e.target.closest('button, .pile, .tl-chip, .gal-item, .related-card, input, .nav-arrow, .search-wrap')
-          : null;
-        if (!t) suppressClicksUntil = Date.now() + 500;
-      }
+    document.addEventListener('touchstart', function() {
+      if (isAttract) suppressClicksUntil = Date.now() + 500;
       wakeFromAttract();
     });
     document.addEventListener('click', function(e) {
@@ -1309,6 +1340,7 @@
         suppressClicksUntil = 0;
         e.stopPropagation();
         e.preventDefault();
+        if (document.activeElement && document.activeElement.tagName === 'INPUT') document.activeElement.blur();
         return;
       }
       wakeFromAttract();

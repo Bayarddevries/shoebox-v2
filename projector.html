@@ -48,24 +48,39 @@
     @keyframes slideIn { from { opacity: 0; transform: translateX(4%); } to { opacity: 1; transform: translateX(0); } }
     @keyframes slideOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(-4%); } }
 
+    /* Stage-scale caption overlay: viewport-scaled typography + staggered reveal */
+    @keyframes captionUp {
+      from { opacity: 0; transform: translateY(26px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
     .caption-overlay {
       position: absolute; bottom: 0; left: 0; right: 0;
       z-index: 20; pointer-events: none;
-      background: linear-gradient(transparent 30%, rgba(10,10,10,0.65) 60%, rgba(10,10,10,0.92));
-      padding: 2rem 6vw 1.5rem;
+      background: linear-gradient(transparent 22%, rgba(10,10,10,0.74) 52%, rgba(10,10,10,0.96));
+      padding: clamp(1.5rem, 4vh, 3.5rem) 6vw clamp(1.25rem, 3vh, 2.5rem);
+      /* Plaque: keep the text column readable at stage scale, don't span full width */
+      display: flex; flex-direction: column; align-items: flex-start;
+      max-width: min(72vw, 64rem);
     }
     .caption-overlay .caption-kicker {
-      font-family: var(--font-kicker); text-transform: uppercase; letter-spacing: 0.15em;
-      font-size: 0.6rem; color: var(--accent-warm); margin-bottom: 0.4rem;
+      font-family: var(--font-kicker); text-transform: uppercase; letter-spacing: 0.35em;
+      font-size: clamp(0.7rem, 1.2vw, 1.4rem); color: var(--accent-warm);
+      margin-bottom: clamp(0.4rem, 1vh, 0.9rem);
+      text-shadow: 0 2px 14px rgba(0,0,0,0.9);
     }
     .caption-overlay .caption-title {
-      font-family: var(--font-serif); font-size: 1.8rem; line-height: 1.1;
-      color: var(--cream); text-shadow: 0 2px 20px rgba(0,0,0,0.7);
+      font-family: var(--font-serif); font-size: clamp(2.2rem, 6vw, 6rem); line-height: 1.08;
+      color: var(--cream); text-shadow: 0 4px 32px rgba(0,0,0,0.92);
     }
     .caption-overlay .caption-sub {
-      font-family: var(--font-sans); font-size: 0.75rem; color: var(--light-warm);
-      margin-top: 0.3rem; letter-spacing: 0.02em;
+      font-family: var(--font-sans); font-size: clamp(1rem, 2vw, 2.2rem); color: var(--light-warm);
+      margin-top: clamp(0.4rem, 1vh, 0.9rem); letter-spacing: 0.04em;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.85);
     }
+    /* Staggered reveal: kicker → title → sub, restarted on every slide via .reveal */
+    .caption-overlay .caption-kicker.reveal { animation: captionUp 0.6s ease-out 0s both; }
+    .caption-overlay .caption-title.reveal  { animation: captionUp 0.6s ease-out 0.35s both; }
+    .caption-overlay .caption-sub.reveal    { animation: captionUp 0.6s ease-out 0.7s both; }
 
     /* Progress bar */
     .progress-area {
@@ -601,19 +616,44 @@
     }
 
     // Update caption overlay
+    const captionEls = ['captionKicker', 'captionTitle', 'captionSub'];
     if (captionMode === 1 || captionMode === 2) {
       document.getElementById('captionTitle').textContent = photo.title || photo.alt || '';
       let sub = '';
       if (captionMode === 2) {
-        sub = [photo.year ? (photo.year < 2000 ? 'c.' + photo.year : 'scanned ' + photo.year) : '', photo.community || '', photo.people ? photo.people.split(';').map(s => s.trim()).slice(0,2).join(', ') : ''].filter(Boolean).join('  ·  ');
+        // Build the people segment: drop bare surnames that duplicate a full
+        // name already in the list (e.g. "Lafferty; Marie Madeleine Mercredi
+        // Lafferty" would otherwise read "…Lafferty, Lafferty" on stage).
+        let peopleSeg = '';
+        if (photo.people) {
+          const names = photo.people.split(';').map(s => s.trim()).filter(Boolean);
+          const full = names.filter(n => n.split(' ').length > 1);
+          const singles = names.filter(n => n.split(' ').length === 1);
+          const kept = full.slice(0, 2);
+          singles.forEach(sn => {
+            if (kept.length >= 2) return;
+            if (!kept.some(fn => fn.toLowerCase().includes(sn.toLowerCase()))) kept.push(sn);
+          });
+          peopleSeg = kept.join(', ');
+        }
+        sub = [photo.year ? (photo.year < 2000 ? 'c.' + photo.year : 'scanned ' + photo.year) : '', photo.community || '', peopleSeg].filter(Boolean).join('  ·  ');
       } else {
         if (photo.community || photo.year) sub = [photo.community || '', photo.year ? 'c.' + photo.year : ''].filter(Boolean).join('  ·  ');
       }
       document.getElementById('captionSub').textContent = sub;
       document.getElementById('captionKicker').textContent = 'Shoebox Archive';
       document.getElementById('captionOverlay').style.opacity = '1';
+      // Restart the staggered reveal on every slide: drop .reveal, force
+      // reflow so the re-added class restarts the animation from scratch.
+      captionEls.forEach(id => {
+        const el = document.getElementById(id);
+        el.classList.remove('reveal');
+        void el.offsetHeight;
+        el.classList.add('reveal');
+      });
     } else {
       document.getElementById('captionOverlay').style.opacity = '0';
+      captionEls.forEach(id => document.getElementById(id).classList.remove('reveal'));
     }
 
     // Update progress bar
@@ -689,11 +729,19 @@
 
   function getKenBurns(idx, faceX, faceY, zoom) {
     const scaleTo = zoom || 1.15;
-    // Match the known-good slideshow pattern (HeroCarousel / IdleSlideshow):
-    // gentle centered scale+translate drift, origin stays at center.
-    // Face focus is handled by background-position in applyImageToLayer, NOT
-    // by transform-origin — an off-center transform-origin on the oversized
-    // (inset:-4%) layer makes the zoom swing away from the face.
+    if (faceX != null && faceY != null) {
+      // Face-anchored: applyImageToLayer already sets background-position to
+      // the same percentages, so this transform-origin pivots a pure-scale
+      // zoom exactly on the detected face for every background-size mode.
+      // Pure scale push-in / pull-out (no translate), like IdleSlideshow.tsx.
+      const origin = `${(faceX * 100).toFixed(1)}% ${(faceY * 100).toFixed(1)}%`;
+      const faceVariants = [
+        { from: 'scale(1)', to: `scale(${scaleTo})` },
+        { from: `scale(${scaleTo})`, to: 'scale(1)' },
+      ];
+      return { ...faceVariants[idx % faceVariants.length], origin };
+    }
+    // No face data: gentle centered scale+translate drift, origin stays center.
     const kbVariants = [
       { from: 'scale(1) translate(0, 0)', to: `scale(${scaleTo}) translate(-2%, -1%)` },
       { from: `scale(1.1) translate(-2%, 0)`, to: 'scale(1) translate(1%, -1%)' },
@@ -821,7 +869,10 @@
   }
 
   // ─── Touch & keyboard ───
+  // In exhibit mode the big screen is a passive display driven by the
+  // controller — a stray touch/keypress must NOT hijack the show.
   document.addEventListener('keydown', (e) => {
+    if (isExhibit) return;
     if (e.key === ' ') { e.preventDefault(); togglePlay(); }
     if (e.key === 'ArrowLeft') prevSlide();
     if (e.key === 'ArrowRight') nextSlide();
@@ -844,6 +895,7 @@
   });
 
   document.addEventListener('touchstart', (e) => {
+    if (isExhibit) return;
     // Touch edges: left third = prev, right third = next, center = play/pause
     const x = e.touches[0].clientX;
     const w = window.innerWidth;
@@ -874,9 +926,12 @@
   // Init
   if (isExhibit) {
     exhibitServer = getServerUrl();
-    // Hide the control bar in exhibit mode
+    // Hide the control bar in exhibit mode. The status dot and progress bar
+    // are debugging/player aids — keep them off the big screen on stage.
     document.getElementById('controls').style.display = 'none';
-    document.getElementById('exhibitDot').classList.remove('hidden');
+    document.getElementById('exhibitDot').classList.add('hidden');
+    const prog = document.querySelector('.progress-area');
+    if (prog) prog.style.display = 'none';
     // Load manifest for photo data, then start polling
     fetch(exhibitServer + '/manifest')
       .then(r => r.json())
