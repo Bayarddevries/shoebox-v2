@@ -6,7 +6,11 @@
   <title>Métis Kin — Exhibit Controller</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Fonts load async (media=print trick): a render-blocking stylesheet to
+       an unreachable host blanks the kiosk for ~15s on networks without
+       internet. With this, the page paints with system fonts immediately and
+       upgrades to Cinzel/EB Garamond/Inter when (if) they arrive. -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <style>
     :root {
       --black: #0a0a0a;
@@ -844,6 +848,9 @@
     const c = document.getElementById('attractCollage');
     const brand = c.querySelector('.attract-brand');
     c.innerHTML = '';
+    // No photos yet (relay/manifest down): keep the wordmark and stop — a
+    // throw here would kill init and leave a permanent black screen.
+    if (!photos.length) { if (brand) c.appendChild(brand); return; }
 
     const pool = shuffledPool();
     const scene = document.createElement('div');
@@ -1235,13 +1242,17 @@
       return;
     }
     gal.classList.remove('hidden');
-    const key = serverIds.join(',');
+    // When the relay hasn't delivered a photo set yet (or is unreachable),
+    // fall back to ALL photos in manifest order so the visitor can still
+    // browse the archive; live sync resumes once the relay responds.
+    const ids = serverIds.length ? serverIds : photos.map(p => p.id);
+    const key = ids.join(',');
     // Full rebuild only when the SET changes (filters/search/related). A pure
     // currentIndex advance must NOT rebuild the strip — it would reset the
     // user's scroll position and yank them back to the active thumb.
     if (key !== lastGalleryKey) {
       lastGalleryKey = key;
-      gal.innerHTML = serverIds.map((id, i) => {
+      gal.innerHTML = ids.map((id, i) => {
         const p = byId[id];
         if (!p) return '';
         return `<div class="gal-item${i === currentIndex ? ' active' : ''}" data-idx="${i}" style="background-image:url('${thumbUrl(p)}')" aria-label="${esc(p.title || p.alt || '')}"></div>`;
@@ -1365,13 +1376,22 @@
   async function init() {
     serverUrl = getServerUrl();
 
-    // Load manifest
+    // Load manifest — try the state relay first, fall back to the SAME-ORIGIN
+    // static manifest (mirror the projector). The controller must show the
+    // archive even when the relay is unreachable (e.g. GitHub Pages or a
+    // mis-routed device); live sync needs the relay, images do not.
     try {
       const r = await fetch(`${serverUrl}/manifest`, { signal: AbortSignal.timeout(5000) });
       const d = await r.json();
       photos = d.photos || d;
-      photos.forEach(p => { byId[p.id] = p; });
-    } catch (e) {}
+    } catch (e) {
+      try {
+        const r = await fetch(`${base()}assets/shoebox/manifest.json`, { signal: AbortSignal.timeout(5000) });
+        const d = await r.json();
+        photos = d.photos || d;
+      } catch (e2) {}
+    }
+    photos.forEach(p => { byId[p.id] = p; });
 
     // Load themes
     try {

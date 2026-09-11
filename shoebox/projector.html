@@ -6,7 +6,11 @@
   <title>Shoebox — Projector Slideshow</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Fonts load async (media=print trick): a render-blocking stylesheet to
+       an unreachable host blanks the kiosk for ~15s on networks without
+       internet. With this, the page paints with system fonts immediately and
+       upgrades to Cinzel/EB Garamond/Inter when (if) they arrive. -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <style>
     :root {
       --black: #0a0a0a;
