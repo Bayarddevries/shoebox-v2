@@ -104,11 +104,15 @@ export default function App() {
  _photoFiles: s.photo_files || [],
  }))
 
-        const photosWithStoryLinks = manifestPhotos.map((p: any, idx: number) => {
+        const photosWithStoryLinks = manifestPhotos.map((p: any) => {
           const storyLinks = storiesWithIds.filter(s => s._photoFiles?.includes(p.alt || p.title))
           return {
             ...p,
-            id: typeof p.id === 'string' ? parseInt(p.id.replace('photo_', ''), 10) || idx : p.id,
+            // Keep the manifest hash ID as-is (photo_<sha1 prefix>). The old
+            // parseInt() transform collided hex hashes (photo_6248a… vs
+            // photo_6248b… both became 6248) and collapsed 565 unique photos
+            // into 387 IDs, breaking the masonry positions map.
+            id: p.id,
             storyIds: storyLinks.map(s => s.id),
           }
         })
