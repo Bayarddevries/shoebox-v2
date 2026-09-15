@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Red River Métis Shoebox — attract screen v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+/* ============================================================
+   THE SHOEBOX AJAR — attract screen v3.1
+
+   Palette and type come verbatim from controller.html so the hand-over
+   resolves into the same world.
+
+   Cycle: RESTING (lid ajar, light and a real photograph showing in the gap)
+   → OPENING (lid tips back on its rear hinge, light spills, a photograph rises
+   out of the box, one creak) → OPEN (one large photograph in the light with
+   its own name and year, cycling) → CLOSING (light fades, lid eases down,
+   silent) → RESTING.
+
+   Motion budget: two animated composites.
+     LID      — the lid, transform only
+     CONTENTS — light spill + lifted photograph as one layer
+   ============================================================ */
+:root{
+  --black:#0a0a0a; --near-black:#111; --charcoal:#1a1814;
+  --crimson:#8b0000; --crimson-glow:#6b0000; --warm-gray:#6b655e;
+  --light-warm:#cfc8be; --cream:#e8e2d6; --accent-warm:#bfa885; --gold:#c4933a;
+  --font-serif:'EB Garamond', Georgia, serif;
+  --font-sans:'Inter', system-ui, sans-serif;
+  --font-kicker:'Cinzel', Georgia, serif;
+  /* cardboard, deliberately dull */
+  --card:#7d5f42; --card-lo:#5c4530; --card-hi:#8f6d4c; --card-dark:#2e2117;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--black);color:var(--cream);
+  font-family:var(--font-sans);-webkit-tap-highlight-color:transparent;user-select:none;
+  -webkit-user-select:none;-webkit-touch-callout:none}
+
+#screen{position:fixed;inset:0;overflow:hidden}
+
+/* ---------- the gallery wall ---------- */
+.wall{position:absolute;inset:0;
+  background:linear-gradient(180deg,#16110c 0%,#100c08 52%,#0a0705 100%)}
+.wall::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(130% 50% at 50% -14%, rgba(240,226,192,0.10) 0%, transparent 66%)}
+
+/* ---------- wordmark: on screen in every phase ---------- */
+.wordmark{position:absolute;left:0;right:0;top:3.4vh;z-index:40;text-align:center}
+.wordmark .wm{font-family:var(--font-kicker);font-weight:600;text-transform:uppercase;
+  font-size:clamp(1rem,1.5vw,1.34rem);letter-spacing:0.26em;color:var(--cream);line-height:1}
+.wordmark .rule{width:clamp(48px,3.8vw,68px);height:1px;margin:0.85rem auto 0;
+  background:linear-gradient(90deg,transparent,rgba(196,147,58,0.95),transparent)}
+.wordmark .kicker{margin-top:0.8rem;font-size:clamp(0.6rem,0.76vw,0.72rem);
+  letter-spacing:0.22em;text-transform:uppercase;color:#b8ad98}
+
+/* ---------- the label of the photograph currently in the light ---------- */
+.label{position:absolute;left:0;right:0;top:15.5vh;z-index:40;text-align:center;
+  opacity:0;transition:opacity .7s ease}
+.label.on{opacity:1}
+.label .nm{font-family:var(--font-serif);font-weight:600;font-variant:small-caps;
+  font-size:clamp(1.15rem,1.75vw,1.6rem);letter-spacing:0.09em;color:var(--cream);line-height:1.15}
+.label .yr{display:block;margin-top:0.4rem;font-family:var(--font-sans);font-weight:300;
+  font-size:clamp(0.68rem,0.84vw,0.8rem);letter-spacing:0.18em;text-transform:uppercase;color:#bdb29d}
+
+/* ---------- the photograph, lifted out of the box ---------- */
+.lifted{position:absolute;left:50%;bottom:36vh;transform:translateX(-50%);z-index:16;
+  opacity:0;transition:opacity .8s ease}
+.lifted.on{opacity:1}
+.lifted .frame{box-sizing:border-box;background-repeat:no-repeat;background-position:center;
+  background-size:contain;background-color:#20180f;
+  border:10px solid #e6dcc6;                     /* the same cream mount as the wall */
+  box-shadow:0 22px 52px rgba(0,0,0,0.66), 0 0 70px rgba(255,226,170,0.07)}
+
+/* ---------- the box ---------- */
+.boxwrap{position:absolute;left:50%;transform:translateX(-50%);bottom:12vh;
+  width:min(58vw,720px);height:30vh;perspective:1500px;z-index:20}
+
+/* the open interior, with walls that give it depth */
+.interior{position:absolute;left:0;right:0;bottom:17vh;height:13vh;z-index:2;overflow:hidden;
+  background:linear-gradient(180deg,#170f08 0%,#2b1c0e 62%,#4a2e14 100%)}
+.interior::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg, rgba(0,0,0,0.75) 0%, transparent 16%, transparent 84%, rgba(0,0,0,0.75) 100%)}
+/* the top of a real photograph, so the light is visibly coming out of one */
+.sliver{position:absolute;left:0;right:0;bottom:0;height:11vh;
+  background-repeat:no-repeat;background-position:center bottom;background-size:contain;opacity:0.9}
+
+/* the light spilling UP out of the opening */
+.spill{position:absolute;left:50%;bottom:22vh;transform:translateX(-50%);z-index:6;
+  width:130vw;height:78vh;pointer-events:none;opacity:0;mix-blend-mode:screen;
+  background:radial-gradient(ellipse 26% 34% at 50% 76%,
+    rgba(255,240,212,0.60) 0%, rgba(255,224,170,0.28) 30%, rgba(255,210,150,0.08) 58%, transparent 76%)}
+
+/* the lid: hinged on its REAR edge, so opening tips it back and its face
+   foreshortens. Closed it covers the interior; open it reads as an open lid. */
+.lid{position:absolute;left:-2%;right:-2%;bottom:17vh;height:13vh;z-index:12;
+  transform-origin:top center;transform:rotateX(0deg);
+  background:linear-gradient(180deg,var(--card-hi) 0%,var(--card) 55%,var(--card-lo) 100%)}
+/* the lid's visible board thickness along its lower edge */
+.lid::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:4px;
+  background:linear-gradient(180deg,#a8825c,#6a4f35)}
+/* the lid's underside catches a little of the light when it is lifted */
+.lid::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(255,226,170,0.18) 100%)}
+
+/* the front face */
+.front{position:absolute;left:-2%;right:-2%;bottom:0;height:17vh;z-index:10;
+  background:linear-gradient(180deg,var(--card) 0%,var(--card-lo) 70%,#432f20 100%);
+  box-shadow:0 18px 44px rgba(0,0,0,0.66)}
+.front::after{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:rgba(0,0,0,0.55)}
+
+/* the seam: lit in every phase, so the screen is never a dead rectangle */
+.seam{position:absolute;left:-2%;right:-2%;bottom:calc(17vh - 1px);height:2px;z-index:14;
+  background:linear-gradient(90deg, rgba(255,232,190,0.06), rgba(255,238,206,0.85), rgba(255,232,190,0.06));
+  box-shadow:0 0 22px rgba(255,226,170,0.45)}
+
+/* ---------- the invitation, on the wall below the box ---------- */
+.cue{position:absolute;left:0;right:0;bottom:3.6vh;z-index:40;text-align:center}
+.cue .main{display:flex;align-items:center;justify-content:center;gap:0.7rem;
+  font-family:var(--font-kicker);font-weight:600;text-transform:uppercase;
+  font-size:clamp(0.86rem,1.14vw,1.06rem);letter-spacing:0.2em;color:var(--gold)}
+.cue .hand{width:1.2em;height:1.2em;flex:0 0 auto;stroke:var(--gold);fill:none;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.cue .sub{margin-top:0.6rem;font-family:var(--font-serif);font-size:clamp(0.8rem,1vw,0.95rem);
+  color:#a89d8a}
+.cue .dot{color:var(--warm-gray);padding:0 0.4em}
+
+@keyframes handpulse{0%,100%{opacity:0.7}50%{opacity:1}}
+.cue.pulse .hand{animation:handpulse 3.6s ease-in-out infinite}
+@keyframes shimmer{from{opacity:0.86}to{opacity:1}}
+.seam{animation:shimmer 74s ease-in-out infinite alternate}
+
+/* ---------- hand-over bloom ---------- */
+.bloom{position:absolute;left:50%;bottom:12vh;width:min(58vw,720px);height:30vh;z-index:60;
+  transform:translateX(-50%);opacity:0;pointer-events:none;
+  background:radial-gradient(ellipse 50% 50% at 50% 50%,
+    rgba(255,238,206,0.62) 0%, rgba(255,226,180,0.34) 42%, transparent 76%)}
+.bloom.go{transition:transform 1.05s ease-out, opacity 1.05s ease-out;
+  transform:translateX(-50%) scale(6);opacity:1}
+
+/* ---------- the interface the bloom resolves into (demo stand-in) ---------- */
+#app{position:absolute;inset:0;z-index:45;opacity:0;pointer-events:none;
+  background:
+    radial-gradient(120% 80% at 50% 108%, rgba(107,0,0,0.45) 0%, transparent 62%),
+    linear-gradient(180deg,#0d0c0b 0%,var(--black) 60%)}
+#app.show{opacity:1;transition:opacity .6s ease}
+#app .chrome{position:absolute;top:4vh;left:0;right:0;text-align:center}
+#app .chrome .wm{font-family:var(--font-kicker);font-weight:600;text-transform:uppercase;
+  font-size:clamp(1rem,1.4vw,1.24rem);letter-spacing:0.26em;color:var(--cream)}
+#app .search{margin:6vh auto 0;width:min(58vw,660px);border-bottom:1px solid rgba(196,147,58,0.45);
+  padding:0.75rem 0.2rem;font-family:var(--font-serif);font-size:clamp(1rem,1.3vw,1.2rem);
+  color:var(--light-warm);display:flex;justify-content:space-between;align-items:baseline}
+#app .search .hint{font-family:var(--font-sans);font-size:0.6em;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--warm-gray)}
+#app .tiles{position:absolute;left:6vw;right:6vw;bottom:9vh;display:grid;
+  grid-template-columns:repeat(5,1fr);gap:1vw}
+#app .tile{aspect-ratio:1;background-size:cover;background-position:center;
+  background-color:var(--charcoal);border:1px solid rgba(232,226,214,0.08)}
+#app .tag{position:absolute;left:0;right:0;bottom:4vh;text-align:center;
+  font-family:var(--font-sans);font-size:0.6rem;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--warm-gray)}
+
+@media (prefers-reduced-motion: reduce){
+  .lid{transition:none !important}
+  .seam,.cue .hand{animation:none !important}
+  .bloom.go{transition:opacity .35s linear}
+  .lifted,.label{transition:none !important}
+}
+</style>
+</head>
+<body>
+<div id="screen">
+  <div class="wall"></div>
+
+  <div class="wordmark">
+    <div class="wm">The Red River Métis Shoebox</div>
+    <div class="rule"></div>
+    <div class="kicker">Photographs from Métis families and communities</div>
+  </div>
+
+  <div class="label" id="label"><div class="nm" id="nm"></div><span class="yr" id="yr"></span></div>
+
+  <div class="lifted" id="lifted"><div class="frame" id="frame"></div></div>
+
+  <div class="boxwrap">
+    <div class="spill" id="spill"></div>
+    <div class="interior"><div class="sliver" id="sliver"></div></div>
+    <div class="lid" id="lid"></div>
+    <div class="front"></div>
+    <div class="seam"></div>
+  </div>
+
+  <div class="cue pulse" id="cue">
+    <div class="main">
+      <svg class="hand" viewBox="0 0 26 26" aria-hidden="true">
+        <path d="M9 13V7.2a1.3 1.3 0 0 1 2.6 0V12"/>
+        <path d="M11.6 12V5.4a1.3 1.3 0 0 1 2.6 0V12"/>
+        <path d="M14.2 12V7.4a1.3 1.3 0 0 1 2.6 0v5.9c0 3.9-2.4 6.9-6 6.9s-6-2.8-6-6.2v-4.2a1.3 1.3 0 0 1 2.6 0v3"/>
+      </svg>
+      <span>Touch the light to look inside</span>
+    </div>
+    <div class="sub" id="counter"></div>
+  </div>
+
+  <div class="bloom" id="bloom"></div>
+
+  <div id="app">
+    <div class="chrome"><div class="wm">The Red River Métis Shoebox</div></div>
+    <div class="search"><span>Search the families</span><span class="hint" id="appCount">544 photographs</span></div>
+    <div class="tiles" id="tiles"></div>
+    <div class="tag">Hand-over demo · the real interface is controller.html</div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Phase machine: one timer chain, one owner. Deliberately NOT gated on
+   requestAnimationFrame (a backgrounded tab never fires rAF and the screen
+   would stay blank).
+   ============================================================ */
+const T = { rest: 12000, open: 3200, hold: 34000, close: 6200, photo: 8500 };
+const $ = id => document.getElementById(id);
+const lid=$('lid'), spill=$('spill'), sliverEl=$('sliver'), lifted=$('lifted'), frame=$('frame'),
+      label=$('label'), nm=$('nm'), yr=$('yr'), counter=$('counter'),
+      bloom=$('bloom'), app=$('app');
+
+let phase=null, handover=false, cover=[], idx=0, cycleTimer=null, photoTimer=null;
+
+const thumb = p => encodeURI((p.src||'').replace(/photos\//,'thumbs/').replace(/\.[a-zA-Z0-9]+$/,'.jpg'));
+const person = p => ((p.people||'').split(';')[0]||'').trim() || (p.title||'');
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+
+/* ---------- LID: Web Animations API so it is cancellable and can share a
+   clock with the audio ---------- */
+let lidAnim=null;
+function setLid(deg, ms){
+  if(lidAnim) lidAnim.cancel();
+  const cur = getComputedStyle(lid).transform;
+  lidAnim = lid.animate(
+    [{transform: cur==='none' ? 'rotateX(0deg)' : cur}, {transform:'rotateX('+deg+'deg)'}],
+    {duration: ms, easing:'cubic-bezier(.36,.02,.24,1)', fill:'forwards'});
+}
+
+/* ---------- CONTENTS: the light spill and the lifted photograph move as ONE
+   composite (per the motion budget), and the photograph itself fades inside it ---------- */
+let contentsAnims=[];
+function setContents(on, ms){
+  contentsAnims.forEach(a=>a.cancel());
+  const s0=getComputedStyle(spill).opacity, l0=getComputedStyle(lifted).opacity;
+  contentsAnims=[
+    spill.animate([{opacity:s0},{opacity:on?1:0}], {duration:ms, easing:'ease-out', fill:'forwards'}),
+    lifted.animate([{opacity:l0},{opacity:on?1:0}], {duration:ms, easing:'ease-out', fill:'forwards'})
+  ];
+}
+
+/* ---------- audio: one shared context, unlocked on the first gesture. The
+   animation NEVER waits on it, because a fresh kiosk blocks autoplay. ---------- */
+let actx=null, creakBuf=null, creakSrc=null;
+async function audioInit(){
+  try{
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if(!AC) return;
+    actx = actx || new AC();
+    if(!creakBuf){
+      const r = await fetch('assets/shoebox/audio/creak-open.mp3');
+      creakBuf = await actx.decodeAudioData(await r.arrayBuffer());
+    }
+  }catch(e){ actx=null; }
+}
+function unlockAudio(){ if(!actx) audioInit(); else if(actx.state==='suspended') actx.resume().catch(()=>{}); }
+function playCreak(){
+  if(!actx || actx.state!=='running' || !creakBuf) return;   // silent is acceptable
+  try{
+    if(creakSrc){ try{ creakSrc.stop(); }catch(e){} }
+    const g = actx.createGain();
+    g.gain.setValueAtTime(0.0001, actx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.24, actx.currentTime+0.05);
+    g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime+3.0);
+    const src = actx.createBufferSource();
+    src.buffer = creakBuf; src.connect(g); g.connect(actx.destination);
+    src.start(actx.currentTime + 0.03);       // same task as the lid animation
+    creakSrc = src;
+  }catch(e){}
+}
+
+/* ---------- phases ---------- */
+function clearTimers(){ clearTimeout(cycleTimer); clearInterval(photoTimer); }
+
+function toResting(first){
+  phase='resting';
+  setLid(-11, first?1:6000); setContents(false, first?1:6000);
+  showLabel(false);
+  cycleTimer = setTimeout(toOpening, T.rest);
+}
+function toOpening(){
+  if(handover) return;
+  phase='opening';
+  setLid(-76, T.open);
+  setContents(true, T.open+500);
+  playCreak();                                 // exactly with the movement
+  showPhoto(0); showLabel(true);
+  cycleTimer = setTimeout(toOpen, T.open+800);
+}
+function toOpen(){
+  if(handover) return;
+  phase='open';
+  let i=1;
+  photoTimer = setInterval(()=>{ if(!handover) showPhoto(i++); }, T.photo);
+  cycleTimer = setTimeout(toClosing, T.hold);
+}
+function toClosing(){
+  if(handover) return;
+  phase='closing';
+  clearInterval(photoTimer);
+  setContents(false, T.close);                 // light first
+  setLid(-11, T.close);                        // then the lid, silent
+  cycleTimer = setTimeout(()=>toResting(false), T.close+250);
+}
+
+/* ---------- the photograph: sized from ITS OWN aspect ratio, so a portrait
+   print is never squeezed into a landscape box ---------- */
+function showPhoto(i){
+  if(!cover.length) return;
+  idx = i % cover.length;
+  const p = cover[idx];
+  const H = Math.round(innerHeight * 0.46);            // 46vh tall: a print, not an icon
+  const ar = (p.w && p.h) ? (p.w/p.h) : 1.4;
+  const W = Math.round(Math.min(H*ar + 20, innerWidth*0.46));
+  frame.style.height = H+'px';
+  frame.style.width  = W+'px';
+  frame.style.backgroundImage = "url('"+thumb(p)+"')";
+  nm.textContent = person(p);
+  yr.textContent = p.year ? ('c. '+p.year) : '';
+  label.classList.add('on');
+  lifted.classList.add('on');
+}
+function showLabel(on){ label.classList.toggle('on', !!on); lifted.classList.toggle('on', !!on); }
+
+/* ---------- hand-over ---------- */
+function beginHandover(){
+  if(handover) return;
+  handover = true;
+  clearTimers();
+  if(lidAnim) lidAnim.cancel();
+  if(creakSrc){ try{ creakSrc.stop(); }catch(e){} }
+  if(navigator.vibrate){ try{ navigator.vibrate(12); }catch(e){} }
+  lid.style.transform = getComputedStyle(lid).transform;     // snap both composites
+  spill.style.opacity = getComputedStyle(spill).opacity;     // to the bloom's start
+  bloom.classList.add('go');
+  setTimeout(()=>{
+    app.classList.add('show');
+    window.__suppressUntil = Date.now() + 300;               // swallow the eager tap
+    setTimeout(()=>{ handover=false; }, 300);
+  }, 1060);
+}
+
+document.addEventListener('pointerdown', (e)=>{
+  unlockAudio();
+  if(Date.now() < (window.__suppressUntil||0)){ e.preventDefault(); return; }
+  if(app.classList.contains('show')) return;
+  beginHandover();
+}, true);
+
+/* ---------- boot ---------- */
+async function pickPhotos(){
+  // the manifest names its dimensions width/height; hero-pool.json uses w/h.
+  // Normalise, and fall through on an EMPTY result, not only on a thrown error.
+  const norm = p => Object.assign({}, p, { w:p.w||p.width, h:p.h||p.height });
+  const ok = p => p && p.w && p.h && person(p) && p.w>=300;   // skip tiny crops
+  const eraMix = all => {
+    const eras=[[0,1920],[1920,1950],[1950,1980],[1980,2100]], out=[];
+    for(const [a,b] of eras){
+      const c = all.filter(p=>p.year && p.year>a && p.year<=b && (p.h>p.w));  // prefer portraits
+      const pool = c.length ? c : all.filter(p=>p.year && p.year>a && p.year<=b);
+      if(pool.length) out.push(pool[Math.floor(pool.length/2)]);
+    }
+    return out.length ? out : all.slice(0,4);
+  };
+  try{
+    const all = ((await (await fetch('assets/shoebox/manifest.json')).json()).photos||[]).map(norm).filter(ok);
+    if(all.length) return eraMix(all);
+  }catch(e){}
+  try{
+    const all = ((await (await fetch('hero-pool.json')).json()).photos||[]).map(norm).filter(ok);
+    if(all.length) return eraMix(all);
+  }catch(e){}
+  return [];
+}
+
+(async function boot(){
+  cover = await pickPhotos();
+
+  await Promise.all(cover.map(p=>new Promise(res=>{
+    const im=new Image(); im.onload=im.onerror=()=>res(); im.src=thumb(p);
+  })));
+
+  if(cover[0]) sliverEl.style.backgroundImage = "url('"+thumb(cover[0])+"')";
+
+  let stats = { photos:544 };
+  try{
+    const d = await (await fetch('names-roll.json')).json();
+    if(d.stats) stats = d.stats;
+  }catch(e){}
+  counter.innerHTML = 'One of ' + stats.photos + ' photographs' +
+    (stats.names ? '<span class="dot">·</span>'+stats.names+' people' : '') +
+    (stats.families ? '<span class="dot">·</span>'+stats.families+' families' : '') +
+    (stats.communities ? '<span class="dot">·</span>'+stats.communities+' communities' : '');
+  $('appCount').textContent = stats.photos + ' photographs';
+  $('tiles').innerHTML = cover.concat(cover).slice(0,5)
+    .map(p=>'<div class="tile" style="background-image:url(\''+thumb(p)+'\')"></div>').join('');
+
+  toResting(true);
+  window.__attractStats = { phase, photos:cover.length, picked:cover.map(p=>person(p)+' '+(p.year||'')), sized:cover.map(p=>(p.w||p.width)+'x'+(p.h||p.height)) };
+})();
+
+/* a sleeping or throttled tab snaps back to the safe static state */
+document.addEventListener('visibilitychange', ()=>{
+  if(document.visibilityState==='visible' && !handover){ clearTimers(); unlockAudio(); toResting(true); }
+});
+</script>
+</body>
+</html>

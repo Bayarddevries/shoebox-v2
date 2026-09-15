@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attract Concept A — The Wall</title>
+<style>
+  :root{ --cream:#ece6da; --gold:#c4933a; --muted:#a9a196; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:100%;height:100%;overflow:hidden;background:#0c0a09;color:var(--cream);
+    font-family:'Inter',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+
+  .wall{position:fixed;inset:0;overflow:hidden;
+    background:
+      radial-gradient(ellipse 130% 85% at 50% -30%, rgba(255,236,204,0.13) 0%, transparent 60%),
+      radial-gradient(ellipse 150% 110% at 50% 130%, rgba(0,0,0,0.62) 0%, transparent 62%),
+      linear-gradient(180deg,#1d1916 0%,#121010 55%,#0b0a09 100%);}
+  .wall::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:0.4;
+    background:repeating-linear-gradient(93deg, rgba(255,240,220,0.012) 0 2px, rgba(0,0,0,0.03) 3px 5px);}
+
+  .sweep{position:absolute;inset:-25% -45%;pointer-events:none;mix-blend-mode:screen;
+    background:radial-gradient(ellipse 24% 90% at 50% 50%, rgba(255,240,216,0.12) 0%, rgba(255,240,216,0.05) 40%, transparent 70%);
+    animation:sweep 62s ease-in-out infinite alternate;}
+  @keyframes sweep{from{transform:translate3d(-22%,0,0)}to{transform:translate3d(22%,0,0)}}
+
+  /* photo-book wall: uniform row heights, every photo at its own aspect ratio */
+  .hang{position:absolute;left:0;right:0;top:12.5vh;bottom:15vh;display:flex;align-items:center;justify-content:center}
+  .rows{display:flex;flex-direction:column;gap:1.15vh;align-items:center}
+  .row{display:flex;gap:0.8vw;justify-content:center}
+  .ph{background-repeat:no-repeat;background-position:center;background-size:contain;
+    filter:drop-shadow(0 5px 15px rgba(0,0,0,0.62));
+    animation:rise .85s cubic-bezier(.22,.8,.3,1) both;will-change:transform,opacity}
+  @keyframes rise{from{opacity:0;transform:translate3d(0,9px,0)}to{opacity:1;transform:none}}
+
+  .brand{position:absolute;top:2.1vh;left:0;right:0;z-index:5;text-align:center}
+  .brand .wm{font-family:'Cinzel',Georgia,serif;font-weight:700;text-transform:uppercase;
+    font-size:clamp(1.6rem,3.9vw,3.2rem);letter-spacing:0.15em;white-space:nowrap;
+    color:#f4efe6;text-shadow:0 2px 22px rgba(0,0,0,0.92)}
+  .brand::before{content:'';position:absolute;inset:-1.5em -4em -1.2em;z-index:-1;
+    background:radial-gradient(ellipse 66% 135% at 50% 45%, rgba(9,9,9,0.8) 0%, rgba(9,9,9,0.38) 60%, transparent 100%)}
+  .brand .rule{width:5.5rem;height:1px;margin:0.85rem auto 0;
+    background:linear-gradient(90deg,transparent,rgba(196,147,58,0.85),transparent)}
+
+  .cue-wrap{position:absolute;bottom:2.2vh;left:50%;transform:translateX(-50%);z-index:5;text-align:center}
+  .cue{display:inline-block;padding:1rem 2.8rem;border-radius:999px;
+    border:1px solid rgba(196,147,58,0.62);
+    background:linear-gradient(180deg, rgba(26,22,17,0.95), rgba(12,10,9,0.95));
+    box-shadow:0 10px 34px rgba(0,0,0,0.65), inset 0 0 24px rgba(196,147,58,0.07);
+    font-family:'Cinzel',Georgia,serif;text-transform:uppercase;letter-spacing:0.22em;
+    font-size:clamp(0.95rem,1.55vw,1.45rem);color:#f0cd8c;
+    animation:cuePulse 3.6s ease-in-out infinite}
+  .cue small{display:block;margin-top:0.55em;font-family:'EB Garamond',Georgia,serif;font-style:italic;
+    text-transform:none;letter-spacing:0.02em;color:#c3bbae;font-size:0.92em}
+  @keyframes cuePulse{0%,100%{opacity:0.72;transform:translateY(0)}50%{opacity:1;transform:translateY(-1px)}}
+</style>
+</head>
+<body>
+<div class="wall">
+  <div class="sweep"></div>
+  <div class="hang"><div class="rows" id="rows"></div></div>
+  <div class="brand">
+    <div class="wm">The Red River Métis Shoebox</div>
+    <div class="rule"></div>
+  </div>
+  <div class="cue-wrap"><div class="cue">Touch a photo to explore
+    <small>544 photographs · families, communities, and stories</small></div></div>
+</div>
+<script>
+// Justified photo-book wall.
+// Every row is scaled to the SAME width AND near-uniform height, so edges align
+// into a deliberate composition while each photo keeps its OWN aspect ratio
+// (background-size:contain — nothing is ever cropped).
+// Row height is found by binary search so the block exactly fills the area.
+const COUNT   = 25;      // prints on screen (curated subset of the hero pool)
+const GAP_X   = 0.008;   // horizontal gutter (fraction of viewport width)
+const GAP_Y   = 0.0115;  // vertical gutter   (fraction of viewport height)
+
+fetch('hero-pool.json').then(r=>r.json()).then(d=>{
+  const pool=[...d.photos].sort(()=>Math.random()-0.5).slice(0,COUNT);
+  const vw=innerWidth, vh=innerHeight;
+  const areaH = vh - 0.125*vh - 0.15*vh;
+  const contentW = vw - 0.07*vw;
+
+  const aspect=p=>{
+    let a=(p.h&&p.w)?(p.w/p.h):1.5;
+    return Math.min(Math.max(a,0.6),2.2);   // tame only the extremes
+  };
+  const as = pool.map(aspect);
+
+  // Sort by aspect and deal round-robin into R rows: every row then receives a
+  // similar total aspect, so all rows land at nearly the SAME justified height
+  // (uniform rows = deliberate photo-book look). R is chosen to fill the area.
+  function build(R){
+    const order=[...as.keys()].sort((a,b)=>as[b]-as[a]);   // widest first
+    const groups=Array.from({length:R},()=>[]);
+    order.forEach((pi,k)=> groups[k % R].push(pi));
+    const rows = groups.map(g=>{
+      const sumA=g.reduce((a,i)=>a+as[i],0);
+      return {idx:g, h:(contentW - GAP_X*vw*(g.length-1))/sumA};
+    });
+    const total = rows.reduce((a,r)=>a+r.h,0) + GAP_Y*vh*(rows.length-1);
+    return {rows,total};
+  }
+
+  // pick the row count whose justified total best fills the available area
+  let best=null;
+  for(let R=2; R<=8; R++){
+    const r=build(R);
+    const score = Math.abs(r.total-areaH);
+    if(!best || score<best.score) best={score,r};
+  }
+  // Fit the block to the area. If the natural block is taller than the area,
+  // scale it down uniformly (keeps every aspect ratio, leaves side margins).
+  // If it's shorter, keep full width and absorb the slack into the gutters.
+  const rowsN = best.r.rows.length;
+  const fit = Math.min(1, areaH/best.r.total);
+  const slack = Math.max(0, areaH - (best.r.total*fit));
+  const extraGap = rowsN > 1 ? Math.min(slack/(rowsN-1), vh*0.03) : 0;
+  document.querySelector('.rows').style.gap = (GAP_Y*vh + extraGap).toFixed(1)+'px';
+
+  document.getElementById('rows').innerHTML = best.r.rows.map((row,ri)=>{
+    const h=row.h*fit;
+    return `<div class="row">` + row.idx.map((pi,i)=>{
+      const p=pool[pi], w=h*as[pi];
+      const thumb=(p.src||'').replace(/photos\//,'thumbs/').replace(/\.[a-zA-Z0-9]+$/,'.jpg');
+      return `<div class="ph" style="width:${w.toFixed(1)}px;height:${h.toFixed(1)}px;
+        background-image:url('${encodeURI(thumb)}');animation-delay:${(ri*80+i*38)}ms"></div>`;
+    }).join('') + `</div>`;
+  }).join('');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attract Concept D — The Spill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:100%;height:100%;overflow:hidden;background:#14100c;
+    font-family:'Inter',system-ui,sans-serif;color:#f4ecdd;
+    -webkit-tap-highlight-color:transparent;touch-action:none;user-select:none}
+
+  /* ---- warm table surface: amber light from top-left, wood grain, vignette, text scrims ---- */
+  .stage{position:fixed;inset:0;overflow:hidden;background:
+    linear-gradient(180deg, rgba(12,8,4,0.50) 0%, rgba(12,8,4,0) 13%),
+    linear-gradient(0deg,   rgba(12,8,4,0.52) 0%, rgba(12,8,4,0) 13%),
+    radial-gradient(150% 120% at 50% 50%, rgba(0,0,0,0) 56%, rgba(6,4,2,0.55) 100%),
+    radial-gradient(120% 95% at 15% 5%, rgba(255,211,143,0.30) 0%, rgba(255,198,124,0.10) 38%, rgba(0,0,0,0) 66%),
+    repeating-linear-gradient(91deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 2px, rgba(255,255,255,0.016) 2px, rgba(255,255,255,0.016) 4px, rgba(0,0,0,0) 4px, rgba(0,0,0,0) 12px),
+    repeating-linear-gradient(1deg, rgba(0,0,0,0.045) 0px, rgba(0,0,0,0.045) 1px, rgba(255,255,255,0.012) 1px, rgba(255,255,255,0.012) 3px, rgba(0,0,0,0) 3px, rgba(0,0,0,0) 14px),
+    linear-gradient(158deg, #4b3521 0%, #372714 34%, #241a0e 62%, #1a120a 100%);}
+  .stage::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:0.5;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");}
+
+  /* very slow light breath — ONE gradient element, opacity only */
+  .breath{position:absolute;inset:-22%;pointer-events:none;will-change:opacity;
+    background:radial-gradient(58% 52% at 22% 8%, rgba(255,214,150,0.17) 0%, rgba(255,196,120,0.05) 46%, rgba(0,0,0,0) 72%);
+    animation:breathe 46s ease-in-out infinite alternate}
+  @keyframes breathe{from{opacity:0.55}to{opacity:1}}
+
+  /* ---- the composition: ONE drifting layer ---- */
+  #compose{position:absolute;inset:0;pointer-events:none;will-change:transform;
+    animation:drift 76s ease-in-out infinite alternate}
+  @keyframes drift{
+    from{transform:translate3d(0,0,0) scale(1)}
+    to{transform:translate3d(0.65%,0.45%,0) scale(1.028)}}
+
+  .print{position:absolute;background-repeat:no-repeat;background-position:center;background-size:contain;
+    box-shadow:0 1px 1px rgba(10,5,2,0.30), 0 2px 4px rgba(10,5,2,0.22), 0 6px 13px rgba(10,5,2,0.17), 0 15px 30px rgba(10,5,2,0.11);
+    opacity:0;animation:settle .55s ease-out forwards}
+  @keyframes settle{to{opacity:1}}
+
+  /* ---- typography ---- */
+  .brand{position:absolute;top:2.5vh;left:0;right:0;z-index:6;text-align:center;pointer-events:none}
+  .brand .wm{font-family:'Cinzel',Georgia,serif;font-weight:700;text-transform:uppercase;white-space:nowrap;
+    font-size:clamp(1.55rem,3.4vw,2.9rem);letter-spacing:0.17em;color:#f8f1e4;
+    text-shadow:0 2px 4px rgba(10,6,3,0.9), 0 6px 26px rgba(10,6,3,0.75)}
+  .brand .rule{width:7rem;height:1px;margin:0.7rem auto 0;
+    background:linear-gradient(90deg,transparent,rgba(217,169,92,0.9),transparent)}
+
+  .cue{position:absolute;bottom:2.2vh;left:50%;transform:translateX(-50%);z-index:6;text-align:center;pointer-events:none;white-space:nowrap}
+  .cue .t1{font-family:'Cinzel',Georgia,serif;text-transform:uppercase;letter-spacing:0.3em;
+    font-size:clamp(0.8rem,1.35vw,1.15rem);color:#ecc98a;
+    text-shadow:0 2px 3px rgba(10,6,3,0.92), 0 5px 16px rgba(10,6,3,0.7)}
+  .cue .t2{font-family:'EB Garamond',Georgia,serif;font-style:italic;letter-spacing:0.02em;margin-top:0.4em;
+    font-size:clamp(0.85rem,1.3vw,1.05rem);color:#dcd2c0;
+    text-shadow:0 1px 2px rgba(10,6,3,0.92), 0 3px 10px rgba(10,6,3,0.6)}
+
+  .err{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9;
+    font-family:'EB Garamond',serif;font-style:italic;color:#e8ddc8;font-size:1.1rem}
+</style>
+</head>
+<body>
+<div class="stage"></div>
+<div class="breath"></div>
+<div id="compose"></div>
+<div class="brand"><div class="wm">The Red River Métis Shoebox</div><div class="rule"></div></div>
+<div class="cue"><div class="t1">Touch a photo to explore</div><div class="t2">544 photographs · families, communities, and stories</div></div>
+
+<script>
+(function(){
+'use strict';
+/* =====================================================================
+   CONCEPT D — "THE SPILL"
+   Deterministic, seeded layout: a 5×5 jittered grid, compressed toward
+   the centre (breathing margins at the edges), orientation-balanced so
+   portraits and landscapes are distributed, ±6° rotation, and a
+   separating-axis relaxation pass that guarantees at most a couple of
+   gentle touches — never a hard overlap, never a crop.
+   ===================================================================== */
+const COUNT = 25;                       // prints on the surface (22–28 brief)
+const SEED  = 20260911;                 // fixed → same curated composition every load
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const rand = mulberry32(SEED);
+const rnd  = (a,b)=>a+(b-a)*rand();
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(rand()*(i+1));const t=a[i];a[i]=a[j];a[j]=t}return a}
+
+/* rotated-rectangle overlap (Separating Axis Theorem) → {depth,ux,uy} | null */
+function sat(a,b){
+  const r1=a.rot*Math.PI/180, r2=b.rot*Math.PI/180;
+  const c1=Math.cos(r1), s1=Math.sin(r1), c2=Math.cos(r2), s2=Math.sin(r2);
+  const dx=b.x-a.x, dy=b.y-a.y;
+  const axes=[[c1,s1],[-s1,c1],[c2,s2],[-s2,c2]];
+  let min=Infinity, ux=0, uy=0;
+  for(const [u,v] of axes){
+    const h1=Math.abs(u*c1+v*s1)*(a.w/2)+Math.abs(-u*s1+v*c1)*(a.h/2);
+    const h2=Math.abs(u*c2+v*s2)*(b.w/2)+Math.abs(-u*s2+v*c2)*(b.h/2);
+    const ov=h1+h2-Math.abs(dx*u+dy*v);
+    if(ov<=0) return null;
+    if(ov<min){min=ov;ux=u;uy=v}
+  }
+  if(dx*ux+dy*uy<0){ux=-ux;uy=-uy}
+  return {depth:min,ux,uy};
+}
+
+fetch('hero-pool.json').then(r=>r.json()).then(data=>{
+  const vw=innerWidth, vh=innerHeight;
+  /* generous margins: wordmark band on top, cue band on bottom */
+  const M={l:vw*0.05, r:vw*0.05, t:vh*0.16, b:vh*0.115};
+  const R={x:M.l, y:M.t, w:vw-M.l-M.r, h:vh-M.t-M.b};
+  const COLS=5, ROWS=5, cellW=R.w/COLS, cellH=R.h/ROWS;
+  const cxc=R.x+R.w/2, cyc=R.y+R.h/2;
+
+  /* ---- curated selection: seeded shuffle + orientation-balanced grid ---- */
+  const sel=shuffle([...data.photos]).slice(0,COUNT);
+  const P=sel.filter(p=>p.w/p.h<1.02).sort((a,b)=>(a.w/a.h)-(b.w/b.h));   // most-portrait first
+  const L=sel.filter(p=>p.w/p.h>=1.02).sort((a,b)=>(b.w/b.h)-(a.w/a.h));  // widest first
+  const PAT=[                                                              // 1 landscape slot · 0 portrait slot · 2 centre anchor
+    [1,0,1,1,0],
+    [0,1,1,0,1],
+    [1,1,2,1,1],
+    [0,1,1,0,1],
+    [1,0,1,1,0]
+  ];
+  const grid=[];
+  for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++)grid.push({r,c,t:PAT[r][c]});
+  const photos=[];
+  for(const cell of grid){
+    let ph;
+    if(cell.t===2)            ph = P.length? P.shift() : L.shift();
+    else if(cell.t===0 && P.length) ph = P.shift();
+    else if(cell.t===1 && L.length) ph = L.shift();
+    else                      ph = P.length? P.shift() : L.shift();
+    photos.push(ph);
+  }
+
+  /* ---- jittered grid: attract-to-centre, edge breathing, centre density ---- */
+  const layout=photos.map((ph,i)=>{
+    const {r,c}=grid[i];
+    let x=cxc+(R.x+cellW/2+c*cellW-cxc)*0.96;   // columns pulled toward centre
+    let y=cyc+(R.y+cellH/2+r*cellH-cyc)*0.95;   // rows pulled toward centre
+    const d=Math.min(1,Math.hypot((x-cxc)/(R.w*0.5),(y-cyc)/(R.h*0.5)));
+    const jx=(0.10+0.12*d)*cellW, jy=(0.10+0.12*d)*cellH;   // tighter jitter in the dense middle
+    x+=rnd(-jx,jx); y+=rnd(-jy,jy);
+    const ar=(ph.w&&ph.h)? ph.w/ph.h : 1;
+    const f=0.80+rnd(0,0.07);                   // print fits ~80–87% of its cell
+    const s=1+0.16*(1-d);                       // centre prints read slightly larger
+    const s2=Math.min(f*cellW*s, f*cellH*s*ar);
+    const w=s2, h=s2/ar;                        // box == EXACT photo aspect ratio
+    const rot=(rnd(-1,1)+rnd(-1,1))*3;          // triangular spread within ±6°
+    return {ph,x,y,w,h,rot,ar,d};
+  });
+
+  /* ---- relax hard overlaps; cap at a couple of gentle touches ---- */
+  function clampToRegion(L){
+    const cos=Math.cos(L.rot*Math.PI/180), sin=Math.sin(L.rot*Math.PI/180);
+    const aX=L.w/2*Math.abs(cos)+L.h/2*Math.abs(sin);
+    const aY=L.w/2*Math.abs(sin)+L.h/2*Math.abs(cos);
+    L.x=Math.min(Math.max(L.x,R.x+aX+2), R.x+R.w-aX-2);
+    L.y=Math.min(Math.max(L.y,R.y+aY+2), R.y+R.h-aY-2);
+  }
+  for(let iter=0;iter<20;iter++){
+    let worst=null;
+    for(let i=0;i<layout.length;i++)for(let j=i+1;j<layout.length;j++){
+      const m=sat(layout[i],layout[j]);
+      if(!m) continue;
+      const minDim=Math.min(layout[i].w,layout[i].h,layout[j].w,layout[j].h);
+      if(m.depth>0.035*minDim && (!worst||m.depth>worst.depth)) worst={i,j,m};
+    }
+    if(!worst) break;
+    const a=layout[worst.i], b=layout[worst.j];
+    const push=worst.m.depth+1.5;
+    const da=Math.hypot(a.x-cxc,a.y-cyc), db=Math.hypot(b.x-cxc,b.y-cyc);
+    if(db>da){b.x+=worst.m.ux*push; b.y+=worst.m.uy*push; clampToRegion(b);}
+    else     {a.x-=worst.m.ux*push; a.y-=worst.m.uy*push; clampToRegion(a);}
+  }
+  layout.forEach(clampToRegion);
+
+  /* ---- gentle settle: give the 2–3 closest pairs a soft ~3px touch ---- */
+  function gentleTouches(list,maxT){
+    const touched=[]; const TAU=0.035;
+    const proj=(L,u,v)=>{const r=L.rot*Math.PI/180,c=Math.cos(r),s=Math.sin(r);
+      return Math.abs(u*c+v*s)*(L.w/2)+Math.abs(-u*s+v*c)*(L.h/2)};
+    const gapOf=(i,j)=>{const a=list[i],b=list[j];
+      const ra=a.rot*Math.PI/180,rb=b.rot*Math.PI/180;
+      const axes=[[Math.cos(ra),Math.sin(ra)],[-Math.sin(ra),Math.cos(ra)],[Math.cos(rb),Math.sin(rb)],[-Math.sin(rb),Math.cos(rb)]];
+      const dx=b.x-a.x,dy=b.y-a.y;let best=null;
+      for(const [u,v] of axes){const sep=Math.abs(dx*u+dy*v)-proj(a,u,v)-proj(b,u,v);
+        if(!best||sep<best.sep)best={sep,u,v}}
+      return best};
+    const cands=[];
+    for(let i=0;i<list.length;i++)for(let j=i+1;j<list.length;j++){
+      const g=gapOf(i,j);
+      if(g.sep>0&&g.sep<60)cands.push({i,j,sep:g.sep});
+    }
+    cands.sort((a,b)=>a.sep-b.sep);
+    for(const cd of cands){
+      if(touched.length>=maxT)break;
+      const a=list[cd.i],b=list[cd.j];
+      const da=Math.hypot(a.x-cxc,a.y-cyc),db=Math.hypot(b.x-cxc,b.y-cyc);
+      const mover=db>da?b:a, other=db>da?a:b;
+      const dx=other.x-mover.x,dy=other.y-mover.y,len=Math.hypot(dx,dy)||1;
+      const ox=mover.x,oy=mover.y;
+      mover.x+=dx/len*(cd.sep+3); mover.y+=dy/len*(cd.sep+3);
+      let ok=true;
+      for(let k=0;k<list.length&&ok;k++){
+        if(k===cd.i||k===cd.j)continue;
+        const m=sat(mover,list[k]);
+        if(m){const md=Math.min(mover.w,mover.h,list[k].w,list[k].h);if(m.depth>TAU*md)ok=false}
+      }
+      if(ok){
+        const m=sat(a,b);
+        if(m){const md=Math.min(a.w,a.h,b.w,b.h); if(m.depth>0.055*md)ok=false}
+        if(ok && m)touched.push([cd.i,cd.j,+m.depth.toFixed(1)]);
+      }
+      if(!ok){mover.x=ox;mover.y=oy}
+    }
+    return touched;
+  }
+  const touches=gentleTouches(layout,3);
+
+  /* ---- render ---- */
+  const compose=document.getElementById('compose');
+  const frag=document.createDocumentFragment();
+  layout.forEach((L,i)=>{
+    const el=document.createElement('div');
+    el.className='print';
+    el.style.left=(L.x-L.w/2)+'px';
+    el.style.top =(L.y-L.h/2)+'px';
+    el.style.width=L.w+'px';
+    el.style.height=L.h+'px';
+    el.style.transform='rotate('+L.rot.toFixed(3)+'deg)';
+    const thumb=(L.ph.src||'').replace(/photos\//,'thumbs/').replace(/\.[a-zA-Z0-9]+$/,'.jpg');
+    el.style.backgroundImage='url("'+encodeURI(thumb).replace(/'/g,'%27')+'")';
+    el.style.animationDelay=(i*0.035)+'s';
+    el.dataset.id=L.ph.id;
+    el.dataset.ar=L.ar.toFixed(4);
+    frag.appendChild(el);
+  });
+  compose.appendChild(frag);
+
+  /* verification hooks */
+  window.__LAYOUT=layout;
+  window.__TOUCHES={n:touches.length,pairs:touches};
+  window.__PHOTOS=photos.map(p=>p.id);
+  window.__REGION={x:R.x,y:R.y,w:R.w,h:R.h};
+  window.__THUMBS=[...compose.querySelectorAll('.print')].map(el=>el.style.backgroundImage.slice(5,-2));
+  console.log('[concept-d] photos='+layout.length+' gentleTouches='+touches.length);
+
+  let t; addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(()=>location.reload(),300)});
+}).catch((err)=>{const e=document.createElement('div');e.className='err';e.textContent='Unable to load the photo pool.'+(err&&err.message?' ('+err.message+')':'');document.body.appendChild(e)});
+})();
+</script>
+</body>
+</html>
