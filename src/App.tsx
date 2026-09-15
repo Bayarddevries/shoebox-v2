@@ -117,6 +117,27 @@ export default function App() {
           }
         })
 
+        // Guard: duplicate photo IDs break the grid (masonry keys by ID) and
+        // photo lookups. IDs are unique by construction; if this trips, some
+        // transform is mangling them. Fail loudly instead of silently piling
+        // photos into the same grid slot.
+        {
+          const seen = new Set<string>()
+          const dups: string[] = []
+          for (const p of photosWithStoryLinks) {
+            const key = String(p.id)
+            if (seen.has(key)) dups.push(key)
+            seen.add(key)
+          }
+          if (dups.length > 0) {
+            throw new Error(
+              `Duplicate photo IDs after manifest load: ${dups.length} collisions ` +
+              `(${dups.slice(0, 5).join(', ')}...). Photo IDs must stay unique; ` +
+              `do NOT parseInt() hash IDs (see AGENTS.md).`
+            )
+          }
+        }
+
         storiesWithIds.forEach(story => {
           story.photoIds = photosWithStoryLinks
             .filter((p: any) => story._photoFiles?.includes(p.alt || p.title))

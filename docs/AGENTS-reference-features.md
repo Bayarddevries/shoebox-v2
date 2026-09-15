@@ -150,6 +150,12 @@ CSS `columns` uses column-major fill (top-to-bottom, left-to-right). With chrono
 
 With 450 photos and 4 columns, the first 4 photos (oldest) go to columns 1-4 since they all start at height 0. Every column starts with an old photo. As items fill in, the algorithm keeps columns balanced — all columns progress through time at roughly the same rate.
 
+### ⚠️ Photo IDs must stay unique (2026-09-15 incident)
+
+The masonry `positions` map is keyed by `photo.id`. On 2026-09-15, App.tsx ran `parseInt(p.id.replace('photo_',''), 10)` on the manifest hash IDs — `parseInt` stops at the first non-digit, so `photo_6248a…` and `photo_6248b…` both became `6248`. Result: 565 unique photos collapsed to 387 IDs, collided photos piled into the same grid slot, and tiles looked misaligned with huge gaps.
+
+**Rule:** keep `photo.id` as the string hash verbatim, end-to-end. Never `parseInt()`, never `Number()`, never re-index. App.tsx now throws at load if duplicate IDs are detected, so this class of bug fails loudly instead of silently breaking the grid.
+
 ### Key files
 
 | File | Purpose |

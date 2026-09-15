@@ -92,6 +92,8 @@ The 544 photos in `public/assets/shoebox/photos/` have filenames with spaces (e.
 - **Never** reintroduce index-based IDs in `scripts/generate_manifest.js` (`stablePhotoId()` is the only ID source).
 - To update an image's metadata, replace the file content but KEEP the filename (ID stays stable, metadata refreshes).
 
+⚠️ **NEVER `parseInt()` a hash ID in frontend code.** `photo_6248a99112` and `photo_6248b34cde` both `parseInt` to `6248` (parsing stops at the first non-digit). This collapsed 565 unique photos to 387 IDs in App.tsx and broke the archive grid (colliding photos piled into the same masonry slot). Keep IDs as strings end-to-end; any `photo_<hex>` value must be used verbatim.
+
 ### Manifest is generated
 
 `public/assets/shoebox/manifest.json` is built by `scripts/generate_manifest.js`. All `src` paths in the manifest are **relative** (e.g., `assets/shoebox/photos/Old Photo 001.jpg`). To regenerate:
