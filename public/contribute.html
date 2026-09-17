@@ -4,20 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contribute to the Red River Métis Shoebox Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --crimson: #8a1c1c;
-    --crimson-dark: #6e1414;
-    --parchment: #f7f1e3;
-    --ink: #2c2420;
-    --gold: #b8860b;
+    --crimson: #8b0000;
+    --crimson-light: #b30000;
+    --parchment: #fdfcf9;
+    --cream: #f4f1ea;
+    --charcoal: #2c2c2c;
+    --charcoal-light: #555555;
+    --line: #e5e7eb;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: 'Inter', sans-serif;
     background: var(--parchment);
-    color: var(--ink);
+    color: var(--charcoal);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
   header {
     background: var(--crimson);
@@ -25,22 +29,19 @@
     padding: 28px 20px;
     text-align: center;
   }
+  header img { height: 56px; width: auto; margin-bottom: 8px; }
   header h1 {
-    font-family: 'Palatino Linotype', Palatino, Georgia, serif;
-    font-size: 1.7rem;
-    letter-spacing: 0.5px;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    font-size: 1.8rem;
     max-width: 720px;
     margin: 0 auto;
   }
-  header p {
-    margin-top: 8px;
-    font-size: 0.95rem;
-    opacity: 0.92;
-  }
+  header p { margin-top: 6px; font-size: 0.95rem; opacity: 0.92; }
   main { max-width: 780px; margin: 0 auto; padding: 28px 20px 60px; }
   .step {
     background: #fff;
-    border: 1px solid #d9cbb2;
+    border: 1px solid var(--line);
     border-left: 5px solid var(--crimson);
     border-radius: 6px;
     padding: 22px 22px 26px;
@@ -48,8 +49,9 @@
   }
   .step h2 {
     color: var(--crimson);
-    font-family: 'Palatino Linotype', Palatino, Georgia, serif;
-    font-size: 1.25rem;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    font-size: 1.35rem;
     margin-bottom: 10px;
   }
   .step p { margin-bottom: 12px; }
@@ -61,22 +63,23 @@
     padding: 12px 22px;
     border-radius: 5px;
     font-size: 1rem;
+    font-family: 'Inter', sans-serif;
     margin: 6px 0 14px;
     border: none;
     cursor: pointer;
   }
-  .btn:hover { background: var(--crimson-dark); }
+  .btn:hover { background: var(--crimson-light); }
   .note {
     font-size: 0.88rem;
-    color: #5b534b;
-    background: #f3ecdc;
+    color: var(--charcoal-light);
+    background: var(--cream);
     border-radius: 5px;
     padding: 10px 14px;
     margin-top: 12px;
   }
   .widget-wrap {
     margin-top: 14px;
-    border: 1px solid #d9cbb2;
+    border: 1px solid var(--line);
     border-radius: 6px;
     overflow: auto;
     height: 680px;
@@ -85,9 +88,9 @@
   footer {
     text-align: center;
     padding: 22px 16px 34px;
-    color: #6b6258;
+    color: var(--charcoal-light);
     font-size: 0.85rem;
-    border-top: 1px solid #d9cbb2;
+    border-top: 1px solid var(--line);
     max-width: 780px;
     margin: 0 auto;
   }
@@ -95,6 +98,7 @@
 </head>
 <body>
 <header>
+  <img src="assets/mmf_logo_rrm.png" alt="MMF RRM logo">
   <h1>Contribute to the Red River Métis Shoebox Archive</h1>
   <p>Red River Métis National Heritage Centre</p>
 </header>
@@ -104,8 +108,8 @@
     <h2>Step 1: Sign the consent form</h2>
     <p>
       The Shoebox Archive preserves Métis family photographs and the stories behind them.
-      Before we can accept and display your photos, we need your consent in writing.
-      The form below takes a few minutes. It explains how your photos will be used,
+      Before photos can be accepted and displayed, consent is needed in writing.
+      The form below takes a few minutes and explains how photos will be used,
       stored, and shared.
     </p>
     <a class="btn" href="https://na4.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhBtqBvncfbguJ1Fa5AwYF9gWk0eP5y9IO3-69Bb6fViIKHSJfdq-6lK0oF-LBIdc_g*" target="_blank" rel="noopener">Open the consent form in a new tab</a>
@@ -114,25 +118,25 @@
     </div>
     <div class="note">
       If the form does not load here, use the button above to open it in a new tab.
-      A copy of your signed form is sent to you by email when you finish.
+      A copy of the signed form is sent by email when the form is finished.
     </div>
   </section>
 
   <section class="step">
     <h2>Step 2: Upload your photos</h2>
     <p>
-      Once your consent form is signed, use the form below (or the button) to send us
-      your photographs. You can add details for each photo: who is in it, where it was
-      taken, roughly when, and any memory you want to share.
+      Once the consent form is signed, use the form below (or the button) to send photos
+      and the details that go with them: who is in each photo, where it was taken,
+      roughly when, and any memory worth keeping.
     </p>
     <a class="btn" href="https://script.google.com/macros/s/AKfycbwx0l2LijEV5MkodZcKMWPGNj5ADiZvS0Yfj9zUsITaEhhoFn_1mzd3jLi-w42qduNe/exec?page=intake" target="_blank" rel="noopener">Open the photo upload form</a>
     <div class="widget-wrap" style="height: 760px;">
       <iframe src="https://script.google.com/macros/s/AKfycbwx0l2LijEV5MkodZcKMWPGNj5ADiZvS0Yfj9zUsITaEhhoFn_1mzd3jLi-w42qduNe/exec?page=intake" width="100%" height="100%" frameborder="0" style="border: 0; overflow: hidden;"></iframe>
     </div>
     <div class="note">
-      If the form does not load below, use the button above. Prefer email? Send your
-      photos to <a href="mailto:metisshoebox@mmf.mb.ca">metisshoebox@mmf.mb.ca</a>, or
-      bring them to a Shoebox table at an event near you.
+      If the form does not load below, use the button above. Prefer email? Send photos
+      to <a href="mailto:metisshoebox@mmf.mb.ca">metisshoebox@mmf.mb.ca</a>, or bring
+      them to a Shoebox table at an event.
     </div>
   </section>
 </main>

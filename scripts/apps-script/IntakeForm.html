@@ -5,37 +5,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Submit your photos | Red River Métis Shoebox Archive</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --crimson:#8a1c1c; --crimson-dark:#6e1414; --parchment:#f7f1e3; --ink:#2c2420; --line:#d9cbb2; }
+    :root { --crimson:#8b0000; --crimson-light:#b30000; --parchment:#fdfcf9; --cream:#f4f1ea; --charcoal:#2c2c2c; --charcoal-light:#555555; --line:#e5e7eb; }
     * { box-sizing:border-box; }
-    body { font-family:Georgia,'Times New Roman',serif; background:var(--parchment); color:var(--ink); margin:0; line-height:1.55; }
-    header { background:var(--crimson); color:#fff; padding:24px 16px; text-align:center; }
-    header h1 { font-family:'Palatino Linotype',Palatino,Georgia,serif; font-size:1.5rem; margin:0 0 6px; }
+    body { font-family:'Inter',sans-serif; background:var(--parchment); color:var(--charcoal); margin:0; line-height:1.6; }
+    header { background:var(--crimson); color:#fff; padding:26px 16px; text-align:center; }
+    header img { height:52px; width:auto; margin-bottom:8px; }
+    header h1 { font-family:'EB Garamond',serif; font-weight:600; font-size:1.6rem; margin:0 0 6px; }
     header p { margin:0; font-size:.92rem; opacity:.92; }
     main { max-width:760px; margin:0 auto; padding:22px 16px 60px; }
     .card { background:#fff; border:1px solid var(--line); border-left:5px solid var(--crimson); border-radius:6px; padding:20px; margin-bottom:22px; }
-    .card h2 { color:var(--crimson); font-family:'Palatino Linotype',Palatino,Georgia,serif; font-size:1.2rem; margin:0 0 12px; }
-    label { display:block; font-weight:bold; margin:12px 0 4px; font-size:.95rem; }
-    .hint { font-weight:normal; font-size:.82rem; color:#6b6258; }
+    .card h2 { color:var(--crimson); font-family:'EB Garamond',serif; font-weight:600; font-size:1.3rem; margin:0 0 12px; }
+    label { display:block; font-weight:500; margin:12px 0 4px; font-size:.95rem; }
+    .hint { font-weight:400; font-size:.82rem; color:var(--charcoal-light); }
     input[type=text], input[type=email], input[type=tel], input[type=number], select, textarea {
-      width:100%; padding:10px 12px; border:1px solid #c9b894; border-radius:5px; font:inherit; background:#fdfbf5;
+      width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:5px; font:inherit; background:#fff;
     }
+    input:focus, select:focus, textarea:focus { outline:2px solid var(--crimson-light); outline-offset:-1px; }
     textarea { min-height:72px; }
-    .btn { display:inline-block; background:var(--crimson); color:#fff; border:none; padding:13px 26px; border-radius:5px; font-size:1.05rem; cursor:pointer; margin-top:16px; }
-    .btn:hover { background:var(--crimson-dark); }
+    .btn { display:inline-block; background:var(--crimson); color:#fff; border:none; padding:13px 26px; border-radius:5px; font-size:1.05rem; cursor:pointer; margin-top:16px; font-family:'Inter',sans-serif; }
+    .btn:hover { background:var(--crimson-light); }
     .btn:disabled { opacity:.5; cursor:wait; }
-    .btn-secondary { background:#5b534b; }
+    .btn-secondary { background:var(--charcoal-light); }
     .widget-wrap { margin-top:10px; border:1px solid var(--line); border-radius:6px; overflow:auto; height:620px; -webkit-overflow-scrolling:touch; }
     .required:after { content:" *"; color:var(--crimson); }
     .error { color:#a02020; font-size:.9rem; margin-top:8px; white-space:pre-wrap; }
     .success { color:#1c6b2f; font-weight:bold; font-size:1rem; margin-top:10px; white-space:pre-wrap; }
-    .photo-card { border:1px solid var(--line); border-radius:6px; padding:14px; margin-top:12px; background:#fbf7ec; }
-    .photo-card h3 { margin:0 0 8px; font-size:1rem; color:var(--ink); }
+    .photo-card { border:1px solid var(--line); border-radius:6px; padding:14px; margin-top:12px; background:var(--cream); }
+    .photo-card h3 { margin:0 0 8px; font-size:1rem; color:var(--charcoal); }
     .photo-card .thumb { max-width:140px; max-height:110px; border-radius:4px; margin-bottom:8px; display:block; }
     .photo-card .remove { float:right; color:var(--crimson); cursor:pointer; font-size:.9rem; border:none; background:none; }
     .two-col { display:flex; gap:14px; flex-wrap:wrap; }
     .two-col > div { flex:1 1 220px; }
-    .note { font-size:.85rem; color:#5b534b; background:#f3ecdc; border-radius:5px; padding:10px 14px; margin-top:10px; }
+    .note { font-size:.85rem; color:var(--charcoal-light); background:var(--cream); border-radius:5px; padding:10px 14px; margin-top:10px; }
     .checkbox-line { display:flex; align-items:flex-start; gap:10px; margin-top:14px; }
     .checkbox-line input { margin-top:4px; width:auto; }
     .checkbox-line label { margin:0; font-weight:normal; }
@@ -45,6 +48,7 @@
 </head>
 <body>
 <header>
+  <img src="https://bayarddevries.github.io/shoebox-v2/assets/mmf_logo_rrm.png" alt="MMF RRM logo">
   <h1>Submit your photos to the Shoebox Archive</h1>
   <p>Red River Métis National Heritage Centre</p>
 </header>
