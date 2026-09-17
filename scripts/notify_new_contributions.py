@@ -16,6 +16,7 @@ Usage:
 import json
 import os
 import sys
+import time
 import base64
 import urllib.request
 import urllib.parse
@@ -35,16 +36,50 @@ def get_admin_token():
         src = f.read()
     return src.split("ADMIN_TOKEN = '")[1].split("'")[0]
 
-def api_get(path):
-    req = urllib.request.Request(BACKEND_URL + '?' + path)
-    with urllib.request.urlopen(req, timeout=90) as r:
-        return json.load(r)
+# Apps Script occasionally answers with a redirect chain that never terminates,
+# which urllib follows until it gives up ("redirect error that would lead to an
+# infinite loop"). Cap the hops and retry with backoff: without this, roughly one
+# run in ten died with a 302 loop and the watcher silently skipped that check.
+UA = ('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 '
+      '(KHTML, like Gecko) Chrome/122 Safari/537.36')
+
+class _LimitedRedirect(urllib.request.HTTPRedirectHandler):
+    max_redirections = 5
+
+_opener = urllib.request.build_opener(_LimitedRedirect)
+
+def api_get(path, attempts=6):
+    last = None
+    for n in range(attempts):
+        try:
+            req = urllib.request.Request(
+                BACKEND_URL + '?' + path,
+                headers={'User-Agent': UA, 'Accept': 'application/json'})
+            with _opener.open(req, timeout=60) as r:
+                return json.load(r)
+        except Exception as e:                       # HTTPError, URLError, timeout, bad JSON
+            last = e
+            if n < attempts - 1:
+                time.sleep(min(3 * (2 ** n), 30))
+    # Persistent failure: write a visible trail before raising so the cron
+    # output shows WHY, not just "script failed".
+    import traceback
+    err_path = os.path.expanduser('~/.hermes/state/shoebox_notify_last_error.log')
+    with open(err_path, 'a', encoding='utf-8') as f:
+        f.write('%s api_get failed: %s %s\n' % (
+            datetime.datetime.utcnow().isoformat() + 'Z', path, last))
+    raise RuntimeError('Apps Script request failed after %d attempts: %r' % (attempts, last))
 
 def load_state():
     if os.path.exists(STATE_PATH):
         with open(STATE_PATH) as f:
-            return json.load(f)
-    return {'seen_submissions': [], 'seen_contributions': []}
+            state = json.load(f)
+    else:
+        state = {}
+    state.setdefault('seen_submissions', [])
+    state.setdefault('seen_contributions', [])
+    state.setdefault('seen_intake', [])
+    return state
 
 def save_state(state):
     os.makedirs(os.path.dirname(STATE_PATH), exist_ok=True)
@@ -103,6 +138,24 @@ def contribution_email(c):
     ]
     return '\n'.join(lines)
 
+def intake_email(s):
+    notes = s.get('notes') or ''
+    lines = [
+        'A new photo upload came in through the Shoebox web form.',
+        '',
+        'Submission: %s' % s.get('submissionId'),
+        'Submitter: %s' % s.get('submitterName'),
+        'Email: %s' % s.get('email'),
+        'Status: %s' % s.get('status'),
+        '',
+        'Details: %s' % notes,
+        '',
+        'Photos are in the private Drive "Shoebox Intake" folder (link in the notes '
+        'above / the Submissions tab). Ingest and verify consent before display.',
+    ]
+    return '\n'.join(lines)
+
+
 def main():
     args = sys.argv[1:]
     token = get_admin_token()
@@ -125,14 +178,22 @@ def main():
     subs_data = api_get('action=admin_list_submissions&admin_token=' + urllib.parse.quote(token))
     subs = subs_data.get('submissions', [])
 
-    new_subs = [s for s in subs if s.get('submissionId') not in state['seen_submissions']]
+    new_subs = [s for s in subs if s.get('submissionId') not in state['seen_submissions'] and s.get('status') != 'submitted']
     new_contribs = [c for c in real if c.get('id') not in state['seen_contributions']]
+    # Web-form intake rows (status=submitted) get their own email; skip the
+    # claim-link email for them, and skip again if the script already emailed
+    # the photos (notes carries email=sent).
+    new_intake = [s for s in subs
+                  if s.get('status') == 'submitted'
+                  and s.get('submissionId') not in state['seen_intake']
+                  and 'email=sent' not in (s.get('notes') or '')]
 
     if '--seed' in args:
-        state['seen_submissions'] = [s.get('submissionId') for s in subs]
+        state['seen_submissions'] = [s.get('submissionId') for s in subs if s.get('status') != 'submitted']
         state['seen_contributions'] = [c.get('id') for c in real]
+        state['seen_intake'] = [s.get('submissionId') for s in subs if s.get('status') == 'submitted']
         save_state(state)
-        print('seeded: %d submissions, %d contributions' % (len(state['seen_submissions']), len(state['seen_contributions'])))
+        print('seeded: %d submissions, %d contributions, %d intake' % (len(state['seen_submissions']), len(state['seen_contributions']), len(state['seen_intake'])))
         return
 
     sent = 0
@@ -142,6 +203,13 @@ def main():
                        submission_email(s))
             sent += 1
         state['seen_submissions'].append(s.get('submissionId'))
+
+    for s in new_intake:
+        for to in NOTIFY_EMAILS:
+            gmail_send(to, 'Shoebox: new photo upload from %s (%s)' % (s.get('submitterName'), s.get('submissionId')),
+                       intake_email(s))
+            sent += 1
+        state['seen_intake'].append(s.get('submissionId'))
 
     for c in new_contribs:
         for to in NOTIFY_EMAILS:
@@ -155,7 +223,7 @@ def main():
         # Silent: nothing new. Cron delivers nothing.
         print('')
     else:
-        print('emails sent: %d (new subs: %d, new contribs: %d)' % (sent, len(new_subs), len(new_contribs)))
+        print('emails sent: %d (new subs: %d, new intake: %d, new contribs: %d)' % (sent, len(new_subs), len(new_intake), len(new_contribs)))
 
 if __name__ == '__main__':
     main()

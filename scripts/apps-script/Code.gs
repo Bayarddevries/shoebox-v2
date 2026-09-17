@@ -61,6 +61,14 @@ function doGet(e) {
   const token = params.token;
   const admin_token = params.admin_token;
 
+  // Citizen intake form (HtmlService) - served at ?page=intake so google.script.run
+  // can receive photo uploads. All other actions keep returning JSON as before.
+  if (params.page === 'intake') {
+    return HtmlService.createHtmlOutputFromFile('IntakeForm')
+      .setTitle('Submit your photos - Red River Metis Shoebox Archive')
+      .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+  }
+
   try {
     if (!action) {
       return jsonResponse({ error: 'missing_action' }, 400);
@@ -364,7 +372,8 @@ function handleAdminListSubmissions(providedToken) {
       photoIds: row[SUBMISSION_COLS.photoIds] || '',
       status: row[SUBMISSION_COLS.status] || '',
       token: row[SUBMISSION_COLS.token] || '',
-      inviteSentAt: row[SUBMISSION_COLS.inviteSentAt] || ''
+      inviteSentAt: row[SUBMISSION_COLS.inviteSentAt] || '',
+      notes: row[SUBMISSION_COLS.notes] || ''
     });
   }
 
@@ -599,6 +608,153 @@ function handleAdminDeleteContribution(id, providedToken) {
   }
 
   return jsonResponse({ error: 'not_found' }, 404);
+}
+
+// ─── Citizen intake: photos + metadata + consent (web form) ─────────────────
+const INTAKE_FOLDER_NAME = 'Shoebox Intake';
+const INTAKE_EMAILS = ['bayard.devries@mmf.mb.ca'];
+const INTAKE_MAX_ATTACH_MB = 24; // MailApp per-message attachment ceiling
+
+function handleIntakeSubmit(form) {
+  const name = String(form.name || '').trim();
+  const email = String(form.email || '').trim();
+  const phone = String(form.phone || '').trim();
+  const familyName = String(form.familyName || '').trim();
+  const mmfNumber = String(form.mmfNumber || '').trim();
+  const creditLine = String(form.creditLine || '').trim();
+  const consentEmail = String(form.consentEmail || '').trim();
+  const consentConfirmed = form.consentConfirmed === 'yes';
+  if (!name || !email) return { ok: false, error: 'Name and email are required.' };
+  if (!consentConfirmed) return { ok: false, error: 'Please confirm you have completed and signed the consent form.' };
+
+  let photos = Array.isArray(form.photos) ? form.photos : (form.photos ? [form.photos] : []);
+  if (photos.length === 0) return { ok: false, error: 'Please choose at least one photo.' };
+
+  let meta = [];
+  try { meta = JSON.parse(form.meta || '[]'); } catch (e) { meta = []; }
+
+  // Save to a private Drive intake folder (never public).
+  const stamp = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd');
+  const safeName = name.replace(/[^\w\s-]/g, '').replace(/\s+/g, '_');
+  const folder = getOrCreateIntakeFolder().createFolder(stamp + ' ' + safeName);
+
+  const savedFiles = [];
+  const emailAttachments = [];
+  photos.forEach(function (blob, i) {
+    const orig = blob.getName() || 'photo';
+    const fname = String(i + 1).padStart(2, '0') + '_' + orig;
+    const f = folder.createFile(blob).setName(fname);
+    savedFiles.push({ name: fname, url: f.getUrl() });
+    emailAttachments.push(blob.setName(fname));
+  });
+
+  const submission = {
+    submittedAt: new Date().toISOString(),
+    name: name, email: email, phone: phone, familyName: familyName,
+    mmfNumber: mmfNumber, creditLine: creditLine,
+    consentConfirmed: consentConfirmed, consentEmail: consentEmail,
+    photoCount: savedFiles.length,
+    driveFolder: folder.getUrl(),
+    photos: meta.map(function (m, i) {
+      return Object.assign({ file: savedFiles[i] ? savedFiles[i].url : '' }, m || {});
+    })
+  };
+  folder.createFile('submission.json', JSON.stringify(submission, null, 2), MimeType.JSON);
+
+  const sid = 'INT-' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyyMMdd-HHmmss');
+  const notes = savedFiles.length + ' photos. Drive: ' + folder.getUrl();
+  writeIntakeSubmissionRow(sid, submission, notes);
+
+  // Best-effort email with attachments; the Hermes watcher is the reliable
+  // fallback and checks notes for the email=sent marker before re-emailing.
+  let emailStatus = 'watcher';
+  try {
+    sendIntakeEmail(submission, emailAttachments);
+    emailStatus = 'sent';
+    writeIntakeEmailMarker(sid, 'sent');
+  } catch (e) {
+    logIntakeFailure(sid, 'sendIntakeEmail', e.message);
+    writeIntakeEmailMarker(sid, 'failed');
+    emailStatus = 'watcher';
+  }
+
+  return { ok: true, submissionId: sid, photoCount: savedFiles.length, driveFolder: folder.getUrl(), emailStatus: emailStatus };
+}
+
+function getOrCreateIntakeFolder() {
+  const it = DriveApp.getFoldersByName(INTAKE_FOLDER_NAME);
+  if (it.hasNext()) return it.next();
+  return DriveApp.createFolder(INTAKE_FOLDER_NAME);
+}
+
+function writeIntakeSubmissionRow(sid, submission, notes) {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const submissions = ss.getSheetByName(SHEET_SUBMISSIONS);
+  submissions.appendRow([
+    sid, 'Web intake', submission.name, submission.email, submission.phone,
+    submission.familyName, submission.mmfNumber,
+    'Adobe e-sign ' + submission.submittedAt.slice(0, 10),
+    '', 'submitted', '', '', notes
+  ]);
+}
+
+function sendIntakeEmail(submission, blobs) {
+  let totalBytes = 0;
+  blobs.forEach(function (b) { totalBytes += b.getBytes().length; });
+  let body =
+    'New Shoebox web submission\n' +
+    '==========================\n\n' +
+    'Name: ' + submission.name + '\n' +
+    'Email: ' + submission.email + '\n' +
+    'Phone: ' + (submission.phone || '-') + '\n' +
+    'Family/community: ' + (submission.familyName || '-') + '\n' +
+    'MMF #: ' + (submission.mmfNumber || '-') + '\n' +
+    'Credit line: ' + (submission.creditLine || '-') + '\n' +
+    'Consent signed: ' + (submission.consentConfirmed ? 'yes' : 'NO') +
+    (submission.consentEmail ? ' (email: ' + submission.consentEmail + ')' : '') + '\n' +
+    'Photos: ' + submission.photoCount + '\n' +
+    'Drive folder: ' + submission.driveFolder + '\n\n' +
+    'Photo details:\n';
+  submission.photos.forEach(function (p, i) {
+    body += '\n[' + (i + 1) + '] ' + (p.file || '') + '\n' +
+      '  Title: ' + (p.title || '-') + '\n' +
+      '  People: ' + (p.people || '-') + '\n' +
+      '  Place: ' + (p.place || '-') + '\n' +
+      '  When: ' + (p.year || '-') + '\n' +
+      '  Occasion: ' + (p.occasion || '-') + '\n' +
+      '  Story: ' + (p.story || '-') + '\n';
+  });
+  const attach = totalBytes <= INTAKE_MAX_ATTACH_MB * 1024 * 1024 ? blobs : [];
+  const opts = {
+    to: INTAKE_EMAILS.join(','),
+    subject: 'New Shoebox photo submission - ' + submission.name,
+    body: body + (attach.length === 0 ? '\n(Photos are in the Drive folder above - too large to attach.)\n' : '')
+  };
+  if (attach.length > 0) opts.attachments = attach;
+  MailApp.sendEmail(opts);
+}
+
+function writeIntakeEmailMarker(sid, status) {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const submissions = ss.getSheetByName(SHEET_SUBMISSIONS);
+  const data = submissions.getDataRange().getValues();
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][SUBMISSION_COLS.submissionId] === sid) {
+      const row = data[i];
+      row[SUBMISSION_COLS.notes] = (row[SUBMISSION_COLS.notes] || '') + ' email=' + status;
+      submissions.getRange(i + 1, 1, 1, row.length).setValues([row]);
+      break;
+    }
+  }
+}
+
+function logIntakeFailure(source, submissionId, message) {
+  try {
+    const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+    let sheet = ss.getSheetByName('NotificationLog');
+    if (!sheet) sheet = ss.insertSheet('NotificationLog');
+    sheet.appendRow([new Date(), source, submissionId, '', message]);
+  } catch (e) { console.warn('logIntakeFailure failed: ' + e.message); }
 }
 
 // Helper functions
