@@ -150,18 +150,24 @@
         '<label>Title <span class="hint">(optional)</span></label><input type="text" class="f-title" placeholder="e.g. Grandma and Auntie at the lake">' +
         '<label>Who is in the photo <span class="hint">(optional, names)</span></label><input type="text" class="f-people" placeholder="e.g. Marie Chartrand; Jean Baptiste">' +
         '<div class="two-col">' +
-        '<div><label>Community / place <span class="hint">(optional)</span></label><input type="text" class="f-place" placeholder="e.g. St. Eustache, Manitoba"></div>' +
-        '<div><label>When <span class="hint">(optional)</span></label><select class="f-year">' +
+        '<div><label>City / town <span class="hint">(optional)</span></label><input type="text" class="f-city" placeholder="e.g. St. Eustache"></div>' +
+        '<div><label>Province <span class="hint">(optional)</span></label><input type="text" class="f-province" placeholder="e.g. Manitoba"></div>' +
+        '</div>' +
+        '<label>Community <span class="hint">(optional, e.g. Ste. Madeleine, Rooster Town)</span></label><input type="text" class="f-community">' +
+        '<div class="two-col">' +
+        '<div><label>When <span class="hint">(optional)</span></label><select class="f-era">' +
         '<option value="">Unknown / not sure</option><option value="year">Exact year (type below)</option>' +
         '<option value="1900-1925">1900-1925</option><option value="1925-1950">1925-1950</option>' +
         '<option value="1950-1975">1950-1975</option><option value="1975-2000">1975-2000</option>' +
         '<option value="2000-2025">2000-2025</option><option value="before-1900">Before 1900</option></select></div>' +
+        '<div><label>Keywords / themes <span class="hint">(optional)</span></label><input type="text" class="f-keywords" placeholder="e.g. farming, weddings, school"></div>' +
         '</div>' +
         '<div class="f-yearbox hidden"><label>Exact year <span class="hint">(optional)</span></label><input type="text" class="f-year-exact" placeholder="e.g. 1938"></div>' +
         '<label>Occasion or event <span class="hint">(optional)</span></label><input type="text" class="f-occasion" placeholder="e.g. Wedding, Métis Days, harvest">' +
-        '<label>Memory or story <span class="hint">(optional)</span></label><textarea class="f-story" placeholder="What do you remember about this photo?"></textarea>';
+        '<label>Memory or story <span class="hint">(optional)</span></label><textarea class="f-story" placeholder="What do you remember about this photo?"></textarea>' +
+        '<label>Short caption <span class="hint">(optional, one line shown with the photo)</span></label><input type="text" class="f-caption" placeholder="e.g. Grandma Marie at her 80th birthday">';
       cardsEl.appendChild(card);
-      const sel = card.querySelector('.f-year');
+      const sel = card.querySelector('.f-era');
       const yearBox = card.querySelector('.f-yearbox');
       sel.addEventListener('change', function () { yearBox.classList.toggle('hidden', sel.value !== 'year'); });
     });
@@ -216,14 +222,21 @@
     // collect per-photo metadata
     const meta = [];
     cardsEl.querySelectorAll('.photo-card').forEach((card) => {
+      const era = card.querySelector('.f-era').value;
       meta.push({
         file: card.querySelector('h3').textContent.replace(/^Photo \d+: /, ''),
         title: card.querySelector('.f-title').value,
         people: card.querySelector('.f-people').value,
-        place: card.querySelector('.f-place').value,
-        year: card.querySelector('.f-year').value === 'year' ? card.querySelector('.f-year-exact').value : card.querySelector('.f-year').value,
+        city: card.querySelector('.f-city').value,
+        province: card.querySelector('.f-province').value,
+        community: card.querySelector('.f-community').value,
+        country: 'Canada',
+        dateYear: era === 'year' ? card.querySelector('.f-year-exact').value : '',
+        dateEra: era && era !== 'year' ? era : '',
         occasion: card.querySelector('.f-occasion').value,
-        story: card.querySelector('.f-story').value
+        story: card.querySelector('.f-story').value,
+        caption: card.querySelector('.f-caption').value,
+        keywords: card.querySelector('.f-keywords').value
       });
     });
 

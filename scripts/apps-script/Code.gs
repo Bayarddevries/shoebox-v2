@@ -719,10 +719,14 @@ function sendIntakeEmail(submission, blobs) {
     body += '\n[' + (i + 1) + '] ' + (p.file || '') + '\n' +
       '  Title: ' + (p.title || '-') + '\n' +
       '  People: ' + (p.people || '-') + '\n' +
-      '  Place: ' + (p.place || '-') + '\n' +
-      '  When: ' + (p.year || '-') + '\n' +
+      '  City: ' + (p.city || '-') + '\n' +
+      '  Province: ' + (p.province || '-') + '\n' +
+      '  Community: ' + (p.community || '-') + '\n' +
+      '  When: ' + (p.dateYear || p.dateEra || '-') + '\n' +
       '  Occasion: ' + (p.occasion || '-') + '\n' +
-      '  Story: ' + (p.story || '-') + '\n';
+      '  Story: ' + (p.story || '-') + '\n' +
+      '  Caption: ' + (p.caption || '-') + '\n' +
+      '  Keywords: ' + (p.keywords || '-') + '\n';
   });
   const attach = totalBytes <= INTAKE_MAX_ATTACH_MB * 1024 * 1024 ? blobs : [];
   const opts = {
