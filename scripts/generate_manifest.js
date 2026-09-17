@@ -77,6 +77,14 @@ function resolveExiftool() {
 
 const EXIFTOOL = resolveExiftool()
 
+// Alt text override: scripts/alt-text.json keyed by filename wins over the
+// filename placeholder. Absent file = no change (fallback stays filename).
+const ALT_OVERRIDE_FILE = path.join(__dirname, 'alt-text.json')
+let altOverrides = {}
+try {
+  altOverrides = JSON.parse(fs.readFileSync(ALT_OVERRIDE_FILE, 'utf8'))
+} catch (_e) { /* no override source yet */ }
+
 // ─── Stable photo IDs ───────────────────────────────────────────────────────
 // Photo IDs are DERIVED FROM THE FILENAME (sha1 prefix), NOT the array index.
 // This keeps IDs stable when new photos are added or the sort order changes.
@@ -299,8 +307,7 @@ const EXIF_TAGS = [
 
 function extractAllExif(dir) {
   if (!EXIFTOOL) {
-    console.warn('  ⚠ exiftool not found — manifest will have NO metadata. Fix: set $EXIFTOOL or install exiftool.')
-    return new Map()
+    throw new Error('exiftool not found - cannot generate a metadata-bearing manifest. Fix: run with EXIFTOOL=exiftool-bin (or set $EXIFTOOL / install exiftool). Refusing to write an empty manifest.')
   }
   try {
     const json = execSync(
@@ -618,7 +625,7 @@ const photos = imageFiles.map((filename, index) => {
   return {
     id: stablePhotoId(filename),
     src: `assets/shoebox/photos/${filename}`,
- alt: filename,
+    alt: altOverrides[filename] || filename,
  title: title,
  caption: caption,
  description: caption, // kept for backward compat
@@ -708,6 +715,20 @@ const manifest = {
     photosWithScannerSerial: statsCount.serial,
     photosWithSubmitter: statsCount.submitter,
   }
+}
+
+// ── Coverage guard (prevention layer) ──────────────────────────────────────
+// A regen that silently loses metadata (missing exiftool, empty bulk pass)
+// must never be written. Fail loudly instead of shipping a metadata-less archive.
+const MIN_COVERAGE = 0.5
+const submitterCoverage = statsCount.submitter / photos.length
+const captionCoverage = statsCount.caption / photos.length
+if (submitterCoverage < MIN_COVERAGE || captionCoverage < MIN_COVERAGE) {
+  console.error('  X COVERAGE GUARD: manifest would be metadata-starved.')
+  console.error(`    submitter: ${statsCount.submitter}/${photos.length} (${(submitterCoverage * 100).toFixed(1)}%)`)
+  console.error(`    caption:   ${statsCount.caption}/${photos.length} (${(captionCoverage * 100).toFixed(1)}%)`)
+  console.error('    Refusing to write. Check $EXIFTOOL / exiftool resolution and re-run.')
+  process.exit(1)
 }
 
 // ── Merge approved community contributions (review-gated) ──────────────────

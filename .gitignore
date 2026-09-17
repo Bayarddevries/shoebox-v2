@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Ops artifacts (claim tokens are live secrets - never commit)
+reminder-drafts/
+# Python caches
+__pycache__/
+*.pyc
+# Photo backups - never commit archive copies
+photos.bak*

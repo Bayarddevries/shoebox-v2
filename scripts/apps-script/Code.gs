@@ -91,7 +91,8 @@ function doGet(e) {
         photoIds: params.photoIds,
         status: params.status,
         email: params.email,
-        invitedAt: params.invitedAt
+        invitedAt: params.invitedAt,
+        token: params.token
       }, admin_token);
     }
     if (action === 'admin_list_contributions') {
@@ -150,6 +151,9 @@ function doPost(e) {
 
     if (!targetSubmission) {
       return jsonResponse({ error: 'invalid_token' }, 403);
+    }
+    if (targetSubmission[SUBMISSION_COLS.status] === 'revoked') {
+      return jsonResponse({ error: 'revoked_token' }, 403);
     }
 
     const submissionId = targetSubmission[SUBMISSION_COLS.submissionId];
@@ -287,6 +291,9 @@ function handleGetSubmission(token) {
 
   if (!targetSubmission) {
     return jsonResponse({ error: 'invalid_token' }, 403);
+  }
+  if (targetSubmission[SUBMISSION_COLS.status] === 'revoked') {
+    return jsonResponse({ error: 'revoked_token' }, 403);
   }
 
   const submitterName = targetSubmission[SUBMISSION_COLS.submitterName] || 'Unknown';
@@ -453,6 +460,7 @@ function handleAdminUpdateSubmission(data, providedToken) {
       if (data.status !== undefined) row[SUBMISSION_COLS.status] = data.status;
       if (data.email !== undefined) row[SUBMISSION_COLS.email] = data.email;
       if (data.invitedAt !== undefined) row[SUBMISSION_COLS.inviteSentAt] = data.invitedAt;
+      if (data.token !== undefined) row[SUBMISSION_COLS.token] = data.token;
       
       submissions.getRange(i + 1, 1, 1, row.length).setValues([row]);
       return jsonResponse({ status: 'updated', id: data.id });

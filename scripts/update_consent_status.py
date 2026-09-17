@@ -96,6 +96,8 @@ CONFIRMED_FORMS = {
     "Chandra Brown-Erlendson": {"form_type": "paper", "evidence": "Hardcopy on desk - pending review"},
     # Needs investigation - Kim Venne Smith has photos but submitter not confirmed
     "Kim Venne Smith": {"form_type": "UNKNOWN", "evidence": "Form on hand - NEEDS INVESTIGATION: photos not yet matched to submitter"},
+    # Holly Vezina - consent on file (confirmed by Bayard 2026-09-17)
+    "Holly Vezina": {"form_type": "paper", "evidence": "Consent form on file (confirmed by Bayard 2026-09-17)"},
 }
 
 # Names with NO form confirmed (leave blank)
