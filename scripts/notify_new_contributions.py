@@ -22,6 +22,12 @@ import urllib.request
 import urllib.parse
 import urllib.error
 import datetime
+import io
+import re
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
 REPO = os.path.expanduser('/home/bayarddevries/shoebox-v2')
 BACKEND_URL = ('https://script.google.com/macros/s/'
@@ -107,6 +113,37 @@ def gmail_send(to, subject, text):
     with urllib.request.urlopen(req2, timeout=30) as r:
         return json.load(r)
 
+def gmail_send_with_attachments(to, subject, text, attachment_list):
+    """attachment_list: list of (filename, bytes_data, mime_type)"""
+    msg = MIMEMultipart()
+    msg['To'] = to
+    msg['Subject'] = subject
+    msg.attach(MIMEText(text, 'plain'))
+    for fname, data, mtype in attachment_list:
+        major, minor = mtype.split('/', 1) if '/' in mtype else ('application', 'octet-stream')
+        part = MIMEBase(major, minor)
+        part.set_payload(data)
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition', 'attachment', filename=fname)
+        msg.attach(part)
+    raw = base64.urlsafe_b64encode(msg.as_bytes()).decode()
+
+    tok = json.load(open(TOKEN_PATH))
+    body = urllib.parse.urlencode({
+        'client_id': tok['client_id'], 'client_secret': tok['client_secret'],
+        'refresh_token': tok['refresh_token'], 'grant_type': 'refresh_token',
+    }).encode()
+    req = urllib.request.Request(tok['token_uri'], data=body, method='POST')
+    with urllib.request.urlopen(req, timeout=30) as r:
+        access = json.load(r)['access_token']
+    req2 = urllib.request.Request(
+        'https://gmail.googleapis.com/gmail/v1/users/me/messages/send',
+        data=json.dumps({'raw': raw}).encode(),
+        headers={'Authorization': 'Bearer ' + access, 'Content-Type': 'application/json'},
+        method='POST')
+    with urllib.request.urlopen(req2, timeout=60) as r:
+        return json.load(r)
+
 def submission_email(sub):
     lines = [
         'A new claim link was created in the Shoebox system.',
@@ -148,10 +185,10 @@ def intake_email(s):
         'Email: %s' % s.get('email'),
         'Status: %s' % s.get('status'),
         '',
-        'Details: %s' % notes,
+        'Metadata and download links: %s' % notes,
         '',
-        'Photos are in the private Drive "Shoebox Intake" folder (link in the notes '
-        'above / the Submissions tab). Ingest and verify consent before display.',
+        'Photos are on the upload server; the watcher attempted to attach them '
+        'above. If no attachments arrived, they are still at the URLs in the notes.',
     ]
     return '\n'.join(lines)
 
@@ -205,10 +242,41 @@ def main():
         state['seen_submissions'].append(s.get('submissionId'))
 
     for s in new_intake:
-        for to in NOTIFY_EMAILS:
-            gmail_send(to, 'Shoebox: new photo upload from %s (%s)' % (s.get('submitterName'), s.get('submissionId')),
-                       intake_email(s))
-            sent += 1
+        tok = token  # avoid name conflict
+        notes = s.get('notes') or ''
+        # Extract photo URLs from notes: photo_urls=url1,url2,...
+        m = re.search(r'photo_urls=([^|]+)', notes)
+        raw_urls = [u.strip() for u in (m.group(1).split(',') if m else []) if u.strip()]
+        attachments = []
+        for url in raw_urls:
+            try:
+                with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=60) as f:
+                    data = f.read()
+                fname = url.split('/')[-1]
+                ctype = f.headers.get('Content-Type', 'application/octet-stream').split(';')[0]
+                attachments.append((fname, data, ctype))
+            except Exception as e:
+                print('  download failed for', url, e)
+        body = intake_email(s)
+        if attachments:
+            try:
+                gmail_send_with_attachments(NOTIFY_EMAILS[0], 'Shoebox: new photo upload from %s (%s)' % (s.get('submitterName'), s.get('submissionId')), body, attachments)
+                sent += 1
+                for to in NOTIFY_EMAILS[1:]:
+                    try:
+                        gmail_send_with_attachments(to, 'Shoebox: new photo upload from %s (%s)' % (s.get('submitterName'), s.get('submissionId')), body, attachments)
+                        sent += 1
+                    except Exception as e:
+                        print('  email failed to', to, e)
+            except Exception as e:
+                print('  email with attachments failed, falling back to text', e)
+                for to in NOTIFY_EMAILS:
+                    gmail_send(to, 'Shoebox: new photo upload from %s (%s)' % (s.get('submitterName'), s.get('submissionId')), body)
+                    sent += 1
+        else:
+            for to in NOTIFY_EMAILS:
+                gmail_send(to, 'Shoebox: new photo upload from %s (%s)' % (s.get('submitterName'), s.get('submissionId')), body)
+                sent += 1
         state['seen_intake'].append(s.get('submissionId'))
 
     for c in new_contribs:

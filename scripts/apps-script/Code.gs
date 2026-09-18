@@ -120,6 +120,9 @@ function doGet(e) {
     }
 
     // Submitter-facing actions
+    if (action === 'intake_submit') {
+      return handleIntakeSubmitNew(params);
+    }
     if (action === 'submission') {
       return handleGetSubmission(token);
     }
@@ -806,6 +809,32 @@ function logIntakeFailure(source, submissionId, message) {
 }
 
 // Helper functions
+
+// ─── Intake submit (no Drive, no MailApp — just sheets + metadata + photo URLs) ─
+function handleIntakeSubmitNew(params) {
+  const name = (params.name || '').trim();
+  const email = (params.email || '').trim();
+  if (!name || !email) return jsonResponse({ok: false, error: 'Name and email required.'});
+  if (params.consentConfirmed !== 'yes') return jsonResponse({ok: false, error: 'Consent not confirmed.'});
+
+  let photoUrls = [];
+  try { photoUrls = JSON.parse(params.photoUrls || '[]'); } catch (e) {}
+  let meta = [];
+  try { meta = JSON.parse(params.meta || '[]'); } catch (e) {}
+
+  const sid = 'INT-' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyyMMdd-HHmmss');
+  const notes = photoUrls.length + ' photos. photo_urls=' + photoUrls.join(',') + '|meta=' + JSON.stringify(meta);
+
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  ss.getSheetByName(SHEET_SUBMISSIONS).appendRow([
+    sid, 'Web intake', name, email, params.phone || '',
+    params.familyName || '', params.mmfNumber || '',
+    'Adobe e-sign ' + (params.consentEmail || 'via widget'),
+    '', 'submitted', '', '', notes
+  ]);
+
+  return jsonResponse({ok: true, submissionId: sid, photoCount: photoUrls.length});
+}
 
 function jsonResponse(obj) {
   const output = JSON.stringify(obj);
