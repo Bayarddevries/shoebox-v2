@@ -615,6 +615,51 @@ const INTAKE_FOLDER_NAME = 'Shoebox Intake';
 const INTAKE_EMAILS = ['bayard.devries@mmf.mb.ca'];
 const INTAKE_MAX_ATTACH_MB = 24; // MailApp per-message attachment ceiling
 
+// Drive API helpers — uses ScriptApp.getOAuthToken + UrlFetchApp to bypass
+// DriveApp's shaky internal scope checks. The scope comes from appsscript.json
+// and must be approved.
+
+function _driveApi(method, url, opts) {
+  const token = ScriptApp.getOAuthToken();
+  const headers = {Authorization: 'Bearer ' + token};
+  if (opts && opts.contentType) headers['Content-Type'] = opts.contentType;
+  if (opts && opts.body) {
+    const req = {method: method, headers: headers, payload: opts.body, muteHttpExceptions: false};
+    if (opts.contentType) req.contentType = opts.contentType;
+    return UrlFetchApp.fetch(url, req);
+  }
+  return UrlFetchApp.fetch(url, {method: method, headers: headers});
+}
+
+function getOrCreateIntakeFolder() {
+  const q = encodeURIComponent("name='" + INTAKE_FOLDER_NAME + "' and mimeType='application/vnd.google-apps.folder' and trashed=false");
+  const res = JSON.parse(_driveApi('GET', 'https://www.googleapis.com/drive/v3/files?q=' + q + '&fields=files(id,name)'));
+  if (res.files && res.files.length > 0) return res.files[0];
+  return JSON.parse(_driveApi('POST', 'https://www.googleapis.com/drive/v3/files',
+    {contentType: 'application/json', body: JSON.stringify({name: INTAKE_FOLDER_NAME, mimeType: 'application/vnd.google-apps.folder'})}));
+}
+
+function driveCreateSubfolder(parentId, name) {
+  return JSON.parse(_driveApi('POST', 'https://www.googleapis.com/drive/v3/files',
+    {contentType: 'application/json', body: JSON.stringify({name: name, mimeType: 'application/vnd.google-apps.folder', parents: [parentId]})}));
+}
+
+function driveCreateFile(folderId, blob, fileName) {
+  const boundary = '--BOUNDARY' + Utilities.getUuid().replace(/-/g, '');
+  const meta = JSON.stringify({name: fileName, parents: [folderId]});
+  const body = '' +
+    '--' + boundary + '\r\n' +
+    'Content-Type: application/json; charset=UTF-8\r\n\r\n' +
+    meta + '\r\n' +
+    '--' + boundary + '\r\n' +
+    'Content-Type: ' + blob.getContentType() + '\r\n' +
+    'Content-Transfer-Encoding: base64\r\n\r\n' +
+    Utilities.base64Encode(blob.getBytes()) + '\r\n' +
+    '--' + boundary + '--';
+  return JSON.parse(_driveApi('POST', 'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',
+    {contentType: 'multipart/related; boundary=' + boundary, body: body}));
+}
+
 function handleIntakeSubmit(form) {
   const name = String(form.name || '').trim();
   const email = String(form.email || '').trim();
@@ -636,33 +681,36 @@ function handleIntakeSubmit(form) {
   // Save to a private Drive intake folder (never public).
   const stamp = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd');
   const safeName = name.replace(/[^\w\s-]/g, '').replace(/\s+/g, '_');
-  const folder = getOrCreateIntakeFolder().createFolder(stamp + ' ' + safeName);
+  const intakeRoot = getOrCreateIntakeFolder();
+  const sub = driveCreateSubfolder(intakeRoot.id, stamp + ' ' + safeName);
+  const folderId = sub.id;
 
   const savedFiles = [];
   const emailAttachments = [];
   photos.forEach(function (blob, i) {
     const orig = blob.getName() || 'photo';
     const fname = String(i + 1).padStart(2, '0') + '_' + orig;
-    const f = folder.createFile(blob).setName(fname);
-    savedFiles.push({ name: fname, url: f.getUrl() });
+    const file = driveCreateFile(folderId, blob, fname);
+    savedFiles.push({ name: fname, id: file.id });
     emailAttachments.push(blob.setName(fname));
   });
 
+  const driveBaseUrl = 'https://drive.google.com/drive/folders/' + folderId;
   const submission = {
     submittedAt: new Date().toISOString(),
     name: name, email: email, phone: phone, familyName: familyName,
     mmfNumber: mmfNumber, creditLine: creditLine,
     consentConfirmed: consentConfirmed, consentEmail: consentEmail,
     photoCount: savedFiles.length,
-    driveFolder: folder.getUrl(),
+    driveFolder: driveBaseUrl,
     photos: meta.map(function (m, i) {
-      return Object.assign({ file: savedFiles[i] ? savedFiles[i].url : '' }, m || {});
+      return Object.assign({ file: savedFiles[i] ? 'https://drive.google.com/file/d/' + savedFiles[i].id + '/view' : '' }, m || {});
     })
   };
-  folder.createFile('submission.json', JSON.stringify(submission, null, 2), MimeType.JSON);
+  driveCreateFile(folderId, Utilities.newBlob(JSON.stringify(submission, null, 2), 'application/json', 'submission.json'));
 
   const sid = 'INT-' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyyMMdd-HHmmss');
-  const notes = savedFiles.length + ' photos. Drive: ' + folder.getUrl();
+  const notes = savedFiles.length + ' photos. Drive: ' + driveBaseUrl;
   writeIntakeSubmissionRow(sid, submission, notes);
 
   // Best-effort email with attachments; the Hermes watcher is the reliable
@@ -678,14 +726,10 @@ function handleIntakeSubmit(form) {
     emailStatus = 'watcher';
   }
 
-  return { ok: true, submissionId: sid, photoCount: savedFiles.length, driveFolder: folder.getUrl(), emailStatus: emailStatus };
+  return { ok: true, submissionId: sid, photoCount: savedFiles.length, driveFolder: driveBaseUrl, emailStatus: emailStatus };
 }
 
-function getOrCreateIntakeFolder() {
-  const it = DriveApp.getFoldersByName(INTAKE_FOLDER_NAME);
-  if (it.hasNext()) return it.next();
-  return DriveApp.createFolder(INTAKE_FOLDER_NAME);
-}
+// Old DriveApp-based getOrCreateIntakeFolder removed — replaced by the Drive API version above.
 
 function writeIntakeSubmissionRow(sid, submission, notes) {
   const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
