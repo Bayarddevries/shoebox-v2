@@ -24,7 +24,10 @@
   .btn { display:inline-block; background:var(--crimson); color:#fff; border:none; padding:13px 26px; border-radius:5px; font-size:1.05rem; cursor:pointer; margin-top:16px; font-family:'Inter',sans-serif; }
   .btn:hover { background:var(--crimson-light); }
   .btn:disabled { opacity:.5; cursor:wait; }
-  .widget-wrap { margin-top:10px; border:1px solid var(--line); border-radius:6px; overflow:auto; height:620px; -webkit-overflow-scrolling:touch; }
+  .widget-wrap { margin-top:10px; border:1px solid var(--line); border-radius:6px; overflow:hidden; height:480px; position:relative; }
+  .widget-wrap iframe { width:100%; height:100%; border:0; min-width:0; }
+  .widget-hint { font-size:.82rem; color:var(--charcoal-light); margin-top:8px; }
+  @media (max-width:600px) { .widget-wrap { height:360px; } }
   .required:after { content:" *"; color:var(--crimson); }
   .error { color:#a02020; font-size:.9rem; margin-top:8px; white-space:pre-wrap; }
   .success { color:#1c6b2f; font-weight:bold; font-size:1rem; margin-top:10px; white-space:pre-wrap; }
@@ -57,7 +60,8 @@
   <h2>Step 1: Consent</h2>
   <p style="margin-top:0">The Shoebox Archive can only accept and display photos with your signed consent. If you have not signed the form yet, please do it now.</p>
   <button type="button" class="btn btn-secondary" onclick="window.open('https://na4.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhDKuVmyGeGecFDx-bTQHs_IsKsrkkvno801k2zYZaZo-lIGUfzO1yKM7KFinXD8lg8*','_blank')">Open the consent form in a new tab</button>
-  <div class="widget-wrap"><iframe src="https://na4.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhDKuVmyGeGecFDx-bTQHs_IsKsrkkvno801k2zYZaZo-lIGUfzO1yKM7KFinXD8lg8*&amp;hosted=false" width="100%" height="100%" frameborder="0" style="border:0; overflow:hidden; min-height:500px; min-width:320px;"></iframe></div>
+  <div class="widget-wrap"><iframe src="https://na4.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhDKuVmyGeGecFDx-bTQHs_IsKsrkkvno801k2zYZaZo-lIGUfzO1yKM7KFinXD8lg8*&amp;hosted=false" width="100%" height="100%" frameborder="0" style="border:0; overflow:hidden;"></iframe></div>
+    <p class="widget-hint">On a small screen? <strong>Open the consent form in a new tab</strong> above for the best view.</p>
   <div class="checkbox-line"><input type="checkbox" id="consentConfirmed" name="consentConfirmed" value="yes" required> <label for="consentConfirmed" class="required">I have completed and signed the consent form</label></div>
   <label for="consentEmail">Email you used to sign the consent form <span class="hint">(so we can match your form to your photos)</span></label>
   <input type="email" id="consentEmail" name="consentEmail" placeholder="you@example.com">
