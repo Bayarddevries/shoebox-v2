@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submit your photos | Red River Métis Shoebox Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --crimson:#8b0000; --crimson-light:#b30000; --parchment:#fdfcf9; --cream:#f4f1ea; --charcoal:#2c2c2c; --charcoal-light:#555555; --line:#e5e7eb; }
+  * { box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; background:var(--parchment); color:var(--charcoal); margin:0; line-height:1.6; }
+  header { background:var(--crimson); color:#fff; padding:26px 16px; text-align:center; }
+  header img { height:52px; width:auto; margin-bottom:8px; }
+  header h1 { font-family:'EB Garamond',serif; font-weight:600; font-size:1.6rem; margin:0 0 6px; }
+  header p { margin:0; font-size:.92rem; opacity:.92; }
+  main { max-width:760px; margin:0 auto; padding:22px 16px 60px; }
+  .card { background:#fff; border:1px solid var(--line); border-left:5px solid var(--crimson); border-radius:6px; padding:20px; margin-bottom:22px; }
+  .card h2 { color:var(--crimson); font-family:'EB Garamond',serif; font-weight:600; font-size:1.3rem; margin:0 0 12px; }
+  label { display:block; font-weight:500; margin:12px 0 4px; font-size:.95rem; }
+  .hint { font-weight:400; font-size:.82rem; color:var(--charcoal-light); }
+  input, select, textarea { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:5px; font:inherit; background:#fff; }
+  input:focus, select:focus, textarea:focus { outline:2px solid var(--crimson-light); outline-offset:-1px; }
+  textarea { min-height:72px; }
+  .btn { display:inline-block; background:var(--crimson); color:#fff; border:none; padding:13px 26px; border-radius:5px; font-size:1.05rem; cursor:pointer; margin-top:16px; font-family:'Inter',sans-serif; }
+  .btn:hover { background:var(--crimson-light); }
+  .btn:disabled { opacity:.5; cursor:wait; }
+  .widget-wrap { margin-top:10px; border:1px solid var(--line); border-radius:6px; overflow:hidden; height:480px; position:relative; }
+  .widget-wrap iframe { width:100%; height:100%; border:0; min-width:0; }
+  .widget-hint { font-size:.82rem; color:var(--charcoal-light); margin-top:8px; }
+  @media (max-width:600px) { .widget-wrap { height:360px; } }
+  .required:after { content:" *"; color:var(--crimson); }
+  .error { color:#a02020; font-size:.9rem; margin-top:8px; white-space:pre-wrap; }
+  .success { color:#1c6b2f; font-weight:bold; font-size:1rem; margin-top:10px; white-space:pre-wrap; }
+  .photo-card { border:1px solid var(--line); border-radius:6px; padding:14px; margin-top:12px; background:var(--cream); }
+  .photo-card h3 { margin:0 0 8px; font-size:1rem; }
+  .photo-card .thumb { max-width:140px; max-height:110px; border-radius:4px; margin-bottom:8px; display:block; }
+  .photo-card .remove { float:right; color:var(--crimson); cursor:pointer; font-size:.9rem; border:none; background:none; }
+  .two-col { display:flex; gap:14px; flex-wrap:wrap; }
+  .two-col > div { flex:1 1 220px; }
+  .note { font-size:.85rem; color:var(--charcoal-light); background:var(--cream); border-radius:5px; padding:10px 14px; margin-top:10px; }
+  .checkbox-line { display:flex; align-items:flex-start; gap:10px; margin-top:14px; }
+  .checkbox-line input { margin-top:4px; width:auto; }
+  .checkbox-line label { margin:0; font-weight:400; }
+  #status { margin-top:10px; }
+  .hidden { display:none; }
+  .progress { background:var(--cream); border-radius:5px; padding:10px; margin-top:10px; text-align:center; }
+</style>
+</head>
+<body>
+<header>
+  <img src="assets/mmf_logo_rrm.png" alt="MMF RRM logo">
+  <h1>Submit your photos to the Shoebox Archive</h1>
+  <p>Red River Métis National Heritage Centre</p>
+</header>
+<main>
+<form id="intakeForm">
+<div class="hidden" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+<section class="card">
+  <h2>Step 1: Consent</h2>
+  <p style="margin-top:0">The Shoebox Archive can only accept and display photos with your signed consent. If you have not signed the form yet, please do it now.</p>
+  <button type="button" class="btn btn-secondary" onclick="window.open('https://na4.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhDKuVmyGeGecFDx-bTQHs_IsKsrkkvno801k2zYZaZo-lIGUfzO1yKM7KFinXD8lg8*','_blank')">Open the consent form in a new tab</button>
+  <div class="widget-wrap"><iframe src="https://na4.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhDKuVmyGeGecFDx-bTQHs_IsKsrkkvno801k2zYZaZo-lIGUfzO1yKM7KFinXD8lg8*&amp;hosted=false" width="100%" height="100%" frameborder="0" style="border:0; overflow:hidden;"></iframe></div>
+    <p class="widget-hint">On a small screen? <strong>Open the consent form in a new tab</strong> above for the best view.</p>
+  <div class="checkbox-line"><input type="checkbox" id="consentConfirmed" name="consentConfirmed" value="yes" required> <label for="consentConfirmed" class="required">I have completed and signed the consent form</label></div>
+  <label for="consentEmail">Email you used to sign the consent form <span class="hint">(so we can match your form to your photos)</span></label>
+  <input type="email" id="consentEmail" name="consentEmail" placeholder="you@example.com">
+</section>
+
+<section class="card">
+  <h2>Step 2: Your details</h2>
+  <div class="two-col"><div><label class="required" for="name">Full name</label><input type="text" id="name" name="name" required></div><div><label class="required" for="email">Email</label><input type="email" id="email" name="email" required></div></div>
+  <div class="two-col"><div><label for="phone">Phone <span class="hint">(optional)</span></label><input type="tel" id="phone" name="phone"></div><div><label for="familyName">Family name / community <span class="hint">(optional)</span></label><input type="text" id="familyName" name="familyName" placeholder="e.g. Chartrand family"></div></div>
+  <div class="two-col"><div><label for="mmfNumber">MMF member number <span class="hint">(optional)</span></label><input type="text" id="mmfNumber" name="mmfNumber"></div><div><label for="creditLine">How should we credit you? <span class="hint">(optional)</span></label><input type="text" id="creditLine" name="creditLine" placeholder="Submitted by ..."></div></div>
+</section>
+
+<section class="card">
+  <h2>Step 3: Your photos</h2>
+  <label for="photos" class="required">Choose photos (jpg, png, or heic; up to 20)</label>
+  <input type="file" id="photos" name="photos" accept="image/jpeg,image/png,image/heic,.jpg,.jpeg,.png,.heic,.HEIC" multiple>
+  <div class="note">For each photo you can add as much detail as you know. If you don't know something, leave it blank.</div>
+  <div id="photoCards"></div>
+</section>
+
+<section class="card">
+  <button type="submit" class="btn" id="submitBtn">Submit my photos</button>
+  <div id="status"></div>
+</section>
+</form>
+</main>
+<script>
+const MAX_FILES = 20, MAX_FILE_MB = 20, MAX_TOTAL_MB = 50;
+const UPLOAD_URL = 'https://pop-os.tail4625c0.ts.net/upload';
+const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbwx0l2LijEV5MkodZcKMWPGNj5ADiZvS0Yfj9zUsITaEhhoFn_1mzd3jLi-w42qduNe/exec';
+const ADMIN_TOKEN = 'RgTSsLmm7_PPxlzfL1Az0Q-bcSxu6O3vHMG8rDInuiw';
+
+const fileInput = document.getElementById('photos');
+const cardsEl = document.getElementById('photoCards');
+let fileList = [];
+
+fileInput.addEventListener('change', function() {
+  const incoming = Array.from(fileInput.files || []);
+  fileList = fileList.concat(incoming.map(f => ({file: f, id: 'f'+Date.now()+Math.random().toString(36).slice(2,8)})));
+  if (fileList.length > MAX_FILES) { alert('Up to ' + MAX_FILES + ' photos at a time.'); fileList = fileList.slice(0, MAX_FILES); }
+  renderCards();
+});
+
+function renderCards() {
+  cardsEl.innerHTML = '';
+  fileList.forEach((item, idx) => {
+    const card = document.createElement('div'); card.className = 'photo-card'; card.dataset.id = item.id;
+    const url = window.URL.createObjectURL(item.file);
+    card.innerHTML =
+      '<button type="button" class="remove" onclick="removePhoto(\''+item.id+'\')">Remove</button>'+
+      '<h3>Photo '+(idx+1)+': '+esc(item.file.name)+'</h3>'+
+      (item.file.type.indexOf('image')===0?'<img class="thumb" src="'+url+'" alt="">':'')+
+      '<label>Title <span class="hint">(optional)</span></label><input type="text" class="f-title" placeholder="e.g. Grandma and Auntie at the lake">'+
+      '<label>Who is in the photo <span class="hint">(optional, names)</span></label><input type="text" class="f-people" placeholder="e.g. Marie Chartrand; Jean Baptiste">'+
+      '<div class="two-col"><div><label>City / town <span class="hint">(optional)</span></label><input type="text" class="f-city" placeholder="e.g. St. Eustache"></div><div><label>Province <span class="hint">(optional)</span></label><input type="text" class="f-province" placeholder="e.g. Manitoba"></div></div>'+
+      '<label>Community <span class="hint">(optional)</span></label><input type="text" class="f-community" placeholder="e.g. Ste. Madeleine">'+
+      '<div class="two-col"><div><label>When <span class="hint">(optional)</span></label><select class="f-era"><option value="">Unknown</option><option value="year">Exact year (type below)</option><option value="1900-1925">1900-1925</option><option value="1925-1950">1925-1950</option><option value="1950-1975">1950-1975</option><option value="1975-2000">1975-2000</option><option value="2000-2025">2000-2025</option><option value="before-1900">Before 1900</option></select></div><div><label>Keywords / themes <span class="hint">(optional)</span></label><input type="text" class="f-keywords" placeholder="e.g. farming, weddings"></div></div>'+
+      '<div class="f-yearbox hidden"><label>Exact year <span class="hint">(optional)</span></label><input type="text" class="f-year-exact" placeholder="e.g. 1938"></div>'+
+      '<label>Occasion or event <span class="hint">(optional)</span></label><input type="text" class="f-occasion" placeholder="e.g. Wedding, Métis Days">'+
+      '<label>Memory or story <span class="hint">(optional)</span></label><textarea class="f-story" placeholder="What do you remember?"></textarea>'+
+      '<label>Short caption <span class="hint">(optional)</span></label><input type="text" class="f-caption" placeholder="e.g. Grandma Marie at her 80th birthday">';
+    cardsEl.appendChild(card);
+    const sel = card.querySelector('.f-era');
+    const yearBox = card.querySelector('.f-yearbox');
+    sel.addEventListener('change', function() { yearBox.classList.toggle('hidden', sel.value !== 'year'); });
+  });
+}
+
+function removePhoto(id) { fileList = fileList.filter(x => x.id !== id); renderCards(); }
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+document.getElementById('intakeForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const status = document.getElementById('status');
+  const btn = document.getElementById('submitBtn');
+  status.className = ''; status.textContent = '';
+
+  if (this.elements.website.value) { status.textContent = 'Submission received.'; return; }
+  if (!this.elements.consentConfirmed.checked) { status.className = 'error'; status.textContent = 'Please confirm you have completed the consent form first.'; return; }
+  if (fileList.length === 0) { status.className = 'error'; status.textContent = 'Please choose at least one photo.'; return; }
+
+  let total = 0;
+  for (const item of fileList) {
+    if (item.file.size > MAX_FILE_MB * 1024 * 1024) { status.className = 'error'; status.textContent = item.file.name + ' is over ' + MAX_FILE_MB + 'MB.'; return; }
+    total += item.file.size;
+  }
+  if (total > MAX_TOTAL_MB * 1024 * 1024) { status.className = 'error'; status.textContent = 'Total is over ' + MAX_TOTAL_MB + 'MB. Remove some photos.'; return; }
+
+  const meta = [];
+  cardsEl.querySelectorAll('.photo-card').forEach(card => {
+    const era = card.querySelector('.f-era').value;
+    meta.push({
+      title: card.querySelector('.f-title').value,
+      people: card.querySelector('.f-people').value,
+      city: card.querySelector('.f-city').value,
+      province: card.querySelector('.f-province').value,
+      community: card.querySelector('.f-community').value,
+      dateYear: era === 'year' ? card.querySelector('.f-year-exact').value : '',
+      dateEra: era && era !== 'year' ? era : '',
+      occasion: card.querySelector('.f-occasion').value,
+      story: card.querySelector('.f-story').value,
+      caption: card.querySelector('.f-caption').value,
+      keywords: card.querySelector('.f-keywords').value
+    });
+  });
+
+  btn.disabled = true; btn.textContent = 'Uploading photos...';
+  status.className = ''; status.innerHTML = '<div class="progress">Uploading photos to server...</div>';
+
+  // Upload photos to the funnel server
+  const formData = new FormData();
+  for (const item of fileList) { formData.append('file', item.file, item.file.name); }
+
+  try {
+    const upResp = await fetch(UPLOAD_URL, { method: 'POST', body: formData });
+    const upData = await upResp.json();
+    if (!upData.files) throw new Error('Upload failed: ' + JSON.stringify(upData));
+
+    const photoUrls = upData.files.map(f => f.url);
+    status.innerHTML = '<div class="progress">Photos uploaded. Submitting metadata...</div>';
+
+    // Submit to Apps Script backend
+    const params = new URLSearchParams({
+      action: 'intake_submit',
+      admin_token: ADMIN_TOKEN,
+      name: this.elements.name.value,
+      email: this.elements.email.value,
+      phone: this.elements.phone.value,
+      familyName: this.elements.familyName.value,
+      mmfNumber: this.elements.mmfNumber.value,
+      creditLine: this.elements.creditLine.value,
+      consentConfirmed: 'yes',
+      consentEmail: this.elements.consentEmail.value,
+      photoUrls: JSON.stringify(photoUrls),
+      meta: JSON.stringify(meta)
+    });
+
+    const subResp = await fetch(BACKEND_URL + '?' + params.toString());
+    const subData = await subResp.json();
+
+    if (subData.ok) {
+      status.className = 'success';
+      status.textContent = 'Thank you! Your submission was received (' + fileList.length + ' photo' + (fileList.length === 1 ? '' : 's') + '). A member of the archive team will be in touch. Keep an eye on your email.';
+      this.reset(); fileList = []; renderCards();
+    } else {
+      status.className = 'error';
+      status.textContent = 'Submission error: ' + (subData.error || 'unknown') + ' Please try again or email metisshoebox@mmf.mb.ca.';
+    }
+  } catch (err) {
+    status.className = 'error';
+    status.textContent = 'Error: ' + (err.message || err) + ' Please try again or email metisshoebox@mmf.mb.ca.';
+  }
+  btn.disabled = false; btn.textContent = 'Submit my photos';
+});
+</script>
+</body>
+</html>

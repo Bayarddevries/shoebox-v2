@@ -261,6 +261,7 @@ export default function ClaimView({ token, onDone }: ClaimViewProps) {
         {/* Metadata Form */}
         <section>
           <MetadataForm
+            key={currentPhoto.photoId}
             photoId={currentPhoto.photoId}
             submitterToken={token}
             onSubmit={(data: any) => handleFormSubmit(data, currentPhoto.photoId)}

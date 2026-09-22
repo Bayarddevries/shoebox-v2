@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shoebox Batch Review</title>
+<style>
+  :root { --red:#8a1f1f; --cream:#f7f1e4; --paper:#fffdf6; --ink:#2b2118; --muted:#8a7a68; --green:#1f6b3a; --amber:#9a6a00; --line:#e2d8c4; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family: Georgia, 'Times New Roman', serif; background:var(--cream); color:var(--ink); }
+  header { background:var(--red); color:#fff; padding:14px 18px; position:sticky; top:0; z-index:20; }
+  header h1 { margin:0; font-size:1.15rem; font-weight:normal; letter-spacing:.02em; }
+  header .sub { font-size:.8rem; opacity:.85; margin-top:2px; }
+  #progressbar { height:4px; background:rgba(255,255,255,.25); margin-top:8px; border-radius:2px; overflow:hidden; }
+  #progressbar > div { height:100%; background:#ffd98a; width:0%; transition:width .2s; }
+  #filters { display:flex; gap:8px; padding:10px 18px; background:var(--paper); border-bottom:1px solid var(--line); flex-wrap:wrap; align-items:center; }
+  #filters button { font-family:inherit; font-size:.85rem; padding:5px 12px; border:1px solid var(--line); background:#fff; color:var(--ink); border-radius:16px; cursor:pointer; }
+  #filters button.active { background:var(--red); color:#fff; border-color:var(--red); }
+  #filters .spacer { flex:1; }
+  #filters .count { font-size:.8rem; color:var(--muted); }
+  #exportbtn { background:var(--green); border:none; color:#fff; padding:6px 14px; border-radius:16px; font-family:inherit; cursor:pointer; }
+  main { padding:18px; max-width:1100px; margin:0 auto; }
+  .card { background:var(--paper); border:1px solid var(--line); border-radius:10px; margin-bottom:22px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,.05); }
+  .card.flagged { border-left:5px solid var(--amber); }
+  .card.reviewed-ok { border-left:5px solid var(--green); }
+  .card-top { display:flex; gap:14px; padding:14px; flex-wrap:wrap; }
+  .imgs { display:flex; gap:10px; flex:1 1 260px; min-width:260px; }
+  .imgs figure { margin:0; flex:1; min-width:0; }
+  .imgs figcaption { font-size:.72rem; color:var(--muted); margin-top:4px; text-align:center; }
+  .imgs img { width:100%; height:180px; object-fit:contain; background:#f0e9da; border-radius:6px; }
+  .idbox { flex:0 0 220px; font-size:.82rem; }
+  .idbox .fn { font-family: 'Courier New', monospace; font-size:.78rem; word-break:break-all; }
+  .idbox .archid { color:var(--muted); font-family:'Courier New',monospace; font-size:.72rem; }
+  .conf { display:inline-block; padding:2px 8px; border-radius:10px; font-size:.72rem; margin-top:4px; }
+  .conf.HIGH { background:#e2f0e6; color:var(--green); }
+  .conf.MED { background:#fbeed6; color:var(--amber); }
+  .conf.LOW { background:#f7dddd; color:var(--red); }
+  .flags { margin-top:6px; }
+  .flag { display:inline-block; background:#fbeed6; color:#7a5200; border-radius:10px; padding:2px 8px; font-size:.7rem; margin:2px 4px 2px 0; }
+  .fields { padding:0 14px 14px; }
+  .field { margin-bottom:12px; }
+  .field label { display:block; font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-bottom:4px; }
+  .field .row { display:flex; gap:10px; flex-wrap:wrap; }
+  .field .old { flex:1; min-width:140px; font-size:.85rem; color:var(--muted); background:#f4eee0; border-radius:6px; padding:8px 10px; }
+  .field .new { flex:1.6; min-width:200px; }
+  .field input, .field textarea { width:100%; font-family:inherit; font-size:.9rem; border:1px solid var(--line); border-radius:6px; padding:8px 10px; background:#fff; color:var(--ink); }
+  .field textarea { min-height:64px; resize:vertical; }
+  .field .lbl { font-size:.68rem; color:var(--muted); margin-bottom:2px; }
+  .card-actions { display:flex; gap:8px; padding:0 14px 14px; flex-wrap:wrap; align-items:center; }
+  .card-actions button { font-family:inherit; font-size:.85rem; padding:7px 16px; border-radius:18px; border:1px solid var(--line); cursor:pointer; background:#fff; }
+  .card-actions .ok { background:var(--green); color:#fff; border-color:var(--green); }
+  .card-actions .discuss { background:var(--amber); color:#fff; border-color:var(--amber); }
+  .card-actions .skip { background:#eee; color:var(--muted); }
+  .card-actions .notes { flex:1; min-width:200px; }
+  .card-actions .notes input { width:100%; font-family:inherit; font-size:.8rem; border:1px solid var(--line); border-radius:16px; padding:6px 12px; }
+  .statusline { font-size:.75rem; color:var(--muted); padding:0 14px 10px; }
+  @media (max-width:700px){ .imgs{flex-direction:column;} .imgs img{height:150px;} .idbox{flex-basis:auto;} }
+</style>
+</head>
+<body>
+<header>
+  <h1>Shoebox Batch Review — <span id="batchname"></span></h1>
+  <div class="sub" id="subline"></div>
+  <div id="progressbar"><div></div></div>
+</header>
+<div id="filters">
+  <button data-f="all" class="active">All</button>
+  <button data-f="pending">Pending</button>
+  <button data-f="ok">Approved</button>
+  <button data-f="discuss">Needs discussion</button>
+  <button data-f="skip">Skip</button>
+  <span class="count" id="countline"></span>
+  <span class="spacer"></span>
+  <button id="exportbtn">Download decisions</button>
+</div>
+<main id="cards"></main>
+<script>
+const LS_KEY = 'shoebox_review_';
+let state = null; // {review, decisions:{}, filter}
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function thumbUrl(t){ return 'thumbs/' + encodeURIComponent(t); }
+function loadReview(){
+  fetch('review.json').then(r=>r.json()).then(r=>{
+    state = {review:r, decisions:{}, filter:'all'};
+    const saved = localStorage.getItem(LS_KEY + r.batch);
+    if(saved){ try{ state.decisions = JSON.parse(saved); }catch(e){} }
+    document.getElementById('batchname').textContent = r.batch;
+    document.getElementById('subline').textContent = r.count + ' photos · drop files in Drive → matched → review → apply';
+    render();
+  });
+}
+function decisionFor(i){
+  const d = state.decisions[i] || {};
+  return {
+    status: d.status || 'pending',
+    notes: d.notes || '',
+    title: d.title != null ? d.title : state.review.photos[i].suggested.title,
+    caption: d.caption != null ? d.caption : state.review.photos[i].suggested.caption,
+    keywords: d.keywords != null ? d.keywords : state.review.photos[i].suggested.keywords,
+  };
+}
+function save(i, patch){
+  const d = decisionFor(i); Object.assign(d, patch); state.decisions[i] = d;
+  localStorage.setItem(LS_KEY + state.review.batch, JSON.stringify(state.decisions));
+  updateCounts(); renderCards();
+}
+function updateCounts(){
+  const counts = {all:0, pending:0, ok:0, discuss:0, skip:0};
+  state.review.photos.forEach((p,i)=>{ counts.all++; counts[decisionFor(i).status]++; });
+  document.getElementById('countline').textContent = counts.ok + '/' + counts.all + ' approved';
+  document.getElementById('progressbar').firstChild.style.width = (counts.ok/counts.all*100) + '%';
+}
+function render(){
+  updateCounts(); renderCards();
+}
+function renderCards(){
+  const main = document.getElementById('cards'); main.innerHTML = '';
+  const photos = state.review.photos;
+  photos.forEach((p, i) => {
+    const d = decisionFor(i);
+    if(state.filter !== 'all' && d.status !== state.filter) return;
+    const card = document.createElement('div');
+    card.className = 'card' + (p.flags && p.flags.length ? ' flagged' : '') + (d.status==='ok'?' reviewed-ok':'');
+    const flagHtml = (p.flags||[]).map(f=>'<span class="flag">'+esc(f)+'</span>').join('');
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="imgs">
+          <figure><img src="${thumbUrl(p.lr.thumb||'')}" alt="new"><figcaption>NEW (export: ${esc(p.export_file)})</figcaption></figure>
+          <figure><img src="${thumbUrl(p.archive.thumb||'')}" alt="old"><figcaption>ARCHIVE (${esc(p.archive_file)})</figcaption></figure>
+        </div>
+        <div class="idbox">
+          <div class="fn">${esc(p.archive_file)}</div>
+          <div class="archid">${esc(p.archive_id)}</div>
+          <span class="conf ${esc(p.confidence)}">${esc(p.confidence)} confidence</span>
+          <div class="flags">${flagHtml}</div>
+          <div style="margin-top:6px;font-size:.75rem;color:var(--muted)">
+            LR: ${esc(p.lr.width||'')}x${esc(p.lr.height||'')} ${esc(p.lr.type||'')} ${esc(p.lr.size_mb||'')}MB<br>
+            Archive year: ${esc(p.archive.year||'')} · place: ${esc(p.archive.place||'')}
+          </div>
+        </div>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label>Title</label>
+          <div class="row">
+            <div class="old"><div class="lbl">Archive: ${esc(p.archive.title||'(empty)')}</div><div class="lbl" style="margin-top:4px">LR: ${esc(p.lr.title||'(empty)')}</div></div>
+            <div class="new"><input type="text" data-i="${i}" data-k="title" value="${esc(d.title)}"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Caption</label>
+          <div class="row">
+            <div class="old"><div class="lbl">Archive: ${esc(p.archive.caption||'(empty)')}</div><div class="lbl" style="margin-top:4px">LR: ${esc(p.lr.caption||'(empty)')}</div></div>
+            <div class="new"><textarea data-i="${i}" data-k="caption">${esc(d.caption)}</textarea></div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Keywords</label>
+          <div class="row">
+            <div class="old"><div class="lbl">Archive: ${esc(p.archive.keywords||'(empty)')}</div><div class="lbl" style="margin-top:4px">LR: ${esc(p.lr.keywords||'(empty)')}</div></div>
+            <div class="new"><input type="text" data-i="${i}" data-k="keywords" value="${esc(d.keywords)}"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-actions">
+        <button class="ok" data-act="ok" data-i="${i}">✓ Approve</button>
+        <button class="discuss" data-act="discuss" data-i="${i}">? Needs discussion</button>
+        <button class="skip" data-act="skip" data-i="${i}">Skip (don't swap)</button>
+        <div class="notes"><input data-i="${i}" data-k="notes" placeholder="notes..." value="${esc(d.notes)}"></div>
+      </div>
+      <div class="statusline">Status: <b>${esc(d.status)}</b>${d.notes?' · '+esc(d.notes):''}</div>
+    `;
+    main.appendChild(card);
+  });
+  // bind inputs
+  main.querySelectorAll('input[data-k], textarea[data-k]').forEach(el=>{
+    el.addEventListener('change', ()=> save(+el.dataset.i, {[el.dataset.k]: el.value}));
+  });
+  main.querySelectorAll('button[data-act]').forEach(btn=>{
+    btn.addEventListener('click', ()=> save(+btn.dataset.i, {status: btn.dataset.act}));
+  });
+}
+document.getElementById('filters').addEventListener('click', e=>{
+  const b = e.target.closest('button[data-f]'); if(!b) return;
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); state.filter = b.dataset.f; renderCards();
+});
+document.getElementById('exportbtn').addEventListener('click', ()=>{
+  const out = {batch: state.review.batch, decisions: state.decisions,
+               reviewedAt: new Date().toISOString()};
+  const blob = new Blob([JSON.stringify(out, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = state.review.batch + '-decisions.json';
+  a.click();
+});
+loadReview();
+</script>
+</body>
+</html>

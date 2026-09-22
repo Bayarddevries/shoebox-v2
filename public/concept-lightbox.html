@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Red River Métis Shoebox — The Light Table</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+/* ============================================================
+   THE LIGHT TABLE.
+   1. Prints lie on dark glass in a darkened room. ONE broad light
+      comes from beneath the surface: a single warm-to-cool pool
+      washing over the whole group (screen-blended, breathing).
+      Not a glow per photo. The corners fall away into deep shadow.
+   2. ONE hero: an oval-vignette portrait, 45% of the viewport tall,
+      fully visible, uncropped, on the right optical third. The band
+      of prints fans around it — a computed arc, not a scatter.
+   3. Never crop: width = height x the photo's own ratio, contain.
+   4. Depth comes from the light pool and from gentle overlaps —
+      no per-print glow, no per-print drop shadow, no uniform borders.
+   5. One motion: the light breathing. Everything else is still.
+   ============================================================ */
+:root{
+  --ink:#e9dfc8;
+  --paper:#e8dcc4;
+  --ochre:#b98f4e;
+  --quiet:#978a74;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;color:var(--ink);
+  font-family:'EB Garamond',Georgia,serif;-webkit-tap-highlight-color:transparent;
+  user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;
+  background:#070402}
+
+/* ---------- the dark glass ---------- */
+.wall{position:fixed;inset:0;overflow:hidden}
+/* one deep warm ground + a faint static pool where the light well sits */
+.wall::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(52% 44% at 61% 34%, rgba(255,204,150,0.05) 0%, transparent 70%),
+    radial-gradient(120% 95% at 50% 38%, #171009 0%, #0d0805 52%, #060402 100%)}
+/* the surface falls away: a soft corner shadow laid over everything */
+.wall::after{content:'';position:absolute;inset:0;z-index:46;pointer-events:none;
+  background:radial-gradient(150% 112% at 50% 42%, transparent 52%, rgba(0,0,0,0.60) 100%)}
+
+/* ---------- THE ONE LIGHT: a broad warm-to-cool pool, breathing ---------- */
+.light{position:absolute;inset:0;z-index:44;pointer-events:none;mix-blend-mode:screen;
+  will-change:transform,opacity;transform-origin:61% 36%;
+  background:radial-gradient(ellipse 54% 50% at 60% 38%,
+    rgba(255,226,180,0.235) 0%,
+    rgba(255,198,140,0.115) 34%,
+    rgba(158,172,205,0.045) 60%,
+    transparent 80%),
+    /* the surface itself: a wide, faint pool that puts the prints on a plane
+       rather than floating them in a void */
+    radial-gradient(ellipse 78% 42% at 50% 74%,
+    rgba(255,214,164,0.075) 0%, transparent 72%);
+  animation:breathe 84s ease-in-out infinite alternate}
+@keyframes breathe{
+  from{transform:scale(1);opacity:0.70}
+  to  {transform:scale(1.07);opacity:1.00}}
+
+/* ---------- prints: photographs on the glass ---------- */
+.print{position:absolute;background-repeat:no-repeat;background-position:center;
+  background-size:contain;cursor:pointer;transition:transform .14s ease;
+  /* a 1px paper edge is what separates a sepia print from near-black glass.
+     outline, not box-shadow: no layout cost and no per-element blur. */
+  outline:1px solid rgba(232,220,196,0.34)}
+.print:active{transform:scale(0.985)}
+/* the hero carries a warmer, slightly heavier edge so it reads as the object */
+.print.hero-edge{outline:2px solid rgba(214,190,148,0.55)}
+
+/* ---------- labels ---------- */
+.lbl{position:absolute;z-index:50;pointer-events:none;text-align:left}
+/* a 1px leader ties each label to the photograph it describes, so a label can
+   never float ambiguously in space */
+.lbl .tick{display:block;width:1px;height:11px;background:rgba(232,220,196,0.5);margin-bottom:7px}
+.lbl .nm{display:block;font-variant:small-caps;letter-spacing:0.09em;
+  color:var(--paper);font-weight:600;line-height:1.24;
+  font-size:clamp(0.92rem,1.2vw,1.1rem)}
+.lbl .yr{display:block;margin-top:0.28em;font-size:clamp(0.7rem,0.86vw,0.8rem);
+  letter-spacing:0.15em;text-transform:uppercase;color:#c2b8a4}
+.lbl.hero .nm{font-size:clamp(1.15rem,1.72vw,1.5rem);letter-spacing:0.1em}
+.lbl.hero .yr{color:#c9bda6;letter-spacing:0.18em}
+
+/* ---------- wordmark: flush left, thin ochre rule ---------- */
+.brand{position:absolute;top:2.9vh;left:3.6vw;z-index:60;pointer-events:none}
+.brand .wm{font-size:19px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--ink);font-weight:600;line-height:1}
+.brand .rule{width:clamp(44px,3.4vw,64px);height:1px;margin-top:0.85rem;
+  background:linear-gradient(90deg,rgba(185,143,78,0.95),rgba(185,143,78,0.06))}
+.brand .kicker{margin-top:0.85rem;font-size:clamp(0.6rem,0.74vw,0.7rem);
+  letter-spacing:0.22em;text-transform:uppercase;color:#bdb3a0}
+
+/* ---------- the invitation: flush left, never centered ---------- */
+.cue{position:absolute;bottom:3.4vh;left:3.6vw;z-index:60;pointer-events:none}
+.cue .main{display:flex;align-items:center;gap:0.8rem;
+  font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  font-weight:500;letter-spacing:0.16em;text-transform:uppercase;
+  font-size:clamp(0.95rem,1.35vw,1.18rem);color:var(--ochre)}
+.cue .main::before{content:'';width:2px;height:1.05em;background:var(--ochre)}
+.cue .sub{margin-top:0.55rem;font-size:clamp(0.85rem,1.05vw,0.98rem);
+  color:var(--quiet);letter-spacing:0.02em}
+.cue .sub b{color:var(--paper);font-weight:600}
+
+.stage{position:absolute;inset:0;z-index:5;opacity:0;transition:opacity 0.6s ease}
+.stage.ready{opacity:1}
+</style>
+</head>
+<body>
+<div class="wall">
+  <div class="light" id="light"></div>
+  <div class="stage" id="stage"></div>
+  <header class="brand">
+    <div class="wm">The Red River Métis Shoebox</div>
+    <div class="rule"></div>
+    <div class="kicker">Photographs from Métis families and communities</div>
+  </header>
+  <footer class="cue">
+    <div class="main">Touch a photograph to explore</div>
+    <div class="sub"><b>544 photographs</b> from families, communities, and stories</div>
+  </footer>
+</div>
+<script>
+/* ============================================================
+   THE LIGHT TABLE — layout engine.
+   One hero on the right optical third; a band of 16 prints fanned
+   around it along an elliptical arc. The arc spacing, radii and
+   print sizes are tuned so that 3-5 prints genuinely touch — a
+   physical pile on glass. The hero is never covered (highest z).
+   ============================================================ */
+const SEED      = 20260911;
+const HERO_ID   = 'photo_0b88bd158f';   // Marie Madeleine Mercredi Lafferty, age 7, 1904
+const BAND_N    = 16;
+
+const thumb = p => encodeURI((p.src||'').replace(/photos\//,'thumbs/').replace(/\.[a-zA-Z0-9]+$/,'.jpg'));
+const ratio = p => (p.w && p.h) ? (p.w/p.h) : 1.4;
+const person = p => ((p.people||'').split(';')[0]||'').trim() || (p.title||'');
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);
+  t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function shuffle(arr,seed){const r=mulberry32(seed),a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function loadOk(p){return new Promise(res=>{const i=new Image();
+  i.onload=()=>res(true);i.onerror=()=>res(false);i.src=thumb(p)})}
+
+function build(HERO, BAND){
+  const W=innerWidth, H=innerHeight;
+  const stage=document.getElementById('stage');
+  stage.innerHTML='';
+
+  /* ---- hero: right optical third, 45% of the viewport, uncropped ---- */
+  const heroH=Math.round(Math.min(H*0.455, 380));
+  const heroW=heroH*ratio(HERO);
+  const hx=Math.round(W*0.655 - heroW/2);
+  const hy=Math.round(H*0.42 - heroH/2);
+  const heroHtml=`<div class="print hero-edge" role="img" aria-label="${esc(HERO.title)}" title="${esc(person(HERO))}"
+    data-id="${esc(HERO.id)}" data-aspect="${ratio(HERO).toFixed(4)}" data-role="hero"
+    style="left:${hx}px;top:${hy}px;width:${heroW.toFixed(1)}px;height:${heroH}px;z-index:30;
+      background-image:url('${thumb(HERO)}')"></div>`;
+
+  /* ---- the band: hand-placed, deliberately balanced.
+     The original arc swept 186deg..352deg, which passes through the BOTTOM of
+     the ellipse (270deg) and never the top, so every print landed below the
+     centre line. These slots distribute the mass instead: down the left side,
+     under the hero, and out to the right, leaving the top-left for the type
+     block and breathing room around the hero. Slot = [x, y, size] as a
+     fraction of the viewport; size s/m/l. ---- */
+  const SLOTS=[
+    [0.075,0.400,'m'], [0.180,0.320,'s'], [0.110,0.615,'l'], [0.240,0.515,'m'], [0.060,0.790,'m'],
+    [0.140,0.235,'s'],
+    [0.330,0.690,'m'], [0.215,0.885,'s'], [0.405,0.850,'l'],
+    [0.520,0.815,'m'], [0.625,0.880,'s'], [0.440,0.585,'s'],
+    [0.870,0.335,'m'], [0.930,0.560,'m'], [0.800,0.725,'s'],
+    [0.730,0.620,'s'], [0.610,0.330,'s']
+  ];
+  const N=BAND.length;
+  const SIZES={s:[60,80], m:[86,108], l:[116,140]};
+
+  /* overlap count only ever exceeds 6 when prints are physically touching more
+     than intended; a handful of touches is what makes it a pile, not a grid */
+  function countOverlaps(placed){
+    let n=0;
+    for(let i=0;i<placed.length;i++)for(let j=i+1;j<placed.length;j++){
+      const a=placed[i],b=placed[j];
+      const ix=Math.min(a.x+a.w/2,b.x+b.w/2)-Math.max(a.x-a.w/2,b.x-b.w/2);
+      const iy=Math.min(a.y+a.h/2,b.y+b.h/2)-Math.max(a.y-a.h/2,b.y-b.h/2);
+      if(ix>6&&iy>6&&ix*iy>200) n++;
+    }
+    return n;
+  }
+
+  const rng=mulberry32(SEED+N);
+  const placed=[];
+  for(let i=0;i<N;i++){
+    const [sx,sy,sz]=SLOTS[i%SLOTS.length];
+    const [h0,h1]=SIZES[sz];
+    // deterministic order: sort band prints so the largest sit in the left column
+    const h=Math.round(h0+rng()*(h1-h0));
+    const w=h*ratio(BAND[i]);
+    let x=(sx+(rng()*2-1)*0.018)*W;
+    let y=(sy+(rng()*2-1)*0.014)*H;
+    x=Math.min(Math.max(x,w/2+16),W-w/2-16);
+    y=Math.min(Math.max(y,h/2+16),H-h/2-16);
+    placed.push({x,y,w,h,i,p:BAND[i],rot:(rng()*2-1)*10});
+  }
+  const ov=countOverlaps(placed);
+
+  /* ---- render: band in angle order, later prints over earlier ---- */
+  const bandHtml=placed.map((o,i)=>
+    `<div class="print" role="img" aria-label="${esc(o.p.title)}" title="${esc(person(o.p))}"
+      data-id="${esc(o.p.id)}" data-aspect="${ratio(o.p).toFixed(4)}" data-role="band" data-idx="${i}"
+      style="left:${o.x.toFixed(1)}px;top:${o.y.toFixed(1)}px;width:${o.w.toFixed(1)}px;height:${o.h.toFixed(1)}px;
+        transform:rotate(${o.rot.toFixed(2)}deg);z-index:${6+o.i};
+        background-image:url('${thumb(o.p)}')"></div>`
+  ).join('');
+
+  /* ---- labels: only where there is genuinely clear space.
+     A label must sit in a rectangle that touches no print, no other label,
+     and neither of the two type zones (wordmark top-left, cue bottom-left). ---- */
+  // keep labels tight to their print so the leader tick actually reads as
+  // attached (a distant label is worse than no label); the final guard below
+  // removes any that still collide once rotation is accounted for
+  const PAD=12;
+  const typeZones=[
+    {x:0,y:0,w:W*0.44,h:H*0.175},                 // wordmark block
+    {x:0,y:H-H*0.145,w:W*0.52,h:H*0.145}          // cue block
+  ];
+  const lblBoxes=[];
+  const clear=(x,y,w,h)=>{    for(const o of placed){                       // prints, inflated
+      if(x<o.x+o.w/2+PAD && x+w>o.x-o.w/2-PAD && y<o.y+o.h/2+PAD && y+h>o.y-o.h/2-PAD) return false;
+    }
+    for(const b of lblBoxes){
+      if(x<b.x+b.w+12 && x+w+12>b.x && y<b.y+b.h+10 && y+h+10>b.y) return false;
+    }
+    for(const z of typeZones){
+      if(x<z.x+z.w && x+w>z.x && y<z.y+z.h && y+h>z.y) return false;
+    }
+    return true;
+  };
+  const sorted=[...placed].sort((a,b)=>b.h-a.h);
+  const lbl=[]; let labelled=0;
+  for(const o of sorted){
+    if(labelled>=3) break;
+    const nm=person(o.p), yr=o.p.year?`c. ${o.p.year}`:'';
+    const w=Math.min(Math.max(o.w,150),250), h=72;
+    // a label belongs directly under its own photograph, with a leader tick —
+    // never in distant clear space, which reads as belonging to nothing
+    const cands=[
+      {x:o.x-o.w/2, y:o.y+o.h/2+PAD},
+      {x:o.x-o.w/2, y:o.y-o.h/2-h-PAD-11}
+    ];
+    for(const c of cands){
+      const x=Math.min(Math.max(c.x,20),W-w-20);
+      const y=Math.max(c.y,14);
+      if(y+h>H-16) continue;
+      if(!clear(x,y,w,h)) continue;
+      lblBoxes.push({x,y,w,h});
+      lbl.push(`<div class="lbl" data-for="${placed.indexOf(o)}" style="left:${x.toFixed(0)}px;top:${y.toFixed(0)}px;max-width:${w.toFixed(0)}px">
+        <span class="tick"></span><span class="nm">${esc(nm)}</span>${yr?`<span class="yr">${esc(yr)}</span>`:''}</div>`);
+      labelled++;
+      break;
+    }
+  }
+
+  /* ---- hero label: bound to the hero, in genuinely clear space, and using
+     the photo's OWN metadata (never a hardcoded place name) ---- */
+  const heroPlace=HERO.community || HERO.location || '';
+  const heroMeta=[heroPlace, HERO.year?('c. '+HERO.year):''].filter(Boolean).join('  ·  ');
+  const hw=Math.max(heroW,250), hh=78;
+  const heroCands=[
+    {x:hx, y:hy+heroH+22},                    // below
+    {x:hx, y:hy-hh-22},                       // above
+    {x:hx+heroW+26, y:hy+heroH-hh},           // right, bottom-aligned
+    {x:hx-heroW-26, y:hy+heroH-hh},           // left, bottom-aligned
+    {x:hx, y:hy+heroH+22}                     // fall back to below
+  ];
+  let heroPos=heroCands[0];
+  for(const c of heroCands){
+    const x=Math.min(Math.max(c.x,20),W-hw-20), y=Math.max(c.y,16);
+    if(y+hh>H-16) continue;
+    if(!clear(x,y,hw,hh)) continue;
+    heroPos={x,y}; break;
+  }
+  heroPos.x=Math.min(Math.max(heroPos.x,20),W-hw-20);
+  const heroLabel=`<div class="lbl hero" style="left:${heroPos.x.toFixed(0)}px;top:${heroPos.y.toFixed(0)}px;max-width:${hw.toFixed(0)}px">
+    <span class="tick"></span><span class="nm">${esc(person(HERO))}</span>
+    ${heroMeta?`<span class="yr">${esc(heroMeta)}</span>`:''}</div>`;
+
+  stage.innerHTML=heroHtml+bandHtml+lbl.join('')+heroLabel;
+
+  /* ---- final guard: measure what actually rendered and drop any label that
+     still touches a print. Rotation makes geometric prediction approximate, so
+     the page verifies itself rather than trusting the estimate above. ---- */
+  const printRects=[...stage.querySelectorAll('.print')].map(e=>e.getBoundingClientRect());
+  stage.querySelectorAll('.lbl').forEach(el=>{
+    const r=el.getBoundingClientRect(), PAD=-8;     // only reject a DEEP overlap
+    const hit=printRects.some(P=>
+      r.left<P.right-PAD && r.right>P.left+PAD && r.top<P.bottom-PAD && r.bottom>P.top+PAD);
+    const off=(r.left<0||r.top<0||r.right>W||r.bottom>H);
+    // a label must also stay ATTACHED to the photograph it names, otherwise it
+    // is a name floating next to nothing (the hero label is exempt: it anchors)
+    let adrift=false;
+    if(el.dataset.for!==undefined && !el.classList.contains('hero')){
+      const own=stage.querySelector(`.print[data-idx="${el.dataset.for}"]`);
+      if(own){
+        const p=own.getBoundingClientRect();
+        const dx=Math.max(p.left-r.right, r.left-p.right, 0);
+        const dy=Math.max(p.top-r.bottom, r.top-p.bottom, 0);
+        if(Math.hypot(dx,dy)>46) adrift=true;
+      }
+    }
+    if(hit||off||adrift) el.remove();
+  });
+  const finalLabels=stage.querySelectorAll('.lbl').length;
+
+  window.__lightStats={
+    total: document.querySelectorAll('.print').length,
+    hero: person(HERO),
+    heroMeta: heroMeta,
+    heroBox:{w:Math.round(heroW),h:heroH},
+    overlaps: ov,
+    placed: placed.length,
+    labelled: finalLabels
+  };
+}
+
+fetch('hero-pool.json').then(r=>r.json()).then(async d=>{
+  const pool=d.photos||[];
+  const HERO=pool.find(p=>p.id===HERO_ID);
+  if(!HERO) throw new Error('hero missing from pool');
+  if(!(await loadOk(HERO))) throw new Error('hero thumb failed to load');
+
+  // one archive, one era: real years, pre-1965, sane aspect ratios
+  const usable=pool.filter(p=>p.year && p.year<=1965 && p.id!==HERO_ID
+    && p.w&&p.h && (p.w/p.h)>=0.5 && (p.w/p.h)<=2.1);
+  const band=[];
+  for(const p of shuffle(usable,SEED)){ if(band.length>=BAND_N) break; if(await loadOk(p)) band.push(p); }
+  if(band.length<BAND_N) throw new Error('not enough band prints: '+band.length);
+
+  build(HERO,band);
+  // Reveal immediately. Do NOT gate this on requestAnimationFrame: rAF never
+  // fires in a backgrounded tab, which would leave the whole screen invisible.
+  document.getElementById('stage').classList.add('ready');
+
+  let rt; addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>build(HERO,band),150);});
+}).catch(e=>{
+  document.getElementById('stage').innerHTML=
+    '<div class="lbl hero" style="left:3.6vw;top:20vh;max-width:70vw">'+
+    '<span class="nm">Photographs could not be loaded — please check the server.</span></div>';
+  document.getElementById('stage').classList.add('ready');
+});
+</script>
+</body>
+</html>

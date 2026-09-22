@@ -21,7 +21,7 @@ import urllib.error
 from datetime import date
 
 BACKEND_URL = 'https://script.google.com/macros/s/AKfycbwx0l2LijEV5MkodZcKMWPGNj5ADiZvS0Yfj9zUsITaEhhoFn_1mzd3jLi-w42qduNe/exec'
-TOKEN_PATH = os.path.expanduser('~/.hermes/google_token.json')
+TOKEN_PATH = os.path.expanduser('~/.hermes/google_token_metisshoebox.json')
 CLAIM_BASE = 'https://bayarddevries.github.io/shoebox-v2/?claim='
 
 # Submitters whose metadata is complete / no reminder needed (none currently).

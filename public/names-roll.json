@@ -1,0 +1,1700 @@
+{
+"stats": {
+"photos": 544,
+"names": 387,
+"families": 204,
+"communities": 37
+},
+"families": [
+{
+"surname": "Lafferty",
+"mentions": 253,
+"people": 13,
+"given": [
+"Alphonse",
+"Elizabeth Mercredi",
+"Father",
+"Germaine",
+"Henri Derosiers",
+"Jean Louis",
+"Jeannette",
+"Magloire",
+"Marie Madeleine Mercredi",
+"Napoleon",
+"Nelda",
+"Rosanna Mercredi"
+]
+},
+{
+"surname": "Gately",
+"mentions": 41,
+"people": 6,
+"given": [
+"Annetoinette Lafferty",
+"Brenda",
+"David",
+"Diane",
+"Eric",
+"Pat"
+]
+},
+{
+"surname": "Anderson",
+"mentions": 40,
+"people": 14,
+"given": [
+"Alfred",
+"Bernie",
+"Elizabeth",
+"Gail",
+"Janis",
+"Jessie",
+"Jessie Norma",
+"Kevin",
+"Louise",
+"Reggie",
+"Roger",
+"Sharon Hazel",
+"Valerie",
+"Wendel"
+]
+},
+{
+"surname": "Bruneau",
+"mentions": 39,
+"people": 12,
+"given": [
+"Athanase",
+"Bernadette Charette",
+"Ethel",
+"Helene",
+"Jules",
+"LLucien",
+"Lucien",
+"Olive",
+"Ovide",
+"Wenceslas",
+"Wens"
+]
+},
+{
+"surname": "Bercier",
+"mentions": 29,
+"people": 8,
+"given": [
+"Edna",
+"Emma",
+"Jean",
+"Liz",
+"Simon",
+"Ursula",
+"Violet"
+]
+},
+{
+"surname": "Kerr",
+"mentions": 28,
+"people": 4,
+"given": [
+"Agatha Lafferty",
+"Gordon",
+"Gorodon",
+"Len"
+]
+},
+{
+"surname": "Ducharme",
+"mentions": 26,
+"people": 13,
+"given": [
+"Cecile",
+"Cécile",
+"David",
+"Ellen",
+"Emile",
+"Etienne (Steve)",
+"Harve",
+"Joe",
+"Lorette",
+"Marie",
+"Tom",
+"William"
+]
+},
+{
+"surname": "Dejarlais",
+"mentions": 25,
+"people": 13,
+"given": [
+"Albert",
+"Clara",
+"Joseph",
+"Joseph Moise",
+"Lawrence",
+"Leonard",
+"Marie",
+"May",
+"Pat",
+"Pete",
+"Rennie",
+"Roy"
+]
+},
+{
+"surname": "Phaneuf",
+"mentions": 21,
+"people": 3,
+"given": [
+"Alida Lafferty",
+"Eugene",
+"Real"
+]
+},
+{
+"surname": "Chartrand",
+"mentions": 19,
+"people": 11,
+"given": [
+"Chick",
+"Chris",
+"David",
+"Gaspard",
+"Irene",
+"Philomene",
+"Rainy",
+"Raymond",
+"Suzanne",
+"Ted"
+]
+},
+{
+"surname": "Hupe",
+"mentions": 19,
+"people": 7,
+"given": [
+"Claudette",
+"Lynn",
+"May",
+"Rebecca",
+"Rita",
+"Roger"
+]
+},
+{
+"surname": "Mercredi",
+"mentions": 19,
+"people": 8,
+"given": [
+"Anne",
+"Germain",
+"Isadore",
+"Leon",
+"Marie Rose Beaulieu",
+"Marie Rose Lafferty",
+"Pierre"
+]
+},
+{
+"surname": "Beveridge",
+"mentions": 17,
+"people": 2,
+"given": [
+"Margaret Lafferty",
+"Shirley"
+]
+},
+{
+"surname": "Cumming",
+"mentions": 16,
+"people": 1,
+"given": [
+"Dorothy Lafferty"
+]
+},
+{
+"surname": "Griffiths",
+"mentions": 16,
+"people": 4,
+"given": [
+"Emma",
+"Jim",
+"Ruth"
+]
+},
+{
+"surname": "Aaron",
+"mentions": 14,
+"people": 1,
+"given": [
+"Celine Lafferty"
+]
+},
+{
+"surname": "Brazeau",
+"mentions": 14,
+"people": 1,
+"given": [
+"Jules"
+]
+},
+{
+"surname": "Monkman",
+"mentions": 12,
+"people": 5,
+"given": [
+"Aurise Ducharme",
+"Gary",
+"George",
+"Joseph Francis"
+]
+},
+{
+"surname": "Starmer",
+"mentions": 12,
+"people": 6,
+"given": [
+"Edna",
+"Gordon",
+"Mabel",
+"Maggie",
+"William"
+]
+},
+{
+"surname": "Carney",
+"mentions": 10,
+"people": 1,
+"given": [
+"Mark"
+]
+},
+{
+"surname": "Nault",
+"mentions": 10,
+"people": 8,
+"given": [
+"Dorothy",
+"Jean Victor",
+"John",
+"Joseph Bernard",
+"Joseph Emile",
+"Lorette",
+"Shawn"
+]
+},
+{
+"surname": "Cousineau",
+"mentions": 9,
+"people": 3,
+"given": [
+"Albert",
+"Louise",
+"Mabel"
+]
+},
+{
+"surname": "Cook",
+"mentions": 8,
+"people": 3,
+"given": [
+"Audre",
+"Audrey",
+"Elizabeth"
+]
+},
+{
+"surname": "Hadfield",
+"mentions": 8,
+"people": 2,
+"given": [
+"Joan"
+]
+},
+{
+"surname": "Parisian",
+"mentions": 8,
+"people": 5,
+"given": [
+"Daniel",
+"Lesley",
+"Leslie Edward",
+"Nadine",
+"Shirley"
+]
+},
+{
+"surname": "Park",
+"mentions": 8,
+"people": 1,
+"given": [
+"Jack"
+]
+},
+{
+"surname": "Pollard",
+"mentions": 8,
+"people": 5,
+"given": [
+"Les",
+"Marie Blanche",
+"Ted",
+"Thomas"
+]
+},
+{
+"surname": "Dancing",
+"mentions": 7,
+"people": 1,
+"given": []
+},
+{
+"surname": "Muncey",
+"mentions": 7,
+"people": 1,
+"given": [
+"Keith"
+]
+},
+{
+"surname": "Music",
+"mentions": 7,
+"people": 1,
+"given": []
+},
+{
+"surname": "Tralnberg",
+"mentions": 7,
+"people": 1,
+"given": [
+"Marie Lafferty"
+]
+},
+{
+"surname": "Dance",
+"mentions": 6,
+"people": 1,
+"given": []
+},
+{
+"surname": "Hunting",
+"mentions": 6,
+"people": 1,
+"given": []
+},
+{
+"surname": "Mitchell",
+"mentions": 6,
+"people": 2,
+"given": [
+"Barb",
+"Ron"
+]
+},
+{
+"surname": "Religious",
+"mentions": 6,
+"people": 1,
+"given": []
+},
+{
+"surname": "Stompers",
+"mentions": 6,
+"people": 1,
+"given": [
+"Asham"
+]
+},
+{
+"surname": "Vivier",
+"mentions": 6,
+"people": 5,
+"given": [
+"Joseph",
+"Joseph Albert",
+"Mary",
+"Mary Elise"
+]
+},
+{
+"surname": "Art",
+"mentions": 5,
+"people": 1,
+"given": []
+},
+{
+"surname": "Chipman",
+"mentions": 5,
+"people": 1,
+"given": [
+"Sheila Kim"
+]
+},
+{
+"surname": "Cure",
+"mentions": 5,
+"people": 3,
+"given": [
+"Armand",
+"Victoire Bruneau"
+]
+},
+{
+"surname": "Flett",
+"mentions": 5,
+"people": 5,
+"given": [
+"David",
+"Jerold",
+"Margaret",
+"Margrette",
+"Roderick"
+]
+},
+{
+"surname": "Rifle",
+"mentions": 5,
+"people": 1,
+"given": []
+},
+{
+"surname": "Sikora",
+"mentions": 5,
+"people": 3,
+"given": [
+"Wendy",
+"Wendy Phaneuf"
+]
+},
+{
+"surname": "Ward",
+"mentions": 5,
+"people": 3,
+"given": [
+"Roland",
+"Rose",
+"Sonja"
+]
+},
+{
+"surname": "Alarie",
+"mentions": 4,
+"people": 1,
+"given": [
+"Amanda"
+]
+},
+{
+"surname": "Beaudin",
+"mentions": 4,
+"people": 1,
+"given": [
+"David"
+]
+},
+{
+"surname": "Bowser",
+"mentions": 4,
+"people": 4,
+"given": [
+"Byrd",
+"Gordon",
+"Mary",
+"Ruth"
+]
+},
+{
+"surname": "Carrier",
+"mentions": 4,
+"people": 1,
+"given": [
+"Andrew"
+]
+},
+{
+"surname": "Charpentier",
+"mentions": 4,
+"people": 4,
+"given": [
+"Aurore",
+"Jean",
+"Richard",
+"Rita"
+]
+},
+{
+"surname": "Event",
+"mentions": 4,
+"people": 1,
+"given": []
+},
+{
+"surname": "Flag",
+"mentions": 4,
+"people": 1,
+"given": []
+},
+{
+"surname": "Fleury",
+"mentions": 4,
+"people": 4,
+"given": [
+"Eddie",
+"Mary P.",
+"Rose"
+]
+},
+{
+"surname": "Granger",
+"mentions": 4,
+"people": 3,
+"given": [
+"Cecile",
+"Cecile Lucienne",
+"Emile"
+]
+},
+{
+"surname": "Hooker",
+"mentions": 4,
+"people": 1,
+"given": [
+"Leon"
+]
+},
+{
+"surname": "Plain",
+"mentions": 4,
+"people": 1,
+"given": [
+"Victory at Frog"
+]
+},
+{
+"surname": "Remillard",
+"mentions": 4,
+"people": 3,
+"given": [
+"JoAnn",
+"Joanne",
+"Minister"
+]
+},
+{
+"surname": "Boucher",
+"mentions": 3,
+"people": 3,
+"given": [
+"Alice",
+"George",
+"Rose"
+]
+},
+{
+"surname": "Guitar",
+"mentions": 3,
+"people": 1,
+"given": []
+},
+{
+"surname": "Horses",
+"mentions": 3,
+"people": 1,
+"given": []
+},
+{
+"surname": "Monument",
+"mentions": 3,
+"people": 1,
+"given": []
+},
+{
+"surname": "Norquay",
+"mentions": 3,
+"people": 3,
+"given": [
+"Lynn",
+"Scott"
+]
+},
+{
+"surname": "fashion",
+"mentions": 3,
+"people": 3,
+"given": [
+"1960s",
+"1970s",
+"winter"
+]
+},
+{
+"surname": "house",
+"mentions": 3,
+"people": 1,
+"given": [
+"School"
+]
+},
+{
+"surname": "photo",
+"mentions": 3,
+"people": 3,
+"given": [
+"School",
+"group",
+"vintage"
+]
+},
+{
+"surname": "(Starmer)",
+"mentions": 2,
+"people": 1,
+"given": [
+"Mabel Cousineau"
+]
+},
+{
+"surname": "Benoit",
+"mentions": 2,
+"people": 1,
+"given": [
+"Al"
+]
+},
+{
+"surname": "Bonthoux",
+"mentions": 2,
+"people": 2,
+"given": [
+"Elise Mary Francis"
+]
+},
+{
+"surname": "Breeze",
+"mentions": 2,
+"people": 1,
+"given": [
+"Eddie and the"
+]
+},
+{
+"surname": "Cabin",
+"mentions": 2,
+"people": 2,
+"given": [
+"Lakeside"
+]
+},
+{
+"surname": "Carriere",
+"mentions": 2,
+"people": 2,
+"given": [
+"Manuel",
+"Yvonne"
+]
+},
+{
+"surname": "Carrière",
+"mentions": 2,
+"people": 2,
+"given": [
+"Blanche",
+"Lily"
+]
+},
+{
+"surname": "Charette",
+"mentions": 2,
+"people": 2,
+"given": [
+"Margeritte Bruneau"
+]
+},
+{
+"surname": "Classroom",
+"mentions": 2,
+"people": 1,
+"given": []
+},
+{
+"surname": "Darie",
+"mentions": 2,
+"people": 1,
+"given": [
+"Sister"
+]
+},
+{
+"surname": "Flemming",
+"mentions": 2,
+"people": 1,
+"given": [
+"Peter"
+]
+},
+{
+"surname": "Gauthier",
+"mentions": 2,
+"people": 1,
+"given": [
+"Marielle"
+]
+},
+{
+"surname": "Inkster",
+"mentions": 2,
+"people": 2,
+"given": [
+"Tim"
+]
+},
+{
+"surname": "Klyne",
+"mentions": 2,
+"people": 2,
+"given": [
+"Ovide",
+"Phillip"
+]
+},
+{
+"surname": "Manitoba",
+"mentions": 2,
+"people": 2,
+"given": [
+"Churchill",
+"Northern"
+]
+},
+{
+"surname": "McIvor",
+"mentions": 2,
+"people": 2,
+"given": [
+"Bella",
+"Lenna"
+]
+},
+{
+"surname": "Obelnicki",
+"mentions": 2,
+"people": 1,
+"given": [
+"Stephen"
+]
+},
+{
+"surname": "Poschner",
+"mentions": 2,
+"people": 2,
+"given": [
+"Irene",
+"Mary"
+]
+},
+{
+"surname": "Rivera",
+"mentions": 2,
+"people": 2,
+"given": [
+"Celeste",
+"Sophia"
+]
+},
+{
+"surname": "Rivera.",
+"mentions": 2,
+"people": 2,
+"given": [
+"Celeste",
+"Sophia"
+]
+},
+{
+"surname": "Scrapbooking",
+"mentions": 2,
+"people": 1,
+"given": []
+},
+{
+"surname": "Smith",
+"mentions": 2,
+"people": 2,
+"given": [
+"Annette",
+"Mary"
+]
+},
+{
+"surname": "Swinarch",
+"mentions": 2,
+"people": 1,
+"given": [
+"Frank"
+]
+},
+{
+"surname": "Thurston",
+"mentions": 2,
+"people": 1,
+"given": [
+"Gordon"
+]
+},
+{
+"surname": "Truck",
+"mentions": 2,
+"people": 1,
+"given": []
+},
+{
+"surname": "Venne",
+"mentions": 2,
+"people": 1,
+"given": [
+"Kim"
+]
+},
+{
+"surname": "Webster",
+"mentions": 2,
+"people": 1,
+"given": [
+"Meghan"
+]
+},
+{
+"surname": "Workshop",
+"mentions": 2,
+"people": 1,
+"given": []
+},
+{
+"surname": "building",
+"mentions": 2,
+"people": 1,
+"given": [
+"wooden"
+]
+},
+{
+"surname": "deVries",
+"mentions": 2,
+"people": 2,
+"given": [
+"Ashley",
+"Bayard"
+]
+},
+{
+"surname": "hooker",
+"mentions": 2,
+"people": 1,
+"given": [
+"Ruth"
+]
+},
+{
+"surname": "team",
+"mentions": 2,
+"people": 1,
+"given": [
+"dog"
+]
+},
+{
+"surname": "(I)",
+"mentions": 1,
+"people": 1,
+"given": [
+"Alfred Anderson"
+]
+},
+{
+"surname": "Alterboys",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Artwork",
+"mentions": 1,
+"people": 1,
+"given": [
+"Community Collaborative"
+]
+},
+{
+"surname": "Asheat",
+"mentions": 1,
+"people": 1,
+"given": [
+"Brenda"
+]
+},
+{
+"surname": "Aurise",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Beads",
+"mentions": 1,
+"people": 1,
+"given": [
+"Charlotte"
+]
+},
+{
+"surname": "Bear",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Belhumeur",
+"mentions": 1,
+"people": 1,
+"given": [
+"Shelley"
+]
+},
+{
+"surname": "Boats",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Bog",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Boulette",
+"mentions": 1,
+"people": 1,
+"given": [
+"Oliver"
+]
+},
+{
+"surname": "Brothers",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Bus",
+"mentions": 1,
+"people": 1,
+"given": [
+"School"
+]
+},
+{
+"surname": "Bush",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Catellier",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Cemetary",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Cemetery",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Child",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Christian",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Church",
+"mentions": 1,
+"people": 1,
+"given": [
+"Stony Lake"
+]
+},
+{
+"surname": "Cigar",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Cross",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Daniel",
+"mentions": 1,
+"people": 1,
+"given": [
+"Griffith"
+]
+},
+{
+"surname": "Desks",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Education",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Emond",
+"mentions": 1,
+"people": 1,
+"given": [
+"Archie"
+]
+},
+{
+"surname": "Etherd",
+"mentions": 1,
+"people": 1,
+"given": [
+"George P."
+]
+},
+{
+"surname": "Fehr",
+"mentions": 1,
+"people": 1,
+"given": [
+"Tracy"
+]
+},
+{
+"surname": "Fish",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Flowers",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Fowarren",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Friesen",
+"mentions": 1,
+"people": 1,
+"given": [
+"Gerald"
+]
+},
+{
+"surname": "Generations",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Germain",
+"mentions": 1,
+"people": 1,
+"given": [
+"Ray St."
+]
+},
+{
+"surname": "Gillingham",
+"mentions": 1,
+"people": 1,
+"given": [
+"Scott"
+]
+},
+{
+"surname": "Gilpin",
+"mentions": 1,
+"people": 1,
+"given": [
+"Paul"
+]
+},
+{
+"surname": "Goering",
+"mentions": 1,
+"people": 1,
+"given": [
+"Tyler"
+]
+},
+{
+"surname": "Gooden",
+"mentions": 1,
+"people": 1,
+"given": [
+"Susan"
+]
+},
+{
+"surname": "Goodon",
+"mentions": 1,
+"people": 1,
+"given": [
+"Will"
+]
+},
+{
+"surname": "Grada",
+"mentions": 1,
+"people": 1,
+"given": [
+"Damien"
+]
+},
+{
+"surname": "Gregoire",
+"mentions": 1,
+"people": 1,
+"given": [
+"Omer"
+]
+},
+{
+"surname": "Grey",
+"mentions": 1,
+"people": 1,
+"given": [
+"Wendell"
+]
+},
+{
+"surname": "Haas",
+"mentions": 1,
+"people": 1,
+"given": [
+"Cheryl"
+]
+},
+{
+"surname": "Hargreaves",
+"mentions": 1,
+"people": 1,
+"given": [
+"Gail"
+]
+},
+{
+"surname": "Hayden",
+"mentions": 1,
+"people": 1,
+"given": [
+"Jacko"
+]
+},
+{
+"surname": "Higgins",
+"mentions": 1,
+"people": 1,
+"given": [
+"S.W."
+]
+},
+{
+"surname": "Industry",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Johnston",
+"mentions": 1,
+"people": 1,
+"given": [
+"Walter Gilbert Campbell"
+]
+},
+{
+"surname": "Julienne",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Kline",
+"mentions": 1,
+"people": 1,
+"given": [
+"Joe"
+]
+},
+{
+"surname": "Korea",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Lafournaise",
+"mentions": 1,
+"people": 1,
+"given": [
+"Napolion"
+]
+},
+{
+"surname": "Lagimodiere",
+"mentions": 1,
+"people": 1,
+"given": [
+"Julyda"
+]
+},
+{
+"surname": "Laliberte",
+"mentions": 1,
+"people": 1,
+"given": [
+"Marie"
+]
+},
+{
+"surname": "Lau",
+"mentions": 1,
+"people": 1,
+"given": [
+"Gordon"
+]
+},
+{
+"surname": "Leader",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Learning",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Mantioba",
+"mentions": 1,
+"people": 1,
+"given": [
+"Marchand"
+]
+},
+{
+"surname": "Menard",
+"mentions": 1,
+"people": 1,
+"given": [
+"Aime"
+]
+},
+{
+"surname": "Parenteau",
+"mentions": 1,
+"people": 1,
+"given": [
+"Russel"
+]
+},
+{
+"surname": "Pinefalls",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Pins",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Plane",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Porch",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Potatos",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Regalia",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Riccardo",
+"mentions": 1,
+"people": 1,
+"given": [
+"Erin"
+]
+},
+{
+"surname": "Riley",
+"mentions": 1,
+"people": 1,
+"given": [
+"Velma"
+]
+},
+{
+"surname": "Sask",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Schoolhouses",
+"mentions": 1,
+"people": 1,
+"given": [
+"Meadowdale"
+]
+},
+{
+"surname": "Scofield",
+"mentions": 1,
+"people": 1,
+"given": [
+"Gregory"
+]
+},
+{
+"surname": "Shower",
+"mentions": 1,
+"people": 1,
+"given": [
+"Wedding"
+]
+},
+{
+"surname": "Sign",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Tent",
+"mentions": 1,
+"people": 1,
+"given": [
+"Descendents"
+]
+},
+{
+"surname": "Trapper",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "Vitt",
+"mentions": 1,
+"people": 1,
+"given": [
+"Iris"
+]
+},
+{
+"surname": "art",
+"mentions": 1,
+"people": 1,
+"given": [
+"cultural"
+]
+},
+{
+"surname": "attire",
+"mentions": 1,
+"people": 1,
+"given": [
+"traditional"
+]
+},
+{
+"surname": "bridge",
+"mentions": 1,
+"people": 1,
+"given": [
+"salter"
+]
+},
+{
+"surname": "cabin",
+"mentions": 1,
+"people": 1,
+"given": [
+"log"
+]
+},
+{
+"surname": "cake",
+"mentions": 1,
+"people": 1,
+"given": [
+"birthday"
+]
+},
+{
+"surname": "cap",
+"mentions": 1,
+"people": 1,
+"given": [
+"side"
+]
+},
+{
+"surname": "coat",
+"mentions": 1,
+"people": 1,
+"given": [
+"fur"
+]
+},
+{
+"surname": "corner",
+"mentions": 1,
+"people": 1,
+"given": [
+"the"
+]
+},
+{
+"surname": "cousineau",
+"mentions": 1,
+"people": 1,
+"given": [
+"johnny"
+]
+},
+{
+"surname": "crafts",
+"mentions": 1,
+"people": 1,
+"given": [
+"handmade"
+]
+},
+{
+"surname": "gathering",
+"mentions": 1,
+"people": 1,
+"given": [
+"family"
+]
+},
+{
+"surname": "granger",
+"mentions": 1,
+"people": 1,
+"given": [
+"marie claire"
+]
+},
+{
+"surname": "horse",
+"mentions": 1,
+"people": 1,
+"given": [
+"Lindy the"
+]
+},
+{
+"surname": "jacket",
+"mentions": 1,
+"people": 1,
+"given": [
+"fringed"
+]
+},
+{
+"surname": "jewelry",
+"mentions": 1,
+"people": 1,
+"given": [
+"beaded"
+]
+},
+{
+"surname": "laffer\\t",
+"mentions": 1,
+"people": 1,
+"given": []
+},
+{
+"surname": "necklace",
+"mentions": 1,
+"people": 1,
+"given": [
+"beaded"
+]
+},
+{
+"surname": "picking",
+"mentions": 1,
+"people": 1,
+"given": [
+"blueberry"
+]
+},
+{
+"surname": "plains",
+"mentions": 1,
+"people": 1,
+"given": [
+"stony"
+]
+},
+{
+"surname": "portrait",
+"mentions": 1,
+"people": 1,
+"given": [
+"vintage"
+]
+},
+{
+"surname": "rod",
+"mentions": 1,
+"people": 1,
+"given": [
+"hot"
+]
+},
+{
+"surname": "service",
+"mentions": 1,
+"people": 1,
+"given": [
+"religious"
+]
+},
+{
+"surname": "set",
+"mentions": 1,
+"people": 1,
+"given": [
+"swing"
+]
+},
+{
+"surname": "shirt",
+"mentions": 1,
+"people": 1,
+"given": [
+"plaid"
+]
+},
+{
+"surname": "shore",
+"mentions": 1,
+"people": 1,
+"given": [
+"rocky"
+]
+},
+{
+"surname": "swinarch",
+"mentions": 1,
+"people": 1,
+"given": [
+"Elizabeth"
+]
+},
+{
+"surname": "tie",
+"mentions": 1,
+"people": 1,
+"given": [
+"bolo"
+]
+},
+{
+"surname": "trees",
+"mentions": 1,
+"people": 1,
+"given": [
+"evergreen"
+]
+},
+{
+"surname": "vest",
+"mentions": 1,
+"people": 1,
+"given": [
+"beaded"
+]
+},
+{
+"surname": "war",
+"mentions": 1,
+"people": 1,
+"given": [
+"Korean"
+]
+},
+{
+"surname": "wear",
+"mentions": 1,
+"people": 1,
+"given": [
+"formal"
+]
+},
+{
+"surname": "weather",
+"mentions": 1,
+"people": 1,
+"given": [
+"cold"
+]
+}
+]
+}

@@ -9,7 +9,8 @@
 - [x] Claim view: private `?claim=<token>` links render a submitter's own photos (`src/components/ClaimView.tsx`)
 - [x] Form fields: people, city/province/community split, year, era, occasion, story, caption, keywords, required consent checkbox (attribution removed)
 - [x] Notification emails: on contribution, emails metisshoebox@mmf.mb.ca + bayard.devries@mmf.mb.ca via `gmail.send` scope (MailApp)
-- [x] Live submissions: CH-001 (Cheryl Haas) and MH-001 (May Hupe) created and sent
+- [x] Live submissions: 11 submitters (MH-001, CH-001, HK-001, JG-001, LM-001, JC-001, LQ-001, CB-001, CZ-001, BH-001, HV-001)
+- [x] 22 contributions received (Sept 2026)
 - [ ] OPEN: find + ingest the 6 missing Cheryl Haas images (Stemadeleine 21, 22, 23, 24, 28, 29 `.tif`), then add them to her CH-001 submission
 
 ## Map / Geocoding

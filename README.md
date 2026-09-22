@@ -1,6 +1,6 @@
 # Shoebox v2 — Red River Métis Digital Archive
 
-A Vite + React + TypeScript web app + standalone projector slideshow displaying 376 historical archival photos with metadata, face detection, and audio narration.
+A Vite + React + TypeScript web app + standalone projector slideshow displaying 565 historical archival photos with metadata, face detection, and audio narration.
 
 **Live sites:**
 - Main archive: https://bayarddevries.github.io/shoebox-v2/
@@ -11,12 +11,12 @@ A Vite + React + TypeScript web app + standalone projector slideshow displaying 
 
 | Stat | Count |
 |------|-------|
-| Total photos | 376 |
-| With year derived | 376 |
-| With city/location | 281 |
-| With people identified | 306 |
-| Geocoded (GPS or community lookup) | 280 |
-| Face coordinates (faceX/faceY) | 370 |
+| Total photos | 565 |
+| With year derived | 8 (pending Lightroom re-export) |
+| With title | 565 |
+| With face coordinates (faceX/faceY) | 349 |
+
+> Note: Caption, keyword, people, and location fields currently read 0 because exiftool is not installed on this machine. Once the updated Lightroom export is uploaded and the manifest is regenerated with exiftool, these counts will rise to full coverage.
 
 ## Projector Slideshow
 

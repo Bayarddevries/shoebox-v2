@@ -11,6 +11,15 @@ are milestone dates rather than semver (this is a continuous single-site deploy)
 
 ---
 
+## [2026-09-17] — Submitter contributions + Lightroom metadata refresh
+
+### Changed
+- Manifest rebuilt with updated Lightroom metadata (565 photos, exiftool pending)
+- 22 submitter contributions received from 4 submitters (LM-001, HV-001, JC-001, LQ-001)
+- README, TASKS, AGENTS updated to reflect current photo count (565) and submission status
+
+---
+
 ## [2026-08-28] — Submitter Follow-up System: live (v1.0 milestone)
 
 Private claim links + crowdsourced community metadata, fully live.

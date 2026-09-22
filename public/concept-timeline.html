@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Red River Métis Shoebox — A Century, In One Line</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+/* ============================================================
+   THE ARCHIVE AS TIME — a century on one line.
+   Not a wall: an instrument. A single fine rule crosses the screen
+   and the photographs are hung on it at the years they were made,
+   pulled from real metadata. One featured portrait sits above the
+   line at its year; the rest of the field hangs below, clustered
+   near their own years. The line is the design: a place to start,
+   a direction to travel, and a true statement about the archive.
+   1. One alignment system: everything relates to the axis and to
+      the left margin. Type flush-left, never centered.
+   2. Warm palette: aged paper ink, one ochre accent used twice —
+      the featured year and the invitation line.
+   3. No glow. No drop shadow on every print. A double hairline on
+      the featured portrait only (its deliberate object treatment);
+      a whisper of edge on the field prints.
+   4. Nothing is ever cropped. width = height x the photo's ratio.
+   5. One motion: a slow light wash crossing the paper wall.
+   ============================================================ */
+:root{
+  --ink:#e7dcc8;          /* aged paper ink */
+  --ochre:#c99a4e;        /* one ochre — exactly two uses */
+  --paper:#efe7d6;        /* mount paper */
+  --quiet:#9b907d;        /* instrument numerals */
+  --wall0:#241b12;
+  --wall1:#1a140d;
+  --wall2:#110d08;
+  --serif:Georgia,'Times New Roman',serif;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;color:var(--ink);
+  font-family:var(--serif);-webkit-tap-highlight-color:transparent;
+  user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;
+  background:linear-gradient(180deg,var(--wall0) 0%,var(--wall1) 55%,var(--wall2) 100%)}
+
+/* the paper wall: one static pool of light, a fine tooth of grain */
+.wall{position:fixed;inset:0;overflow:hidden;
+  background:linear-gradient(180deg,var(--wall0) 0%,var(--wall1) 55%,var(--wall2) 100%)}
+.wall::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 46% at 50% -10%, rgba(240,224,190,0.10) 0%, transparent 62%)}
+.wall::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0.5;
+  background:repeating-linear-gradient(92deg, rgba(255,246,228,0.009) 0 2px, rgba(0,0,0,0.028) 3px 5px)}
+
+/* the one motion: a slow light wash crossing the wall. transform only. */
+.sweep{position:absolute;left:-40%;top:-34%;width:180%;height:170%;z-index:1;pointer-events:none;
+  mix-blend-mode:screen;will-change:transform;
+  background:radial-gradient(ellipse 30% 60% at 50% 50%, rgba(255,244,218,0.07) 0%, rgba(255,244,218,0.02) 46%, transparent 72%);
+  animation:sweep 96s ease-in-out infinite alternate}
+@keyframes sweep{from{transform:translate3d(-15%,0,0)}to{transform:translate3d(15%,0,0)}}
+
+/* ---------- the year axis: a fine rule, decade ticks, numerals ---------- */
+#axis{position:absolute;z-index:2;pointer-events:none;
+  height:0;border-top:1px solid rgba(239,231,214,0.5)}
+.axisgrp{position:absolute;left:0;top:0;z-index:3;width:100%;
+  animation:arrive 1.6s ease both}
+@keyframes arrive{from{opacity:0}to{opacity:1}}
+.tick{position:absolute;top:0;background:rgba(239,231,214,0.5)}
+.tick.minor{height:4px;width:1px}
+.tick.major{height:7px;width:1px}
+.ticklab{position:absolute;top:10px;transform:translateX(-50%);
+  font-family:var(--serif);font-size:10px;letter-spacing:0.10em;
+  color:var(--quiet);white-space:nowrap}
+.ticklab.end{transform:none;font-size:9px;letter-spacing:0.16em;
+  color:rgba(155,144,125,0.75)}
+/* the featured year: an ochre mark below the line — accent use one */
+.tick.ochre{position:absolute;width:2px;background:var(--ochre)}
+
+/* ---------- prints. contain only; width is height x the true ratio ---------- */
+.print{position:absolute;z-index:4;cursor:pointer;
+  background-repeat:no-repeat;background-position:center;background-size:contain;
+  background-color:#1d1610}
+.print.field{box-shadow:0 0 0 1px rgba(0,0,0,0.35)}            /* a whisper of edge */
+.print.field:active{transform:scale(0.985)}
+/* the featured portrait: a deliberate double-hairline mount, nothing more */
+.print.feat{box-shadow:0 0 0 1px rgba(0,0,0,0.5),
+  0 0 0 5px rgba(239,231,214,0.16),
+  0 0 0 6px rgba(239,231,214,0.5),
+  0 3px 9px rgba(0,0,0,0.42)}
+.print.feat:active{transform:scale(0.99)}
+
+/* ---------- labels. one system: flush-left, small-caps names ---------- */
+.lab{position:absolute;pointer-events:none}
+.lab .nm{display:block;font-family:var(--serif);font-weight:600;font-variant:small-caps;
+  letter-spacing:0.06em;color:var(--ink);line-height:1.18;text-align:left}
+.lab .yr{display:block;font-family:var(--serif);font-weight:400;font-size:11px;
+  letter-spacing:0.14em;text-transform:uppercase;color:var(--quiet);margin-top:3px}
+/* featured label: ochre year on the axis line, name beneath */
+.lab.feat .yr{font-size:12px;color:var(--ochre);letter-spacing:0.16em;font-weight:600;
+  text-transform:uppercase;margin-top:0}
+.lab.feat .nm{font-size:16px;letter-spacing:0.08em;margin-top:7px}
+
+/* ---------- the wordmark: small, uppercase, flush-left on the margin ---------- */
+.brand{position:absolute;z-index:5;pointer-events:none;left:var(--mx)}
+.brand .wm{font-family:var(--serif);font-weight:600;text-transform:uppercase;
+  font-size:17px;letter-spacing:0.22em;color:var(--ink);line-height:1.05}
+.brand .rule{width:236px;height:1px;margin-top:10px;
+  background:linear-gradient(90deg,rgba(239,231,214,0.55),rgba(239,231,214,0.06))}
+
+/* ---------- the invitation: flush-left at the bottom ---------- */
+.cue{position:absolute;z-index:5;pointer-events:none;left:var(--mx);bottom:24px}
+.cue .main{font-family:var(--sans);font-weight:500;font-size:13px;
+  letter-spacing:0.20em;text-transform:uppercase;color:var(--ochre)}  /* accent use two */
+.cue .sub{margin-top:6px;font-family:var(--serif);font-style:italic;font-size:13px;
+  letter-spacing:0.02em;color:#b3a894}
+.cue .sub b{font-style:normal;font-weight:600;color:var(--paper)}
+</style>
+</head>
+<body>
+<div class="wall">
+  <div class="sweep"></div>
+  <header class="brand" id="brand">
+    <div class="wm">The Red River Métis Shoebox</div>
+    <div class="rule"></div>
+  </header>
+  <div class="axisgrp" id="axisgrp">
+    <div id="axis"></div>
+  </div>
+  <footer class="cue" id="cue">
+    <div class="main">Touch a photograph to explore</div>
+    <div class="sub"><b>544 photographs</b> from families, communities, and stories</div>
+  </footer>
+</div>
+<script>
+/* ============================================================
+   The timeline. Positions come from real metadata: each print's
+   centre is placed on the axis at the x of its true year, then
+   greedy-packed onto three shelves below the line so the cluster
+   stays near its own year. Nothing is cropped; no print overlaps
+   another; nothing leaves the viewport.
+   ============================================================ */
+const DOM0=1885, DOM1=1990;                 // the instrument's domain
+const SEED=20260911;
+const FEAT_CANDS=[                          // faces, in preference order
+  'photo_f1d889d41b',   // Celine, Agatha and Dorothy go for a boat ride, 1930
+  'photo_74082c91d8',   // Margaret in the hospital, 1930
+  'photo_e2fc8e0341',   // Beaulieu family, 1920
+  'photo_0d22520b08'    // Gordon Starmer in Military Uniform, 1938
+];
+const FIELD_TARGET=21;                      // prints below the line
+const SHELVES=[{h:90,caption:true},{h:82,caption:false},{h:64,caption:false}];
+
+const thumb = p => encodeURI((p.src||'').replace(/photos\//,'thumbs/').replace(/\.[a-zA-Z0-9]+$/,'.jpg'));
+const ratio = p => (p.w && p.h) ? p.w/p.h : 1.4;      // true ratio — never clamped
+const person = p => ((p.people||'').split(';')[0]||'').trim() || (p.title||'');
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);
+  t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function shuffle(arr,seed){const r=mulberry32(seed),a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function loadOk(p){return new Promise(res=>{const i=new Image();
+  i.onload=()=>res(true);i.onerror=()=>res(false);i.src=thumb(p)})}
+
+let POOL=null, FEAT=null, FIELD=null;
+
+function build(){
+  const vw=innerWidth, vh=innerHeight;
+  const mx=Math.max(36, Math.min(52, vw*0.034));
+  document.documentElement.style.setProperty('--mx', mx+'px');
+  const axisY=vh*0.46;
+  const xOf=y => mx + (y-DOM0)/(DOM1-DOM0)*(vw-2*mx);
+
+  const grp=document.getElementById('axisgrp');
+  const ax=document.getElementById('axis');
+  ax.style.left=mx+'px'; ax.style.right=mx+'px'; ax.style.top=axisY+'px';
+
+  /* ---- decade ticks and their numerals (above the line) ---- */
+  let ticks='';
+  for(let y=Math.ceil((DOM0+9)/10)*10; y<=DOM1; y+=10){
+    const x=xOf(y);
+    if(y%20===0){
+      ticks+=`<span class="tick major" style="left:${x.toFixed(1)}px;top:${axisY.toFixed(1)}px"></span>`+
+             `<span class="ticklab" style="left:${x.toFixed(1)}px;top:${(axisY-20).toFixed(1)}px">${y}</span>`;
+    }else{
+      ticks+=`<span class="tick minor" style="left:${x.toFixed(1)}px;top:${(axisY-3).toFixed(1)}px"></span>`;
+    }
+  }
+  ax.innerHTML=ticks;
+  /* end markings under the line: the instrument's domain */
+  ax.innerHTML+=
+    `<span class="ticklab end" style="left:${mx.toFixed(0)}px;top:${(axisY+6).toFixed(0)}px">1885</span>`+
+    `<span class="ticklab end" style="left:${(vw-mx-34).toFixed(0)}px;top:${(axisY+6).toFixed(0)}px">1990</span>`;
+
+  /* ---- the featured portrait: one face, above the line, at its year ---- */
+  const F=FEAT, fH=Math.min(vh*0.335, 304), fR=ratio(F);
+  const fw=fH*fR, fx=xOf(F.year);
+  const fL=fx-fw/2, fT=axisY-fH;
+  const fp=document.createElement('div');
+  fp.className='print feat';
+  fp.style.cssText=`left:${fL.toFixed(1)}px;top:${fT.toFixed(1)}px;width:${fw.toFixed(1)}px;height:${fH.toFixed(1)}px;`+
+    `background-image:url('${thumb(F)}')`;
+  fp.setAttribute('role','img'); fp.setAttribute('aria-label',esc(F.title));
+  grp.appendChild(fp);
+
+  /* featured label under the line: ochre year, then the name — accent use one */
+  const fl=document.createElement('div');
+  fl.className='lab feat';
+  fl.style.cssText=`left:${fL.toFixed(1)}px;top:${(axisY+3).toFixed(1)}px`;
+  fl.innerHTML=`<span class="yr">${esc(F.year)}</span><span class="nm">${esc(person(F))}</span>`;
+  grp.appendChild(fl);
+  const ot=document.createElement('span');
+  ot.className='tick ochre';
+  ot.style.cssText=`left:${(fx-1).toFixed(1)}px;top:${axisY.toFixed(1)}px;height:16px`;
+  grp.appendChild(ot);
+
+  /* ---- the field: prints below the line, clustered near their years ---- */
+  const cueTop=vh-24-44;                                   // measured cue block height ~44
+  const avail=cueTop-16-axisY;
+  const s=Math.min(1, avail/346);                          // uniform fit scale
+  const shelfTop=[], shelfH=[];
+  let acc=58*s;
+  SHELVES.forEach((sh,i)=>{ shelfTop.push(axisY+acc); shelfH.push(sh.h*s);
+    acc += sh.h*s + (sh.caption?44*s:8*s); });
+
+  const rnd=mulberry32(SEED);
+  const placed=[[],[],[]];
+  const all=[];
+  const byYear=[...FIELD].sort((a,b)=>(a.year||0)-(b.year||0));
+  const gap=18;
+  const freeOn=(k,cx,w)=>!placed[k].some(o=>Math.abs(cx-o.cx)<(w+o.w)/2+gap);
+  const wFor=p=>k=>shelfH[k]*ratio(p);
+
+  const place=p=>{
+    const x0=xOf(p.year)+(rnd()-0.5)*10;
+    let si=-1, cx=x0;
+    for(let k=0;k<SHELVES.length;k++){ if(freeOn(k,x0,wFor(p)(k))){si=k;break;} }
+    if(si<0){                                     // expanding search across all shelves
+      outer:
+      for(let d=6;d<=96;d+=6){
+        for(const c of [x0-d,x0+d]){
+          const cc=Math.max(mx+12, Math.min(vw-mx-12, c));
+          for(let k=0;k<SHELVES.length;k++){ if(freeOn(k,cc,wFor(p)(k))){si=k;cx=cc;break outer;} }
+        }
+      }
+      if(si<0){                                   // last resort: least-bad shelf
+        const scores=placed.map((arr,k)=>{let worst=0;
+          arr.forEach(o=>{const ov=(wFor(p)(k)+o.w)/2+gap-Math.abs(x0-o.cx); if(ov>worst)worst=ov;});
+          return {k,worst};});
+        scores.sort((a,b)=>a.worst-b.worst);
+        si=scores[0].k; cx=x0;
+      }
+    }
+    const w=wFor(p)(si), top=shelfTop[si], h=shelfH[si];
+    const el=document.createElement('div');
+    el.className='print field';
+    el.style.cssText=`left:${(cx-w/2).toFixed(1)}px;top:${top.toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px;`+
+      `background-image:url('${thumb(p)}')`;
+    el.setAttribute('role','img'); el.setAttribute('aria-label',esc(p.title));
+    grp.appendChild(el);
+    const item={p,cx,w,shelf:si,el,lab:null};
+    if(SHELVES[si].caption){                       // real names under the mid-size prints
+      const lab=document.createElement('div');
+      lab.className='lab';
+      lab.style.cssText=`left:${(cx-w/2).toFixed(1)}px;top:${(top+h+6).toFixed(1)}px`;
+      lab.innerHTML=`<span class="nm">${esc(person(p))}</span>`+(p.year?`<span class="yr">${esc(p.year)}</span>`:'');
+      grp.appendChild(lab);
+      item.lab=lab;
+    }
+    placed[si].push(item);
+    all.push(item);
+  };
+
+  for(const p of byYear) place(p);
+
+  // resolve any residual overlap: relocate the later print to any free spot
+  const move=(item,si,cx)=>{
+    placed[item.shelf]=placed[item.shelf].filter(o=>o!==item);
+    item.shelf=si; item.cx=cx;
+    const w=shelfH[si]*ratio(item.p); item.w=w;
+    const top=shelfTop[si], h=shelfH[si];
+    item.el.style.cssText=`left:${(cx-w/2).toFixed(1)}px;top:${top.toFixed(1)}px;width:${w.toFixed(1)}px;height:${h.toFixed(1)}px;`+
+      `background-image:url('${thumb(item.p)}')`;
+    if(item.lab){
+      if(SHELVES[si].caption){
+        item.lab.style.left=(cx-w/2).toFixed(1)+'px';
+        item.lab.style.top=(top+h+6).toFixed(1)+'px';
+      }else{ item.lab.remove(); item.lab=null; }
+    }
+    placed[si].push(item);
+  };
+  let guard=0;
+  while(guard++<400){
+    let fixed=false;
+    for(let i=0;i<all.length&&!fixed;i++)for(let j=i+1;j<all.length&&!fixed;j++){
+      const a=all[i], b=all[j];
+      if(a.shelf===b.shelf && Math.abs(a.cx-b.cx)<(a.w+b.w)/2+2){
+        const x0=b.cx;
+        let spot=null;
+        for(const k of [0,1,2]){ if(freeOn(k,x0,shelfH[k]*ratio(b.p))){spot=[k,x0];break;} }
+        if(!spot){
+          outer2:
+          for(let d=6;d<=120&&!spot;d+=6){
+            for(const c of [x0-d,x0+d]){
+              const cc=Math.max(mx+12, Math.min(vw-mx-12, c));
+              for(const k of [0,1,2]){ if(freeOn(k,cc,shelfH[k]*ratio(b.p))){spot=[k,cc];break outer2;} }
+            }
+          }
+        }
+        if(spot){ move(b,spot[0],spot[1]); fixed=true; }
+      }
+    }
+    if(!fixed) break;
+  }
+
+  window.__tl={
+    viewport:[vw,vh], axisY:Math.round(axisY), mx:Math.round(mx),
+    prints:document.querySelectorAll('.print').length,
+    labels:document.querySelectorAll('.lab').length,
+    featured:{name:person(F),year:F.year,h:Math.round(fH),w:Math.round(fw),left:Math.round(fL)},
+    shelves:shelfH.map(Math.round)
+  };
+}
+
+fetch('hero-pool.json').then(r=>r.json()).then(async d=>{
+  const pool=d.photos||[];
+  if(!pool.length) throw new Error('empty pool');
+  const byId=id=>pool.find(p=>p.id===id);
+
+  /* featured: first face candidate whose thumb actually loads */
+  for(const id of FEAT_CANDS){
+    const p=byId(id);
+    if(p && p.h>p.w && p.faceX!=null && await loadOk(p)){FEAT=p;break;}
+  }
+  if(!FEAT) throw new Error('no featured portrait loadable');
+  POOL=pool;
+
+  /* field: stratified across the decades, up to 2 per year, faces first */
+  const years={};
+  pool.forEach(p=>{ if(p.year && p.id!==FEAT.id) (years[p.year]=years[p.year]||[]).push(p); });
+  const cands=[];
+  Object.keys(years).sort((a,b)=>a-b).forEach(y=>{
+    const arr=[...years[y]].sort((a,b)=>
+      (b.h>b.w?1:0)-(a.h>a.w?1:0) || ((b.faceX!=null?1:0)-(a.faceX!=null?1:0)));
+    cands.push(...arr.slice(0,2));
+  });
+  let picked=cands;
+  if(cands.length>FIELD_TARGET){
+    picked=[];
+    for(let i=0;i<FIELD_TARGET;i++) picked.push(cands[Math.round(i*(cands.length-1)/(FIELD_TARGET-1))]);
+  }
+  const ok=[];
+  for(const p of picked){ if(await loadOk(p)) ok.push(p); }
+  if(ok.length<Math.min(FIELD_TARGET,cands.length)){
+    for(const p of cands){ if(ok.length>=FIELD_TARGET) break; if(!ok.includes(p)&&await loadOk(p)) ok.push(p); }
+  }
+  FIELD=ok;
+
+  build();
+  let rt; addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(build,150);});
+}).catch(()=>{
+  document.getElementById('axisgrp').innerHTML=
+    '<div style="position:absolute;left:44px;top:120px;max-width:60vw;color:var(--quiet)">Photographs could not be loaded — please check the server.</div>';
+});
+</script>
+</body>
+</html>
