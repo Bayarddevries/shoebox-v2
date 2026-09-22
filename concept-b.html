@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attract Concept B — The Luminous Field</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+  :root{ --cream:#f3ecdf; --gold:#e9c07a; --muted:#cfc5b4; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:100%;height:100%;overflow:hidden;
+    font-family:'Inter',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+
+  /* The dark warm void — a single painted background, no extra layers */
+  body{
+    background:
+      radial-gradient(ellipse 130% 95% at 50% 44%, #171008 0%, #0e0a07 52%, #070504 100%);
+    color:var(--cream);
+  }
+
+  /* ── THE ONE ANIMATED ELEMENT ─────────────────────────────────────────
+     A huge soft warm light behind the glass. It breathes: gently swelling
+     and fading on a ~26s cycle. transform+opacity only, single element,
+     composited on its own layer. Everything else is perfectly still. */
+  #breath{
+    position:absolute; z-index:0; inset:-45% -45%;
+    pointer-events:none; mix-blend-mode:screen;
+    background:radial-gradient(ellipse 46% 52% at 50% 47%,
+      rgba(255,198,128,0.34) 0%,
+      rgba(255,176,96,0.17) 34%,
+      rgba(255,150,70,0.055) 60%,
+      transparent 80%);
+    animation:breath 26s ease-in-out infinite alternate;
+    will-change:transform,opacity;
+  }
+  @keyframes breath{
+    from{transform:scale(0.85); opacity:0.55}
+    to  {transform:scale(1.16); opacity:1}
+  }
+  @media (prefers-reduced-motion: reduce){ #breath{animation:none; opacity:0.8} }
+
+  /* ── THE FIELD: absolute photo prints, all perfectly still ──────────── */
+  #field{position:absolute; inset:0; z-index:1}
+  .ph{
+    position:absolute;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:contain;        /* never crop — full image always */
+    box-shadow:                      /* the glow: a diffuse warm halo, no box */
+      0 0 22px 4px  rgba(255,184,112,0.15),
+      0 0 80px 16px rgba(255,158,80,0.10);
+    will-change:transform;           /* static tilt, composited once */
+  }
+  .ph.dim{opacity:0.82; box-shadow:0 0 16px 3px rgba(255,184,112,0.11), 0 0 52px 10px rgba(255,158,80,0.07)}
+  .ph.near{box-shadow:0 0 26px 6px rgba(255,190,118,0.19), 0 0 110px 26px rgba(255,164,86,0.13)}
+  .ph.hero{box-shadow:0 0 30px 8px rgba(255,196,128,0.22), 0 0 140px 34px rgba(255,170,92,0.15)}
+
+  /* Soft static scrims so the wordmark and cue stay legible over glow */
+  .scrim-t{position:absolute; top:0; left:0; right:0; height:17vh; z-index:2; pointer-events:none;
+    background:linear-gradient(180deg, rgba(7,5,4,0.86) 0%, rgba(7,5,4,0.42) 55%, transparent 100%)}
+  .scrim-b{position:absolute; bottom:0; left:0; right:0; height:16vh; z-index:2; pointer-events:none;
+    background:linear-gradient(0deg, rgba(7,5,4,0.88) 0%, rgba(7,5,4,0.45) 55%, transparent 100%)}
+
+  /* Wordmark — top centre */
+  .brand{position:absolute; top:3.2vh; left:0; right:0; z-index:3; text-align:center}
+  .brand .wm{font-family:'Cinzel',Georgia,serif; font-weight:700; text-transform:uppercase;
+    font-size:clamp(1.35rem, 3.5vw, 2.5rem); letter-spacing:0.15em; white-space:nowrap;
+    color:var(--cream); text-shadow:0 2px 16px rgba(0,0,0,0.9)}
+  .brand .rule{width:6rem; height:1px; margin:0.95rem auto 0;
+    background:linear-gradient(90deg, transparent, rgba(212,162,86,0.9), transparent)}
+
+  /* Cue — bottom centre */
+  .cue{position:absolute; bottom:3vh; left:0; right:0; z-index:3; text-align:center}
+  .cue .main{font-family:'Cinzel',Georgia,serif; text-transform:uppercase; letter-spacing:0.22em;
+    font-size:clamp(0.82rem, 1.5vw, 1.2rem); color:#f0d9ae;
+    text-shadow:0 2px 12px rgba(0,0,0,0.92)}
+  .cue .sub{font-family:'EB Garamond',Georgia,serif; font-style:italic; letter-spacing:0.03em;
+    font-size:clamp(0.68rem, 1.12vw, 0.95rem); color:var(--muted); margin-top:0.45rem;
+    text-shadow:0 2px 10px rgba(0,0,0,0.92)}
+</style>
+</head>
+<body>
+
+<div id="breath" aria-hidden="true"></div>
+<div id="field" aria-hidden="true"></div>
+
+<div class="scrim-t" aria-hidden="true"></div>
+<div class="scrim-b" aria-hidden="true"></div>
+
+<header class="brand">
+  <div class="wm">The Red River Métis Shoebox</div>
+  <div class="rule"></div>
+</header>
+
+<footer class="cue">
+  <div class="main">Touch a photo to explore</div>
+  <div class="sub">544 photographs · families, communities, and stories</div>
+</footer>
+
+<script>
+/* CONCEPT B — "THE LUMINOUS FIELD"
+   Photographs float in a dark warm void, each lit by a diffuse amber halo —
+   no frames, no boxes. A loose organic constellation with three larger prints
+   across the optical centre and smaller prints receding above and below.
+   Photos are perfectly still; the only motion is the breathing light. */
+
+const COUNT = 25;                       // prints on screen (within 20–30)
+
+/* Hand-authored constellation: [x% of viewport width, y% of viewport height, rank]
+   ranks: 'x' = hero (largest, centre), 'l' = large flanks, 'm' = medium recede,
+   's' = small recede. Bands are deliberately staggered (never a grid), and the
+   space directly above/below the hero stays empty — quiet dark around the focus. */
+const SLOTS = [
+  /* top band — small, receding (kept below the wordmark keep-out) */
+  [10, 21, 's'], [27, 19.5, 's'], [44, 22, 's'], [60, 19.5, 's'], [76, 22, 's'], [91, 21, 's'],
+  /* upper band — medium, staggered between the top band */
+  [14, 32.5, 'm'], [29, 30, 'm'], [71, 30, 'm'], [86, 32.5, 'm'],
+  /* optical centre — the focal trio */
+  [24, 52, 'l'], [50, 47, 'x'], [76, 52, 'l'],
+  /* mid-height edges — small accents */
+  [6, 45, 's'], [94, 44, 's'],
+  /* lower band — medium, staggered between the bottom band */
+  [18, 69, 'm'], [35, 65, 'm'], [65, 71, 'm'], [82, 66, 'm'],
+  /* bottom band — small, receding */
+  [10, 83, 's'], [27, 81, 's'], [44, 84.5, 's'], [60, 82, 's'], [76, 84.5, 's'], [91, 83, 's'],
+];
+
+const SZ = { s:{h:[6.5, 10], rot:2.4, op:0.82, dim:true,  shrink:0.55},
+             m:{h:[12, 16], rot:1.9, op:0.93, dim:false, shrink:0.62},
+             l:{h:[22, 25.5], rot:1.2, op:1,   dim:false, shrink:0.78},
+             x:{h:[26, 29],   rot:0.7, op:1,   dim:false, shrink:0.85} };
+
+fetch('hero-pool.json').then(r=>r.json()).then(d=>{
+  const pool=[...d.photos].sort(()=>Math.random()-0.5).slice(0,COUNT);
+  const vw=innerWidth, vh=innerHeight;
+
+  const aspect=p=>{
+    let a=(p.h&&p.w)?(p.w/p.h):1.27;
+    return Math.min(Math.max(a,0.35),1.95);  // tame extremes only; contain still shows all
+  };
+
+  /* Deterministic-feeling organic jitter seeded by slot index */
+  const jit=(i)=>{ const s=Math.sin(i*127.1+311.7)*43758.5453; return s-Math.floor(s); };
+
+  const placed=[];                            // [{cx,cy,hw,hh}] — half-extents incl. tilt slack
+  const padX=0.012*vw, padY=0.012*vh;
+
+  function fits(cx,cy,hw,hh){
+    if(cx-hw<padX || cx+hw>vw-padX) return false;
+    if(cy-hh<0.13*vh || cy+hh>0.88*vh) return false;   // keep clear of wordmark & cue
+    for(const r of placed){
+      if(Math.abs(cx-r.cx)<hw+r.hw && Math.abs(cy-r.cy)<hh+r.hh) return false;
+    }
+    return true;
+  }
+
+  /* Place one print: probe a ring of offsets around the slot, then shrink a
+     little and probe again. Build order puts the focal trio first so the
+     centre always keeps priority; outer bands find gaps around it. */
+  function place(sx,sy,h,a,rot,cfg){
+    const deg=Math.abs(rot)*Math.PI/180;
+    let hw=(h*a/2 + h*Math.sin(deg)/2);       // rotated half-extents (tilt slack)
+    let hh=(h/2  + h*a*Math.sin(deg)/2);
+    const cx0=(sx+(jit(sx*13+9)*2-1)*1.1)*vw/100;
+    const cy0=(sy+(jit(sy*17+3)*2-1)*0.9)*vh/100;
+    const ring=[[0,0],[0,-1],[0,1],[-1,0],[1,0],[-1,-1],[1,-1],[-1,1],[1,1],
+                [0,-2],[0,2],[-2,0],[2,0]];
+    let hMin=h*cfg.shrink;
+    for(let s=0; s<10 && h>=hMin; s++){
+      for(const [dx,dy] of ring){
+        const nx=cx0+dx*0.022*vw, ny=cy0+dy*0.022*vh;
+        if(fits(nx,ny,hw,hh)) return {cx:nx,cy:ny,h,hw,hh};
+      }
+      h*=0.9; hw*=0.9; hh*=0.9;
+    }
+    return {cx:cx0,cy:cy0,h,hw,hh};           // last resort — never drops a print
+  }
+
+  /* Build order: hero → flanks → mediums → smalls (largest first) */
+  const order=[...SLOTS.keys()].sort((a,b)=>
+    ({x:0,l:1,m:2,s:3}[SLOTS[a][2]]-{x:0,l:1,m:2,s:3}[SLOTS[b][2]]));
+
+  order.forEach((si,oi)=>{
+    const [sx,sy,rank]=SLOTS[si];
+    const cfg=SZ[rank], p=pool[oi];
+    const a=aspect(p);
+    let h=(cfg.h[0]+jit(si*3+1)*(cfg.h[1]-cfg.h[0]))*vh/100;
+    const rot=(jit(si*7+5)*2-1)*cfg.rot;
+    const r=place(sx,sy,h,a,rot,cfg);
+
+    const thumb=(p.src||'').replace(/photos\//,'thumbs/').replace(/\.[a-zA-Z0-9]+$/,'.jpg');
+    const w=r.h*a;                           // exact aspect box → contain fills it fully
+    const el=document.createElement('div');
+    el.className='ph'+(cfg.dim?' dim':'')+(rank==='x'?' hero':(rank==='l'?' near':''));
+    el.style.cssText=`left:${(r.cx-w/2).toFixed(1)}px;top:${(r.cy-r.h/2).toFixed(1)}px;
+      width:${w.toFixed(1)}px;height:${r.h.toFixed(1)}px;
+      transform:rotate(${rot.toFixed(2)}deg);opacity:${cfg.op};
+      background-image:url('${encodeURI(thumb)}')`;
+    document.getElementById('field').appendChild(el);
+    placed.push({cx:r.cx,cy:r.cy,hw:r.hw,hh:r.hh});
+
+    /* Re-measure: if the real thumb's aspect differs from the manifest's
+       (orientation quirks happen), snap the box to the truth so the glow
+       hugs the actual image. Constrained to the footprint the collision
+       pass reserved, so it can never create a new overlap. */
+    const img=new Image();
+    img.onload=()=>{
+      if(!img.naturalWidth) return;
+      const natA=img.naturalWidth/img.naturalHeight;
+      const w2=r.h*natA;
+      if(Math.abs(w2-w)/w>0.03){
+        const maxW=2*r.hw;                    // reserved half-width footprint
+        const finalW=Math.min(w2,maxW);
+        el.style.width=finalW.toFixed(1)+'px';
+        el.style.left=(r.cx-finalW/2).toFixed(1)+'px';
+      }
+    };
+    img.src=thumb;
+  });
+});
+</script>
+</body>
+</html>

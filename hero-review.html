@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Pool Review — Métis Kin</title>
+<style>
+  :root { --black:#0a0a0a; --cream:#e8e2d6; --gold:#c4933a; --crimson:#8b0000; --warm:#6b655e; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#121110; color:var(--cream); font-family:'Inter',system-ui,sans-serif; padding:2rem; }
+  h1 { font-family:Georgia,serif; font-size:1.6rem; letter-spacing:0.02em; }
+  .sub { color:var(--warm); font-size:0.85rem; margin:0.4rem 0 1.5rem; line-height:1.5; }
+  .sub b { color:var(--cream); font-weight:600; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1rem; }
+  .card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:8px; overflow:hidden; }
+  .ph { width:100%; aspect-ratio:4/3; background:#000 center/contain no-repeat; }
+  .meta { padding:0.5rem 0.6rem 0.7rem; font-size:0.72rem; line-height:1.35; }
+  .t { color:var(--cream); font-family:Georgia,serif; font-style:italic; }
+  .m { color:var(--warm); margin-top:0.2rem; }
+  .n { color:var(--gold); font-size:0.6rem; letter-spacing:0.08em; }
+</style>
+</head>
+<body>
+<h1>Hero pool — 60 candidates for the attract screen</h1>
+<p class="sub">
+  Selected from 544 photos by signal strength: <b>face detected</b> + <b>named people</b> + <b>caption/story</b> + <b>real historical year</b> (not a scan-date fallback) + <b>community</b>.
+  Lightroom star ratings were empty (525/544 unrated), so this is a metadata-based shortlist, not an aesthetic judgement. Judge the faces and the stories: anything that doesn't belong, tell me and I'll cut it.
+</p>
+<div class="grid" id="grid"></div>
+<script>
+fetch('hero-pool.json').then(r=>r.json()).then(d=>{
+  document.getElementById('grid').innerHTML = d.photos.map(p=>{
+    const t = (p.src||'').replace(/photos\//,'thumbs/').replace(/\.[a-zA-Z0-9]+$/,'.jpg');
+    const meta = [p.year?('c.'+p.year):'', p.community||''].filter(Boolean).join(' · ');
+    return `<div class="card">
+      <div class="ph" style="background-image:url('${encodeURI(t)}')"></div>
+      <div class="meta">
+        <div class="t">${(p.title||'').replace(/[<>&]/g,'')}</div>
+        <div class="m">${meta}</div>
+        <div class="n">${(p.people||'').replace(/[<>&]/g,'').slice(0,60)}</div>
+      </div></div>`;
+  }).join('');
+});
+</script>
+</body>
+</html>

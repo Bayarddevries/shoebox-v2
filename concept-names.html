@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Red River Métis Shoebox — Names</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+  /* ============================================================
+     THE NAMES — a type-only attract screen.
+
+     There is not a single photograph on this screen. The screen is a slow
+     roll of the actual family names held in the archive: 544 photographs
+     are 387 people and 204 families, and a name pulls at a visitor far
+     harder than a thumbnail does. Touching a name opens the photograph.
+
+     Cost: one transform per column. No images, no filters, nothing to load.
+     ============================================================ */
+  :root{
+    --ink:#e9e1d2;
+    --paper:#f2ebdb;
+    --ochre:#b98f4e;
+    --quiet:#a2977f;
+    --faint:#6d6455;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:100%;height:100%;overflow:hidden;color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;-webkit-tap-highlight-color:transparent;
+    user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;
+    background:linear-gradient(180deg,#1b1611 0%,#15110d 52%,#0f0c09 100%)}
+
+  /* the wall: one static pool of light from the top, a fine tooth, a vignette */
+  .wall{position:fixed;inset:0;overflow:hidden}
+  .wall::before{content:'';position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 45% at 38% -10%, rgba(240,226,192,0.10) 0%, transparent 62%)}
+  .wall::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:0.4;
+    background:repeating-linear-gradient(92deg, rgba(255,246,228,0.010) 0 2px, rgba(0,0,0,0.022) 3px 5px)}
+  /* one slow light wash crossing the wall, so the screen is alive but still */
+  .sweep{position:absolute;left:-40%;top:-30%;width:180%;height:160%;pointer-events:none;
+    mix-blend-mode:screen;will-change:transform;
+    background:radial-gradient(ellipse 26% 58% at 50% 50%, rgba(255,246,224,0.07) 0%, rgba(255,246,224,0.02) 48%, transparent 74%);
+    animation:sweep 96s ease-in-out infinite alternate}
+  @keyframes sweep{from{transform:translate3d(-11%,0,0)}to{transform:translate3d(11%,0,0)}}
+
+  /* ---------- left column: the statement ---------- */
+  .left{position:absolute;left:4.2vw;top:0;bottom:0;width:33vw;
+    display:flex;flex-direction:column;justify-content:center;z-index:6}
+  .brand{position:absolute;left:4.2vw;top:3.6vh;z-index:6}
+  .brand .wm{font-family:'Cinzel',Georgia,serif;font-weight:600;text-transform:uppercase;
+    font-size:17px;letter-spacing:0.26em;color:var(--ink);line-height:1}
+  .brand .rule{width:clamp(44px,3.4vw,60px);height:1px;margin-top:0.9rem;
+    background:linear-gradient(90deg,rgba(185,143,78,0.95),rgba(185,143,78,0.05))}
+  .brand .kicker{margin-top:0.9rem;font-size:clamp(0.58rem,0.7vw,0.68rem);
+    letter-spacing:0.22em;text-transform:uppercase;color:#b8ae9b}
+
+  .count{display:flex;align-items:baseline;gap:0.85rem}
+  .count .n{font-family:'Cinzel',Georgia,serif;font-weight:600;
+    font-size:clamp(4.2rem,7.4vw,7rem);line-height:0.92;color:var(--paper);
+    font-variant-numeric:lining-nums;letter-spacing:0.01em}
+  .count .lbl{font-size:clamp(0.66rem,0.82vw,0.8rem);letter-spacing:0.3em;
+    text-transform:uppercase;color:var(--quiet);padding-bottom:0.5rem}
+  .say{margin-top:1.5rem;max-width:26ch;font-family:'EB Garamond',Georgia,serif;
+    font-size:clamp(1rem,1.28vw,1.22rem);line-height:1.5;color:#cfc6b3}
+  .say em{font-style:italic;color:var(--paper)}
+
+  .cue{position:absolute;left:4.2vw;bottom:3.6vh;z-index:6}
+  .cue .main{display:flex;align-items:center;gap:0.8rem;
+    font-size:clamp(0.92rem,1.24vw,1.1rem);font-weight:500;letter-spacing:0.13em;
+    text-transform:uppercase;color:var(--ochre)}
+  .cue .main::before{content:'';width:2px;height:1.05em;background:var(--ochre)}
+  .cue .sub{margin-top:0.5rem;font-size:clamp(0.72rem,0.86vw,0.82rem);
+    letter-spacing:0.03em;color:var(--faint)}
+
+  /* ---------- right: the roll of names ---------- */
+  .rollarea{position:absolute;right:0;top:0;bottom:0;width:60vw;z-index:5;overflow:hidden;
+    mask-image:linear-gradient(180deg, transparent 0%, #000 13%, #000 87%, transparent 100%);
+    -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 13%, #000 87%, transparent 100%)}
+  .col{position:absolute;top:0;bottom:0;width:27vw;overflow:hidden}
+  .col.a{left:2vw}
+  .col.b{left:31vw}
+  /* the second column starts part way down its own list so the two columns
+     never sit in step, and runs at a different speed: parallax, 2 transforms */
+  .col .inner{will-change:transform}
+  .col.a .inner{animation:rise 430s linear infinite}
+  .col.b .inner{animation:rise 560s linear infinite}
+  @keyframes rise{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-50%,0)}}
+
+  .fam{padding:0 0 2.1rem 0}
+  .fam .s{font-family:'EB Garamond',Georgia,serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:0.17em;color:var(--paper);line-height:1.1}
+  .fam.t1 .s{font-size:27px}
+  .fam.t2 .s{font-size:22px}
+  .fam.t3 .s{font-size:18px;color:#ddd4c1}
+  .fam .g{margin-top:0.42rem;font-family:'EB Garamond',Georgia,serif;
+    font-size:15.5px;line-height:1.62;color:var(--quiet);letter-spacing:0.02em}
+  .fam .g span{white-space:nowrap}
+  .fam .g span+span::before{content:'· ';color:var(--faint);padding:0 0.15em}
+  /* a hairline between families, quiet enough to read as a list not a table */
+  .fam+.fam{border-top:1px solid rgba(232,220,196,0.07);padding-top:1.5rem}
+</style>
+</head>
+<body>
+<div class="wall">
+  <div class="sweep"></div>
+
+  <header class="brand">
+    <div class="wm">The Red River Métis Shoebox</div>
+    <div class="rule"></div>
+    <div class="kicker">Photographs from Métis families and communities</div>
+  </header>
+
+  <section class="left">
+    <div class="count"><span class="n" id="photoCount">544</span><span class="lbl">photographs</span></div>
+    <p class="say" id="say">Held in these photographs are <em id="nameCount">387 people</em>, from <em id="famCount">204 families</em>, across the Red River and beyond.</p>
+  </section>
+
+  <div class="rollarea">
+    <div class="col a"><div class="inner" id="colA"></div></div>
+    <div class="col b"><div class="inner" id="colB"></div></div>
+  </div>
+
+  <footer class="cue">
+    <div class="main">Touch a name to open the photograph</div>
+    <div class="sub" id="cueSub">544 photographs, in the families' own names</div>
+  </footer>
+</div>
+<script>
+/* ============================================================
+   The roll is built from names-roll.json, generated from the archive's own
+   metadata: every person named in the photographs, grouped by family.
+   Column heights are interleaved (odd/even) so the two columns do not speak
+   in step, and each column renders its list TWICE so the loop is seamless.
+   ============================================================ */
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+
+function tier(mentions){ return mentions>=100 ? 't1' : (mentions>=25 ? 't2' : 't3'); }
+
+function famHtml(f){
+  const given=(f.given||[]).map(g=>`<span>${esc(g)}</span>`).join('');
+  return `<div class="fam ${tier(f.mentions)}">
+    <div class="s">${esc(f.surname)}</div>
+    ${given?`<div class="g">${given}</div>`:''}
+  </div>`;
+}
+
+fetch('names-roll.json').then(r=>r.json()).then(d=>{
+  const fams=d.families||[];
+  if(!fams.length) throw new Error('no families');
+
+  // interleave so each column carries a mixture of big and small families
+  const a=fams.filter((_,i)=>i%2===0), b=fams.filter((_,i)=>i%2===1);
+  const render=list=>list.map(famHtml).join('');
+  document.getElementById('colA').innerHTML = render(a)+render(a);   // duplicated: seamless
+  document.getElementById('colB').innerHTML = render(b)+render(b);
+
+  // offset column B so the two columns never align
+  const inner=document.querySelector('.col.b .inner');
+  inner.style.marginTop = '-18vh';
+
+  // the numbers on the left come from the data, never hardcoded
+  const st=d.stats||{};
+  if(st.photos) document.getElementById('photoCount').textContent=st.photos;
+  document.getElementById('say').innerHTML =
+    `Held in these photographs are <em>${st.names} people</em>, from <em>${st.families} families</em>, across ${st.communities} communities.`;
+  document.getElementById('cueSub').textContent =
+    `${st.photos} photographs, in the families' own names`;
+
+  // self-check: if a column somehow renders thin, the screen still reads
+  window.__namesStats={
+    families:fams.length, colA:a.length, colB:b.length,
+    photos:st.photos, names:st.names,
+    colAHeight:document.getElementById('colA').scrollHeight,
+    colBHeight:document.getElementById('colB').scrollHeight
+  };
+  document.body.classList.add('ready');
+}).catch(()=>{
+  document.getElementById('colA').innerHTML =
+    '<div class="fam t2"><div class="s">The names could not be loaded.</div></div>';
+  document.body.classList.add('ready');
+});
+</script>
+</body>
+</html>
