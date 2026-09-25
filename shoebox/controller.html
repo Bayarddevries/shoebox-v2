@@ -1538,25 +1538,34 @@
     serverUrl = getServerUrl();
     reportDiag('init-start');
 
-    // Load manifest — try the state relay first, fall back to the SAME-ORIGIN
-    // static manifest (mirror the projector). The controller must show the
-    // archive even when the relay is unreachable (e.g. GitHub Pages or a
-    // mis-routed device); live sync needs the relay, images do not.
-    // ⚠️ The fallback must fire on an EMPTY result too, not only on a thrown
-    // error: the relay serves an empty/partial manifest for a few seconds after
-    // a restart, and an empty list leaves the controller with NO images at all
-    // (wordmark-only screensaver, empty gallery) while everything looks healthy.
-    async function fetchManifest(url) {
-      const r = await fetch(url, { signal: AbortSignal.timeout(5000) });
+    // Load the photo metadata. The SAME-ORIGIN static manifest is tried FIRST: it
+    // comes from the very server that just delivered this page (warm connection,
+    // no extra network hop) and it is the same snapshot the projector uses, so
+    // both screens agree. The state relay's /manifest is the fallback.
+    // ⚠️ The timeout must be GENEROUS. These are ~0.8-1.0 MB JSON documents; a 5s
+    // limit aborted them over a slow/Tailscale link, and because BOTH sources
+    // then failed the controller ended up with `photos = []` — no gallery, no
+    // carousel, no screensaver prints — while the now-showing preview still
+    // worked, because that photo comes from the relay's /state payload and not
+    // from this list. Retry once per source before giving up.
+    async function fetchManifest(url, ms) {
+      const r = await fetch(url, { signal: AbortSignal.timeout(ms || 30000) });
       const d = await r.json();
       const list = (d && d.photos) ? d.photos : d;
       return Array.isArray(list) ? list : [];
     }
     let loaded = [];
-    try { loaded = await fetchManifest(`${serverUrl}/manifest`); } catch (e) {}
-    if (!loaded.length) {
-      try { loaded = await fetchManifest(`${base()}assets/shoebox/manifest.json`); } catch (e2) {}
+    const sources = [
+      `${base()}assets/shoebox/manifest.json`,   // same origin as this page
+      `${serverUrl}/manifest`                    // state relay
+    ];
+    for (const src of sources) {
+      for (let attempt = 0; attempt < 2 && !loaded.length; attempt++) {
+        try { loaded = await fetchManifest(src); } catch (e) {}
+      }
+      if (loaded.length) break;
     }
+    if (!loaded.length) reportDiag('manifest-failed');
     photos = loaded;
     photos.forEach(p => { byId[p.id] = p; });
 
