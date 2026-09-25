@@ -229,7 +229,7 @@
     }
     .slide-layer {
       position: absolute; inset: 0;
-      background-size: cover; background-position: center;
+      background-size: cover; background-position: center; background-repeat: no-repeat;
       opacity: 0; transition: opacity 1s ease;
       will-change: opacity;
     }
@@ -889,6 +889,14 @@
       el.style.setProperty('--y', cy.toFixed(1) + 'px');
       el.style.setProperty('--rot', rot + 'deg');
       el.style.backgroundImage = `url(${thumbUrl(p)})`;
+      // Portrait: fill height, crop sides. Landscape: cover.
+      if (p.width && p.height && p.width / p.height < 1) {
+        el.style.backgroundSize = 'auto 100%';
+        el.style.backgroundPosition = `${((p.faceX||0.5)*100).toFixed(1)}% ${((p.faceY||0.5)*100).toFixed(1)}%`;
+      } else {
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center';
+      }
       // captions on a subset (only where there's a story to tell), drawn
       // AFTER the print so they sit on top and stay readable
       if (i % 3 === 0) {
@@ -1043,23 +1051,49 @@
     } else {
       el.style.backgroundPosition = '50% 50%';
     }
-    el.classList.add('on');
+    // Portrait photos: full height, crop sides. Landscape: cover.
+    if (p.width && p.height) {
+      el.style.backgroundSize = (p.width / p.height < 1) ? 'auto 100%' : 'cover';
+    } else {
+      el.style.backgroundSize = 'cover';
+    }
+    el.classList.remove('on');
     document.getElementById(prev).classList.remove('on');
+    el.dataset.photoId = p.id;
+    // Preload full image before fading in — eliminates the blank/blink
     if (upgrade) {
       const full = fullUrl(p);
       if (full) {
         const img = new Image();
-        img.onload = () => { if (el.classList.contains('on')) el.style.backgroundImage = `url(${full})`; };
+        img.onload = () => {
+          if (el.dataset.photoId !== p.id) return;
+          el.style.backgroundImage = `url(${full})`;
+          void el.offsetHeight;
+          el.classList.add('on');
+        };
+        img.onerror = () => {
+          el.classList.add('on');
+        };
         img.src = full;
+        return;
       }
     }
+    void el.offsetHeight;
+    el.classList.add('on');
   }
 
+  let lastShownId = null;
   function updateNowShowing() {
     if (isAttract) return;
     const p = currentPhoto;
     if (!p) return;
-    showOnLayer(p, true);
+    // fetchState() polls every 1.5s and calls this unconditionally. Re-running
+    // showOnLayer() for the SAME photo removes .on (1s fade out) then fades it
+    // back in — a blink every poll cycle. Only touch the layers on a real change.
+    if (p.id !== lastShownId) {
+      lastShownId = p.id;
+      showOnLayer(p, true);
+    }
     document.getElementById('detailTitle').textContent = p.title || p.alt || '';
     const meta = [p.year ? `c.${p.year}` : '', p.community || '', p.people || ''].filter(Boolean).join(' · ');
     document.getElementById('detailMeta').textContent = meta;
