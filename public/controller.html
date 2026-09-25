@@ -59,13 +59,13 @@
       position: fixed; inset: 0; z-index: 2;
       overflow: hidden; pointer-events: none;
       opacity: 0; transition: opacity 0.8s ease;
-      /* the scanning surface: a real tabletop with a warm light from above,
-         a soft wood/paper grain, and a vignette so prints sit ON something */
+      /* Vitrine: a lit case surface — one warm light from above, a faint tooth
+         so it reads as material, a vignette so the prints sit ON something */
       background:
-        radial-gradient(ellipse 120% 70% at 50% -10%, rgba(120,95,70,0.35) 0%, transparent 45%),
-        radial-gradient(ellipse 130% 90% at 50% 115%, rgba(0,0,0,0.6) 0%, transparent 55%),
-        repeating-linear-gradient(92deg, rgba(255,240,220,0.016) 0px, rgba(255,240,220,0.016) 2px, rgba(0,0,0,0.03) 3px, rgba(0,0,0,0.03) 5px),
-        linear-gradient(180deg, #241d17 0%, #1a1410 45%, #0f0b08 100%);
+        radial-gradient(ellipse 118% 52% at 50% 2%, rgba(206,166,98,0.20) 0%, transparent 54%),
+        radial-gradient(ellipse 130% 80% at 50% 118%, rgba(0,0,0,0.62) 0%, transparent 58%),
+        repeating-linear-gradient(96deg, rgba(255,238,214,0.014) 0 2px, rgba(0,0,0,0.03) 2px 3px, rgba(0,0,0,0.045) 3px 5px),
+        linear-gradient(180deg, #241c15 0%, #1a1410 42%, #0e0a07 100%);
     }
     #attractCollage.show { opacity: 1; }
     /* fade-out half of the 90s rebuild, driven by a CLASS — never by an inline
@@ -76,54 +76,44 @@
     #app.attract .now-showing { background-color: var(--black); }
     #app.attract .slide-layer { opacity: 0 !important; }
 
-    .table-scene {
-      position: absolute; inset: 0;
-      will-change: transform;
-      animation: tableDrift 80s ease-in-out infinite alternate;
+    /* ─── Vitrine attract screen ───
+       A fixed 800x1280 stage scaled to whatever the viewport is, so the
+       composition is identical on the tablet and in a dev window. Each print is
+       mounted to its own photograph's aspect ratio, and each carries its own
+       brass label set into its bottom mount. */
+    .vt-stage {
+      position: absolute; left: 50%; top: 50%;
+      width: 800px; height: 1280px; transform-origin: 50% 50%;
+      transform: translate(-50%, -50%) scale(var(--vt-scale, 1));
     }
-    @keyframes tableDrift {
-      from { transform: scale(1.0) translate(0, 0); }
-      to   { transform: scale(1.06) translate(-1.2%, 1.2%); }
-    }
-    .print {
-      position: absolute;
-      width: var(--w); height: var(--h);
-      left: var(--x); top: var(--y);
-      transform: rotate(var(--rot, 0deg));
-      /* each print is contain at its own aspect: complete photo, no crop */
-      background-size: contain; background-repeat: no-repeat;
-      background-position: center;
-      /* consistent top-light: soft cast down + a tighter contact shadow */
-      box-shadow: 0 14px 34px rgba(0,0,0,0.55), 0 3px 8px rgba(0,0,0,0.5);
-      background-color: #1a1613;
-    }
-    .print .print-cap {
-      position: absolute; left: 0; right: 0; bottom: -1.6em;
-      font-family: var(--font-serif); font-style: italic;
-      font-size: clamp(0.7rem, 1.4vw, 1rem);
-      color: rgba(232,226,214,0.82);
-      text-align: center; text-shadow: 0 1px 4px rgba(0,0,0,0.8);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      pointer-events: none;
-    }
-    .attract-brand {
-      position: absolute; left: 50%; top: 6%; transform: translateX(-50%);
-      font-family: var(--font-kicker); font-weight: 700;
-      /* Fixed size that FITS any tablet: 1280px wide max. Measured C1 fix:
-         the old clamp + 0.18em tracking overflowed to 1922px and clipped
-         "BOX". Now sized to fit within the viewport at every size. */
-      font-size: clamp(1.6rem, 4.2vw, 3.4rem);
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--cream); z-index: 3; text-align: center;
-      line-height: 1.15;
-      white-space: nowrap;
-      /* subtle dark scrim so the hero text reads over ANY photo */
-      padding: 0.3em 1em;
-      background: radial-gradient(ellipse 75% 130% at 50% 50%, rgba(10,10,10,0.66) 0%, rgba(10,10,10,0.38) 60%, transparent 100%);
-      border-radius: 0.4em;
-      /* one static soft shadow — no breathing animation (museum-calm) */
-      text-shadow: 0 2px 14px rgba(0,0,0,0.85);
-    }
+    .vt-layers { position: absolute; inset: 0; }
+    .vt-brand { position: absolute; left: 0; right: 0; top: 46px; text-align: center; z-index: 60; }
+    .vt-brand .wm { font-family: var(--font-serif); font-size: 17px; letter-spacing: 0.20em;
+      text-transform: uppercase; color: #ddcfb4; }
+    .vt-brand .rule { width: 54px; height: 1px; background: rgba(221,207,180,0.42); margin: 13px auto 11px; }
+    .vt-brand .sub { font-family: var(--font-sans); font-size: 8.5px; letter-spacing: 0.24em;
+      text-transform: uppercase; color: #8a816f; }
+    .vt-print { position: absolute; background: #e8dfca;
+      box-shadow: 0 18px 38px rgba(0,0,0,0.66), 0 4px 10px rgba(0,0,0,0.5),
+        inset 0 0 0 1px rgba(120,100,70,0.28); }
+    .vt-print .vt-img { position: absolute; background-repeat: no-repeat;
+      background-position: center; background-size: cover; }
+    .vt-plate { position: absolute; border-radius: 3px; padding: 4px;
+      background: linear-gradient(158deg,#c0964c 0%,#8f6c30 36%,#e0c179 62%,#7c5b25 100%);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,242,206,0.5),
+        inset 0 -1px 0 rgba(0,0,0,0.32); }
+    .vt-plate .vt-card { background: #efe9da; height: 100%; color: #20190f;
+      font-family: 'Courier New', Courier, monospace; padding: 7px 9px;
+      box-shadow: inset 0 0 10px rgba(120,90,40,0.24);
+      display: flex; flex-direction: column; justify-content: center; }
+    .vt-plate .vt-nm { font-size: 8.5px; line-height: 1.35; font-weight: 700; }
+    .vt-plate .vt-yr { margin-top: 4px; font-size: 7.5px; line-height: 1.3; color: #5a4f40;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .vt-cue { position: absolute; left: 0; right: 0; bottom: 30px; text-align: center; z-index: 60;
+      font-family: 'Courier New', Courier, monospace; font-size: 10px; letter-spacing: 0.14em;
+      color: #c3b291; }
+    .vt-cue span { display: block; margin-top: 7px; font-size: 8.5px; letter-spacing: 0.1em;
+      color: #877c66; }
 
     /* ─── Layout ─── */
     #app {
@@ -514,7 +504,18 @@
   </style>
 </head>
 <body>
-  <div id="attractCollage"><div class="attract-brand">The Red River Métis Shoebox</div></div>
+  <div id="attractCollage">
+    <div class="vt-stage" id="vtStage">
+      <div class="vt-layers" id="vtLayers"></div>
+      <div class="vt-brand">
+        <div class="wm">The Red River Métis Shoebox</div>
+        <div class="rule"></div>
+        <div class="sub">Photographs from Métis families and communities</div>
+      </div>
+      <div class="vt-cue">TOUCH A PHOTOGRAPH TO EXPLORE
+        <span id="vtCueSub">Photographs from Métis families and communities</span></div>
+    </div>
+  </div>
 
   <div id="app">
     <!-- Top bar -->
@@ -639,7 +640,13 @@
   }
   function encodePath(path) {
     if (!path) return '';
-    return path.split('/').map(s => encodeURIComponent(s)).join('/');
+    // encodeURIComponent leaves ' ( ) ! * unescaped, but a bare ' or ( ) is
+    // INVALID inside an unquoted CSS url() — the whole background-image
+    // declaration is dropped and the photo renders blank. 9 archive filenames
+    // contain an apostrophe or parentheses (e.g. "lafferty's at home - no
+    // matte.jpg", "Minister Fleming (2).jpg"), so percent-encode them here.
+    const extra = c => '%' + c.charCodeAt(0).toString(16).toUpperCase();
+    return path.split('/').map(s => encodeURIComponent(s).replace(/['()]/g, extra)).join('/');
   }
   function thumbUrl(p) {
     if (!p || !p.src) return '';
@@ -844,84 +851,136 @@
     }
     return pool;
   }
-  function printCaption(p) {
-    // name · community · year, or the caption when it's the only story
-    const people = (p.people || '').split(';').map(s => s.trim()).filter(Boolean).slice(0, 2).join(', ');
-    const place = p.community || '';
-    const year = p.year ? (p.year < 2000 ? 'c.' + p.year : '' + p.year) : '';
-    const seg = [people, place, year].filter(Boolean);
-    if (seg.length >= 2) return seg.join(' · ');
-    if (p.caption) return p.caption;
-    return seg[0] || '';
+  // ─── Vitrine attract screen (portrait-native) ───
+  // A fixed 800x1280 stage scaled to the viewport, so the composition is the
+  // same on the tablet and in a dev window. Every print is mounted to its own
+  // photograph's aspect ratio and carries its own brass label (title + date) set
+  // into its bottom mount — so no label can be covered and no title truncated.
+  const VT_W = 800, VT_H = 1280, VT_MARGIN = 34, VT_TOP = 156;
+  const VT_CUE_TOP = 1222, VT_BOT_LIMIT = VT_CUE_TOP - 34;
+  const VT_TITLE_PX = 8.5, VT_ADVANCE = 0.62 * VT_TITLE_PX;
+  const VT_PLATE_PAD = 8, VT_CARD_PAD = 14;
+  const VT_LINE_H = Math.round(VT_TITLE_PX * 1.35), VT_DATE_H = 10;
+  const VT_INFL = 7;   // prints rotate up to ~1.1deg: inflate before overlap tests
+  const VT_SLOTS = [
+    { x: 146, y: 180, h: 320, rot: -0.6 },   // landscape
+    { x:  48, y: 320, h: 296, rot:  0.9 },   // portrait
+    { x: 452, y: 560, h: 206, rot:  0.5 },   // landscape
+    { x: 126, y: 690, h: 244, rot: -1.1 },   // portrait
+    { x: 412, y: 800, h: 182, rot:  0.7 }    // landscape
+  ];
+  function vtTitle(p) {
+    const t = (p.title || '').trim();
+    if (t) return t;
+    return (p.people || '').split(';')[0].trim() || 'Untitled';
   }
-  function buildCollage() {
-    const c = document.getElementById('attractCollage');
-    const brand = c.querySelector('.attract-brand');
-    c.innerHTML = '';
-    // No photos yet (relay/manifest down): keep the wordmark and stop — a
-    // throw here would kill init and leave a permanent black screen.
-    if (!photos.length) { if (brand) c.appendChild(brand); return; }
+  function vtDate(p) {
+    if (p.year) return 'c. ' + p.year;
+    const m = String(p.caption || '').match(/\b(1[6-9]\d{2}|20\d{2})\b/);
+    return m ? 'c. ' + m[1] : 'undated';
+  }
+  function vtOverlap(a, b) { return a.l < b.r && a.r > b.l && a.t < b.b && a.b > b.t; }
+  function vtInflate(r) { return { l: r.l - VT_INFL, t: r.t - VT_INFL, r: r.r + VT_INFL, b: r.b + VT_INFL }; }
+  // exact line count for a monospace title at a given plate width
+  function vtLabelLines(title, plateW) {
+    const perLine = Math.max(6, Math.floor((plateW - 2 * VT_PLATE_PAD - 18) / VT_ADVANCE));
+    return Math.min(3, Math.max(1, Math.ceil(title.length / perLine)));
+  }
+  function vtPlateHeight(lines) {
+    return VT_PLATE_PAD + VT_CARD_PAD + lines * VT_LINE_H + 4 + VT_DATE_H;
+  }
+  function vtLayout(want, scale) {
+    const html = [], placed = [];
+    let ports = 0, lands = 0;
+    for (let i = 0; i < VT_SLOTS.length; i++) {
+      const p = want[i], s = VT_SLOTS[i];
+      if (!p || !p.width || !p.height) continue;
+      const ratio = p.width / p.height;
+      const imgH = Math.round(s.h * scale);
+      const imgW = imgH * ratio;                       // exact ratio — never rounded
+      const m = Math.max(7, Math.min(15, Math.round(imgW * 0.055)));
+      const gap = Math.round(m * 0.7);
+      const title = vtTitle(p);
+      const plateW = Math.min(Math.max(imgW * 0.94, 112), 240);
+      const lines = vtLabelLines(title, plateW);
+      const PH = vtPlateHeight(lines);
+      const bm = PH + gap + m;                         // bottom mount carries the plate
+      const fw = imgW + 2 * m, fh = imgH + m + bm;
+      const plateL = m + (imgW - plateW) / 2;
+      const plateT = m + imgH + gap;
 
-    const pool = shuffledPool();
-    const scene = document.createElement('div');
-    scene.className = 'table-scene';
-
-    // ~20-22 prints, each sized to its OWN aspect ratio (no uniform cells),
-    // laid flat with rotation, DENSE overlap (photos partially covering each
-    // other, like a real shoebox spill — not a grid), consistent shadow
-    // direction from a single top-light.
-    const count = 21;
-    const vw = window.innerWidth, vh = window.innerHeight;
-    // Anchor points scattered across the whole surface; prints drawn in order
-    // so later ones overlap earlier ones naturally.
-    const cols = 4, rows = 5;
-    const cellW = vw / cols, cellH = vh / rows;
-    for (let i = 0; i < count; i++) {
-      const p = pool[i % pool.length];
-      const pa = (p.width && p.height) ? p.height / p.width : 1;
-      const aspect = Math.min(Math.max(pa, 0.4), 2.4);
-      // size LARGER than the cell so neighbors overlap (density)
-      let w = cellW * (0.78 + Math.random() * 0.28);
-      let h = w * aspect;
-      if (h > cellH * 1.12) { h = cellH * 1.12; w = h / aspect; }
-      // position at the cell center with bigger jitter so edges overlap;
-      // first row starts below the wordmark's safe zone (top ~12vh)
-      const cx = (i % cols) * cellW + (cellW - w) / 2 + (Math.random() * 0.5 - 0.25) * cellW;
-      const rowY = Math.floor(i / cols);
-      const cy = (rowY === 0 ? vh * 0.12 : rowY * cellH) + (cellH - h) / 2 + (Math.random() * 0.5 - 0.25) * cellH;
-      // varied rotation, some straight (museum flat-lay feel)
-      const rot = (Math.random() < 0.3 ? 0 : (Math.random() * 7 - 3.5)).toFixed(1);
-      const el = document.createElement('div');
-      el.className = 'print';
-      el.style.setProperty('--w', w.toFixed(1) + 'px');
-      el.style.setProperty('--h', h.toFixed(1) + 'px');
-      el.style.setProperty('--x', cx.toFixed(1) + 'px');
-      el.style.setProperty('--y', cy.toFixed(1) + 'px');
-      el.style.setProperty('--rot', rot + 'deg');
-      el.style.backgroundImage = `url(${thumbUrl(p)})`;
-      // Portrait: fill height, crop sides. Landscape: cover.
-      if (p.width && p.height && p.width / p.height < 1) {
-        el.style.backgroundSize = 'auto 100%';
-        el.style.backgroundPosition = `${((p.faceX||0.5)*100).toFixed(1)}% ${((p.faceY||0.5)*100).toFixed(1)}%`;
-      } else {
-        el.style.backgroundSize = 'cover';
-        el.style.backgroundPosition = 'center';
-      }
-      // captions on a subset (only where there's a story to tell), drawn
-      // AFTER the print so they sit on top and stay readable
-      if (i % 3 === 0) {
-        const cap = printCaption(p);
-        if (cap) {
-          const capEl = document.createElement('div');
-          capEl.className = 'print-cap';
-          capEl.textContent = cap;
-          el.appendChild(capEl);
+      let chosen = null;
+      outer:
+      for (const dy of [0, 16, 32, 48, 64, 88, 112, 140, 168, 196]) {
+        for (const dx of [0, -22, 22, -44, 44, -66, 66]) {
+          const x0 = Math.max(VT_MARGIN, Math.min(VT_W - VT_MARGIN - fw, s.x + dx));
+          const y0 = s.y + dy;
+          if (y0 < VT_TOP || y0 + fh > VT_BOT_LIMIT) continue;
+          const rect = { l: x0, t: y0, r: x0 + fw, b: y0 + fh };
+          const plate = { l: x0 + plateL, t: y0 + plateT, r: x0 + plateL + plateW, b: y0 + plateT + PH };
+          const clash = placed.some(q =>
+            vtOverlap(vtInflate(rect), q.plate) || vtOverlap(q.rect, vtInflate(plate)));
+          if (!clash) { chosen = { rect, plate, x: x0, y: y0 }; break outer; }
         }
       }
-      scene.appendChild(el);
+      if (!chosen) return null;                        // no clean spot at this scale
+
+      placed.push(chosen);
+      html.push(`<div class="vt-print" data-id="${esc(p.id)}"
+          title="${esc(p.people || p.title || '')}"
+          style="left:${chosen.x.toFixed(1)}px;top:${chosen.y.toFixed(1)}px;width:${fw.toFixed(1)}px;
+            height:${fh.toFixed(1)}px;z-index:${20 + i};transform:rotate(${s.rot}deg)">
+          <div class="vt-img" style="left:${m.toFixed(1)}px;top:${m.toFixed(1)}px;
+            width:${imgW.toFixed(1)}px;height:${imgH.toFixed(1)}px;
+            background-image:url(${fullUrl(p)})"></div>
+          <div class="vt-plate" style="left:${plateL.toFixed(1)}px;top:${plateT.toFixed(1)}px;
+            width:${plateW.toFixed(1)}px;height:${PH}px">
+            <div class="vt-card">
+              <div class="vt-nm">${esc(title)}</div>
+              <div class="vt-yr">${esc(vtDate(p))}</div>
+            </div>
+          </div>
+        </div>`);
+      if (ratio >= 1) lands++; else ports++;
     }
-    c.appendChild(scene);
-    c.appendChild(brand);
+    return { html, placed, ports, lands };
+  }
+  function buildCollage() {
+    const layers = document.getElementById('vtLayers');
+    if (!layers) return;
+    // No photos yet (relay/manifest down): keep the wordmark and stop — a throw
+    // here would kill init and leave a permanent black screen.
+    if (!photos.length) { layers.innerHTML = ''; return; }
+
+    // scale the fixed stage to the real viewport (tablet portrait = 1:1)
+    const stage = document.getElementById('vtStage');
+    if (stage) {
+      const scale = Math.min(window.innerWidth / VT_W, window.innerHeight / VT_H);
+      stage.style.setProperty('--vt-scale', scale.toFixed(4));
+    }
+    const cueSub = document.getElementById('vtCueSub');
+    if (cueSub && photos.length) cueSub.textContent = `${photos.length} photographs · families, communities, and stories`;
+
+    const pool = shuffledPool();
+    const land = pool.filter(p => p.width && p.height && p.width / p.height >= 1.05);
+    const port = pool.filter(p => p.width && p.height && p.width / p.height < 1.00);
+    // deal alternately from each group so both orientations always appear, never
+    // reusing a photograph inside one arrangement
+    const want = [], seen = new Set();
+    const take = arr => { for (const p of arr) if (!seen.has(p.id)) { seen.add(p.id); return p; } return null; };
+    for (let i = 0; i < VT_SLOTS.length; i++) {
+      const pick = take(i % 2 === 0 ? land : port) || take(land) || take(port);
+      if (!pick) break;
+      want.push(pick);
+    }
+
+    let out = null;
+    for (const sc of [1, 0.94, 0.88, 0.82, 0.76]) {
+      out = vtLayout(want, sc);
+      if (out && out.placed.length === VT_SLOTS.length) break;
+    }
+    if (!out || !out.placed.length) { layers.innerHTML = ''; return; }
+    layers.innerHTML = out.html.join('');
   }
   // Rebuild the table with fresh photos + arrangement on every idle session
   // (or ~90s), crossfading over the existing 0.8s opacity transition so there
