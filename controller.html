@@ -68,6 +68,10 @@
         linear-gradient(180deg, #241d17 0%, #1a1410 45%, #0f0b08 100%);
     }
     #attractCollage.show { opacity: 1; }
+    /* fade-out half of the 90s rebuild, driven by a CLASS — never by an inline
+       style. An inline opacity:1 survives classList.remove('show') and pins the
+       screensaver on screen permanently (visitor can't tap back in). */
+    #attractCollage.show.refresh-hide { opacity: 0; }
     /* while the screensaver is up, blank out the Now Showing photo behind it */
     #app.attract .now-showing { background-color: var(--black); }
     #app.attract .slide-layer { opacity: 0 !important; }
@@ -804,11 +808,17 @@
   }
   function wakeFromAttract() {
     resetIdle();
+    // Force the screensaver down FIRST, even when isAttract is already false:
+    // a stray collage left visible (old inline opacity, orphaned refresh timer)
+    // is otherwise undismissable — the visitor taps and nothing happens.
+    const collage = document.getElementById('attractCollage');
+    collage.classList.remove('show');
+    collage.classList.remove('refresh-hide');
+    collage.style.opacity = '';
     if (!isAttract) return;
     isAttract = false;
     stopCollage();
     document.getElementById('app').classList.remove('attract');
-    document.getElementById('attractCollage').classList.remove('show');
     document.getElementById('tapHint') && document.getElementById('tapHint').classList.remove('hidden');
     document.getElementById('details').classList.remove('hidden');
     if (currentPhoto) updateNowShowing();
@@ -916,15 +926,21 @@
   // Rebuild the table with fresh photos + arrangement on every idle session
   // (or ~90s), crossfading over the existing 0.8s opacity transition so there
   // is never a mid-flight swap.
+  let collageRefreshTimer = null;
   function collageRefresh() {
     if (!isAttract || !photos.length) return;
     const c = document.getElementById('attractCollage');
-    // fade out, rebuild, fade back in — one clean crossfade
-    c.style.transition = 'opacity 0.8s ease';
-    c.style.opacity = '0';
-    setTimeout(() => {
+    // Fade out / rebuild / fade back in — one clean crossfade, driven by a
+    // class so the screensaver's visibility is never pinned by an inline style.
+    c.classList.add('refresh-hide');
+    clearTimeout(collageRefreshTimer);
+    collageRefreshTimer = setTimeout(() => {
+      collageRefreshTimer = null;
+      // The visitor may have woken the screen during the fade — never rebuild
+      // over a live UI.
+      if (!isAttract) { c.classList.remove('refresh-hide'); return; }
       buildCollage();
-      c.style.opacity = '1';
+      c.classList.remove('refresh-hide');
     }, 800);
   }
   function startCollage() {
@@ -934,6 +950,9 @@
   }
   function stopCollage() {
     if (collageRebuildTimer) { clearInterval(collageRebuildTimer); collageRebuildTimer = null; }
+    if (collageRefreshTimer) { clearTimeout(collageRefreshTimer); collageRefreshTimer = null; }
+    const c = document.getElementById('attractCollage');
+    if (c) c.classList.remove('refresh-hide');
   }
 
   // ─── Name cycling in search ───
