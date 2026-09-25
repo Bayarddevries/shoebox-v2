@@ -932,7 +932,7 @@
             height:${fh.toFixed(1)}px;z-index:${20 + i};transform:rotate(${s.rot}deg)">
           <div class="vt-img" style="left:${m.toFixed(1)}px;top:${m.toFixed(1)}px;
             width:${imgW.toFixed(1)}px;height:${imgH.toFixed(1)}px;
-            background-image:url(${fullUrl(p)})"></div>
+            background-image:url(${thumbUrl(p)})"></div>
           <div class="vt-plate" style="left:${plateL.toFixed(1)}px;top:${plateT.toFixed(1)}px;
             width:${plateW.toFixed(1)}px;height:${PH}px">
             <div class="vt-card">
@@ -981,6 +981,25 @@
     }
     if (!out || !out.placed.length) { layers.innerHTML = ''; return; }
     layers.innerHTML = out.html.join('');
+
+    // Paint the small thumbs first (a few KB each, so prints appear instantly)
+    // then upgrade each one to the full-resolution scan once it has decoded.
+    // The attract screen must never sit empty while multi-MB scans download
+    // over the tablet's link.
+    layers.querySelectorAll('.vt-print').forEach(el => {
+      const p = byId[el.dataset.id];
+      if (!p) return;
+      const full = fullUrl(p);
+      if (!full) return;
+      const img = new Image();
+      img.onload = () => {
+        const layer = el.querySelector('.vt-img');
+        if (layer && document.contains(layer) && el.dataset.id === p.id) {
+          layer.style.backgroundImage = `url(${full})`;
+        }
+      };
+      img.src = full;
+    });
   }
   // Rebuild the table with fresh photos + arrangement on every idle session
   // (or ~90s), crossfading over the existing 0.8s opacity transition so there
@@ -1492,17 +1511,22 @@
     // static manifest (mirror the projector). The controller must show the
     // archive even when the relay is unreachable (e.g. GitHub Pages or a
     // mis-routed device); live sync needs the relay, images do not.
-    try {
-      const r = await fetch(`${serverUrl}/manifest`, { signal: AbortSignal.timeout(5000) });
+    // ⚠️ The fallback must fire on an EMPTY result too, not only on a thrown
+    // error: the relay serves an empty/partial manifest for a few seconds after
+    // a restart, and an empty list leaves the controller with NO images at all
+    // (wordmark-only screensaver, empty gallery) while everything looks healthy.
+    async function fetchManifest(url) {
+      const r = await fetch(url, { signal: AbortSignal.timeout(5000) });
       const d = await r.json();
-      photos = d.photos || d;
-    } catch (e) {
-      try {
-        const r = await fetch(`${base()}assets/shoebox/manifest.json`, { signal: AbortSignal.timeout(5000) });
-        const d = await r.json();
-        photos = d.photos || d;
-      } catch (e2) {}
+      const list = (d && d.photos) ? d.photos : d;
+      return Array.isArray(list) ? list : [];
     }
+    let loaded = [];
+    try { loaded = await fetchManifest(`${serverUrl}/manifest`); } catch (e) {}
+    if (!loaded.length) {
+      try { loaded = await fetchManifest(`${base()}assets/shoebox/manifest.json`); } catch (e2) {}
+    }
+    photos = loaded;
     photos.forEach(p => { byId[p.id] = p; });
 
     // Load themes
