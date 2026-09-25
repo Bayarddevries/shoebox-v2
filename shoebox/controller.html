@@ -606,6 +606,33 @@
   const APP_VERSION = 'v3.3.0';
   let serverUrl = 'http://localhost:8081';
   let photos = [];
+
+  // ── TEMPORARY DIAGNOSTIC (remove once the tablet renders) ──
+  // The kiosk tablet has no accessible console, so the page reports what IT sees
+  // to the state relay's request log. Reads back with: process poll on the relay.
+  window.__lastErr = 'none';
+  window.addEventListener('error', function (e) {
+    window.__lastErr = String(e.message || 'error') + ' @line ' + String(e.lineno || '?');
+    try { reportDiag('js-error'); } catch (x) {}
+  });
+  function reportDiag(where) {
+    try {
+      const stage = document.getElementById('vtStage');
+      const q = new URLSearchParams();
+      q.set('where', where);
+      q.set('photos', String(photos.length));
+      q.set('prints', String(document.querySelectorAll('.vt-print').length));
+      q.set('scale', stage ? (stage.style.getPropertyValue('--vt-scale') || 'unset') : 'nostage');
+      q.set('vw', String(window.innerWidth));
+      q.set('vh', String(window.innerHeight));
+      q.set('err', window.__lastErr);
+      q.set('ua', navigator.userAgent.slice(0, 70));
+      // report to the state relay (the readable log) AND to whatever host served
+      // this page, so the report arrives even when the relay is unreachable
+      fetch(serverUrl + '/diag?' + q.toString()).catch(function () {});
+      fetch('/diag?' + q.toString()).catch(function () {});
+    } catch (e) {}
+  }
   const byId = {};
   let currentPhoto = null;
   let currentIndex = 0;
@@ -950,12 +977,14 @@
     if (!layers) return;
     // No photos yet (relay/manifest down): keep the wordmark and stop — a throw
     // here would kill init and leave a permanent black screen.
-    if (!photos.length) { layers.innerHTML = ''; return; }
+    if (!photos.length) { layers.innerHTML = ''; reportDiag('collage-empty'); return; }
 
     // scale the fixed stage to the real viewport (tablet portrait = 1:1)
     const stage = document.getElementById('vtStage');
     if (stage) {
-      const scale = Math.min(window.innerWidth / VT_W, window.innerHeight / VT_H);
+      let scale = Math.min(window.innerWidth / VT_W, window.innerHeight / VT_H);
+      if (!isFinite(scale) || scale <= 0) scale = 1;      // never scale to nothing
+      scale = Math.max(0.25, Math.min(2, scale));
       stage.style.setProperty('--vt-scale', scale.toFixed(4));
     }
     const cueSub = document.getElementById('vtCueSub');
@@ -979,8 +1008,9 @@
       out = vtLayout(want, sc);
       if (out && out.placed.length === VT_SLOTS.length) break;
     }
-    if (!out || !out.placed.length) { layers.innerHTML = ''; return; }
+    if (!out || !out.placed.length) { layers.innerHTML = ''; reportDiag('layout-failed'); return; }
     layers.innerHTML = out.html.join('');
+    reportDiag('built');
 
     // Paint the small thumbs first (a few KB each, so prints appear instantly)
     // then upgrade each one to the full-resolution scan once it has decoded.
@@ -1506,6 +1536,7 @@
   // ─── Init ───
   async function init() {
     serverUrl = getServerUrl();
+    reportDiag('init-start');
 
     // Load manifest — try the state relay first, fall back to the SAME-ORIGIN
     // static manifest (mirror the projector). The controller must show the
@@ -1543,6 +1574,7 @@
     startNameCycle();
     startPolling();
     startIdleTimer();
+    reportDiag('init-end');
 
     // Wake on any pointer press (touch, pen, or mouse — touchstart alone
     // misses mouse-driven setups and some browser tap translations). The
