@@ -232,6 +232,20 @@ export default function IdleSlideshow({ photos, baseUrl }: IdleSlideshowProps) {
     }
   }, [photos.length, showing])
 
+  // Lock body scroll while the overlay is showing so the page's scrollbar
+  // doesn't float over the fullscreen screensaver.
+  useEffect(() => {
+    if (!showing) return
+    const prevBody = document.body.style.overflow
+    const prevHtml = document.documentElement.style.overflow
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prevBody
+      document.documentElement.style.overflow = prevHtml
+    }
+  }, [showing])
+
   // If no photos, render nothing
   if (shuffled.length === 0) return null
 
@@ -256,6 +270,7 @@ export default function IdleSlideshow({ photos, baseUrl }: IdleSlideshowProps) {
           inset: 0;
           z-index: 9999;
           background: black;
+          overflow: hidden;
           cursor: pointer;
           animation: idleFadeIn 0.8s ease-out;
         }
