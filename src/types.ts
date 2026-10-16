@@ -49,6 +49,8 @@ export interface FilterState {
   families: string[]
   decades: string[]
   keywords: string[]
+  /** Hide photos tagged "LR" (low-res) in Lightroom. Default ON — only the best show. */
+  hideLowRes: boolean
 }
 
 export const EMPTY_FILTERS: FilterState = {
@@ -57,6 +59,7 @@ export const EMPTY_FILTERS: FilterState = {
   families: [],
   decades: [],
   keywords: [],
+  hideLowRes: true,
 }
 
 /** Check if any filter is active */
@@ -88,6 +91,8 @@ export function filtersToSearchParams(filters: FilterState): URLSearchParams {
   filters.families.forEach(v => params.append('family', v))
   filters.decades.forEach(v => params.append('decade', v))
   filters.keywords.forEach(v => params.append('keyword', v))
+  // Only write hideLowRes when it is OFF; default (ON) is clean in the URL.
+  if (!filters.hideLowRes) params.set('showLowRes', '1')
   return params
 }
 
@@ -99,6 +104,8 @@ export function searchParamsToFilters(params: URLSearchParams): FilterState {
     families: params.getAll('family'),
     decades: params.getAll('decade'),
     keywords: params.getAll('keyword'),
+    // Show low-res only when explicitly requested; otherwise hide by default.
+    hideLowRes: params.get('showLowRes') !== '1',
   }
 }
 

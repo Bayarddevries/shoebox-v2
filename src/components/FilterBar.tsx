@@ -78,6 +78,7 @@ export default function FilterBar({
       families: [],
       decades: [],
       keywords: [],
+      hideLowRes: true, // keep hiding low-res on Clear all — the best-only default
     })
     setActiveDropdown(null)
   }, [onFiltersChange])
@@ -228,6 +229,14 @@ export default function FilterBar({
           {communities.length > 0 && renderDropdown('community', 'Community', '📍', communities, filters.communities, 'communities')}
           {families.length > 0 && renderDropdown('family', 'Family', '👤', families, filters.families, 'families')}
           {keywords.length > 0 && renderDropdown('keyword', 'Keyword', '🏷️', keywords, filters.keywords, 'keywords')}
+          <button
+            onClick={() => onFiltersChange({ ...filters, hideLowRes: !filters.hideLowRes })}
+            className={`filter-chip ${filters.hideLowRes ? '' : 'filter-chip-active'}`}
+            title={filters.hideLowRes ? 'Low-res photos are hidden. Click to show them.' : 'Showing low-res photos. Click to hide them.'}
+          >
+            <span className="filter-chip-icon">{filters.hideLowRes ? '⭐' : '📄'}</span>
+            <span>{filters.hideLowRes ? 'Best only' : 'Show all'}</span>
+          </button>
           {hasFilters && (
             <button onClick={clearAll} className="clear-all-inline">
               ✕ Clear
@@ -296,6 +305,16 @@ export default function FilterBar({
               {communities.length > 0 && renderMobileSection('Community', '📍', communities, filters.communities, 'communities')}
               {families.length > 0 && renderMobileSection('Family', '👤', families, filters.families, 'families')}
               {keywords.length > 0 && renderMobileSection('Keywords', '🏷️', keywords, filters.keywords, 'keywords')}
+
+              <div className="mobile-filter-section">
+                <h4 className="mobile-filter-title">{filters.hideLowRes ? '⭐' : '📄'} Best only</h4>
+                <button
+                  onClick={() => onFiltersChange({ ...filters, hideLowRes: !filters.hideLowRes })}
+                  className={`mobile-filter-chip ${filters.hideLowRes ? 'mobile-filter-chip-active' : ''}`}
+                >
+                  {filters.hideLowRes ? 'Only the best (low-res hidden)' : 'Show all (including low-res)'}
+                </button>
+              </div>
             </div>
 
             <div className="mobile-sheet-footer">

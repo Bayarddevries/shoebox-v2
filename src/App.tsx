@@ -229,6 +229,13 @@ export default function App() {
   // ── Filter photos ─────────────────────────────────────
   const filteredPhotos = useMemo(() => {
     return photos.filter(photo => {
+      // Hide low-res photos (tagged "LR" in Lightroom) unless explicitly shown.
+      // LR is an exact keyword ("LR"), not a substring — "cultural art" must not match.
+      if (filters.hideLowRes) {
+        const kws = (photo.keywords || []).map(k => String(k).trim().toUpperCase())
+        if (kws.includes('LR')) return false
+      }
+
       // Search
       if (debouncedSearch) {
         const q = debouncedSearch.toLowerCase()
