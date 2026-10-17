@@ -60,17 +60,17 @@ export default function App() {
     if (!initialUrlRead.current) return
     const params = filtersToSearchParams(filters)
     const qs = params.toString()
-    const claim = new URLSearchParams(window.location.search).get('claim')
-    let newUrl: string
-    if (claim) {
-      // Keep the claim token in the URL at all times; append filters after it
-      const sep = qs ? `&${qs}` : ''
-      newUrl = `${window.location.pathname}?claim=${encodeURIComponent(claim)}${sep}${window.location.hash}`
-    } else {
-      newUrl = qs
-        ? `${window.location.pathname}?${qs}${window.location.hash}`
-        : `${window.location.pathname}${window.location.hash}`
-    }
+    const currentParams = new URLSearchParams(window.location.search)
+    const claim = currentParams.get('claim')
+    const idle = currentParams.get('idle')
+    // Preserve non-filter params (claim token, booth idle override).
+    const next = new URLSearchParams(qs)
+    if (claim) next.set('claim', claim)
+    if (idle) next.set('idle', idle)
+    const nextQs = next.toString()
+    const newUrl = nextQs
+      ? `${window.location.pathname}?${nextQs}${window.location.hash}`
+      : `${window.location.pathname}${window.location.hash}`
     const current = window.location.pathname + window.location.search + window.location.hash
     if (current !== newUrl) {
       window.history.replaceState(null, '', newUrl)

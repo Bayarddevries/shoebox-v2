@@ -20,6 +20,7 @@ export interface Photo {
   lastModified?: number
   year?: number // historical photo date (derived from keywords/title/era)
   scanYear?: number // EXIF scan/digitization date
+  submitter?: string | null
   photoYearSource?: 'keyword-specific' | 'title' | 'keyword-era' | 'scan-date' | 'unknown'
   width?: number | null
   height?: number | null
