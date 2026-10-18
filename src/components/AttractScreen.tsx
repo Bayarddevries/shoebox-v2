@@ -5,13 +5,13 @@ import './AttractScreen.css'
 /**
  * The idle "attract" screen for the public archive site.
  *
- * Replaces the old full-bleed Ken Burns screensaver. Purpose: while the tablet
- * or Surface sits unattended at an event, show the best photographs AND explain
- * what the archive is, how big it is, and how a visitor can add to it. The
- * screen must also make it obvious that the device is interactive.
+ * Three scenes cycle every 12 seconds:
+ *   1. FEATURED PHOTOGRAPH  one large print plus who shared it
+ *   2. FAMILIES WHO SHARED  three prints, each credited to its submitter
+ *   3. ADD YOUR PHOTOGRAPHS the contribution invitation and QR
  *
- * Layout is fluid: portrait stacks (header / hero / stats / invitation / cue),
- * landscape splits (hero left, invitation right, stats across the bottom).
+ * The wordmark, the collection stats and the tap cue stay fixed so the screen
+ * always explains itself and always looks interactive.
  */
 
 interface AttractScreenProps {
@@ -19,11 +19,16 @@ interface AttractScreenProps {
   baseUrl: string
 }
 
-const HERO_INTERVAL = 8000
+const SCENE_MS = 12000
 const PLATE_CHROME = 96 // mount padding (12) + plate block (54) + margins (20) + safety
+const MINI_CHROME = 104 // mount padding (10) + tag block (~74) + margins
+const TRIO_GAP = 24
 
 function encodePath(path: string): string {
-  return path.split('/').map(segment => encodeURIComponent(segment)).join('/')
+  // encodeURI (not encodeURIComponent) keeps commas and apostrophes literal.
+  // Some static servers, including the local preview server, fail to resolve
+  // %2C in a path and fall back to index.html, which paints a blank mount.
+  return encodeURI(path).replace(/#/g, '%23').replace(/\?/g, '%3F')
 }
 
 function thumbOf(src: string): string {
@@ -43,6 +48,36 @@ function dateLine(p: Photo): string {
   const y = yearOf(p)
   if (!y) return 'Undated'
   return y < 1930 ? `c. ${y}` : String(y)
+}
+
+function captionOf(p: Photo): string {
+  const title = titleOf(p).trim().toLowerCase()
+  const caption = (p.caption || '').trim()
+  if (!caption) return ''
+  const c = caption.toLowerCase()
+  if (c === title || c.startsWith(title) || title.startsWith(c)) return ''
+  return caption
+}
+
+function submitterOf(p: Photo): string {
+  return (p.submitter || '').trim() || 'the community archive'
+}
+
+/** Three photographs by three different submitters, where the pool allows it. */
+function pickTrio(pool: Photo[], start: number): Photo[] {
+  const out: Photo[] = []
+  const seen = new Set<string>()
+  for (let i = 0; i < pool.length && out.length < 3; i++) {
+    const p = pool[(start + i) % pool.length]
+    const who = submitterOf(p).toLowerCase()
+    if (seen.has(who)) continue
+    seen.add(who)
+    out.push(p)
+  }
+  for (let i = 0; out.length < 3 && i < pool.length; i++) {
+    out.push(pool[(start + i) % pool.length])
+  }
+  return out
 }
 
 function splitPeople(people: Photo['people']): string[] {
@@ -123,57 +158,69 @@ function Stat({ target, label, sub }: { target: number; label: string; sub?: str
   )
 }
 
-function HeroMount({
-  photo,
-  baseUrl,
-  width,
-  height,
-  active,
-  onReady,
-}: {
-  photo: Photo
-  baseUrl: string
-  width: number
-  height: number
-  active: boolean
-  onReady: () => void
-}) {
+function useSize() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [size, setSize] = useState({ w: 0, h: 0 })
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const measure = () => {
+      const r = el.getBoundingClientRect()
+      setSize({ w: r.width, h: r.height })
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+  return { ref, size }
+}
+
+function fitPhoto(p: Photo, maxW: number, maxH: number) {
+  const ratio = (p.width || 0) / (p.height || 0)
+  if (!maxW || !maxH || !ratio || ratio <= 0) return null
+  let w = Math.min(maxW, maxH * ratio)
+  let h = w / ratio
+  if (h > maxH) {
+    h = maxH
+    w = h * ratio
+  }
+  return { w: Math.round(w), h: Math.round(h) }
+}
+
+/** Page 1: the large mounted print, with its plate. */
+function HeroMount({ photo, baseUrl, width, height }: { photo: Photo; baseUrl: string; width: number; height: number }) {
   const photoRef = useRef<HTMLDivElement>(null)
   const [loaded, setLoaded] = useState(false)
   const full = `${baseUrl}${encodePath(photo.src)}`
   const thumb = `${baseUrl}${encodePath(thumbOf(photo.src))}`
 
-  // Paint the ~16KB thumbnail first and upgrade to the full scan on load.
-  // The mount stays invisible until the thumbnail is decoded, so a crossfade
-  // can never reveal an empty cream frame on a slow connection.
   useEffect(() => {
     let cancelled = false
-    const markReady = () => {
-      if (cancelled) return
-      setLoaded(true)
-      onReady()
+    const ready = () => {
+      if (!cancelled) setLoaded(true)
     }
     const img = new Image()
-    img.onload = markReady
-    img.onerror = markReady
+    img.onload = ready
+    img.onerror = ready
     img.src = thumb
-    // Never let a missing/slow thumbnail freeze the rotation.
-    const fallback = window.setTimeout(markReady, 3000)
+    const fallback = window.setTimeout(ready, 3000)
     return () => {
       cancelled = true
       window.clearTimeout(fallback)
     }
-    // onReady is stable enough for this one-shot preload
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [thumb])
 
   useEffect(() => {
     let cancelled = false
     const probe = new Image()
-    probe.onload = () => {
-      if (!cancelled && photoRef.current) {
-        photoRef.current.style.backgroundImage = `url("${full}")`
+    probe.onload = async () => {
+      try {
+        await probe.decode()
+      } catch {
+        // decode() can reject for an already-decoded image; the swap is still safe
       }
+      if (!cancelled && photoRef.current) photoRef.current.style.backgroundImage = `url("${full}")`
     }
     probe.src = full
     return () => {
@@ -182,12 +229,8 @@ function HeroMount({
   }, [full])
 
   return (
-    <div className={`at-mount${active && loaded ? ' on' : ''}`} style={{ width: width + 24 }}>
-      <div
-        ref={photoRef}
-        className="photo"
-        style={{ height, backgroundImage: `url("${thumb}")` }}
-      />
+    <div className={`at-mount${loaded ? ' on' : ''}`} style={{ width: width + 24 }}>
+      <div ref={photoRef} className="photo" style={{ height, backgroundImage: `url("${thumb}")` }} />
       <div className="plate">
         <div className="card">
           <div className="ttl">{titleOf(photo)}</div>
@@ -198,15 +241,70 @@ function HeroMount({
   )
 }
 
+/** Page 2: a smaller print with the submitter named directly beneath it. */
+function MiniPrint({
+  photo,
+  baseUrl,
+  width,
+  height,
+}: {
+  photo: Photo
+  baseUrl: string
+  width: number
+  height: number
+}) {
+  const photoRef = useRef<HTMLDivElement>(null)
+  const [loaded, setLoaded] = useState(false)
+  const full = `${baseUrl}${encodePath(photo.src)}`
+  const thumb = `${baseUrl}${encodePath(thumbOf(photo.src))}`
+
+  useEffect(() => {
+    let cancelled = false
+    const ready = () => {
+      if (!cancelled) setLoaded(true)
+    }
+    const img = new Image()
+    img.onload = ready
+    img.onerror = ready
+    img.src = thumb
+    const probe = new Image()
+    probe.onload = async () => {
+      try {
+        await probe.decode()
+      } catch {
+        // already-decoded images can reject decode(); the swap is still safe
+      }
+      if (!cancelled && photoRef.current) photoRef.current.style.backgroundImage = `url("${full}")`
+    }
+    probe.src = full
+    const fallback = window.setTimeout(ready, 4000)
+    return () => {
+      cancelled = true
+      window.clearTimeout(fallback)
+    }
+  }, [thumb, full])
+
+  return (
+    <div className={`at-print${loaded ? ' on' : ''}`} style={{ width: width + 20 }}>
+      <div ref={photoRef} className="photo" style={{ height, backgroundImage: `url("${thumb}")` }} />
+      <div className="at-tag">
+        <div className="lab">Shared by</div>
+        <div className="who">{submitterOf(photo)}</div>
+        <div className="meta">
+          {titleOf(photo)} · {dateLine(photo)}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function AttractScreen({ photos, baseUrl }: AttractScreenProps) {
   const counts = useMemo(() => computeCounts(photos), [photos])
 
-  const fieldRef = useRef<HTMLDivElement>(null)
-  const [field, setField] = useState({ w: 0, h: 0 })
   const [pool, setPool] = useState<Photo[]>([])
-  const [pair, setPair] = useState<{ photo: Photo; key: number }[]>([])
-  const [activeKey, setActiveKey] = useState<number | null>(null)
-  const indexRef = useRef(0)
+  const [cycle, setCycle] = useState(0)
+  const { ref: p1FieldRef, size: p1Field } = useSize()
+  const { ref: p2RowRef, size: p2Row } = useSize()
 
   // ── Hero pool: the curated 80, resolved against the manifest ──
   useEffect(() => {
@@ -238,7 +336,7 @@ export default function AttractScreen({ photos, baseUrl }: AttractScreenProps) {
     }
   }, [photos, baseUrl])
 
-  // Alternate landscape and portrait so the hero doesn't run in one rhythm.
+  // Alternate landscape and portrait so the scenes don't run in one rhythm.
   const orderedPool = useMemo(() => {
     if (!pool.length) return []
     const land = pool.filter(p => (p.width || 1) / (p.height || 1) >= 1)
@@ -251,78 +349,53 @@ export default function AttractScreen({ photos, baseUrl }: AttractScreenProps) {
     return out.length ? out : pool
   }, [pool])
 
-  // ── Measure the hero field; the mount is sized to the photograph's ratio ──
-  useEffect(() => {
-    const el = fieldRef.current
-    if (!el) return
-    const measure = () => {
-      const r = el.getBoundingClientRect()
-      setField({ w: r.width, h: r.height })
-    }
-    measure()
-    const ro = new ResizeObserver(measure)
-    ro.observe(el)
-    return () => ro.disconnect()
-  }, [])
-
-  // ── Hero rotation ──
+  // ── Scene clock ──
   useEffect(() => {
     if (!orderedPool.length) return
-    indexRef.current = 0
-    setPair([{ photo: orderedPool[0], key: 0 }])
-    setActiveKey(null)
-    const firstFallback = window.setTimeout(() => setActiveKey(0), 2500)
+    const id = window.setInterval(() => setCycle(c => c + 1), SCENE_MS)
+    return () => window.clearInterval(id)
+  }, [orderedPool.length])
 
-    const id = window.setInterval(() => {
-      indexRef.current += 1
-      const key = indexRef.current
-      const photo = orderedPool[key % orderedPool.length]
-      setPair(prev => {
-        // Keep the last three mounts: if the newest photograph is still
-        // decoding, the previously visible one stays in the DOM so the screen
-        // can never be empty during a rotation.
-        const keep = prev.slice(-2)
-        return [...keep, { photo, key }]
-      })
-      // Activate when the thumbnail decodes; this fallback means a failed
-      // thumbnail can never freeze the rotation.
-      window.setTimeout(() => setActiveKey(k => (k == null || key > k ? key : k)), 2500)
+  const scene = cycle % 3
 
-      // Warm the next photograph while this one is on screen.
-      const next = orderedPool[(key + 1) % orderedPool.length]
-      if (next) {
-        const img = new Image()
-        img.src = `${baseUrl}${encodePath(next.src)}`
-      }
-    }, HERO_INTERVAL)
+  // Content is chosen one scene AHEAD so its images have 12–24 seconds to
+  // decode while hidden. Without this, a scene can open on a blank cream mount.
+  const [featured, setFeatured] = useState<Photo | null>(null)
+  const [trio, setTrio] = useState<Photo[]>([])
 
-    return () => {
-      window.clearInterval(id)
-      window.clearTimeout(firstFallback)
+  useEffect(() => {
+    if (!orderedPool.length) return
+    if (scene === 0) {
+      if (!featured) setFeatured(orderedPool[0])
+      return
     }
-  }, [orderedPool, baseUrl])
+    const nextP1 = cycle + ((0 - scene + 3) % 3)
+    setFeatured(orderedPool[(nextP1 * 7) % orderedPool.length])
+  }, [cycle, scene, orderedPool, featured])
 
-  // Fit a photograph inside the field without cropping.
-  const sized = useMemo(() => {
-    return pair.map(({ photo, key }) => {
-      const ratio = (photo.width || 0) / (photo.height || 0)
-      if (!field.w || !field.h || !ratio || ratio <= 0) return { photo, key, width: 0, height: 0 }
-      const maxPhotoW = field.w - 40
-      const maxPhotoH = field.h - PLATE_CHROME
-      let w = Math.min(maxPhotoW, maxPhotoH * ratio)
-      let h = w / ratio
-      if (h > maxPhotoH) {
-        h = maxPhotoH
-        w = h * ratio
-      }
-      return { photo, key, width: Math.round(w), height: Math.round(h) }
-    })
-  }, [pair, field])
+  useEffect(() => {
+    if (!orderedPool.length) return
+    if (scene === 1) return
+    const nextP2 = cycle + ((1 - scene + 3) % 3)
+    setTrio(pickTrio(orderedPool, (nextP2 * 3 + 1) % orderedPool.length))
+  }, [cycle, scene, orderedPool])
 
-  const ready = field.w > 0 && field.h > 0
+  // ── Sizes ──
+  const featuredSize = featured ? fitPhoto(featured, p1Field.w - 40, p1Field.h - PLATE_CHROME) : null
+
+  const trioSizes = useMemo(() => {
+    if (!p2Row.w || !p2Row.h || !trio.length) return [] as ({ w: number; h: number } | null)[]
+    const colW = (p2Row.w - TRIO_GAP * 2) / 3
+    const maxPhotoW = colW - 20
+    const maxPhotoH = p2Row.h - MINI_CHROME
+    return trio.map(p => fitPhoto(p, maxPhotoW, maxPhotoH))
+  }, [p2Row, trio])
+
+  const featuredCaption = featured ? captionOf(featured) : ''
 
   return (
     <div className="at-root" role="presentation">
+      <div className="at-glow" />
       <div className="at-layout">
         <header className="at-header">
           <div className="wm">The Red River Métis Shoebox</div>
@@ -330,26 +403,87 @@ export default function AttractScreen({ photos, baseUrl }: AttractScreenProps) {
           <div className="sub">A community photograph archive · Manitoba</div>
         </header>
 
-        <section className="at-hero">
-          <div className="eyebrow">Featured from the collection</div>
-          <div className="at-field" ref={fieldRef}>
-            {ready &&
-              sized.map(({ photo, key, width, height }) =>
-                width > 40 ? (
+        <div className="at-main">
+          {/* ── Scene 1: featured photograph and who shared it ── */}
+          <section className={`at-scene p1${scene === 0 ? ' on' : ''}`} aria-hidden={scene !== 0}>
+            <div className="p1-left">
+              <div className="p1-field" ref={p1FieldRef}>
+                {featured && featuredSize && featuredSize.w > 40 ? (
                   <HeroMount
-                    key={key}
-                    photo={photo}
+                    key={featured.id}
+                    photo={featured}
                     baseUrl={baseUrl}
-                    width={width}
-                    height={height}
-                    active={activeKey === key}
-                    onReady={() => setActiveKey(k => (k == null || key > k ? key : k))}
+                    width={featuredSize.w}
+                    height={featuredSize.h}
                   />
-                ) : null
-              )}
-          </div>
-          <div className="at-sweep" />
-        </section>
+                ) : null}
+              </div>
+              <div className="at-sweep" />
+            </div>
+            <div className="p1-story">
+              <div className="at-eyebrow">Featured photograph</div>
+              {featured ? (
+                <>
+                  <h2>{titleOf(featured)}</h2>
+                  <div className="p1-date">{dateLine(featured)}</div>
+                  <div className="p1-credit">
+                    <div className="lab">Shared by</div>
+                    <div className="name">{submitterOf(featured)}</div>
+                    {featured.community ? <div className="from">{featured.community}</div> : null}
+                  </div>
+                  {featuredCaption ? <div className="p1-rule" /> : null}
+                  {featuredCaption ? <p className="p1-caption">{featuredCaption}</p> : null}
+                </>
+              ) : null}
+            </div>
+          </section>
+
+          {/* ── Scene 2: three families, three credits ── */}
+          <section className={`at-scene p2${scene === 1 ? ' on' : ''}`} aria-hidden={scene !== 1}>
+            <div className="p2-head">
+              <div className="at-eyebrow">Shared by families across Manitoba</div>
+            </div>
+            <div className="p2-row" ref={p2RowRef}>
+              {trio.map((p, i) => {
+                const s = trioSizes[i]
+                if (!s || s.w < 40) return null
+                return (
+                  <div className="p2-item" key={`${p.id}-${i}`}>
+                    <MiniPrint photo={p} baseUrl={baseUrl} width={s.w} height={s.h} />
+                  </div>
+                )
+              })}
+            </div>
+          </section>
+
+          {/* ── Scene 3: add your photographs ── */}
+          <section className={`at-scene p3${scene === 2 ? ' on' : ''}`} aria-hidden={scene !== 2}>
+            <div className="p3-copy">
+              <div className="at-eyebrow">Add to the archive</div>
+              <h2>
+                BRING YOUR FAMILY
+                <br />
+                PHOTOGRAPHS
+              </h2>
+              <p>
+                We scan photographs, letters and documents at the booth, and hand them
+                straight back. Tell us the story behind them, and help keep this history
+                in the family.
+              </p>
+              <div className="p3-free">Free · scanned on site</div>
+            </div>
+            <div className="p3-qr-wrap">
+              <div className="p3-qr">
+                <div className="p3-ring" />
+                <img
+                  src={`${baseUrl}assets/shoebox/booth/contribute-qr.svg`}
+                  alt="QR code to contribute photographs"
+                />
+              </div>
+              <div className="p3-cap">Scan to share</div>
+            </div>
+          </section>
+        </div>
 
         <section className="at-stats">
           <Stat target={counts.photos} label="Photographs" sub="digitized" />
@@ -359,33 +493,16 @@ export default function AttractScreen({ photos, baseUrl }: AttractScreenProps) {
           <Stat target={counts.contributors} label="Contributors" sub="and growing" />
         </section>
 
-        <section className="at-invite">
-          <div className="at-copy">
-            <div className="at-eyebrow">Add to the archive</div>
-            <h2>
-              BRING YOUR FAMILY
-              <br />
-              PHOTOGRAPHS
-            </h2>
-            <p>
-              We scan photographs, letters and documents at the booth — and hand them
-              straight back. Tell us the story behind them, and help keep this history in
-              the family.
-            </p>
-            <div className="at-free">Free · scanned on site</div>
-          </div>
-          <div className="at-qr">
-            <div className="box">
-              <img src={`${baseUrl}assets/shoebox/booth/contribute-qr.svg`} alt="QR code to contribute photographs" />
-            </div>
-            <div className="cap">Scan to share</div>
-          </div>
-        </section>
-
         <footer className="at-footer">
           <div className="at-cue">
-            <span className="dot" />
-            TOUCH THE SCREEN TO EXPLORE THE ARCHIVE
+            <span className="tap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 11.5V6a1.5 1.5 0 0 1 3 0v5" />
+                <path d="M12 11V4.5a1.5 1.5 0 0 1 3 0V11" />
+                <path d="M15 11V6.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-.6a5 5 0 0 1-3.6-1.5l-3.1-3.2a1.6 1.6 0 0 1 2.3-2.2L9 15.6" />
+              </svg>
+            </span>
+            TAP ANYWHERE TO EXPLORE THE ARCHIVE
           </div>
         </footer>
       </div>
